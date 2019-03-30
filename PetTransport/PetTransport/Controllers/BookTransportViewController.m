@@ -10,7 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "LocationManager.h"
 
-@interface BookTransportViewController ()
+@interface BookTransportViewController () <LocationManagerDelegate>
 
 @end
 
@@ -42,7 +42,7 @@
 }
 
 - (void)fetchCurrentLocation {
-    [[LocationManager sharedInstance] fetchCurrentLocation];
+    [[LocationManager sharedInstance] fetchCurrentLocation:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,8 +50,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - LocationManagerDelegate
+- (void)didFetchCurrentLocation:(struct LocationCoordinate)coordinate {
+    NSLog(@"Me traje la current location");
+    NSLog(@"Latitude: %f, Longitude: %f", coordinate.latitude, coordinate.longitude);
+}
 
-
-
+- (void)didFailFetchingCurrentLocation {
+    NSLog(@"no pudo traer la location");
+}
 
 @end

@@ -14,6 +14,7 @@
 @property(nonatomic,retain) CLLocationManager *cllocationManager;
 @property(nonatomic,retain) CLGeocoder *clgeocoder;
 @property int locationFetchCounter;
+@property (nonatomic, weak) id<LocationManagerDelegate> delegate;
 
 @end
 
@@ -40,7 +41,8 @@
 }
 
 // execute this method to start fetching location
-- (void)fetchCurrentLocation {
+- (void)fetchCurrentLocation: (id<LocationManagerDelegate>)delegate {
+    self.delegate = delegate;
     self.locationFetchCounter = 0;
     
     // fetching current location start from here
@@ -56,9 +58,9 @@
         return;
     }
     self.locationFetchCounter++;
-    
+    CLLocation *currentLocation = [locations lastObject];
     // after we have current coordinates, we use this method to fetch the information data of fetched coordinate
-    [self.clgeocoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
+    [self.clgeocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *placemark = [placemarks lastObject];
         
         NSString *street = placemark.thoroughfare;
@@ -71,10 +73,16 @@
         // stopping locationManager from fetching again
         [self.cllocationManager stopUpdatingLocation];
     }];
+    
+    struct LocationCoordinate coordinate;
+    coordinate.latitude = currentLocation.coordinate.latitude;
+    coordinate.longitude = currentLocation.coordinate.longitude;
+    [self.delegate didFetchCurrentLocation:coordinate];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"failed to fetch current location : %@", error);
+    [self.delegate didFailFetchingCurrentLocation];
 }
 
 @end
