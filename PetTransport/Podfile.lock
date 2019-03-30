@@ -14,21 +14,34 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - GoogleMaps (3.0.3):
+    - GoogleMaps/Maps (= 3.0.3)
+  - GoogleMaps/Base (3.0.3)
+  - GoogleMaps/Maps (3.0.3):
+    - GoogleMaps/Base
+  - GooglePlaces (3.0.3):
+    - GoogleMaps/Base (= 3.0.3)
   - PureLayout (3.1.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
+  - GoogleMaps
+  - GooglePlaces
   - PureLayout (= 3.1.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - GoogleMaps
+    - GooglePlaces
     - PureLayout
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
+  GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
   PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
 
-PODFILE CHECKSUM: 9e879bdebe700ae47526805a6d30e56b1194c3aa
+PODFILE CHECKSUM: 9dbc0213b8cc1a940ab61ef7e0abaf15062484a7
 
 COCOAPODS: 1.6.1

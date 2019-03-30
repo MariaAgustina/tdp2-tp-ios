@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A7ADBC95017E43D41801CCF /* libPods-PetTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB26645850275AC9BCE72C1 /* libPods-PetTransport.a */; };
+		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -39,6 +40,8 @@
 		2DA518D2C3703E00AB69C7DB /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
 		3F4F54E0D8D01DEBBEB88CAC /* Pods-PetTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetTransport/Pods-PetTransport.debug.xcconfig"; sourceTree = "<group>"; };
 		4BB26645850275AC9BCE72C1 /* libPods-PetTransport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PetTransport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		58492B96225007E200496C82 /* BookTransportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTransportViewController.h; sourceTree = "<group>"; };
+		58492B97225007E200496C82 /* BookTransportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookTransportViewController.m; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -92,6 +95,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		58492B95225007D000496C82 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				58492B96225007E200496C82 /* BookTransportViewController.h */,
+				58492B97225007E200496C82 /* BookTransportViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		689D4D9DECFB0A771627FB83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +137,7 @@
 		9396CA0322474B3400F6248F /* PetTransport */ = {
 			isa = PBXGroup;
 			children = (
+				58492B95225007D000496C82 /* Controllers */,
 				9396CA0422474B3400F6248F /* AppDelegate.h */,
 				9396CA0522474B3400F6248F /* AppDelegate.m */,
 				9396CA0722474B3400F6248F /* ViewController.h */,
@@ -167,6 +180,7 @@
 				9396C9FD22474B3400F6248F /* Sources */,
 				9396C9FE22474B3400F6248F /* Frameworks */,
 				9396C9FF22474B3400F6248F /* Resources */,
+				CC20DEE722DCDF2BB22C51EB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,21 +305,37 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PetTransport-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC20DEE722DCDF2BB22C51EB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -318,6 +348,7 @@
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
+				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+@import GoogleMaps;
+
+#define GMAPS_API_KEY @"AIzaSyCCNLPJExcpOMEUtwG_IlzFGHgA-dV7bmw"
 
 @interface AppDelegate ()
 
@@ -31,6 +34,8 @@
     
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
+    
+    [GMSServices provideAPIKey:GMAPS_API_KEY ];
     
     return YES;    return YES;
 }
