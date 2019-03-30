@@ -46,20 +46,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="En otro controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rae-m0-VCV">
-                                <rect key="frame" x="121" y="20" width="132" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z2b-OG-ne2" customClass="GMSMapView">
-                                <rect key="frame" x="16" y="49" width="343" height="598"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bu-Wk-lWk" userLabel="ButtonsArea">
+                                <rect key="frame" x="16" y="20" width="343" height="96"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsI-tK-mRH">
+                                        <rect key="frame" x="0.0" y="12" width="343" height="30"/>
+                                        <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="EiK-Cr-rUk"/>
+                                        </constraints>
+                                        <state key="normal" title="Origen"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ds-93-hwV">
+                                        <rect key="frame" x="0.0" y="54" width="343" height="30"/>
+                                        <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Destino"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95465331862354108" green="1" blue="0.787817886738026" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="4Ds-93-hwV" firstAttribute="top" secondItem="TsI-tK-mRH" secondAttribute="bottom" constant="12" id="B4z-1I-xvg"/>
+                                    <constraint firstItem="4Ds-93-hwV" firstAttribute="trailing" secondItem="TsI-tK-mRH" secondAttribute="trailing" id="Dki-3h-atU"/>
+                                    <constraint firstAttribute="bottom" secondItem="4Ds-93-hwV" secondAttribute="bottom" constant="12" id="Vin-oV-zLI"/>
+                                    <constraint firstAttribute="trailing" secondItem="TsI-tK-mRH" secondAttribute="trailing" id="WV2-te-WGt"/>
+                                    <constraint firstItem="4Ds-93-hwV" firstAttribute="leading" secondItem="TsI-tK-mRH" secondAttribute="leading" id="tFw-Vh-jI5"/>
+                                    <constraint firstItem="4Ds-93-hwV" firstAttribute="height" secondItem="TsI-tK-mRH" secondAttribute="height" id="tbD-OC-EPR"/>
+                                    <constraint firstItem="TsI-tK-mRH" firstAttribute="leading" secondItem="7Bu-Wk-lWk" secondAttribute="leading" id="uYI-68-lWC"/>
+                                    <constraint firstItem="TsI-tK-mRH" firstAttribute="top" secondItem="7Bu-Wk-lWk" secondAttribute="top" constant="12" id="v1X-bg-OC8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2b-OG-ne2" customClass="GMSMapView">
+                                <rect key="frame" x="16" y="124" width="343" height="523"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9Dk-PM-UpL" firstAttribute="bottom" secondItem="z2b-OG-ne2" secondAttribute="bottom" constant="20" id="26p-Yj-a89"/>
+                            <constraint firstItem="9Dk-PM-UpL" firstAttribute="top" secondItem="7Bu-Wk-lWk" secondAttribute="top" id="7Kl-Wk-zPJ"/>
+                            <constraint firstItem="9Dk-PM-UpL" firstAttribute="trailing" secondItem="7Bu-Wk-lWk" secondAttribute="trailing" constant="16" id="AJu-pN-cWB"/>
+                            <constraint firstItem="7Bu-Wk-lWk" firstAttribute="leading" secondItem="9Dk-PM-UpL" secondAttribute="leading" constant="16" id="Fia-bs-E9l"/>
+                            <constraint firstItem="z2b-OG-ne2" firstAttribute="leading" secondItem="7Bu-Wk-lWk" secondAttribute="leading" id="d4c-y6-eS0"/>
+                            <constraint firstItem="z2b-OG-ne2" firstAttribute="top" secondItem="7Bu-Wk-lWk" secondAttribute="bottom" constant="8" symbolic="YES" id="kZg-6r-6ar"/>
+                            <constraint firstItem="z2b-OG-ne2" firstAttribute="trailing" secondItem="7Bu-Wk-lWk" secondAttribute="trailing" id="s5d-w0-y9v"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9Dk-PM-UpL"/>
                     </view>
                     <connections>
