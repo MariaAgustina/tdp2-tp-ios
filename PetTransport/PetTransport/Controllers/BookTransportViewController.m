@@ -12,9 +12,16 @@
 
 @interface BookTransportViewController () <LocationManagerDelegate>
 
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+
 @end
 
 @implementation BookTransportViewController
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,38 +29,32 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    NSLog(@"view will appear");
+    [super viewWillAppear:animated];
+    
+    self.mapView.myLocationEnabled = YES;
     [self fetchCurrentLocation];
-    
-    // Create a GMSCameraPosition that tells the map to display the
-    // coordinate -33.86,151.20 at zoom level 6.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-34.635487
-                                                            longitude:-58.364654
-                                                                 zoom:17];
-    GMSMapView *mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView.myLocationEnabled = YES;
-    self.view = mapView;
-    
-    // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-34.635487, -58.364654);
-    marker.title = @"Aca estoy";
-    marker.map = mapView;
 }
 
 - (void)fetchCurrentLocation {
     [[LocationManager sharedInstance] fetchCurrentLocation:self];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (GMSMarker*) addMarker: (struct LocationCoordinate) coordinate {
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+    marker.title = @"Aca estoy";
+    marker.map = self.mapView;
+    return marker;
 }
 
 #pragma mark - LocationManagerDelegate
-- (void)didFetchCurrentLocation:(struct LocationCoordinate)coordinate {
-    NSLog(@"Me traje la current location");
-    NSLog(@"Latitude: %f, Longitude: %f", coordinate.latitude, coordinate.longitude);
+- (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude
+                                                            longitude:coordinate.longitude
+                                                                 zoom:17];
+    
+    [self.mapView setCamera:camera];
+    [self addMarker:coordinate];
 }
 
 - (void)didFailFetchingCurrentLocation {
