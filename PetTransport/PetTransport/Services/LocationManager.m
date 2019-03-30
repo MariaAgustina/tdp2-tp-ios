@@ -1,0 +1,80 @@
+//
+//  LocationManager.m
+//  PetTransport
+//
+//  Created by Kaoru Heanna on 3/30/19.
+//  Copyright © 2019 agustina markosich. All rights reserved.
+//
+
+#import "LocationManager.h"
+#import <CoreLocation/CoreLocation.h>
+
+@interface LocationManager ()<CLLocationManagerDelegate>
+
+@property(nonatomic,retain) CLLocationManager *cllocationManager;
+@property(nonatomic,retain) CLGeocoder *clgeocoder;
+@property int locationFetchCounter;
+
+@end
+
+@implementation LocationManager
+
++ (instancetype)sharedInstance {
+    static LocationManager *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[LocationManager alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (id)init {
+    self = [super init];
+    
+    self.cllocationManager = [[CLLocationManager alloc] init];
+    self.cllocationManager.delegate = self;
+    self.cllocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.clgeocoder = [[CLGeocoder alloc] init];
+    
+    return self;
+}
+
+// execute this method to start fetching location
+- (void)fetchCurrentLocation {
+    self.locationFetchCounter = 0;
+    
+    // fetching current location start from here
+    [self.cllocationManager startUpdatingLocation];
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    // this delegate method is constantly invoked every some miliseconds.
+    // we only need to receive the first response, so we skip the others.
+    if (self.locationFetchCounter > 0) {
+        return;
+    }
+    self.locationFetchCounter++;
+    
+    // after we have current coordinates, we use this method to fetch the information data of fetched coordinate
+    [self.clgeocoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks lastObject];
+        
+        NSString *street = placemark.thoroughfare;
+        NSString *city = placemark.locality;
+        NSString *posCode = placemark.postalCode;
+        NSString *country = placemark.country;
+        
+        NSLog(@"we live in %@, %@, %@, %@", country, city, street, posCode);
+        
+        // stopping locationManager from fetching again
+        [self.cllocationManager stopUpdatingLocation];
+    }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"failed to fetch current location : %@", error);
+}
+
+@end

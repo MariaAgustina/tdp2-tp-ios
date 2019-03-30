@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A7ADBC95017E43D41801CCF /* libPods-PetTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB26645850275AC9BCE72C1 /* libPods-PetTransport.a */; };
 		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
+		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -42,6 +43,8 @@
 		4BB26645850275AC9BCE72C1 /* libPods-PetTransport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PetTransport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58492B96225007E200496C82 /* BookTransportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTransportViewController.h; sourceTree = "<group>"; };
 		58492B97225007E200496C82 /* BookTransportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookTransportViewController.m; sourceTree = "<group>"; };
+		58492B9A2250133E00496C82 /* LocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		58492B9B2250133E00496C82 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 		58492B992250130700496C82 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				58492B9A2250133E00496C82 /* LocationManager.h */,
+				58492B9B2250133E00496C82 /* LocationManager.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
+				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
