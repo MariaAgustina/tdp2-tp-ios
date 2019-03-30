@@ -8,8 +8,13 @@
 
 #import "BookTransportViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface BookTransportViewController ()
+@interface BookTransportViewController ()<CLLocationManagerDelegate>
+
+@property(nonatomic,retain) CLLocationManager *locationManager;
+@property(nonatomic,retain) CLGeocoder *geocoder;
+@property int locationFetchCounter;
 
 @end
 
@@ -18,10 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.geocoder = [[CLGeocoder alloc] init];
+    
     NSLog(@"Estoy en Book Transport");
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [self doFetchCurrentLocation];
     NSLog(@"view will appear");
     
     // Create a GMSCameraPosition that tells the map to display the
@@ -40,20 +51,49 @@
     marker.map = mapView;
 }
 
+// execute this method to start fetching location
+- (IBAction)doFetchCurrentLocation {
+    self.locationFetchCounter = 0;
+    
+    // fetching current location start from here
+    [self.locationManager startUpdatingLocation];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - CLLocationManagerDelegate
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    // this delegate method is constantly invoked every some miliseconds.
+    // we only need to receive the first response, so we skip the others.
+    if (self.locationFetchCounter > 0) {
+        return;
+    }
+    self.locationFetchCounter++;
+    
+    // after we have current coordinates, we use this method to fetch the information data of fetched coordinate
+    [self.geocoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks lastObject];
+        
+        NSString *street = placemark.thoroughfare;
+        NSString *city = placemark.locality;
+        NSString *posCode = placemark.postalCode;
+        NSString *country = placemark.country;
+        
+        NSLog(@"we live in %@, %@, %@, %@", country, city, street, posCode);
+        
+        // stopping locationManager from fetching again
+        [self.locationManager stopUpdatingLocation];
+    }];
 }
-*/
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"failed to fetch current location : %@", error);
+}
+
+
 
 @end
