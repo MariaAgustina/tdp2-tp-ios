@@ -1,0 +1,7 @@
+platform :ios, '10.0'
+
+target 'PetTransport' do
+  pod 'AFNetworking', '~> 3.2.1'
+  pod 'PureLayout', '3.1.2'
+
+end
