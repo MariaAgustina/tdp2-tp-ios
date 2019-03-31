@@ -44,6 +44,7 @@
     if (_driverMarker == nil) {
         _driverMarker = [[GMSMarker alloc] init];
         _driverMarker.title = @"Chofer";
+        _driverMarker.icon = [UIImage imageNamed:@"car-icon"];
         _driverMarker.map = self.mapView;
     }
     return _driverMarker;
