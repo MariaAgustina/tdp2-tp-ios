@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 @import GoogleMaps;
+@import GooglePlaces;
 
-#define GMAPS_API_KEY @"AIzaSyCCNLPJExcpOMEUtwG_IlzFGHgA-dV7bmw"
+#define GMAPS_API_KEY @"AIzaSyBHopQabuqy_MPF6b0Pse8vEtwmXbL8r58"
 
 @interface AppDelegate ()
 
@@ -36,8 +37,9 @@
     [self.window makeKeyAndVisible];
     
     [GMSServices provideAPIKey:GMAPS_API_KEY ];
+    [GMSPlacesClient provideAPIKey:GMAPS_API_KEY];
     
-    return YES;    return YES;
+    return YES;
 }
 
 

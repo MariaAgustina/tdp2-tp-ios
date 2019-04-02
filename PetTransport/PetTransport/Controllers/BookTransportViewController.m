@@ -8,24 +8,36 @@
 
 #import "BookTransportViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <GooglePlaces/GooglePlaces.h>
 #import "LocationManager.h"
+#import "Trip.h"
+#import "GMSMarker+Setup.h"
+#import "TripService.h"
 
-@interface BookTransportViewController () <LocationManagerDelegate>
+@interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate, TripServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (strong, nonatomic) GMSAutocompleteFilter *filter;
+
+@property (strong,nonatomic) Trip* trip;
+@property (nonatomic, copy) void (^autocompleteAdressCompletionBlock)(GMSPlace *);
+
+@property (strong,nonatomic) GMSMarker* originMarker;
+@property (strong,nonatomic) GMSMarker* destinyMarker;
+
+@property (strong,nonatomic) TripService* service;
+
 
 @end
 
 @implementation BookTransportViewController
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Estoy en Book Transport");
+    self.trip = [Trip new];
+    self.originMarker = [GMSMarker new];
+    self.destinyMarker = [GMSMarker new];
+    self.service = [TripService new];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -39,12 +51,50 @@
     [[LocationManager sharedInstance] fetchCurrentLocation:self];
 }
 
-- (GMSMarker*) addMarker: (struct LocationCoordinate) coordinate {
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
-    marker.title = @"Aca estoy";
-    marker.map = self.mapView;
-    return marker;
+
+
+// Present the autocomplete view controller when the button is pressed.
+
+- (void)presentAutocompleteAdressCompletionBlock:(void (^)(GMSPlace *))completionBlock{
+    self.autocompleteAdressCompletionBlock = completionBlock;
+    
+    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    acController.delegate = self;
+    
+    // Specify the place data types to return, other types will be returned as nil.
+    GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID | GMSPlaceFieldCoordinate);
+    acController.placeFields = fields;
+    
+    // Specify a filter.
+    self.filter = [[GMSAutocompleteFilter alloc] init];
+    self.filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
+    acController.autocompleteFilter = self.filter;
+    
+    // Display the autocomplete view controller
+    [self presentViewController:acController animated:YES completion:nil];
+}
+
+
+- (IBAction)originButtonPressed:(id)sender {
+    [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
+        self.trip.origin = place;
+        [self.originMarker setupWithPlace:place andMapView:self.mapView];
+    }];
+}
+
+- (IBAction)destinyButtonPressed:(id)sender {
+    [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
+        self.trip.destiny = place;
+        [self.destinyMarker setupWithPlace:place andMapView:self.mapView];
+    }];
+}
+
+- (IBAction)searchTripButtonPressed:(id)sender {    
+    if(![self.trip isValid]){
+        //TODO: mensaje de que elija origen y destino
+        return;
+    }
+    [self.service postTrip:self.trip];
 }
 
 #pragma mark - LocationManagerDelegate
@@ -54,11 +104,49 @@
                                                                  zoom:17];
     
     [self.mapView setCamera:camera];
-    [self addMarker:coordinate];
 }
 
 - (void)didFailFetchingCurrentLocation {
     NSLog(@"no pudo traer la location");
 }
 
+
+#pragma mark - GMSAutocompleteViewControllerDelegate
+
+// Handle the user's selection.
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didAutocompleteWithPlace:(GMSPlace *)place {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.autocompleteAdressCompletionBlock(place);
+}
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didFailAutocompleteWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // TODO: handle the error.
+    NSLog(@"Error: %@", [error description]);
+}
+
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+#pragma mark - TripServiceDelegate
+
+- (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
+    //TODO: pegarle al server para ver si hay chofer
+    NSLog(@"Trip created succesfully!");
+}
+- (void)tripServiceFailedWithError:(NSError*)error{
+    //TODO: show error message
+    NSLog(@"Trip creation failed");
+}
 @end
