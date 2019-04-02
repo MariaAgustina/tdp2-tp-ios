@@ -71,21 +71,36 @@
     [self.mapView animateToLocation:CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)];
 }
 
+- (void)driverDidArrive {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"El chofer ya está esperandote"
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"OK!"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    //Handle your yes please button action here
+                                }];
+    [alert addAction:yesButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - TrackDriverServiceDelegate
 
 - (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate andStatus:(DriverStatus)status {
-    NSLog(@"Status: %i", (int)status);
-    if (status == DRIVER_STATUS_GOING){
-        NSLog(@"VIAJANDOOOOO");
-    } else {
-        NSLog(@"ya LLEGUE");
-    }
-    
     [CATransaction begin];
     [CATransaction setAnimationDuration:2.0];
     [self positionMarker:coordinate];
     [CATransaction commit];
     [self moveCamera:coordinate];
+    
+    if (status == DRIVER_STATUS_IN_ORIGIN){
+        [self driverDidArrive];
+    }
 }
 
 - (void)didFailTracking {
