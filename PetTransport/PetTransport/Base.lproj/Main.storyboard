@@ -29,6 +29,17 @@
                                     <segue destination="MRf-Tx-pg4" kind="show" id="wLd-yU-sof"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgS-PW-zvo">
+                                <rect key="frame" x="117" y="261" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Seguir Chofer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SNe-F7-Fbg" kind="show" id="XpG-9X-b1r"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.84228842304470597" blue="0.23040599186013022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -117,6 +128,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vai-zZ-fn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="893.60000000000002" y="109.29535232383809"/>
+        </scene>
+        <!--Track Driver View Controller-->
+        <scene sceneID="RHD-12-BMa">
+            <objects>
+                <viewController id="SNe-F7-Fbg" customClass="TrackDriverViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gj7-vg-5sp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyE-kg-zJc" customClass="GMSMapView">
+                                <rect key="frame" x="16" y="30" width="343" height="617"/>
+                                <color key="backgroundColor" red="1" green="0.84228842299999995" blue="0.2304059919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ees-pN-AS0" firstAttribute="trailing" secondItem="eyE-kg-zJc" secondAttribute="trailing" constant="16" id="RDK-YT-bOK"/>
+                            <constraint firstItem="eyE-kg-zJc" firstAttribute="leading" secondItem="ees-pN-AS0" secondAttribute="leading" constant="16" id="eBT-oL-F5n"/>
+                            <constraint firstItem="eyE-kg-zJc" firstAttribute="top" secondItem="ees-pN-AS0" secondAttribute="top" constant="10" id="fHD-ig-VPh"/>
+                            <constraint firstItem="ees-pN-AS0" firstAttribute="bottom" secondItem="eyE-kg-zJc" secondAttribute="bottom" constant="20" id="yFA-9U-gOE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ees-pN-AS0"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="eyE-kg-zJc" id="V3G-Bq-8sP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F9c-Y6-ddw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="815.44227886056979"/>
         </scene>
     </scenes>
 </document>

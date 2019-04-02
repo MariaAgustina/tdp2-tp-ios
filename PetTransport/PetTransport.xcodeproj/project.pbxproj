@@ -13,6 +13,9 @@
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
+		586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */; };
+		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
+		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -55,6 +58,12 @@
 		937ABFBB225400DB00086554 /* TripService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripService.h; sourceTree = "<group>"; };
 		937ABFBC225400DB00086554 /* TripService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripService.m; sourceTree = "<group>"; };
 		937ABFBE225401AF00086554 /* TripServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripServiceDelegate.h; sourceTree = "<group>"; };
+		586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverViewController.h; sourceTree = "<group>"; };
+		586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverViewController.m; sourceTree = "<group>"; };
+		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
+		58F022DC2253EFEA00318837 /* TrackDriverService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverService.h; sourceTree = "<group>"; };
+		58F022DD2253EFEA00318837 /* TrackDriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverService.m; sourceTree = "<group>"; };
+		58F022E02253F18C00318837 /* LocationCoordinate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCoordinate.h; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -113,6 +122,8 @@
 			children = (
 				58492B96225007E200496C82 /* BookTransportViewController.h */,
 				58492B97225007E200496C82 /* BookTransportViewController.m */,
+				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
+				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -122,8 +133,26 @@
 			children = (
 				58492B9A2250133E00496C82 /* LocationManager.h */,
 				58492B9B2250133E00496C82 /* LocationManager.m */,
+				58F022DC2253EFEA00318837 /* TrackDriverService.h */,
+				58F022DD2253EFEA00318837 /* TrackDriverService.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5872B7B222515A590034F2F9 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5872B7B322515A730034F2F9 /* car-icon.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		58F022DF2253F16D00318837 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				58F022E02253F18C00318837 /* LocationCoordinate.h */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		689D4D9DECFB0A771627FB83 /* Frameworks */ = {
@@ -182,6 +211,8 @@
 			children = (
 				937ABFB72253F8D500086554 /* Categories */,
 				937ABFB32253DACD00086554 /* Trip */,
+				58F022DF2253F16D00318837 /* Entities */,
+				5872B7B222515A590034F2F9 /* Images */,
 				58492B992250130700496C82 /* Services */,
 				58492B95225007D000496C82 /* Controllers */,
 				9396CA0422474B3400F6248F /* AppDelegate.h */,
@@ -326,6 +357,7 @@
 				9396CA1122474B3400F6248F /* LaunchScreen.storyboard in Resources */,
 				9396CA0E22474B3400F6248F /* Assets.xcassets in Resources */,
 				9396CA0C22474B3400F6248F /* Main.storyboard in Resources */,
+				5872B7B422515A730034F2F9 /* car-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +427,8 @@
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,
+				586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */,
+				58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,

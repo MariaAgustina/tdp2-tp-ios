@@ -7,11 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-struct LocationCoordinate {
-    double latitude;
-    double longitude;
-};
+#import "LocationCoordinate.h"
 
 @protocol LocationManagerDelegate <NSObject>
 
