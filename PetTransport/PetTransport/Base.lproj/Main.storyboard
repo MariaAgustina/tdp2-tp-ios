@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,11 +56,17 @@
                                             <constraint firstAttribute="height" constant="30" id="EiK-Cr-rUk"/>
                                         </constraints>
                                         <state key="normal" title="Origen"/>
+                                        <connections>
+                                            <action selector="originButtonPressed:" destination="MRf-Tx-pg4" eventType="touchUpInside" id="2h9-S4-lm6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ds-93-hwV">
                                         <rect key="frame" x="0.0" y="54" width="343" height="30"/>
                                         <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Destino"/>
+                                        <connections>
+                                            <action selector="destinyButtonPressed:" destination="MRf-Tx-pg4" eventType="touchUpInside" id="iA0-Qj-ZMt"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95465331862354108" green="1" blue="0.787817886738026" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -76,18 +82,30 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2b-OG-ne2" customClass="GMSMapView">
-                                <rect key="frame" x="16" y="124" width="343" height="523"/>
+                                <rect key="frame" x="16" y="124" width="343" height="483"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGI-Ce-MxW">
+                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Buscar"/>
+                                <connections>
+                                    <action selector="searchTripButtonPressed:" destination="MRf-Tx-pg4" eventType="touchUpInside" id="du3-ph-TY3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Dk-PM-UpL" firstAttribute="bottom" secondItem="z2b-OG-ne2" secondAttribute="bottom" constant="20" id="26p-Yj-a89"/>
+                            <constraint firstItem="NGI-Ce-MxW" firstAttribute="top" secondItem="z2b-OG-ne2" secondAttribute="bottom" constant="10" id="2xf-Ao-bst"/>
                             <constraint firstItem="9Dk-PM-UpL" firstAttribute="top" secondItem="7Bu-Wk-lWk" secondAttribute="top" id="7Kl-Wk-zPJ"/>
                             <constraint firstItem="9Dk-PM-UpL" firstAttribute="trailing" secondItem="7Bu-Wk-lWk" secondAttribute="trailing" constant="16" id="AJu-pN-cWB"/>
+                            <constraint firstItem="NGI-Ce-MxW" firstAttribute="leading" secondItem="TsI-tK-mRH" secondAttribute="leading" id="Ae3-0K-tdg"/>
                             <constraint firstItem="7Bu-Wk-lWk" firstAttribute="leading" secondItem="9Dk-PM-UpL" secondAttribute="leading" constant="16" id="Fia-bs-E9l"/>
+                            <constraint firstItem="NGI-Ce-MxW" firstAttribute="height" secondItem="TsI-tK-mRH" secondAttribute="height" id="KH7-Vh-sFk"/>
                             <constraint firstItem="z2b-OG-ne2" firstAttribute="leading" secondItem="7Bu-Wk-lWk" secondAttribute="leading" id="d4c-y6-eS0"/>
+                            <constraint firstItem="NGI-Ce-MxW" firstAttribute="trailing" secondItem="TsI-tK-mRH" secondAttribute="trailing" id="geq-sM-lmf"/>
                             <constraint firstItem="z2b-OG-ne2" firstAttribute="top" secondItem="7Bu-Wk-lWk" secondAttribute="bottom" constant="8" symbolic="YES" id="kZg-6r-6ar"/>
+                            <constraint firstItem="9Dk-PM-UpL" firstAttribute="bottom" secondItem="NGI-Ce-MxW" secondAttribute="bottom" constant="20" id="ppX-r5-Mcm"/>
                             <constraint firstItem="z2b-OG-ne2" firstAttribute="trailing" secondItem="7Bu-Wk-lWk" secondAttribute="trailing" id="s5d-w0-y9v"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Dk-PM-UpL"/>

@@ -10,6 +10,7 @@
 		1A7ADBC95017E43D41801CCF /* libPods-PetTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB26645850275AC9BCE72C1 /* libPods-PetTransport.a */; };
 		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
+		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -45,6 +46,8 @@
 		58492B97225007E200496C82 /* BookTransportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookTransportViewController.m; sourceTree = "<group>"; };
 		58492B9A2250133E00496C82 /* LocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		58492B9B2250133E00496C82 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		937ABFB42253DAF000086554 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		937ABFB52253DAF000086554 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -124,6 +127,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		937ABFB32253DACD00086554 /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				937ABFB42253DAF000086554 /* Trip.h */,
+				937ABFB52253DAF000086554 /* Trip.m */,
+			);
+			path = Trip;
+			sourceTree = "<group>";
+		};
 		9396C9F822474B3400F6248F = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +161,7 @@
 		9396CA0322474B3400F6248F /* PetTransport */ = {
 			isa = PBXGroup;
 			children = (
+				937ABFB32253DACD00086554 /* Trip */,
 				58492B992250130700496C82 /* Services */,
 				58492B95225007D000496C82 /* Controllers */,
 				9396CA0422474B3400F6248F /* AppDelegate.h */,
@@ -337,7 +350,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
@@ -348,7 +361,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -360,6 +373,7 @@
 			files = (
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
+				937ABFB62253DAF000086554 /* Trip.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
