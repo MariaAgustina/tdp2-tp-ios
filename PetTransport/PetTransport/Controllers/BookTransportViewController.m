@@ -11,6 +11,7 @@
 #import <GooglePlaces/GooglePlaces.h>
 #import "LocationManager.h"
 #import "Trip.h"
+#import "GMSMarker+Setup.h"
 
 
 @interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate>
@@ -22,19 +23,18 @@
 @property (strong,nonatomic) Trip* trip;
 @property (nonatomic, copy) void (^autocompleteAdressCompletionBlock)(GMSPlace *);
 
+@property (strong,nonatomic) GMSMarker* originMarker;
+@property (strong,nonatomic) GMSMarker* destinyMarker;
+
 @end
 
 @implementation BookTransportViewController
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Estoy en Book Transport");
     self.trip = [Trip new];
+    self.originMarker = [GMSMarker new];
+    self.destinyMarker = [GMSMarker new];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -48,13 +48,7 @@
     [[LocationManager sharedInstance] fetchCurrentLocation:self];
 }
 
-- (GMSMarker*) addMarker: (struct LocationCoordinate) coordinate {
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
-    marker.title = @"Aca estoy";
-    marker.map = self.mapView;
-    return marker;
-}
+
 
 // Present the autocomplete view controller when the button is pressed.
 
@@ -64,8 +58,8 @@
     GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
     acController.delegate = self;
     
-    // Specify the place data types to return.
-    GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID);
+    // Specify the place data types to return, other types will be returned as nil.
+    GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID | GMSPlaceFieldCoordinate);
     acController.placeFields = fields;
     
     // Specify a filter.
@@ -81,19 +75,18 @@
 - (IBAction)originButtonPressed:(id)sender {
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.origin = place;
+        [self.originMarker setupWithPlace:place andMapView:self.mapView];
     }];
 }
 
 - (IBAction)destinyButtonPressed:(id)sender {
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.destiny = place;
+        [self.destinyMarker setupWithPlace:place andMapView:self.mapView];
     }];
 }
 
-- (IBAction)searchTripButtonPressed:(id)sender {
-    NSLog(@"Origen: %@",self.trip.origin.name);
-    NSLog(@"Destino: %@",self.trip.destiny.name);
-    
+- (IBAction)searchTripButtonPressed:(id)sender {    
     if(![self.trip isValid]){
         //TODO: mensaje de que elija origen y destino
         return;
@@ -108,7 +101,6 @@
                                                                  zoom:17];
     
     [self.mapView setCamera:camera];
-    [self addMarker:coordinate];
 }
 
 - (void)didFailFetchingCurrentLocation {
@@ -122,10 +114,6 @@
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
-    // Do something with the selected place.
-    NSLog(@"Place name %@", place.name);
-    NSLog(@"Place ID %@", place.placeID);
-    NSLog(@"Place attributions %@", place.attributions.string);
     self.autocompleteAdressCompletionBlock(place);
 }
 

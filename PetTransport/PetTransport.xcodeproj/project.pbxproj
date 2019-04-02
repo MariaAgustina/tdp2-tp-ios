@@ -11,6 +11,7 @@
 		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
+		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -48,6 +49,8 @@
 		58492B9B2250133E00496C82 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		937ABFB42253DAF000086554 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		937ABFB52253DAF000086554 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GMSMarker+Setup.h"; sourceTree = "<group>"; };
+		937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GMSMarker+Setup.m"; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +139,15 @@
 			path = Trip;
 			sourceTree = "<group>";
 		};
+		937ABFB72253F8D500086554 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */,
+				937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		9396C9F822474B3400F6248F = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +173,7 @@
 		9396CA0322474B3400F6248F /* PetTransport */ = {
 			isa = PBXGroup;
 			children = (
+				937ABFB72253F8D500086554 /* Categories */,
 				937ABFB32253DACD00086554 /* Trip */,
 				58492B992250130700496C82 /* Services */,
 				58492B95225007D000496C82 /* Controllers */,
@@ -377,6 +390,7 @@
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
+				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
