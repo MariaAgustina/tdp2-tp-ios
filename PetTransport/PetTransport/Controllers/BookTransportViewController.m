@@ -12,10 +12,9 @@
 #import "LocationManager.h"
 #import "Trip.h"
 #import "GMSMarker+Setup.h"
+#import "TripService.h"
 
-
-@interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate>
-
+@interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate, TripServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) GMSAutocompleteFilter *filter;
@@ -26,6 +25,9 @@
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
+@property (strong,nonatomic) TripService* service;
+
+
 @end
 
 @implementation BookTransportViewController
@@ -35,6 +37,7 @@
     self.trip = [Trip new];
     self.originMarker = [GMSMarker new];
     self.destinyMarker = [GMSMarker new];
+    self.service = [TripService new];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -91,7 +94,7 @@
         //TODO: mensaje de que elija origen y destino
         return;
     }
-    //TODO: crear viaje
+    [self.service postTrip:self.trip];
 }
 
 #pragma mark - LocationManagerDelegate
@@ -136,4 +139,14 @@ didFailAutocompleteWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
+#pragma mark - TripServiceDelegate
+
+- (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
+    //TODO: pegarle al server para ver si hay chofer
+    NSLog(@"Trip created succesfully!");
+}
+- (void)tripServiceFailedWithError:(NSError*)error{
+    //TODO: show error message
+    NSLog(@"Trip creation failed");
+}
 @end

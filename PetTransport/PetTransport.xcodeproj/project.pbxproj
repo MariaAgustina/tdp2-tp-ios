@@ -12,6 +12,7 @@
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
+		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -51,6 +52,9 @@
 		937ABFB52253DAF000086554 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GMSMarker+Setup.h"; sourceTree = "<group>"; };
 		937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GMSMarker+Setup.m"; sourceTree = "<group>"; };
+		937ABFBB225400DB00086554 /* TripService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripService.h; sourceTree = "<group>"; };
+		937ABFBC225400DB00086554 /* TripService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripService.m; sourceTree = "<group>"; };
+		937ABFBE225401AF00086554 /* TripServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripServiceDelegate.h; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -135,6 +139,9 @@
 			children = (
 				937ABFB42253DAF000086554 /* Trip.h */,
 				937ABFB52253DAF000086554 /* Trip.m */,
+				937ABFBE225401AF00086554 /* TripServiceDelegate.h */,
+				937ABFBB225400DB00086554 /* TripService.h */,
+				937ABFBC225400DB00086554 /* TripService.m */,
 			);
 			path = Trip;
 			sourceTree = "<group>";
@@ -384,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,
