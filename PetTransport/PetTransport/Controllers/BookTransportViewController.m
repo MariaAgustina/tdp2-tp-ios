@@ -20,7 +20,7 @@
 @property (strong, nonatomic) GMSAutocompleteFilter *filter;
 
 @property (strong,nonatomic) Trip* trip;
-@property (nonatomic, copy) void (^autocompleteCompletionBlock)(GMSPlace *);
+@property (nonatomic, copy) void (^autocompleteAdressCompletionBlock)(GMSPlace *);
 
 @end
 
@@ -58,8 +58,8 @@
 
 // Present the autocomplete view controller when the button is pressed.
 
-- (void)autocompleteClickedCompletionBlock:(void (^)(GMSPlace *))completionBlock{
-    self.autocompleteCompletionBlock = completionBlock;
+- (void)presentAutocompleteAdressCompletionBlock:(void (^)(GMSPlace *))completionBlock{
+    self.autocompleteAdressCompletionBlock = completionBlock;
     
     GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
     acController.delegate = self;
@@ -79,13 +79,13 @@
 
 
 - (IBAction)originButtonPressed:(id)sender {
-    [self autocompleteClickedCompletionBlock: ^(GMSPlace *place) {
+    [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.origin = place;
     }];
 }
 
 - (IBAction)destinyButtonPressed:(id)sender {
-    [self autocompleteClickedCompletionBlock: ^(GMSPlace *place) {
+    [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.destiny = place;
     }];
 }
@@ -126,7 +126,7 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     NSLog(@"Place name %@", place.name);
     NSLog(@"Place ID %@", place.placeID);
     NSLog(@"Place attributions %@", place.attributions.string);
-    self.autocompleteCompletionBlock(place);
+    self.autocompleteAdressCompletionBlock(place);
 }
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController
