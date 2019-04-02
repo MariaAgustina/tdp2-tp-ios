@@ -38,8 +38,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self.timer invalidate];
-//    self.timer = nil;
+    [[TrackDriverService sharedInstance] stopTracking];
 }
 
 - (GMSMarker *)driverMarker {
@@ -74,7 +73,14 @@
 
 #pragma mark - TrackDriverServiceDelegate
 
-- (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate {
+- (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate andStatus:(DriverStatus)status {
+    NSLog(@"Status: %i", (int)status);
+    if (status == DRIVER_STATUS_GOING){
+        NSLog(@"VIAJANDOOOOO");
+    } else {
+        NSLog(@"ya LLEGUE");
+    }
+    
     [CATransaction begin];
     [CATransaction setAnimationDuration:2.0];
     [self positionMarker:coordinate];

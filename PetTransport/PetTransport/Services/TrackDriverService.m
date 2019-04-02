@@ -33,7 +33,6 @@
 
 - (id)init {
     self = [super init];
-    
     return self;
 }
 
@@ -56,15 +55,13 @@
                         [NSValue valueWithCGPoint:CGPointMake(-34.563665, -58.442683)],
                         [NSValue valueWithCGPoint:CGPointMake(-34.564107, -58.441927)],
                         nil];
-        _coordinatesIndex = 0;
-    }
-    if (_coordinatesIndex >= _coordinates.count){
-        _coordinatesIndex = 0;
     }
     return _coordinates;
 }
 
 - (void)startTrackingDriverWithDelegate:(id<TrackDriverServideDelegate>)delegate {
+    self.coordinatesIndex = 0;
+    
     self.delegate = delegate;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
                                                   target:self
@@ -74,6 +71,10 @@
 }
 
 - (void)updateDriverLocation {
+    if (self.delegate == nil){
+        [self stopTracking];
+    }
+    
     CGPoint point = [[self.coordinates objectAtIndex:self.coordinatesIndex] CGPointValue];
     self.coordinatesIndex++;
     
@@ -81,7 +82,19 @@
     coordinate.latitude = point.x;
     coordinate.longitude = point.y;
     
-    [self.delegate didUpdateDriverLocation:coordinate];
+    BOOL didArrive = (self.coordinatesIndex >= self.coordinates.count);
+    DriverStatus status = didArrive ? DRIVER_STATUS_IN_ORIGIN : DRIVER_STATUS_GOING;
+    [self.delegate didUpdateDriverLocation:coordinate andStatus:status];
+
+    if (didArrive) {
+        [self stopTracking];
+    }
+}
+
+- (void)stopTracking {
+    [self.timer invalidate];
+    self.timer = nil;
+    self.delegate = nil;
 }
 
 @end
