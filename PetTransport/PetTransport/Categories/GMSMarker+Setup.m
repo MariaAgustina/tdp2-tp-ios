@@ -15,7 +15,7 @@
 - (void)setupWithPlace:(GMSPlace*)place andMapView:(GMSMapView*)mapView{
     self.map = nil; //To reset the market from the view
     self.position = place.coordinate;
-    self.title = place.name;
+    self.snippet = place.name;
     self.map = mapView;
 }
 

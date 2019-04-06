@@ -28,7 +28,7 @@
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
 @property (strong,nonatomic) TripService* service;
-
+@property (strong,nonatomic) LocationManager *locationManager;
 
 @end
 
@@ -38,20 +38,26 @@
     [super viewDidLoad];
     self.title = @"Pedir viaje";
     self.trip = [Trip new];
+    
     self.originMarker = [GMSMarker new];
+    self.originMarker.title = @"Origen";
+    
     self.destinyMarker = [GMSMarker new];
+    self.destinyMarker.title = @"Destino";
+    self.destinyMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+    
     self.service = [[TripService alloc]initWithDelegate:self];
+    self.locationManager = [[LocationManager alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     self.mapView.myLocationEnabled = YES;
     [self fetchCurrentLocation];
 }
 
 - (void)fetchCurrentLocation {
-    [[LocationManager sharedInstance] fetchCurrentLocation:self];
+    [self.locationManager fetchCurrentLocation:self];
 }
 
 
@@ -70,6 +76,7 @@
     // Specify a filter.
     self.filter = [[GMSAutocompleteFilter alloc] init];
     self.filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
+    self.filter.country = @"AR";
     acController.autocompleteFilter = self.filter;
     
     // Display the autocomplete view controller
@@ -81,6 +88,11 @@
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.origin = place;
         [self.originMarker setupWithPlace:place andMapView:self.mapView];
+        
+        struct LocationCoordinate coordinate;
+        coordinate.latitude = place.coordinate.latitude;
+        coordinate.longitude = place.coordinate.longitude;
+        [self centerCamera:coordinate];
     }];
 }
 
@@ -88,6 +100,11 @@
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.destiny = place;
         [self.destinyMarker setupWithPlace:place andMapView:self.mapView];
+        
+        struct LocationCoordinate coordinate;
+        coordinate.latitude = place.coordinate.latitude;
+        coordinate.longitude = place.coordinate.longitude;
+        [self centerCamera:coordinate];
     }];
 }
 
@@ -99,13 +116,16 @@
     [self.service postTrip:self.trip];
 }
 
-#pragma mark - LocationManagerDelegate
-- (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
+- (void)centerCamera: (struct LocationCoordinate) coordinate {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude
                                                             longitude:coordinate.longitude
                                                                  zoom:17];
-    
     [self.mapView setCamera:camera];
+}
+
+#pragma mark - LocationManagerDelegate
+- (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
+    [self centerCamera:coordinate];
 }
 
 - (void)didFailFetchingCurrentLocation {
