@@ -66,7 +66,7 @@
 }
 
 - (void)startUpdating {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                   target:self
                                                 selector:@selector(updateDriverLocation)
                                                 userInfo:nil

@@ -15,10 +15,13 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) GMSMarker *driverMarker;
+@property BOOL tracking;
 
 @end
 
 @implementation TrackDriverViewController
+
+const float ANIMATION_TIME_SECONDS = 5.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +36,7 @@
     initialCameraCoordinate.longitude = -58.441392;
     [self centerCamera:initialCameraCoordinate];
     
+    self.tracking = false;
     [self trackDriver];
 }
 
@@ -68,7 +72,10 @@
 }
 
 - (void)moveCamera: (struct LocationCoordinate) coordinate {
+    [CATransaction begin];
+    [CATransaction setValue:[NSNumber numberWithFloat: ANIMATION_TIME_SECONDS] forKey:kCATransactionAnimationDuration];
     [self.mapView animateToLocation:CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)];
+    [CATransaction commit];
 }
 
 - (void)driverDidArrive {
@@ -92,13 +99,18 @@
 #pragma mark - TrackDriverServiceDelegate
 
 - (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate andStatus:(DriverStatus)status {
-    NSLog(@"DID UPDATE DRIVER LOCATION: (%f, %f) ---> %ld", coordinate.latitude, coordinate.longitude, status);
     
     [CATransaction begin];
-    [CATransaction setAnimationDuration:3.0];
+    [CATransaction setAnimationDuration:ANIMATION_TIME_SECONDS];
     [self positionMarker:coordinate];
     [CATransaction commit];
-    [self moveCamera:coordinate];
+    
+    if (self.tracking){
+        [self moveCamera:coordinate];
+    } else {
+        [self centerCamera:coordinate];
+    }
+    self.tracking = true;
     
     if (status == DRIVER_STATUS_IN_ORIGIN){
         [self driverDidArrive];
