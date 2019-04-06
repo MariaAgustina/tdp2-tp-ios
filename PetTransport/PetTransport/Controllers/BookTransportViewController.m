@@ -70,6 +70,7 @@
     // Specify a filter.
     self.filter = [[GMSAutocompleteFilter alloc] init];
     self.filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
+    self.filter.country = @"AR";
     acController.autocompleteFilter = self.filter;
     
     // Display the autocomplete view controller
