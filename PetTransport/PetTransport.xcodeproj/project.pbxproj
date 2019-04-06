@@ -10,12 +10,12 @@
 		1A7ADBC95017E43D41801CCF /* libPods-PetTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB26645850275AC9BCE72C1 /* libPods-PetTransport.a */; };
 		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
-		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
-		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
-		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
 		586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
+		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
+		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
+		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -24,6 +24,7 @@
 		9396CA1422474B3400F6248F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA1322474B3400F6248F /* main.m */; };
 		9396CA1E22474B3400F6248F /* PetTransportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA1D22474B3400F6248F /* PetTransportTests.m */; };
 		9396CA2922474B3400F6248F /* PetTransportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA2822474B3400F6248F /* PetTransportUITests.m */; };
+		93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,12 @@
 		58492B97225007E200496C82 /* BookTransportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookTransportViewController.m; sourceTree = "<group>"; };
 		58492B9A2250133E00496C82 /* LocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		58492B9B2250133E00496C82 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverViewController.h; sourceTree = "<group>"; };
+		586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverViewController.m; sourceTree = "<group>"; };
+		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
+		58F022DC2253EFEA00318837 /* TrackDriverService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverService.h; sourceTree = "<group>"; };
+		58F022DD2253EFEA00318837 /* TrackDriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverService.m; sourceTree = "<group>"; };
+		58F022E02253F18C00318837 /* LocationCoordinate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCoordinate.h; sourceTree = "<group>"; };
 		937ABFB42253DAF000086554 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		937ABFB52253DAF000086554 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GMSMarker+Setup.h"; sourceTree = "<group>"; };
@@ -58,12 +65,6 @@
 		937ABFBB225400DB00086554 /* TripService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripService.h; sourceTree = "<group>"; };
 		937ABFBC225400DB00086554 /* TripService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripService.m; sourceTree = "<group>"; };
 		937ABFBE225401AF00086554 /* TripServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripServiceDelegate.h; sourceTree = "<group>"; };
-		586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverViewController.h; sourceTree = "<group>"; };
-		586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverViewController.m; sourceTree = "<group>"; };
-		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
-		58F022DC2253EFEA00318837 /* TrackDriverService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverService.h; sourceTree = "<group>"; };
-		58F022DD2253EFEA00318837 /* TrackDriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverService.m; sourceTree = "<group>"; };
-		58F022E02253F18C00318837 /* LocationCoordinate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCoordinate.h; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,6 +81,8 @@
 		9396CA2422474B3400F6248F /* PetTransportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetTransportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA2822474B3400F6248F /* PetTransportUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PetTransportUITests.m; sourceTree = "<group>"; };
 		9396CA2A22474B3400F6248F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A7F19422590B5900D076C0 /* UIViewController+ShowAlerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ShowAlerts.h"; sourceTree = "<group>"; };
+		93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowAlerts.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 			children = (
 				937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */,
 				937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */,
+				93A7F19422590B5900D076C0 /* UIViewController+ShowAlerts.h */,
+				93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
+				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

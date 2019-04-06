@@ -13,6 +13,7 @@
 #import "Trip.h"
 #import "GMSMarker+Setup.h"
 #import "TripService.h"
+#import "UIViewController+ShowAlerts.h"
 
 @interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate, TripServiceDelegate>
 
@@ -151,7 +152,6 @@ didFailAutocompleteWithError:(NSError *)error {
     [self.navigationController pushViewController:startedTripVC animated:YES];
 }
 - (void)tripServiceFailedWithError:(NSError*)error{
-    //TODO: show error message
-    NSLog(@"Trip creation failed");
+    [self showInternetConexionAlert];
 }
 @end
