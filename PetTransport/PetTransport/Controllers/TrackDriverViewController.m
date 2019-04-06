@@ -10,29 +10,37 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "LocationCoordinate.h"
 #import "TrackDriverService.h"
+#import "UIViewController+ShowAlerts.h"
 
 @interface TrackDriverViewController () <TrackDriverServideDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) GMSMarker *driverMarker;
+@property (strong, nonatomic) GMSMarker *originMarker;
+@property BOOL tracking;
 
 @end
 
 @implementation TrackDriverViewController
 
+const float ANIMATION_TIME_SECONDS = 5.0;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"Seguimiento";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    struct LocationCoordinate initialCameraCoordinate;
-    initialCameraCoordinate.latitude = -34.564749;
-    initialCameraCoordinate.longitude = -58.441392;
-    [self centerCamera:initialCameraCoordinate];
-    
+    if (self.trip == nil){
+        NSLog(@"------ NO TENGO TRIP ---------");
+    }
+    [self.statusLabel setText:@""];
+    [self centerCamera:[self.trip getOriginCoordinate]];
+    [self positionMarker:self.originMarker inCoordinate:[self.trip getOriginCoordinate]];
+    self.tracking = false;
     [self trackDriver];
 }
 
@@ -51,24 +59,36 @@
     return _driverMarker;
 }
 
-- (void)trackDriver {
-    TrackDriverService *service = [TrackDriverService sharedInstance];
-    [service startTrackingDriverWithDelegate:self];
+- (GMSMarker *)originMarker {
+    if (_originMarker == nil) {
+        _originMarker = [[GMSMarker alloc] init];
+        _originMarker.title = @"Origen";
+        _originMarker.map = self.mapView;
+    }
+    return _originMarker;
 }
 
-- (void)positionMarker: (struct LocationCoordinate) coordinate {
-    self.driverMarker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+- (void)trackDriver {
+    TrackDriverService *service = [TrackDriverService sharedInstance];
+    [service startTrackingDriverForTrip:self.trip.tripId WithDelegate:self];
+}
+
+- (void)positionMarker:(GMSMarker*)marker inCoordinate:(struct LocationCoordinate) coordinate {
+    marker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
 }
 
 - (void)centerCamera: (struct LocationCoordinate) coordinate {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude
                                                             longitude:coordinate.longitude
-                                                                 zoom:17];
+                                                                 zoom:16];
     [self.mapView setCamera:camera];
 }
 
 - (void)moveCamera: (struct LocationCoordinate) coordinate {
+    [CATransaction begin];
+    [CATransaction setValue:[NSNumber numberWithFloat: ANIMATION_TIME_SECONDS] forKey:kCATransactionAnimationDuration];
     [self.mapView animateToLocation:CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)];
+    [CATransaction commit];
 }
 
 - (void)driverDidArrive {
@@ -92,19 +112,29 @@
 #pragma mark - TrackDriverServiceDelegate
 
 - (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate andStatus:(DriverStatus)status {
+    
     [CATransaction begin];
-    [CATransaction setAnimationDuration:2.0];
-    [self positionMarker:coordinate];
+    [CATransaction setAnimationDuration:ANIMATION_TIME_SECONDS];
+    [self positionMarker:self.driverMarker inCoordinate:coordinate];
     [CATransaction commit];
-    [self moveCamera:coordinate];
+    
+    if (self.tracking){
+        [self moveCamera:coordinate];
+    } else {
+        [self centerCamera:coordinate];
+    }
+    self.tracking = true;
     
     if (status == DRIVER_STATUS_IN_ORIGIN){
+        [self.statusLabel setText:@"Estado: En origen"];
         [self driverDidArrive];
+    } else if (status == DRIVER_STATUS_GOING) {
+        [self.statusLabel setText:@"Estado: En camino"];
     }
 }
 
 - (void)didFailTracking {
-    NSLog(@"Did fail tracking");
+    [self showInternetConexionAlert];
 }
 
 

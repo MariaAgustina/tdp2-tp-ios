@@ -11,7 +11,7 @@
 @implementation UIViewController (ShowAlerts)
 
 - (void)showInternetConexionAlert{    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"¡Lo sentimos! Hubo un error de conexión, intenta denuevo más tarde." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"¡Lo sentimos! Hubo un error de conexión, intenta de nuevo más tarde." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
         // Ok action example
     }];

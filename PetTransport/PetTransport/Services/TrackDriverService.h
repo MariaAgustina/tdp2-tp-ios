@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, DriverStatus) {
 @interface TrackDriverService : NSObject
 
 + (instancetype)sharedInstance;
-- (void)startTrackingDriverWithDelegate:(id<TrackDriverServideDelegate>)delegate;
+- (void)startTrackingDriverForTrip:(NSInteger)tripId WithDelegate:(id<TrackDriverServideDelegate>)delegate;
 - (void)stopTracking;
     
 @end

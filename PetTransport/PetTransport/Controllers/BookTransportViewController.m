@@ -14,6 +14,7 @@
 #import "GMSMarker+Setup.h"
 #import "TripService.h"
 #import "UIViewController+ShowAlerts.h"
+#import "TrackDriverViewController.h"
 
 @interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate, TripServiceDelegate>
 
@@ -35,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Pedir viaje";
     self.trip = [Trip new];
     self.originMarker = [GMSMarker new];
     self.destinyMarker = [GMSMarker new];
@@ -143,12 +145,13 @@ didFailAutocompleteWithError:(NSError *)error {
 
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
     NSLog(@"response %@",response);
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TrackDriverViewController"];
-    
     //TODO: integrar tripId con lo de kao
     self.trip.tripId = [[response objectForKey:@"id"] integerValue];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TrackDriverViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TrackDriverViewController"];
+    startedTripVC.trip = self.trip;
+    
     [self.navigationController pushViewController:startedTripVC animated:YES];
 }
 - (void)tripServiceFailedWithError:(NSError*)error{

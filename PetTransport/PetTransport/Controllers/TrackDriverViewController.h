@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Trip.h"
 
 @interface TrackDriverViewController : UIViewController
+
+@property (strong, nonatomic) Trip *trip;
 
 @end
