@@ -14,6 +14,7 @@
 @interface TrackDriverViewController () <TrackDriverServideDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) GMSMarker *driverMarker;
 @property (strong, nonatomic) GMSMarker *originMarker;
 @property BOOL tracking;
@@ -26,8 +27,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Esperando al chofer";
-    // Do any additional setup after loading the view.
+    self.title = @"Seguimiento";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -36,7 +36,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     if (self.trip == nil){
         NSLog(@"------ NO TENGO TRIP ---------");
     }
-    
+    [self.statusLabel setText:@""];
     [self centerCamera:[self.trip getOriginCoordinate]];
     [self positionMarker:self.originMarker inCoordinate:[self.trip getOriginCoordinate]];
     self.tracking = false;
@@ -125,7 +125,10 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     self.tracking = true;
     
     if (status == DRIVER_STATUS_IN_ORIGIN){
+        [self.statusLabel setText:@"Estado: En origen"];
         [self driverDidArrive];
+    } else if (status == DRIVER_STATUS_GOING) {
+        [self.statusLabel setText:@"Estado: En camino"];
     }
 }
 
