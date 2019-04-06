@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) GMSMarker *driverMarker;
+@property (strong, nonatomic) GMSMarker *originMarker;
 @property BOOL tracking;
 
 @end
@@ -32,15 +33,12 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (!self.tripId){
-        NSLog(@"------ NO TENGO TRIP ID ---------");
+    if (self.trip == nil){
+        NSLog(@"------ NO TENGO TRIP ---------");
     }
     
-    struct LocationCoordinate initialCameraCoordinate;
-    initialCameraCoordinate.latitude = -34.564749;
-    initialCameraCoordinate.longitude = -58.441392;
-    [self centerCamera:initialCameraCoordinate];
-    
+    [self centerCamera:[self.trip getOriginCoordinate]];
+    [self positionMarker:self.originMarker inCoordinate:[self.trip getOriginCoordinate]];
     self.tracking = false;
     [self trackDriver];
 }
@@ -60,13 +58,22 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     return _driverMarker;
 }
 
-- (void)trackDriver {
-    TrackDriverService *service = [TrackDriverService sharedInstance];
-    [service startTrackingDriverForTrip:self.tripId WithDelegate:self];
+- (GMSMarker *)originMarker {
+    if (_originMarker == nil) {
+        _originMarker = [[GMSMarker alloc] init];
+        _originMarker.title = @"Origen";
+        _originMarker.map = self.mapView;
+    }
+    return _originMarker;
 }
 
-- (void)positionMarker: (struct LocationCoordinate) coordinate {
-    self.driverMarker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+- (void)trackDriver {
+    TrackDriverService *service = [TrackDriverService sharedInstance];
+    [service startTrackingDriverForTrip:self.trip.tripId WithDelegate:self];
+}
+
+- (void)positionMarker:(GMSMarker*)marker inCoordinate:(struct LocationCoordinate) coordinate {
+    marker.position = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
 }
 
 - (void)centerCamera: (struct LocationCoordinate) coordinate {
@@ -107,7 +114,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     
     [CATransaction begin];
     [CATransaction setAnimationDuration:ANIMATION_TIME_SECONDS];
-    [self positionMarker:coordinate];
+    [self positionMarker:self.driverMarker inCoordinate:coordinate];
     [CATransaction commit];
     
     if (self.tracking){

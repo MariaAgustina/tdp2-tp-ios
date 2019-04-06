@@ -150,7 +150,7 @@ didFailAutocompleteWithError:(NSError *)error {
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     TrackDriverViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TrackDriverViewController"];
-    startedTripVC.tripId = self.trip.tripId;
+    startedTripVC.trip = self.trip;
     
     [self.navigationController pushViewController:startedTripVC animated:YES];
 }

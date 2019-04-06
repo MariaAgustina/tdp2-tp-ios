@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GooglePlaces/GooglePlaces.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "LocationCoordinate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) NSInteger tripId;
 
 - (BOOL)isValid;
+- (struct LocationCoordinate)getOriginCoordinate;
 
 @end
 

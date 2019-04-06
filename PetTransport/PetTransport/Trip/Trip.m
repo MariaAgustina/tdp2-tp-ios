@@ -15,4 +15,11 @@
     return (self.origin && self.destiny);
 }
 
+- (struct LocationCoordinate)getOriginCoordinate {
+    struct LocationCoordinate coordinate;
+    coordinate.latitude = self.origin.coordinate.latitude;
+    coordinate.longitude = self.origin.coordinate.longitude;
+    return coordinate;
+}
+
 @end
