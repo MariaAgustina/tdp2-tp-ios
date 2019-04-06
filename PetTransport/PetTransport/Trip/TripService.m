@@ -24,16 +24,15 @@
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSString* urlString = [NSString stringWithFormat:@"http://localhost:3000/trips"];
+    NSString* urlString = [NSString stringWithFormat:@"http://localhost:3000/trips/simulated"];
     
-    //TODO Agus: esto es solo para probar el post cuando este el cambio de firma
     NSDictionary* originDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
     NSDictionary* destinantionDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
+    NSDictionary *parameters = @{@"origin":originDictionary,@"destination":destinantionDictionary};
     
-    NSDictionary *parameters = @{@"origin": @"11111" ,@"destination": @"22222"};
-   
-    [manager POST:urlString parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+
+    [manager POST:urlString parameters: parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         __strong id <TripServiceDelegate> strongDelegate = self.delegate;
         [strongDelegate tripServiceSuccededWithResponse:responseObject];
     } failure:^(NSURLSessionTask *operation, NSError *error) {

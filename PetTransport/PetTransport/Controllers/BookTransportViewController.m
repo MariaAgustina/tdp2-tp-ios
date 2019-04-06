@@ -13,6 +13,7 @@
 #import "Trip.h"
 #import "GMSMarker+Setup.h"
 #import "TripService.h"
+#import "UIViewController+ShowAlerts.h"
 
 @interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate, TripServiceDelegate>
 
@@ -37,7 +38,7 @@
     self.trip = [Trip new];
     self.originMarker = [GMSMarker new];
     self.destinyMarker = [GMSMarker new];
-    self.service = [TripService new];
+    self.service = [[TripService alloc]initWithDelegate:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -50,7 +51,6 @@
 - (void)fetchCurrentLocation {
     [[LocationManager sharedInstance] fetchCurrentLocation:self];
 }
-
 
 
 // Present the autocomplete view controller when the button is pressed.
@@ -142,11 +142,16 @@ didFailAutocompleteWithError:(NSError *)error {
 #pragma mark - TripServiceDelegate
 
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
-    //TODO: pegarle al server para ver si hay chofer
-    NSLog(@"Trip created succesfully!");
+    NSLog(@"response %@",response);
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TrackDriverViewController"];
+    
+    //TODO: integrar tripId con lo de kao
+    self.trip.tripId = [[response objectForKey:@"id"] integerValue];
+    [self.navigationController pushViewController:startedTripVC animated:YES];
 }
 - (void)tripServiceFailedWithError:(NSError*)error{
-    //TODO: show error message
-    NSLog(@"Trip creation failed");
+    [self showInternetConexionAlert];
 }
 @end

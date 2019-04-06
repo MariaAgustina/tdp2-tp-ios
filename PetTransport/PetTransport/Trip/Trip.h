@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) GMSPlace *origin;
 @property (strong, nonatomic) GMSPlace *destiny;
 
+@property (assign, nonatomic) NSInteger tripId;
+
 - (BOOL)isValid;
 
 @end
