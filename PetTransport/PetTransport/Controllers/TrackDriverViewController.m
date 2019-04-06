@@ -25,11 +25,16 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Esperando al chofer";
     // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    if (!self.tripId){
+        NSLog(@"------ NO TENGO TRIP ID ---------");
+    }
     
     struct LocationCoordinate initialCameraCoordinate;
     initialCameraCoordinate.latitude = -34.564749;
@@ -57,7 +62,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 
 - (void)trackDriver {
     TrackDriverService *service = [TrackDriverService sharedInstance];
-    [service startTrackingDriverWithDelegate:self];
+    [service startTrackingDriverForTrip:self.tripId WithDelegate:self];
 }
 
 - (void)positionMarker: (struct LocationCoordinate) coordinate {

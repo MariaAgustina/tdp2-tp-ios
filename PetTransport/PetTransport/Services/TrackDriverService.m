@@ -44,25 +44,10 @@
     return _httpManager;
 }
 
-- (void)startTrackingDriverWithDelegate:(id<TrackDriverServideDelegate>)delegate {
+- (void)startTrackingDriverForTrip:(NSInteger)tripId WithDelegate:(id<TrackDriverServideDelegate>)delegate {
     self.delegate = delegate;
-    [self crearViajeTemporal];
-}
-
-// TODO: remove
-- (void)crearViajeTemporal {
-    NSString* urlString = [NSString stringWithFormat:@"http://localhost:3000/trips/simulated"];
-    NSDictionary* origin = @{@"lat": [NSNumber numberWithDouble: -34.564749]  ,@"lng": [NSNumber numberWithDouble: -58.441392]};
-    NSDictionary* destination = @{@"lat": [NSNumber numberWithDouble: -34.564107]  ,@"lng": [NSNumber numberWithDouble: -58.441927]};
-    NSDictionary *body = @{@"origin": origin ,@"destination": destination};
-    
-    [self.httpManager POST:urlString parameters:body progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        self.tripId = [[responseObject objectForKey:@"id"] integerValue];
-        [self startUpdating];
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    self.tripId = tripId;
+    [self startUpdating];
 }
 
 - (void)startUpdating {
@@ -72,7 +57,6 @@
                                                 userInfo:nil
                                                  repeats:YES];
 }
-
 
 - (void)updateDriverLocation {
     if (self.delegate == nil){
@@ -123,6 +107,7 @@
     [self.timer invalidate];
     self.timer = nil;
     self.delegate = nil;
+    self.tripId = 0;
 }
 
 - (void)didFailUpdating {

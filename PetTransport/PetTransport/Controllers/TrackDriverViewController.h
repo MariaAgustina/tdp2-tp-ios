@@ -10,4 +10,6 @@
 
 @interface TrackDriverViewController : UIViewController
 
+@property NSInteger tripId;
+
 @end
