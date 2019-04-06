@@ -18,7 +18,6 @@
 
 @interface LocationManager : NSObject
 
-+ (instancetype)sharedInstance;
 - (void)fetchCurrentLocation: (id<LocationManagerDelegate>)delegate;
 
 @end

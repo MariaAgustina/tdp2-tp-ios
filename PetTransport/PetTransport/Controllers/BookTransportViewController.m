@@ -28,7 +28,7 @@
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
 @property (strong,nonatomic) TripService* service;
-
+@property (strong,nonatomic) LocationManager *locationManager;
 
 @end
 
@@ -41,17 +41,17 @@
     self.originMarker = [GMSMarker new];
     self.destinyMarker = [GMSMarker new];
     self.service = [[TripService alloc]initWithDelegate:self];
+    self.locationManager = [[LocationManager alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     self.mapView.myLocationEnabled = YES;
     [self fetchCurrentLocation];
 }
 
 - (void)fetchCurrentLocation {
-    [[LocationManager sharedInstance] fetchCurrentLocation:self];
+    [self.locationManager fetchCurrentLocation:self];
 }
 
 

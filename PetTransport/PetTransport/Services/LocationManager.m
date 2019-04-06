@@ -20,15 +20,6 @@
 
 @implementation LocationManager
 
-+ (instancetype)sharedInstance {
-    static LocationManager *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[LocationManager alloc] init];
-    });
-    return sharedInstance;
-}
-
 - (id)init {
     self = [super init];
     
@@ -71,21 +62,21 @@
 }
 
 // Lo dejo aca por si lo necesitamos despues
-- (void) getLocationInfo: (CLLocation *)location {
-    // after we have current coordinates, we use this method to fetch the information data of fetched coordinate
-    [self.clgeocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = [placemarks lastObject];
-        
-        NSString *street = placemark.thoroughfare;
-        NSString *city = placemark.locality;
-        NSString *posCode = placemark.postalCode;
-        NSString *country = placemark.country;
-        
-        NSLog(@"we live in %@, %@, %@, %@", country, city, street, posCode);
-        
-        // stopping locationManager from fetching again
-        [self.cllocationManager stopUpdatingLocation];
-    }];
-}
+//- (void) getLocationInfo: (CLLocation *)location {
+//    // after we have current coordinates, we use this method to fetch the information data of fetched coordinate
+//    [self.clgeocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+//        CLPlacemark *placemark = [placemarks lastObject];
+//        
+//        NSString *street = placemark.thoroughfare;
+//        NSString *city = placemark.locality;
+//        NSString *posCode = placemark.postalCode;
+//        NSString *country = placemark.country;
+//        
+//        NSLog(@"we live in %@, %@, %@, %@", country, city, street, posCode);
+//        
+//        // stopping locationManager from fetching again
+//        [self.cllocationManager stopUpdatingLocation];
+//    }];
+//}
 
 @end
