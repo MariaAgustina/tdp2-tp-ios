@@ -8,11 +8,13 @@
 
 #import "TrackDriverService.h"
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
 
 @interface TrackDriverService ()
 
 @property (nonatomic, weak) id<TrackDriverServideDelegate> delegate;
 @property (strong, nonatomic) NSTimer *timer;
+@property NSInteger tripId;
 
 // TODO: remove
 @property (strong, nonatomic) NSArray *coordinates;
@@ -33,6 +35,7 @@
 
 - (id)init {
     self = [super init];
+    self.tripId = 64;
     return self;
 }
 
@@ -73,19 +76,44 @@
 - (void)updateDriverLocation {
     if (self.delegate == nil){
         [self stopTracking];
+        return;
     }
     
-    CGPoint point = [[self.coordinates objectAtIndex:self.coordinatesIndex] CGPointValue];
-    self.coordinatesIndex++;
-    
-    struct LocationCoordinate coordinate;
-    coordinate.latitude = point.x;
-    coordinate.longitude = point.y;
-    
-    BOOL didArrive = (self.coordinatesIndex >= self.coordinates.count);
-    DriverStatus status = didArrive ? DRIVER_STATUS_IN_ORIGIN : DRIVER_STATUS_GOING;
-    [self.delegate didUpdateDriverLocation:coordinate andStatus:status];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString* urlString = [NSString stringWithFormat:@"http://localhost:3000/trips/%ld/location",self.tripId];
+    [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        struct LocationCoordinate location = [self coordinateFromResponse:responseObject];
+        DriverStatus status = [self statusFromResponse:responseObject];
+        [self didUpdateDriverLocation:location withStatus:status];
+        
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self didFailUpdating];
+    }];
+}
 
+- (struct LocationCoordinate)coordinateFromResponse:(NSDictionary *)responseObject {
+    NSDictionary *currentLocation = [responseObject objectForKey:@"currentLocation"];
+    struct LocationCoordinate coordinate;
+    coordinate.latitude = [[currentLocation objectForKey:@"lat"] doubleValue];
+    coordinate.longitude = [[currentLocation objectForKey:@"lng"] doubleValue];
+    return coordinate;
+}
+
+- (DriverStatus)statusFromResponse:(NSDictionary *)responseObject {
+    NSString *statusString = [responseObject objectForKey:@"status"];
+    if ([statusString isEqualToString:@"En camino"]){
+        return DRIVER_STATUS_GOING;
+    }
+    if ([statusString isEqualToString:@"En origen"]){
+        return DRIVER_STATUS_IN_ORIGIN;
+    }
+    return DRIVER_STATUS_GOING;
+}
+
+- (void)didUpdateDriverLocation:(struct LocationCoordinate)location withStatus:(DriverStatus)status {
+    BOOL didArrive = (status == DRIVER_STATUS_IN_ORIGIN);
+    [self.delegate didUpdateDriverLocation:location andStatus:status];
     if (didArrive) {
         [self stopTracking];
     }
@@ -95,6 +123,10 @@
     [self.timer invalidate];
     self.timer = nil;
     self.delegate = nil;
+}
+
+- (void)didFailUpdating {
+    [self.delegate didFailTracking];
 }
 
 @end
