@@ -63,7 +63,7 @@
 - (void)centerCamera: (struct LocationCoordinate) coordinate {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinate.latitude
                                                             longitude:coordinate.longitude
-                                                                 zoom:17];
+                                                                 zoom:16];
     [self.mapView setCamera:camera];
 }
 
@@ -92,8 +92,10 @@
 #pragma mark - TrackDriverServiceDelegate
 
 - (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate andStatus:(DriverStatus)status {
+    NSLog(@"DID UPDATE DRIVER LOCATION: (%f, %f) ---> %ld", coordinate.latitude, coordinate.longitude, status);
+    
     [CATransaction begin];
-    [CATransaction setAnimationDuration:2.0];
+    [CATransaction setAnimationDuration:3.0];
     [self positionMarker:coordinate];
     [CATransaction commit];
     [self moveCamera:coordinate];
