@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "LocationCoordinate.h"
 #import "TrackDriverService.h"
+#import "UIViewController+ShowAlerts.h"
 
 @interface TrackDriverViewController () <TrackDriverServideDelegate>
 
@@ -133,7 +134,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 }
 
 - (void)didFailTracking {
-    NSLog(@"Did fail tracking");
+    [self showInternetConexionAlert];
 }
 
 
