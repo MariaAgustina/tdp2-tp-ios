@@ -24,6 +24,7 @@
 		9396CA1422474B3400F6248F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA1322474B3400F6248F /* main.m */; };
 		9396CA1E22474B3400F6248F /* PetTransportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA1D22474B3400F6248F /* PetTransportTests.m */; };
 		9396CA2922474B3400F6248F /* PetTransportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA2822474B3400F6248F /* PetTransportUITests.m */; };
+		93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		9396CA2422474B3400F6248F /* PetTransportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetTransportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA2822474B3400F6248F /* PetTransportUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PetTransportUITests.m; sourceTree = "<group>"; };
 		9396CA2A22474B3400F6248F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A7F19422590B5900D076C0 /* UIViewController+ShowAlerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ShowAlerts.h"; sourceTree = "<group>"; };
+		93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowAlerts.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 			children = (
 				937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */,
 				937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */,
+				93A7F19422590B5900D076C0 /* UIViewController+ShowAlerts.h */,
+				93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
+				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
