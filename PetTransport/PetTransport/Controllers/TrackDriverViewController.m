@@ -19,6 +19,7 @@
 @property (strong, nonatomic) GMSMarker *driverMarker;
 @property (strong, nonatomic) GMSMarker *originMarker;
 @property BOOL tracking;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -47,6 +48,8 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[TrackDriverService sharedInstance] stopTracking];
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (GMSMarker *)driverMarker {
@@ -92,6 +95,15 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 }
 
 - (void)driverDidArrive {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+                                                  target:self
+                                                selector:@selector(showDriverArrivedMessage)
+                                                userInfo:nil
+                                                 repeats:NO];
+}
+
+- (void)showDriverArrivedMessage {
+    [self.statusLabel setText:@"Estado: En origen"];
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"El chofer ya está esperandote"
                                  message:nil
@@ -126,7 +138,6 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     self.tracking = true;
     
     if (status == DRIVER_STATUS_IN_ORIGIN){
-        [self.statusLabel setText:@"Estado: En origen"];
         [self driverDidArrive];
     } else if (status == DRIVER_STATUS_GOING) {
         [self.statusLabel setText:@"Estado: En camino"];
