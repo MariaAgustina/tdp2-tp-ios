@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) GMSAutocompleteFilter *filter;
+@property (weak, nonatomic) IBOutlet UIButton *searchTripButton;
 
 @property (strong,nonatomic) Trip* trip;
 @property (nonatomic, copy) void (^autocompleteAdressCompletionBlock)(GMSPlace *);
@@ -54,10 +55,16 @@
     [super viewWillAppear:animated];
     self.mapView.myLocationEnabled = YES;
     [self fetchCurrentLocation];
+    [self setupSearchTripButton];
 }
 
 - (void)fetchCurrentLocation {
     [self.locationManager fetchCurrentLocation:self];
+}
+
+- (void)setupSearchTripButton{
+    self.searchTripButton.enabled = [self.trip isValid];
+    self.searchTripButton.backgroundColor = (self.searchTripButton.enabled) ? [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:1.0f] : [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:0.5f];
 }
 
 
@@ -88,6 +95,7 @@
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.origin = place;
         [self.originMarker setupWithPlace:place andMapView:self.mapView];
+        [self setupSearchTripButton];
         
         struct LocationCoordinate coordinate;
         coordinate.latitude = place.coordinate.latitude;
@@ -100,6 +108,7 @@
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
         self.trip.destiny = place;
         [self.destinyMarker setupWithPlace:place andMapView:self.mapView];
+        [self setupSearchTripButton];
         
         struct LocationCoordinate coordinate;
         coordinate.latitude = place.coordinate.latitude;
@@ -109,10 +118,11 @@
 }
 
 - (IBAction)searchTripButtonPressed:(id)sender {    
+    
     if(![self.trip isValid]){
-        //TODO: mensaje de que elija origen y destino
         return;
     }
+    
     [self.service postTrip:self.trip];
 }
 
@@ -164,8 +174,6 @@ didFailAutocompleteWithError:(NSError *)error {
 #pragma mark - TripServiceDelegate
 
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
-    NSLog(@"response %@",response);
-    //TODO: integrar tripId con lo de kao
     self.trip.tripId = [[response objectForKey:@"id"] integerValue];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
