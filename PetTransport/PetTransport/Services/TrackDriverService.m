@@ -9,6 +9,7 @@
 #import "TrackDriverService.h"
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
+#import "constants.h"
 
 @interface TrackDriverService ()
 
@@ -64,7 +65,8 @@
         return;
     }
     
-    NSString* urlString = [NSString stringWithFormat:@"http://localhost:3000/trips/%ld/location",self.tripId];
+    NSString* relativeUrl = [NSString stringWithFormat:@"trips/%ld/location",self.tripId];
+    NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrl];
     [self.httpManager GET:urlString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         struct LocationCoordinate location = [self coordinateFromResponse:responseObject];
         DriverStatus status = [self statusFromResponse:responseObject];
