@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "constants.h"
 
-#define USE_LOCALHOST 0
+#define USE_LOCALHOST 1
 
 #if USE_LOCALHOST == 1
 NSString* const API_BASE_URL = @"http://localhost:3000";
