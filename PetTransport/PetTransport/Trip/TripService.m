@@ -8,6 +8,7 @@
 
 #import "TripService.h"
 #import "AFNetworking.h"
+#import "constants.h"
 
 @interface TripService ()
 @property (nonatomic, weak) id <TripServiceDelegate> delegate;
@@ -24,7 +25,9 @@
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSString* urlString = [NSString stringWithFormat:@"http://localhost:3000/trips/simulated"];
+    NSString* relativeUrl = @"trips/simulated";
+    NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrl];
+    NSLog(@"urlString: %@",urlString);
     
     NSDictionary* originDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
     NSDictionary* destinantionDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
