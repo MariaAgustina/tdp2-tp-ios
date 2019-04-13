@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 @import GoogleMaps;
 @import GooglePlaces;
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #define GMAPS_API_KEY @"AIzaSyBHopQabuqy_MPF6b0Pse8vEtwmXbL8r58"
 
@@ -38,6 +39,9 @@
     
     [GMSServices provideAPIKey:GMAPS_API_KEY ];
     [GMSPlacesClient provideAPIKey:GMAPS_API_KEY];
+    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
     
     return YES;
 }
