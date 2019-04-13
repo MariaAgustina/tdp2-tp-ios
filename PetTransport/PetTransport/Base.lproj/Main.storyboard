@@ -60,13 +60,41 @@
                     <view key="view" contentMode="scaleToFill" id="APR-HZ-8rT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGE-D5-jnW" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="76" y="85" width="196" height="30"/>
+                                <state key="normal" title="FB Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cix-r3-c0U">
+                                <rect key="frame" x="97" y="323.5" width="181" height="40"/>
+                                <color key="backgroundColor" red="0.95465331860000002" green="1" blue="0.78781788669999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Custom FB Button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="customFbButtonPressed:" destination="9ei-mU-dPZ" eventType="touchUpInside" id="GQr-i4-5xE"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cix-r3-c0U" firstAttribute="centerY" secondItem="7ah-jQ-9nQ" secondAttribute="centerY" id="1Kb-Vd-7CX"/>
+                            <constraint firstItem="PGE-D5-jnW" firstAttribute="leading" secondItem="7ah-jQ-9nQ" secondAttribute="leading" constant="76" id="E4h-lO-zRH"/>
+                            <constraint firstItem="cix-r3-c0U" firstAttribute="centerX" secondItem="7ah-jQ-9nQ" secondAttribute="centerX" id="WO9-xC-5dx"/>
+                            <constraint firstItem="7ah-jQ-9nQ" firstAttribute="trailing" secondItem="PGE-D5-jnW" secondAttribute="trailing" constant="103" id="ehS-hm-Dbc"/>
+                            <constraint firstItem="PGE-D5-jnW" firstAttribute="top" secondItem="7ah-jQ-9nQ" secondAttribute="top" constant="65" id="gzw-x4-WGa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7ah-jQ-9nQ"/>
                     </view>
+                    <connections>
+                        <outlet property="customFbButton" destination="cix-r3-c0U" id="cKY-qn-KMi"/>
+                        <outlet property="fbButton" destination="PGE-D5-jnW" id="kIV-7X-GTG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtV-fV-OrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="-594"/>
+            <point key="canvasLocation" x="893.60000000000002" y="-594.15292353823088"/>
         </scene>
         <!--Book Transport View Controller-->
         <scene sceneID="UfV-aZ-lnY">

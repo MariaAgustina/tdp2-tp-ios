@@ -13,6 +13,8 @@
 
 @interface RegisterClientViewController () <FBSDKLoginButtonDelegate, FbProfileManagerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *customFbButton;
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *fbButton;
 @property (strong, nonatomic) FbProfileManager *fbProfileManager;
 
 @end
@@ -26,17 +28,33 @@
     
     self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
     
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.delegate = self;
-    // Optional: Place the button in the center of your view.
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
+    self.fbButton.delegate = self;
+    [self.fbButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"logueate fiera"]
+                                forState:UIControlStateNormal];
     
     [self loadProfile];
 }
 
 - (void)loadProfile {
     [self.fbProfileManager loadProfile];
+}
+
+- (IBAction)customFbButtonPressed:(id)sender {
+    NSLog(@"CUSTOM BUTTON PRESSED");
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login
+     logInWithReadPermissions: @[@"public_profile"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+         if (error) {
+             NSLog(@"Process error");
+         } else if (result.isCancelled) {
+             NSLog(@"Cancelled");
+         } else {
+             NSLog(@"Logged in");
+             [self loadProfile];
+         }
+     }];
 }
 
 # pragma mark - FBSDKLoginButtonDelegate methods
