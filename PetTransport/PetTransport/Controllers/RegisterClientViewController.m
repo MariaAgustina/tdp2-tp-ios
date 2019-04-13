@@ -9,8 +9,11 @@
 #import "RegisterClientViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "FbProfileManager.h"
 
-@interface RegisterClientViewController () <FBSDKLoginButtonDelegate>
+@interface RegisterClientViewController () <FBSDKLoginButtonDelegate, FbProfileManagerDelegate>
+
+@property (strong, nonatomic) FbProfileManager *fbProfileManager;
 
 @end
 
@@ -21,28 +24,22 @@
     
     self.title = @"Registrarme como cliente";
     
+    self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
+    
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.delegate = self;
     // Optional: Place the button in the center of your view.
     loginButton.center = self.view.center;
     [self.view addSubview:loginButton];
+    
+    [self loadProfile];
 }
 
 - (void)loadProfile {
-    [FBSDKProfile loadCurrentProfileWithCompletion:
-     ^(FBSDKProfile *profile, NSError *error) {
-         if (profile) {
-             NSLog(@"Hello, %@!", profile.firstName);
-             NSLog(@"middleName: %@!", profile.middleName);
-             NSLog(@"middleName: %@!", profile.middleName);
-             NSLog(@"lastName: %@!", profile.lastName);
-             NSLog(@"name: %@!", profile.name);
-             NSLog(@"userId: %@!", profile.userID);
-         }
-     }];
+    [self.fbProfileManager loadProfile];
 }
 
-# pragma mark - FBSDKLoginButtonDelegate
+# pragma mark - FBSDKLoginButtonDelegate methods
 - (void)  loginButton:(FBSDKLoginButton *)loginButton
 didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
                 error:(NSError *)error{
@@ -53,6 +50,22 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     NSLog(@"Logout");
 }
 
+#pragma mark - FbProfileManagerDelegate methods
+- (void)didLoadProfile: (FBSDKProfile *)profile {
+    NSLog(@"did load profile");
+    NSLog(@"name: %@!", profile.firstName);
+    NSLog(@"lastName: %@!", profile.lastName);
+    NSLog(@"name: %@!", profile.name);
+    NSLog(@"userId: %@!", profile.userID);
+}
+
+- (void)notLoggedInFb {
+    NSLog(@"no estoy logueado en FB");
+}
+
+- (void)didFailedLoadingProfile: (NSError *)error {
+    NSLog(@"no pude recuperar el profile");
+}
 
 
 @end
