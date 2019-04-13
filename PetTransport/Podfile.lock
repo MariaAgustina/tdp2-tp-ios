@@ -14,6 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FBSDKCoreKit (4.41.0):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.41.0):
+    - FBSDKCoreKit
   - GoogleMaps (3.0.3):
     - GoogleMaps/Maps (= 3.0.3)
   - GoogleMaps/Base (3.0.3)
@@ -25,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
+  - FBSDKLoginKit
   - GoogleMaps
   - GooglePlaces
   - PureLayout (= 3.1.2)
@@ -32,16 +43,22 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - GoogleMaps
     - GooglePlaces
     - PureLayout
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FBSDKCoreKit: 974810fe3806173f3777c68062fa8ed6fa59b59d
+  FBSDKLoginKit: 159a5c2eebe6a0774c3b128f5085128679233d2b
   GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
   GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
   PureLayout: 4634d0b61e3b5021166e8ec7c18e9e0ca0720c8b
 
-PODFILE CHECKSUM: 9dbc0213b8cc1a940ab61ef7e0abaf15062484a7
+PODFILE CHECKSUM: 6528d721636523620ce788c84a24b2fe7278713f
 
 COCOAPODS: 1.6.1
