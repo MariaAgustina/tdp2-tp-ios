@@ -147,6 +147,8 @@
                                 <rect key="frame" x="16" y="617" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Siguiente"/>
+                                <state key="disabled" title="Siguiente"/>
+                                <state key="selected" title="Siguiente"/>
                                 <connections>
                                     <action selector="searchTripButtonPressed:" destination="MRf-Tx-pg4" eventType="touchUpInside" id="du3-ph-TY3"/>
                                 </connections>
@@ -186,7 +188,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W7-Zm-aiW">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="577"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d6-ue-hw2">
                                         <rect key="frame" x="18.5" y="20" width="337.5" height="300"/>
@@ -301,20 +303,35 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="3d6-ue-hw2" secondAttribute="bottom" constant="460" id="PNI-LU-dWQ"/>
                                     <constraint firstItem="3d6-ue-hw2" firstAttribute="leading" secondItem="4W7-Zm-aiW" secondAttribute="leading" constant="18.5" id="V9C-88-ZjW"/>
                                     <constraint firstItem="3d6-ue-hw2" firstAttribute="top" secondItem="4W7-Zm-aiW" secondAttribute="top" constant="20" id="Y5M-FC-bMy"/>
                                     <constraint firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" constant="20" id="gag-rh-zPD"/>
+                                    <constraint firstAttribute="bottom" secondItem="3d6-ue-hw2" secondAttribute="bottom" constant="257" id="lMn-EF-5XX"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13B-zg-ugH">
+                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="k16-Pt-Uyf"/>
+                                </constraints>
+                                <state key="normal" title="Buscar"/>
+                                <connections>
+                                    <action selector="searchTripButtonPressed:" destination="rM7-2L-X50" eventType="touchUpInside" id="jxh-f6-uwH"/>
+                                    <action selector="searchTripButtonPressed:" destination="MRf-Tx-pg4" eventType="touchUpInside" id="yMl-kN-780"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4W7-Zm-aiW" firstAttribute="top" secondItem="REY-sL-wFQ" secondAttribute="top" id="4bw-0Q-a9i"/>
+                            <constraint firstItem="REY-sL-wFQ" firstAttribute="bottom" secondItem="13B-zg-ugH" secondAttribute="bottom" constant="20" id="McD-nj-rAR"/>
                             <constraint firstItem="4W7-Zm-aiW" firstAttribute="trailing" secondItem="REY-sL-wFQ" secondAttribute="trailing" id="MpZ-gU-brG"/>
                             <constraint firstItem="3d6-ue-hw2" firstAttribute="width" secondItem="gVO-mt-Uve" secondAttribute="width" multiplier="0.9" id="dN6-oi-HLW"/>
-                            <constraint firstItem="4W7-Zm-aiW" firstAttribute="bottom" secondItem="REY-sL-wFQ" secondAttribute="bottom" id="hmn-aF-Cgr"/>
+                            <constraint firstItem="13B-zg-ugH" firstAttribute="leading" secondItem="REY-sL-wFQ" secondAttribute="leading" constant="16" id="iNz-wZ-8Q3"/>
                             <constraint firstItem="4W7-Zm-aiW" firstAttribute="leading" secondItem="REY-sL-wFQ" secondAttribute="leading" id="qp9-XI-6io"/>
+                            <constraint firstItem="13B-zg-ugH" firstAttribute="top" secondItem="4W7-Zm-aiW" secondAttribute="bottom" constant="20" id="rRo-ha-tA9"/>
+                            <constraint firstItem="REY-sL-wFQ" firstAttribute="trailing" secondItem="13B-zg-ugH" secondAttribute="trailing" constant="16" id="sWL-oa-8J1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="REY-sL-wFQ"/>
                     </view>
@@ -323,6 +340,7 @@
                         <outlet property="bigStepper" destination="q1j-w1-Vf9" id="H3i-DY-ucK"/>
                         <outlet property="mediumCountLabel" destination="LZ8-gy-SqO" id="RAy-ob-p5t"/>
                         <outlet property="mediumStepper" destination="JWu-2h-VXt" id="07Q-j2-OuH"/>
+                        <outlet property="searchTripButton" destination="13B-zg-ugH" id="kyx-48-ldm"/>
                         <outlet property="smallCountLabel" destination="7Il-zA-pdi" id="H5g-HM-WW0"/>
                         <outlet property="smallStepper" destination="Crl-CH-Hsk" id="oDU-IU-DCL"/>
                         <outlet property="totalCountLabel" destination="eWj-n9-bQq" id="Ysn-aS-OQ3"/>
