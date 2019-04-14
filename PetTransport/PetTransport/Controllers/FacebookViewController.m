@@ -10,6 +10,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "FbProfileManager.h"
+#import "RegisterClientViewController.h"
+#import "ClientProfile.h"
 
 @interface FacebookViewController () <FBSDKLoginButtonDelegate, FbProfileManagerDelegate>
 
@@ -24,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Registrarme como cliente";
+    self.title = @"Facebook";
     
     self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
     
@@ -57,6 +59,19 @@
      }];
 }
 
+- (void)goToRegistrationScreen:(FBSDKProfile *)profile {
+    ClientProfile *clientProfile = [ClientProfile new];
+    clientProfile.fbUserId = profile.userID;
+    clientProfile.firstName = profile.firstName;
+    clientProfile.lastName = profile.lastName;
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RegisterClientViewController *registerClientVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterClientViewController"];
+    
+    registerClientVC.profile = clientProfile;
+    [self.navigationController pushViewController:registerClientVC animated:YES];
+}
+
 # pragma mark - FBSDKLoginButtonDelegate methods
 - (void)  loginButton:(FBSDKLoginButton *)loginButton
 didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
@@ -70,11 +85,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 
 #pragma mark - FbProfileManagerDelegate methods
 - (void)didLoadProfile: (FBSDKProfile *)profile {
-    NSLog(@"did load profile");
-    NSLog(@"name: %@!", profile.firstName);
-    NSLog(@"lastName: %@!", profile.lastName);
-    NSLog(@"name: %@!", profile.name);
-    NSLog(@"userId: %@!", profile.userID);
+    [self goToRegistrationScreen: profile];
 }
 
 - (void)notLoggedInFb {
