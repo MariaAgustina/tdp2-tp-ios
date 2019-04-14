@@ -12,11 +12,10 @@
 #import "LocationManager.h"
 #import "Trip.h"
 #import "GMSMarker+Setup.h"
-#import "TripService.h"
-#import "UIViewController+ShowAlerts.h"
-#import "TrackDriverViewController.h"
+#import "TripInformationViewController.h"
 
-@interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate, TripServiceDelegate>
+
+@interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong, nonatomic) GMSAutocompleteFilter *filter;
@@ -28,7 +27,6 @@
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
-@property (strong,nonatomic) TripService* service;
 @property (strong,nonatomic) LocationManager *locationManager;
 
 @end
@@ -47,7 +45,6 @@
     self.destinyMarker.title = @"Destino";
     self.destinyMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
     
-    self.service = [[TripService alloc]initWithDelegate:self];
     self.locationManager = [[LocationManager alloc] init];
 }
 
@@ -63,7 +60,7 @@
 }
 
 - (void)setupSearchTripButton{
-    self.searchTripButton.enabled = [self.trip isValid];
+    self.searchTripButton.enabled = [self.trip hasValidAdresses];
     self.searchTripButton.backgroundColor = (self.searchTripButton.enabled) ? [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:1.0f] : [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:0.5f];
 }
 
@@ -119,11 +116,16 @@
 
 - (IBAction)searchTripButtonPressed:(id)sender {    
     
-    if(![self.trip isValid]){
+    if(![self.trip hasValidAdresses]){
         return;
     }
     
-    [self.service postTrip:self.trip];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TripInformationViewController *tripInformationVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TripInformationViewController"];
+    tripInformationVC.trip = self.trip;
+    
+    [self.navigationController pushViewController:tripInformationVC animated:YES];    
+    
 }
 
 - (void)centerCamera: (struct LocationCoordinate) coordinate {
@@ -171,18 +173,4 @@ didFailAutocompleteWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-#pragma mark - TripServiceDelegate
-
-- (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
-    self.trip.tripId = [[response objectForKey:@"id"] integerValue];
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TrackDriverViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TrackDriverViewController"];
-    startedTripVC.trip = self.trip;
-    
-    [self.navigationController pushViewController:startedTripVC animated:YES];
-}
-- (void)tripServiceFailedWithError:(NSError*)error{
-    [self showInternetConexionAlert];
-}
 @end

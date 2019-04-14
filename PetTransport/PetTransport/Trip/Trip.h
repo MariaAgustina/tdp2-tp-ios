@@ -20,8 +20,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) NSInteger tripId;
 
+@property (assign,nonatomic) double smallPetsQuantity;
+@property (assign,nonatomic) double mediumPetsQuantity;
+@property (assign,nonatomic) double bigPetsQuantity;
+
+
+- (BOOL)hasValidAdresses;
 - (BOOL)isValid;
 - (struct LocationCoordinate)getOriginCoordinate;
+
+- (double)totalPets;
 
 @end
 
