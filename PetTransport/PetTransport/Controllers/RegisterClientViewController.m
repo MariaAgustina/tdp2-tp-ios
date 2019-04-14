@@ -43,8 +43,59 @@
 }
 
 - (void)validateFields {
-    [self.registrationButton setEnabled:NO];
+    BOOL isValid = YES;
+    
+    if (![self isValidText:self.firstNameField.text]){
+        isValid = NO;
+    }
+    if (![self isValidText:self.lastNameField.text]){
+        isValid = NO;
+    }
+    if (![self isValidText:self.addressField.text]){
+        isValid = NO;
+    }
+    if (![self isValidPhoneNumber]){
+        isValid = NO;
+    }
+    if (![self isValidEmail]){
+        isValid = NO;
+    }
+    if (![self isValidBirthdate]){
+        isValid = NO;
+    }
+    
+    [self.registrationButton setEnabled:isValid];
 }
 
+- (BOOL)isValidText:(NSString *)text {
+    NSString *trimmedText = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [trimmedText length] > 0;
+}
+
+- (BOOL)isValidPhoneNumber {
+    if (![self isValidText:self.phoneField.text]){
+        return NO;
+    }
+    // TODO: agregar mask
+    return YES;
+}
+
+- (BOOL)isValidEmail {
+    if (![self isValidText:self.emailField.text]){
+        return NO;
+    }
+    // TODO: agregar mask
+    return YES;
+}
+
+- (BOOL)isValidBirthdate {
+    NSDate *date = self.birthdatePicker.date;
+    //TODO
+    return YES;
+}
+
+- (IBAction)fieldOnChange:(id)sender {
+    [self validateFields];
+}
 
 @end
