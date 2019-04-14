@@ -108,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="627"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNp-ZV-OV1" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="990"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="883"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completa algunos datos adicionales para terminar el registro" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht7-a6-9ut">
                                                 <rect key="frame" x="10" y="0.0" width="355" height="69"/>
@@ -120,7 +120,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNf-iR-ujR" userLabel="Form wrapper">
-                                                <rect key="frame" x="15" y="79" width="345" height="901"/>
+                                                <rect key="frame" x="15" y="79" width="345" height="794"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datos personales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBF-6q-V4Q" userLabel="Datos personales">
                                                         <rect key="frame" x="10" y="10" width="325" height="23"/>
@@ -153,49 +153,49 @@
                                                         <textInputTraits key="textInputTraits" textContentType="family-name"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bf-Rz-v3A">
-                                                        <rect key="frame" x="10" y="226" width="325" height="21"/>
+                                                        <rect key="frame" x="10" y="223" width="325" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdR-F0-o2o" userLabel="Address field">
-                                                        <rect key="frame" x="10" y="255" width="325" height="30"/>
+                                                        <rect key="frame" x="10" y="252" width="325" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="street-address"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefono" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-zS-jKb">
-                                                        <rect key="frame" x="10" y="311" width="325" height="21"/>
+                                                        <rect key="frame" x="10" y="307" width="325" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SHc-Ef-tFk" userLabel="Phone field">
-                                                        <rect key="frame" x="10" y="340" width="325" height="30"/>
+                                                        <rect key="frame" x="10" y="336" width="325" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="tel"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igw-CL-UQ1">
-                                                        <rect key="frame" x="10" y="378" width="325" height="21"/>
+                                                        <rect key="frame" x="10" y="391" width="325" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w61-4r-2gH" userLabel="Email field">
-                                                        <rect key="frame" x="10" y="407" width="325" height="30"/>
+                                                        <rect key="frame" x="10" y="420" width="325" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha de nacimiento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfY-Zh-vng">
-                                                        <rect key="frame" x="10" y="445" width="325" height="21"/>
+                                                        <rect key="frame" x="10" y="475" width="325" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-Ot-6AM">
-                                                        <rect key="frame" x="10" y="478" width="325" height="216"/>
+                                                        <rect key="frame" x="10" y="504" width="325" height="216"/>
                                                         <date key="date" timeIntervalSinceReferenceDate="576958172.13834703">
                                                             <!--2019-04-14 18:09:32 +0000-->
                                                         </date>
@@ -207,21 +207,30 @@
                                                         </date>
                                                         <locale key="locale" localeIdentifier="es_AR"/>
                                                     </datePicker>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORt-lN-PtN">
+                                                        <rect key="frame" x="127.5" y="745" width="90" height="39"/>
+                                                        <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <state key="normal" title="Siguiente"/>
+                                                        <connections>
+                                                            <action selector="registerButtonPressed:" destination="gq4-zU-gQZ" eventType="touchUpInside" id="qP5-Cx-Ezf"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="VBF-6q-V4Q" secondAttribute="trailing" constant="10" id="0zk-LQ-Zt6"/>
-                                                    <constraint firstItem="IS4-Ot-6AM" firstAttribute="top" secondItem="MfY-Zh-vng" secondAttribute="bottom" constant="12" id="15E-7v-dxI"/>
+                                                    <constraint firstItem="IS4-Ot-6AM" firstAttribute="top" secondItem="MfY-Zh-vng" secondAttribute="bottom" constant="8" id="15E-7v-dxI"/>
                                                     <constraint firstItem="IS4-Ot-6AM" firstAttribute="leading" secondItem="MfY-Zh-vng" secondAttribute="leading" id="1xR-Tg-Tii"/>
                                                     <constraint firstItem="w61-4r-2gH" firstAttribute="leading" secondItem="igw-CL-UQ1" secondAttribute="leading" id="36y-w5-A5m"/>
                                                     <constraint firstItem="igw-CL-UQ1" firstAttribute="leading" secondItem="SHc-Ef-tFk" secondAttribute="leading" id="4Eb-Ph-qog"/>
                                                     <constraint firstItem="4MN-zS-jKb" firstAttribute="leading" secondItem="sdR-F0-o2o" secondAttribute="leading" id="4Rx-Mv-cYp"/>
                                                     <constraint firstItem="6vc-he-K39" firstAttribute="trailing" secondItem="Nie-PM-5Xj" secondAttribute="trailing" id="5ao-MS-mgK"/>
-                                                    <constraint firstItem="MfY-Zh-vng" firstAttribute="top" secondItem="w61-4r-2gH" secondAttribute="bottom" constant="8" id="5oS-4J-odm"/>
+                                                    <constraint firstItem="MfY-Zh-vng" firstAttribute="top" secondItem="w61-4r-2gH" secondAttribute="bottom" constant="25" id="5oS-4J-odm"/>
                                                     <constraint firstItem="Nie-PM-5Xj" firstAttribute="leading" secondItem="ZCI-Td-a4d" secondAttribute="leading" id="9Rp-ve-s9J"/>
                                                     <constraint firstItem="9Bf-Rz-v3A" firstAttribute="leading" secondItem="Pj3-Vu-spL" secondAttribute="leading" id="Ame-QN-b0J"/>
                                                     <constraint firstItem="IS4-Ot-6AM" firstAttribute="trailing" secondItem="MfY-Zh-vng" secondAttribute="trailing" id="BCt-za-muK"/>
-                                                    <constraint firstItem="4MN-zS-jKb" firstAttribute="top" secondItem="sdR-F0-o2o" secondAttribute="bottom" constant="26" id="CJ7-CW-M62"/>
+                                                    <constraint firstItem="4MN-zS-jKb" firstAttribute="top" secondItem="sdR-F0-o2o" secondAttribute="bottom" constant="25" id="CJ7-CW-M62"/>
                                                     <constraint firstItem="MfY-Zh-vng" firstAttribute="leading" secondItem="w61-4r-2gH" secondAttribute="leading" id="Cc3-2P-aJ2"/>
                                                     <constraint firstItem="w61-4r-2gH" firstAttribute="trailing" secondItem="igw-CL-UQ1" secondAttribute="trailing" id="Dd8-oM-OEI"/>
                                                     <constraint firstItem="sdR-F0-o2o" firstAttribute="top" secondItem="9Bf-Rz-v3A" secondAttribute="bottom" constant="8" id="Gca-hZ-GQO"/>
@@ -231,11 +240,13 @@
                                                     <constraint firstItem="SHc-Ef-tFk" firstAttribute="top" secondItem="4MN-zS-jKb" secondAttribute="bottom" constant="8" id="PL7-qZ-3Vo"/>
                                                     <constraint firstItem="Pj3-Vu-spL" firstAttribute="top" secondItem="6vc-he-K39" secondAttribute="bottom" constant="8" id="RrZ-Jg-aIc"/>
                                                     <constraint firstItem="sdR-F0-o2o" firstAttribute="leading" secondItem="9Bf-Rz-v3A" secondAttribute="leading" id="X2Q-7Q-7le"/>
+                                                    <constraint firstItem="ORt-lN-PtN" firstAttribute="top" secondItem="IS4-Ot-6AM" secondAttribute="bottom" constant="25" id="aI1-nq-OkX"/>
                                                     <constraint firstItem="Pj3-Vu-spL" firstAttribute="leading" secondItem="6vc-he-K39" secondAttribute="leading" id="bZ2-bY-dIH"/>
                                                     <constraint firstItem="sdR-F0-o2o" firstAttribute="trailing" secondItem="9Bf-Rz-v3A" secondAttribute="trailing" id="e95-TX-xK1"/>
                                                     <constraint firstItem="ZCI-Td-a4d" firstAttribute="top" secondItem="VBF-6q-V4Q" secondAttribute="bottom" constant="22" id="eZx-Tr-cfW"/>
-                                                    <constraint firstItem="9Bf-Rz-v3A" firstAttribute="top" secondItem="Pj3-Vu-spL" secondAttribute="bottom" constant="28" id="i3z-le-LNY"/>
-                                                    <constraint firstItem="igw-CL-UQ1" firstAttribute="top" secondItem="SHc-Ef-tFk" secondAttribute="bottom" constant="8" id="irN-o2-Fip"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ORt-lN-PtN" secondAttribute="bottom" constant="10" id="f0I-IB-4j7"/>
+                                                    <constraint firstItem="9Bf-Rz-v3A" firstAttribute="top" secondItem="Pj3-Vu-spL" secondAttribute="bottom" constant="25" id="i3z-le-LNY"/>
+                                                    <constraint firstItem="igw-CL-UQ1" firstAttribute="top" secondItem="SHc-Ef-tFk" secondAttribute="bottom" constant="25" id="irN-o2-Fip"/>
                                                     <constraint firstItem="Nie-PM-5Xj" firstAttribute="top" secondItem="ZCI-Td-a4d" secondAttribute="bottom" constant="8" id="jLU-CZ-P7p"/>
                                                     <constraint firstItem="ZCI-Td-a4d" firstAttribute="trailing" secondItem="VBF-6q-V4Q" secondAttribute="trailing" id="kEH-eM-mJ3"/>
                                                     <constraint firstItem="Pj3-Vu-spL" firstAttribute="trailing" secondItem="6vc-he-K39" secondAttribute="trailing" id="kQI-Ik-fNO"/>
@@ -245,7 +256,7 @@
                                                     <constraint firstItem="ZCI-Td-a4d" firstAttribute="leading" secondItem="VBF-6q-V4Q" secondAttribute="leading" id="pCQ-dK-cjr"/>
                                                     <constraint firstItem="VBF-6q-V4Q" firstAttribute="top" secondItem="DNf-iR-ujR" secondAttribute="top" constant="10" id="qVn-RM-pah"/>
                                                     <constraint firstItem="6vc-he-K39" firstAttribute="leading" secondItem="Nie-PM-5Xj" secondAttribute="leading" id="r35-YP-hUl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="IS4-Ot-6AM" secondAttribute="bottom" constant="207" id="tyS-v9-Xm7"/>
+                                                    <constraint firstItem="ORt-lN-PtN" firstAttribute="centerX" secondItem="DNf-iR-ujR" secondAttribute="centerX" id="viz-O1-wjp"/>
                                                     <constraint firstItem="4MN-zS-jKb" firstAttribute="trailing" secondItem="sdR-F0-o2o" secondAttribute="trailing" id="vpU-bi-VJX"/>
                                                     <constraint firstItem="SHc-Ef-tFk" firstAttribute="leading" secondItem="4MN-zS-jKb" secondAttribute="leading" id="y4d-QH-uSE"/>
                                                     <constraint firstItem="MfY-Zh-vng" firstAttribute="trailing" secondItem="w61-4r-2gH" secondAttribute="trailing" id="yGG-LP-6Dq"/>
@@ -253,7 +264,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ht7-a6-9ut" secondAttribute="trailing" constant="10" id="Izs-KR-3da"/>
                                             <constraint firstItem="DNf-iR-ujR" firstAttribute="top" secondItem="ht7-a6-9ut" secondAttribute="bottom" constant="10" id="RuZ-XF-XVN"/>
@@ -288,8 +298,10 @@
                         <outlet property="birthdatePicker" destination="IS4-Ot-6AM" id="lf0-9h-zrM"/>
                         <outlet property="emailField" destination="w61-4r-2gH" id="7Lo-EC-Jtx"/>
                         <outlet property="firstNameField" destination="Nie-PM-5Xj" id="zAq-ZP-lh8"/>
+                        <outlet property="formWrapper" destination="DNf-iR-ujR" id="ING-bR-2Mf"/>
                         <outlet property="lastNameField" destination="Pj3-Vu-spL" id="MDC-Z5-T0d"/>
                         <outlet property="phoneField" destination="SHc-Ef-tFk" id="KOO-hq-2sa"/>
+                        <outlet property="registrationButton" destination="ORt-lN-PtN" id="cwB-AF-nXg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOy-tC-G9v" userLabel="First Responder" sceneMemberID="firstResponder"/>
