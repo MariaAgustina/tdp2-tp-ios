@@ -39,6 +39,17 @@
                                     <segue destination="9ei-mU-dPZ" kind="show" id="X8q-BS-6Px"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-bH-kll">
+                                <rect key="frame" x="48" y="142" width="282" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="Soy un cliente">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="iCg-Qv-cg2" kind="show" id="TuO-GR-t9P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -96,6 +107,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtV-fV-OrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="893.60000000000002" y="-594.15292353823088"/>
+        </scene>
+        <!--Client Login View Controller-->
+        <scene sceneID="MR0-X7-AMr">
+            <objects>
+                <viewController id="iCg-Qv-cg2" customClass="ClientLoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y3x-WD-NMn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-yx-gl2">
+                                <rect key="frame" x="146.5" y="186" width="81" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="iCg-Qv-cg2" eventType="touchUpInside" id="MRK-rq-Yg7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vED-zy-jgh">
+                                <rect key="frame" x="109.5" y="361" width="156" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Registrarme"/>
+                                <connections>
+                                    <action selector="registrationButtonPressed:" destination="iCg-Qv-cg2" eventType="touchUpInside" id="kKb-RV-vi0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.84228842299999995" blue="0.2304059919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="oAr-yx-gl2" firstAttribute="top" secondItem="xb9-xl-NTk" secondAttribute="top" constant="166" id="Cku-xa-9Jt"/>
+                            <constraint firstItem="vED-zy-jgh" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="bbd-rl-1JQ"/>
+                            <constraint firstItem="vED-zy-jgh" firstAttribute="top" secondItem="oAr-yx-gl2" secondAttribute="bottom" constant="122" id="cML-Wy-taI"/>
+                            <constraint firstItem="oAr-yx-gl2" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="gUm-dI-7xv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xb9-xl-NTk"/>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="oAr-yx-gl2" id="hKM-6f-MlV"/>
+                        <outlet property="registrationButton" destination="vED-zy-jgh" id="Je1-iQ-5E0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3S7-5p-KQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="895.20000000000005" y="-1299.400299850075"/>
         </scene>
         <!--Register Client View Controller-->
         <scene sceneID="DZC-qE-FZE">
