@@ -40,7 +40,6 @@
 
 - (NSString*)getToken {
     NSString *fbAccessToken = [FBSDKAccessToken currentAccessToken].tokenString;
-    NSLog(@"El token es %@", fbAccessToken);
     return fbAccessToken;
 }
 

@@ -8,8 +8,9 @@
 
 #import "RegisterClientViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "AuthService.h"
 
-@interface RegisterClientViewController ()
+@interface RegisterClientViewController () <AuthServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *formWrapper;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthdatePicker;
 @property (weak, nonatomic) IBOutlet UIButton *registrationButton;
+@property (strong, nonatomic) AuthService *authService;
 
 @end
 
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     
     self.title = @"Registro";
+    self.authService = [[AuthService alloc] initWithDelegate:self];
     
     self.formWrapper.layer.borderColor = [UIColor blackColor].CGColor;
     self.formWrapper.layer.borderWidth = 1.0f;
@@ -39,7 +42,11 @@
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
-    NSLog(@"Registrarme");
+    self.profile.address = self.addressField.text;
+    self.profile.email = self.emailField.text;
+    self.profile.phoneNumber = self.phoneField.text;
+    self.profile.birthdate = self.birthdatePicker.date;
+    [self.authService registerClient:self.profile];
 }
 
 - (void)validateFields {
@@ -97,5 +104,15 @@
 - (IBAction)fieldOnChange:(id)sender {
     [self validateFields];
 }
+
+# pragma mark - AuthServiceDelegate methods
+- (void)didRegisterClient {
+    
+}
+
+- (void)didFailRegistering {
+    
+}
+
 
 @end
