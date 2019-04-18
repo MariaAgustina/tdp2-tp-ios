@@ -302,7 +302,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0IM-4X-vUX">
-                                        <rect key="frame" x="18.5" y="268" width="337.5" height="54"/>
+                                        <rect key="frame" x="18.5" y="270" width="337.5" height="54"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acompañante" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dX-2T-dcQ">
                                                 <rect key="frame" x="15" y="15" width="122" height="24"/>
@@ -328,7 +328,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOs-Bf-mQG">
-                                        <rect key="frame" x="18.5" y="340" width="337.5" height="101"/>
+                                        <rect key="frame" x="18.5" y="344" width="337.5" height="101"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forma de Pago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PI-rR-tkH">
                                                 <rect key="frame" x="15" y="15" width="130" height="24"/>
@@ -360,7 +360,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0F-qs-ioA">
-                                        <rect key="frame" x="18.5" y="456" width="337.5" height="162"/>
+                                        <rect key="frame" x="18.5" y="465" width="337.5" height="162"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comentarios" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEo-GR-iyG">
                                                 <rect key="frame" x="15" y="15" width="112" height="24"/>
@@ -391,17 +391,17 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="JOs-Bf-mQG" firstAttribute="top" secondItem="0IM-4X-vUX" secondAttribute="bottom" constant="18" id="2r2-et-xhc"/>
+                                    <constraint firstItem="JOs-Bf-mQG" firstAttribute="top" secondItem="0IM-4X-vUX" secondAttribute="bottom" constant="20" id="2r2-et-xhc"/>
                                     <constraint firstAttribute="bottom" secondItem="d0F-qs-ioA" secondAttribute="bottom" constant="15" id="BIB-fU-9kJ"/>
                                     <constraint firstItem="d0F-qs-ioA" firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" id="ClX-a1-zgA"/>
                                     <constraint firstItem="0IM-4X-vUX" firstAttribute="leading" secondItem="3d6-ue-hw2" secondAttribute="leading" id="KFI-qs-rfP"/>
                                     <constraint firstItem="0IM-4X-vUX" firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" id="KwE-Wj-sbu"/>
                                     <constraint firstItem="JOs-Bf-mQG" firstAttribute="leading" secondItem="0IM-4X-vUX" secondAttribute="leading" id="QIU-dJ-Ept"/>
                                     <constraint firstItem="3d6-ue-hw2" firstAttribute="leading" secondItem="4W7-Zm-aiW" secondAttribute="leading" constant="18.5" id="V9C-88-ZjW"/>
-                                    <constraint firstItem="d0F-qs-ioA" firstAttribute="top" secondItem="JOs-Bf-mQG" secondAttribute="bottom" constant="15" id="X1n-9I-CN6"/>
+                                    <constraint firstItem="d0F-qs-ioA" firstAttribute="top" secondItem="JOs-Bf-mQG" secondAttribute="bottom" constant="20" id="X1n-9I-CN6"/>
                                     <constraint firstItem="3d6-ue-hw2" firstAttribute="top" secondItem="4W7-Zm-aiW" secondAttribute="top" constant="20" id="Y5M-FC-bMy"/>
-                                    <constraint firstItem="0IM-4X-vUX" firstAttribute="top" secondItem="3d6-ue-hw2" secondAttribute="bottom" constant="18" id="eyG-OE-q3z"/>
-                                    <constraint firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" constant="20" id="gag-rh-zPD"/>
+                                    <constraint firstItem="0IM-4X-vUX" firstAttribute="top" secondItem="3d6-ue-hw2" secondAttribute="bottom" constant="20" id="eyG-OE-q3z"/>
+                                    <constraint firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" constant="19" id="ju1-L1-NWy"/>
                                     <constraint firstItem="d0F-qs-ioA" firstAttribute="leading" secondItem="3d6-ue-hw2" secondAttribute="leading" id="kxw-Bj-i57"/>
                                     <constraint firstItem="JOs-Bf-mQG" firstAttribute="trailing" secondItem="0IM-4X-vUX" secondAttribute="trailing" id="rAb-dN-Toa"/>
                                 </constraints>
@@ -436,10 +436,14 @@
                         <outlet property="bigCountLabel" destination="UmP-nB-eBC" id="eDT-MH-rrl"/>
                         <outlet property="bigStepper" destination="q1j-w1-Vf9" id="H3i-DY-ucK"/>
                         <outlet property="commentsTextView" destination="iZl-0Q-eba" id="Kwa-pi-vjl"/>
+                        <outlet property="commentsView" destination="d0F-qs-ioA" id="IQi-aQ-SL6"/>
                         <outlet property="escoltSwitch" destination="cFE-YE-r9U" id="92M-24-ifQ"/>
+                        <outlet property="escoltView" destination="0IM-4X-vUX" id="xIA-yw-Yum"/>
                         <outlet property="mediumCountLabel" destination="LZ8-gy-SqO" id="RAy-ob-p5t"/>
                         <outlet property="mediumStepper" destination="JWu-2h-VXt" id="07Q-j2-OuH"/>
+                        <outlet property="paymentMethodView" destination="JOs-Bf-mQG" id="6m8-tf-W53"/>
                         <outlet property="paymentMethodsSegmentControl" destination="ZQc-cY-nQz" id="IFh-qt-P4L"/>
+                        <outlet property="petsView" destination="3d6-ue-hw2" id="Pec-4q-o8h"/>
                         <outlet property="searchTripButton" destination="13B-zg-ugH" id="kyx-48-ldm"/>
                         <outlet property="smallCountLabel" destination="7Il-zA-pdi" id="H5g-HM-WW0"/>
                         <outlet property="smallStepper" destination="Crl-CH-Hsk" id="oDU-IU-DCL"/>
