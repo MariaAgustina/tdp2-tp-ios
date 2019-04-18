@@ -30,6 +30,8 @@ double const kMaximunPetsQuantity = 3;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *paymentMethodsSegmentControl;
 
+@property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
+
 @property (strong,nonatomic) TripService* service;
 
 @end
@@ -104,7 +106,8 @@ double const kMaximunPetsQuantity = 3;
     if(![self.trip isValid]){
         return;
     }
-    
+
+    self.trip.comments = self.commentsTextView.text;
     [self.service postTrip:self.trip];
 }
 
