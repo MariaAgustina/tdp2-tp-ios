@@ -76,6 +76,11 @@ double const kMaximunPetsQuantity = 3;
     [self setupSearchTripButton];
 
 }
+- (IBAction)escortSwitchPressed:(UISwitch *)sender {
+    
+    self.trip.shouldHaveEscolt = sender.on;
+    
+}
 
 - (IBAction)searchTripButtonPressed:(id)sender {
     

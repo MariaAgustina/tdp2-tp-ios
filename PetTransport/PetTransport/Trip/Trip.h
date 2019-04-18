@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) double mediumPetsQuantity;
 @property (assign,nonatomic) double bigPetsQuantity;
 
+@property (assign,nonatomic) BOOL shouldHaveEscolt;
+
 
 - (BOOL)hasValidAdresses;
 - (BOOL)isValid;

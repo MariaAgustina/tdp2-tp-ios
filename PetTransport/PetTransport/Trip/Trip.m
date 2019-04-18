@@ -10,6 +10,13 @@
 
 @implementation Trip
 
+- (instancetype)init{
+    if (self = [super init]){
+        self.shouldHaveEscolt = NO;
+    }
+    return self;
+}
+
 - (BOOL)hasValidAdresses
 {
     return (self.origin && self.destiny);
