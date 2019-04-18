@@ -10,13 +10,6 @@
 
 @implementation Trip
 
-- (instancetype)init{
-    if (self = [super init]){
-        self.shouldHaveEscolt = NO;
-    }
-    return self;
-}
-
 - (BOOL)hasValidAdresses
 {
     return (self.origin && self.destiny);
@@ -42,6 +35,27 @@
     coordinate.latitude = self.origin.coordinate.latitude;
     coordinate.longitude = self.origin.coordinate.longitude;
     return coordinate;
+}
+
+- (NSString*)paymentMethodTitle:(PaymentMethod)paymentMethod {
+    
+    NSString *result = @"";
+    
+    switch(paymentMethod) {
+            case CASH:
+            result = @"Efectivo";
+            break;
+            case CARD:
+            result = @"Tarjeta";
+            break;
+            case MERCADOPAGO:
+            result = @"Mercado Pago";
+            break;
+        default:
+            result = @"";
+    }
+    
+    return result;
 }
 
 @end

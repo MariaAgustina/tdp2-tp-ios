@@ -24,16 +24,28 @@ double const kMaximunPetsQuantity = 3;
 @property (weak, nonatomic) IBOutlet UIStepper *mediumStepper;
 @property (weak, nonatomic) IBOutlet UIStepper *bigStepper;
 
-@property (strong,nonatomic) TripService* service;
 @property (weak, nonatomic) IBOutlet UIButton *searchTripButton;
+
+@property (weak, nonatomic) IBOutlet UISwitch *escoltSwitch;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *paymentMethodsSegmentControl;
+
+@property (strong,nonatomic) TripService* service;
 
 @end
 
 @implementation TripInformationViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.service = [[TripService alloc]initWithDelegate:self];
+    self.trip.shouldHaveEscolt = self.escoltSwitch.on;
+    
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:CASH] forSegmentAtIndex:CASH];
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:CARD] forSegmentAtIndex:CARD];
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:MERCADOPAGO] forSegmentAtIndex:MERCADOPAGO];
 
 }
 
@@ -81,6 +93,11 @@ double const kMaximunPetsQuantity = 3;
     self.trip.shouldHaveEscolt = sender.on;
     
 }
+
+- (IBAction)paymentMethodSelected:(UISegmentedControl *)sender {
+    self.trip.selectedPaymentMethod = (PaymentMethod)sender.selectedSegmentIndex;
+}
+
 
 - (IBAction)searchTripButtonPressed:(id)sender {
     

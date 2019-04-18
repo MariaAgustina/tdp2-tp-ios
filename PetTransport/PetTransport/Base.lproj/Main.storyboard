@@ -327,15 +327,50 @@
                                             <constraint firstAttribute="trailing" secondItem="cFE-YE-r9U" secondAttribute="trailing" constant="15" id="r3d-yc-QP8"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOs-Bf-mQG">
+                                        <rect key="frame" x="18.5" y="340" width="337.5" height="101"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forma de Pago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PI-rR-tkH">
+                                                <rect key="frame" x="15" y="15" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-cY-nQz">
+                                                <rect key="frame" x="15" y="58" width="307.5" height="29"/>
+                                                <segments>
+                                                    <segment title="Efectivo"/>
+                                                    <segment title="Tarjeta"/>
+                                                    <segment title="Mercado Pago"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="paymentMethodSelected:" destination="rM7-2L-X50" eventType="valueChanged" id="5ih-Oh-F1O"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="3PI-rR-tkH" firstAttribute="top" secondItem="JOs-Bf-mQG" secondAttribute="top" constant="15" id="0Lu-dG-nEO"/>
+                                            <constraint firstItem="ZQc-cY-nQz" firstAttribute="top" secondItem="3PI-rR-tkH" secondAttribute="bottom" constant="19" id="4yt-X6-ayq"/>
+                                            <constraint firstItem="ZQc-cY-nQz" firstAttribute="leading" secondItem="JOs-Bf-mQG" secondAttribute="leading" constant="15" id="Cs0-4V-7m0"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3PI-rR-tkH" secondAttribute="trailing" constant="20" symbolic="YES" id="H56-f5-HxE"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZQc-cY-nQz" secondAttribute="trailing" constant="15" id="IfG-zc-1hM"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZQc-cY-nQz" secondAttribute="bottom" constant="15" id="Qds-WK-5Id"/>
+                                            <constraint firstItem="3PI-rR-tkH" firstAttribute="leading" secondItem="JOs-Bf-mQG" secondAttribute="leading" constant="15" id="ViD-x0-Jou"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="JOs-Bf-mQG" firstAttribute="top" secondItem="0IM-4X-vUX" secondAttribute="bottom" constant="18" id="2r2-et-xhc"/>
                                     <constraint firstItem="0IM-4X-vUX" firstAttribute="leading" secondItem="3d6-ue-hw2" secondAttribute="leading" id="KFI-qs-rfP"/>
                                     <constraint firstItem="0IM-4X-vUX" firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" id="KwE-Wj-sbu"/>
+                                    <constraint firstItem="JOs-Bf-mQG" firstAttribute="leading" secondItem="0IM-4X-vUX" secondAttribute="leading" id="QIU-dJ-Ept"/>
                                     <constraint firstItem="3d6-ue-hw2" firstAttribute="leading" secondItem="4W7-Zm-aiW" secondAttribute="leading" constant="18.5" id="V9C-88-ZjW"/>
                                     <constraint firstItem="3d6-ue-hw2" firstAttribute="top" secondItem="4W7-Zm-aiW" secondAttribute="top" constant="20" id="Y5M-FC-bMy"/>
                                     <constraint firstItem="0IM-4X-vUX" firstAttribute="top" secondItem="3d6-ue-hw2" secondAttribute="bottom" constant="18" id="eyG-OE-q3z"/>
                                     <constraint firstAttribute="trailing" secondItem="3d6-ue-hw2" secondAttribute="trailing" constant="20" id="gag-rh-zPD"/>
                                     <constraint firstAttribute="bottom" secondItem="3d6-ue-hw2" secondAttribute="bottom" constant="257" id="lMn-EF-5XX"/>
+                                    <constraint firstItem="JOs-Bf-mQG" firstAttribute="trailing" secondItem="0IM-4X-vUX" secondAttribute="trailing" id="rAb-dN-Toa"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13B-zg-ugH">
@@ -367,8 +402,10 @@
                     <connections>
                         <outlet property="bigCountLabel" destination="UmP-nB-eBC" id="eDT-MH-rrl"/>
                         <outlet property="bigStepper" destination="q1j-w1-Vf9" id="H3i-DY-ucK"/>
+                        <outlet property="escoltSwitch" destination="cFE-YE-r9U" id="92M-24-ifQ"/>
                         <outlet property="mediumCountLabel" destination="LZ8-gy-SqO" id="RAy-ob-p5t"/>
                         <outlet property="mediumStepper" destination="JWu-2h-VXt" id="07Q-j2-OuH"/>
+                        <outlet property="paymentMethodsSegmentControl" destination="ZQc-cY-nQz" id="IFh-qt-P4L"/>
                         <outlet property="searchTripButton" destination="13B-zg-ugH" id="kyx-48-ldm"/>
                         <outlet property="smallCountLabel" destination="7Il-zA-pdi" id="H5g-HM-WW0"/>
                         <outlet property="smallStepper" destination="Crl-CH-Hsk" id="oDU-IU-DCL"/>
