@@ -83,8 +83,13 @@
     if (![self isValidText:self.phoneField.text]){
         return NO;
     }
-    // TODO: agregar mask
-    return YES;
+    return [self isValidPhoneNumberWithString:self.phoneField.text];
+}
+
+- (BOOL)isValidPhoneNumberWithString:(NSString*)phone {
+    NSString *phoneRegex = @"[0-9]{8,12}";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [phoneTest evaluateWithObject:phone];
 }
 
 - (BOOL)isValidEmail {
@@ -102,8 +107,7 @@
 
 - (BOOL)isValidBirthdate {
     NSDate *date = self.birthdatePicker.date;
-    //TODO
-    return YES;
+    return date != nil;
 }
 
 - (IBAction)fieldOnChange:(id)sender {
