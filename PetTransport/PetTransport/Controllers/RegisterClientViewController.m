@@ -21,6 +21,10 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthdatePicker;
 @property (weak, nonatomic) IBOutlet UIButton *registrationButton;
 @property (strong, nonatomic) AuthService *authService;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthdateLabel;
 
 @end
 
@@ -58,17 +62,34 @@
     if (![self isValidText:self.lastNameField.text]){
         isValid = NO;
     }
+    
     if (![self isValidText:self.addressField.text]){
+        self.addressLabel.textColor = [UIColor redColor];
         isValid = NO;
+    } else {
+        self.addressLabel.textColor = [UIColor blackColor];
     }
+    
     if (![self isValidPhoneNumber]){
+        self.phoneLabel.textColor = [UIColor redColor];
         isValid = NO;
+    } else {
+        self.phoneLabel.textColor = [UIColor blackColor];
     }
+    
+    
     if (![self isValidEmail]){
+        self.emailLabel.textColor = [UIColor redColor];
         isValid = NO;
+    } else {
+        self.emailLabel.textColor = [UIColor blackColor];
     }
+    
     if (![self isValidBirthdate]){
+        self.birthdateLabel.textColor = [UIColor redColor];
         isValid = NO;
+    } else {
+        self.birthdateLabel.textColor = [UIColor blackColor];
     }
     
     [self.registrationButton setEnabled:isValid];

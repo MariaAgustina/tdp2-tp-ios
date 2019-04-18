@@ -210,10 +210,10 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-Ot-6AM">
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IS4-Ot-6AM">
                                                         <rect key="frame" x="10" y="504" width="325" height="216"/>
-                                                        <date key="date" timeIntervalSinceReferenceDate="576958172.13834703">
-                                                            <!--2019-04-14 18:09:32 +0000-->
+                                                        <date key="date" timeIntervalSinceReferenceDate="-662709027.86165619">
+                                                            <!--1980-01-01 18:09:32 +0000-->
                                                         </date>
                                                         <date key="minimumDate" timeIntervalSinceReferenceDate="-2556186192">
                                                             <!--1920-01-01 12:16:48 +0000-->
@@ -232,7 +232,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="0.84228842299999995" blue="0.2304059919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="VBF-6q-V4Q" secondAttribute="trailing" constant="10" id="0zk-LQ-Zt6"/>
                                                     <constraint firstItem="IS4-Ot-6AM" firstAttribute="top" secondItem="MfY-Zh-vng" secondAttribute="bottom" constant="8" id="15E-7v-dxI"/>
@@ -310,12 +310,16 @@
                     </view>
                     <connections>
                         <outlet property="addressField" destination="sdR-F0-o2o" id="2jK-gL-isK"/>
+                        <outlet property="addressLabel" destination="9Bf-Rz-v3A" id="g5I-bs-COv"/>
+                        <outlet property="birthdateLabel" destination="MfY-Zh-vng" id="jf9-js-iQP"/>
                         <outlet property="birthdatePicker" destination="IS4-Ot-6AM" id="lf0-9h-zrM"/>
                         <outlet property="emailField" destination="w61-4r-2gH" id="7Lo-EC-Jtx"/>
+                        <outlet property="emailLabel" destination="igw-CL-UQ1" id="8Hd-2g-uCD"/>
                         <outlet property="firstNameField" destination="Nie-PM-5Xj" id="zAq-ZP-lh8"/>
                         <outlet property="formWrapper" destination="DNf-iR-ujR" id="ING-bR-2Mf"/>
                         <outlet property="lastNameField" destination="Pj3-Vu-spL" id="MDC-Z5-T0d"/>
                         <outlet property="phoneField" destination="SHc-Ef-tFk" id="KOO-hq-2sa"/>
+                        <outlet property="phoneLabel" destination="4MN-zS-jKb" id="HgE-vK-arT"/>
                         <outlet property="registrationButton" destination="ORt-lN-PtN" id="cwB-AF-nXg"/>
                     </connections>
                 </viewController>
