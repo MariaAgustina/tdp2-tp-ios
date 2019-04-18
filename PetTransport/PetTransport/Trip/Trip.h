@@ -15,6 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Trip : NSObject
 
+typedef enum paymentMethodsTypes
+{
+    CASH,
+    CARD,
+    MERCADOPAGO
+} PaymentMethod;
+
+
 @property (strong, nonatomic) GMSPlace *origin;
 @property (strong, nonatomic) GMSPlace *destiny;
 
@@ -24,12 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) double mediumPetsQuantity;
 @property (assign,nonatomic) double bigPetsQuantity;
 
+@property (assign,nonatomic) BOOL shouldHaveEscolt;
+@property (assign,nonatomic) PaymentMethod selectedPaymentMethod;
+@property (copy,nonatomic) NSString* comments;
+
 
 - (BOOL)hasValidAdresses;
 - (BOOL)isValid;
 - (struct LocationCoordinate)getOriginCoordinate;
-
 - (double)totalPets;
+- (NSString*)paymentMethodTitle:(PaymentMethod)paymentMethod;
+
 
 @end
 

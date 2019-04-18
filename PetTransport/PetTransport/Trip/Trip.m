@@ -37,4 +37,25 @@
     return coordinate;
 }
 
+- (NSString*)paymentMethodTitle:(PaymentMethod)paymentMethod {
+    
+    NSString *result = @"";
+    
+    switch(paymentMethod) {
+            case CASH:
+            result = @"Efectivo";
+            break;
+            case CARD:
+            result = @"Tarjeta";
+            break;
+            case MERCADOPAGO:
+            result = @"Mercado Pago";
+            break;
+        default:
+            result = @"";
+    }
+    
+    return result;
+}
+
 @end

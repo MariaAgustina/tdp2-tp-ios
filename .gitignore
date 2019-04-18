@@ -3,6 +3,7 @@ build/
 DerivedData
 build.xcarchive
 PetTransport/PetTransport.xcodeproj/project.xcworkspace/
+PetTransport/Podfile.lock
 
 ## Various settings
 *.pbxuser
