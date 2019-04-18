@@ -64,6 +64,7 @@
     clientProfile.fbUserId = profile.userID;
     clientProfile.firstName = profile.firstName;
     clientProfile.lastName = profile.lastName;
+    clientProfile.fbToken = [self.fbProfileManager getToken];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterClientViewController *registerClientVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterClientViewController"];

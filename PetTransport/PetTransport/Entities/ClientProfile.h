@@ -11,6 +11,7 @@
 @interface ClientProfile : NSObject
 
 @property (strong, nonatomic) NSString *fbUserId;
+@property (strong, nonatomic) NSString *fbToken;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *address;
