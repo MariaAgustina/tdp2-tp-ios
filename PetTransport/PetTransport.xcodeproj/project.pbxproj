@@ -18,6 +18,7 @@
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
+		934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C357D2263C53D0062122E /* TripInformationViewController.m */; };
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
@@ -73,6 +74,8 @@
 		58F022DC2253EFEA00318837 /* TrackDriverService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverService.h; sourceTree = "<group>"; };
 		58F022DD2253EFEA00318837 /* TrackDriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverService.m; sourceTree = "<group>"; };
 		58F022E02253F18C00318837 /* LocationCoordinate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCoordinate.h; sourceTree = "<group>"; };
+		934C357C2263C53D0062122E /* TripInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripInformationViewController.h; sourceTree = "<group>"; };
+		934C357D2263C53D0062122E /* TripInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripInformationViewController.m; sourceTree = "<group>"; };
 		937ABFB42253DAF000086554 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		937ABFB52253DAF000086554 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GMSMarker+Setup.h"; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 			children = (
 				58492B96225007E200496C82 /* BookTransportViewController.h */,
 				58492B97225007E200496C82 /* BookTransportViewController.m */,
+				934C357C2263C53D0062122E /* TripInformationViewController.h */,
+				934C357D2263C53D0062122E /* TripInformationViewController.m */,
 				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
 				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
 				58754C04226232AD00F12643 /* FacebookViewController.h */,
@@ -471,6 +476,7 @@
 				58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
+				934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

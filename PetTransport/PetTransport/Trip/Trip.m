@@ -10,10 +10,25 @@
 
 @implementation Trip
 
-- (BOOL)isValid
+- (BOOL)hasValidAdresses
 {
     return (self.origin && self.destiny);
 }
+
+- (BOOL)hasPets
+{
+    return ([self totalPets] > 0);
+}
+
+- (BOOL)isValid
+{
+    return ([self hasValidAdresses] && [self hasPets]);
+}
+
+- (double)totalPets {
+    return self.smallPetsQuantity + self.mediumPetsQuantity + self.bigPetsQuantity;
+}
+
 
 - (struct LocationCoordinate)getOriginCoordinate {
     struct LocationCoordinate coordinate;
