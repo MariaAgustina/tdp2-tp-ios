@@ -34,7 +34,6 @@
 
 - (IBAction)loginButtonPressed:(id)sender {
     self.pendingAction = @"Login";
-    NSLog(@"Login button pressed");
 }
 
 - (IBAction)registrationButtonPressed:(id)sender {
@@ -43,19 +42,23 @@
 }
 
 - (void)loadProfile {
+    if ([self.fbProfileManager getToken] == nil){
+        [self loginInFacebook];
+        return;
+    }
     [self.fbProfileManager loadProfile];
 }
 
 - (void)loginInFacebook {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login
-     logInWithReadPermissions: @[@"public_profile"]
+     logInWithReadPermissions: @[@"public_profile", @"email"]
      fromViewController:self
      handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
          if (error) {
-             NSLog(@"Process error");
+             [self showFbLoginError];
          } else if (result.isCancelled) {
-             NSLog(@"Cancelled");
+             [self showFbLoginError];
          } else {
              [self loadProfile];
          }
@@ -74,6 +77,21 @@
     
     registerClientVC.profile = clientProfile;
     [self.navigationController pushViewController:registerClientVC animated:YES];
+}
+
+- (void)showFbLoginError {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Error al identificarse con Facebook"
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"OK"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                }];
+    [alert addAction:yesButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 # pragma mark - FBSDKLoginButtonDelegate methods
@@ -101,7 +119,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
 }
 
 - (void)didFailedLoadingProfile: (NSError *)error {
-    NSLog(@"no pude recuperar el profile");
+    [self showFbLoginError];
 }
 
 
