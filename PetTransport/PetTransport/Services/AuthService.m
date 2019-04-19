@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "constants.h"
 
-#define UNAUTHORIZED_STATUS_CODE 401
+#define INEXISTENT_USER_STATUS_CODE 403
 
 @interface AuthService ()
 
@@ -34,7 +34,7 @@
                                           success:^(id _Nullable responseObject) {
                                               [self.delegate didLoginClient];
                                           } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
-                                              BOOL inexistentUser = (statusCode == UNAUTHORIZED_STATUS_CODE);
+                                              BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
                                               [self.delegate didFailLogin:inexistentUser];
                                           }];
 }
