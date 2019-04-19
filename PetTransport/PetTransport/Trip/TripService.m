@@ -39,7 +39,7 @@
 
     NSDictionary* petQuantitiesDictionary = @{@"small":smallPetsQuantity,@"medium":mediumPetsQuantity,@"big":bigPetsQuantity};
     
-    NSString* paymentMethod = [trip paymentMethodTitle:trip.selectedPaymentMethod];
+    NSString* paymentMethod = trip.selectedPaymentMethod.paymentKey;
     NSNumber* hasEscort = [NSNumber numberWithBool:trip.shouldHaveEscolt];
     
     NSDictionary *parameters = @{@"origin":originDictionary,@"destination":destinantionDictionary,@"petQuantities":petQuantitiesDictionary,@"paymentMethod":paymentMethod,@"comments":trip.comments,@"brings_escort":hasEscort};

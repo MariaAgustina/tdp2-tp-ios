@@ -37,25 +37,29 @@
     return coordinate;
 }
 
-- (NSString*)paymentMethodTitle:(PaymentMethod)paymentMethod {
+- (PaymentMethod*)paymentMethodForType:(PaymentMethodType)paymentMethodType {
     
-    NSString *result = @"";
+    PaymentMethod *paymentMethod = [PaymentMethod new];
     
-    switch(paymentMethod) {
+    switch(paymentMethodType) {
             case CASH:
-            result = @"Efectivo";
+            paymentMethod.title = @"Efectivo";
+            paymentMethod.paymentKey = @"cash";
             break;
             case CARD:
-            result = @"Tarjeta";
+            paymentMethod.title = @"Tarjeta";
+            paymentMethod.paymentKey = @"card";
             break;
             case MERCADOPAGO:
-            result = @"Mercado Pago";
+            paymentMethod.title = @"Mercado Pago";
+            paymentMethod.paymentKey = @"mp";
             break;
         default:
-            result = @"";
+            paymentMethod.title = @"Efectivo";
+            paymentMethod.paymentKey = @"cash";
     }
     
-    return result;
+    return paymentMethod;
 }
 
 @end

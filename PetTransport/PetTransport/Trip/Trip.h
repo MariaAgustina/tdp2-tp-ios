@@ -10,6 +10,7 @@
 #import <GooglePlaces/GooglePlaces.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "LocationCoordinate.h"
+#import "PaymentMethod.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +21,7 @@ typedef enum paymentMethodsTypes
     CASH,
     CARD,
     MERCADOPAGO
-} PaymentMethod;
+} PaymentMethodType;
 
 
 @property (strong, nonatomic) GMSPlace *origin;
@@ -33,7 +34,7 @@ typedef enum paymentMethodsTypes
 @property (assign,nonatomic) double bigPetsQuantity;
 
 @property (assign,nonatomic) BOOL shouldHaveEscolt;
-@property (assign,nonatomic) PaymentMethod selectedPaymentMethod;
+@property (strong,nonatomic) PaymentMethod* selectedPaymentMethod;
 @property (copy,nonatomic) NSString* comments;
 
 
@@ -41,8 +42,7 @@ typedef enum paymentMethodsTypes
 - (BOOL)isValid;
 - (struct LocationCoordinate)getOriginCoordinate;
 - (double)totalPets;
-- (NSString*)paymentMethodTitle:(PaymentMethod)paymentMethod;
-
+- (PaymentMethod*)paymentMethodForType:(PaymentMethodType)paymentMethodType;
 
 @end
 
