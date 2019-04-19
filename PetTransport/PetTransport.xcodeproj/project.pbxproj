@@ -12,6 +12,7 @@
 		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
 		586235AA226A60BE007D9A0A /* ClientMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586235A9226A60BE007D9A0A /* ClientMenuViewController.m */; };
+		586235AE226A6892007D9A0A /* perro.png in Resources */ = {isa = PBXBuildFile; fileRef = 586235AD226A6892007D9A0A /* perro.png */; };
 		586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
@@ -65,6 +66,7 @@
 		58492B9B2250133E00496C82 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		586235A8226A60BE007D9A0A /* ClientMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientMenuViewController.h; sourceTree = "<group>"; };
 		586235A9226A60BE007D9A0A /* ClientMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientMenuViewController.m; sourceTree = "<group>"; };
+		586235AD226A6892007D9A0A /* perro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perro.png; sourceTree = "<group>"; };
 		586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverViewController.h; sourceTree = "<group>"; };
 		586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverViewController.m; sourceTree = "<group>"; };
 		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		5872B7B222515A590034F2F9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				586235AD226A6892007D9A0A /* perro.png */,
 				5872B7B322515A730034F2F9 /* car-icon.png */,
 			);
 			path = Images;
@@ -406,6 +409,7 @@
 			files = (
 				9396CA1122474B3400F6248F /* LaunchScreen.storyboard in Resources */,
 				9396CA0E22474B3400F6248F /* Assets.xcassets in Resources */,
+				586235AE226A6892007D9A0A /* perro.png in Resources */,
 				9396CA0C22474B3400F6248F /* Main.storyboard in Resources */,
 				5872B7B422515A730034F2F9 /* car-icon.png in Resources */,
 			);
