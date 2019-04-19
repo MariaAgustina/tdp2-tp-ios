@@ -31,7 +31,18 @@
     
     NSDictionary* originDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
     NSDictionary* destinantionDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
-    NSDictionary *parameters = @{@"origin":originDictionary,@"destination":destinantionDictionary};
+    
+    
+    NSNumber* smallPetsQuantity = [NSNumber numberWithDouble: trip.smallPetsQuantity];
+    NSNumber* mediumPetsQuantity = [NSNumber numberWithDouble: trip.mediumPetsQuantity];
+    NSNumber* bigPetsQuantity = [NSNumber numberWithDouble: trip.bigPetsQuantity];
+
+    NSDictionary* petQuantitiesDictionary = @{@"small":smallPetsQuantity,@"medium":mediumPetsQuantity,@"big":bigPetsQuantity};
+    
+    NSString* paymentMethod = [trip paymentMethodTitle:trip.selectedPaymentMethod];
+    NSNumber* hasEscort = [NSNumber numberWithBool:trip.shouldHaveEscolt];
+    
+    NSDictionary *parameters = @{@"origin":originDictionary,@"destination":destinantionDictionary,@"petQuantities":petQuantitiesDictionary,@"paymentMethod":paymentMethod,@"comments":trip.comments,@"brings_escort":hasEscort};
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
 

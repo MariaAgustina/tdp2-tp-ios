@@ -24,17 +24,50 @@ double const kMaximunPetsQuantity = 3;
 @property (weak, nonatomic) IBOutlet UIStepper *mediumStepper;
 @property (weak, nonatomic) IBOutlet UIStepper *bigStepper;
 
-@property (strong,nonatomic) TripService* service;
 @property (weak, nonatomic) IBOutlet UIButton *searchTripButton;
+
+@property (weak, nonatomic) IBOutlet UISwitch *escoltSwitch;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *paymentMethodsSegmentControl;
+
+@property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
+
+@property (strong,nonatomic) TripService* service;
+
+@property (weak, nonatomic) IBOutlet UIView *petsView;
+@property (weak, nonatomic) IBOutlet UIView *escoltView;
+@property (weak, nonatomic) IBOutlet UIView *paymentMethodView;
+@property (weak, nonatomic) IBOutlet UIView *commentsView;
+
 
 @end
 
 @implementation TripInformationViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.service = [[TripService alloc]initWithDelegate:self];
+    
+    self.trip.shouldHaveEscolt = self.escoltSwitch.on;
+    
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:CASH] forSegmentAtIndex:CASH];
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:CARD] forSegmentAtIndex:CARD];
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:MERCADOPAGO] forSegmentAtIndex:MERCADOPAGO];
+    
+    [self setupView:self.petsView];
+    [self setupView:self.escoltView];
+    [self setupView:self.paymentMethodView];
+    [self setupView:self.commentsView];
+    [self setupView:self.commentsTextView];
 
+}
+
+- (void)setupView:(UIView*)view {
+    view.layer.borderWidth = 0.5;
+    view.layer.borderColor =  [UIColor colorWithRed:220/255 green:220/255 blue:220/255 alpha:0.5].CGColor;
+    view.layer.cornerRadius = 8.0;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -76,13 +109,24 @@ double const kMaximunPetsQuantity = 3;
     [self setupSearchTripButton];
 
 }
+- (IBAction)escortSwitchPressed:(UISwitch *)sender {
+    
+    self.trip.shouldHaveEscolt = sender.on;
+    
+}
+
+- (IBAction)paymentMethodSelected:(UISegmentedControl *)sender {
+    self.trip.selectedPaymentMethod = (PaymentMethod)sender.selectedSegmentIndex;
+}
+
 
 - (IBAction)searchTripButtonPressed:(id)sender {
     
     if(![self.trip isValid]){
         return;
     }
-    
+
+    self.trip.comments = self.commentsTextView.text;
     [self.service postTrip:self.trip];
 }
 
