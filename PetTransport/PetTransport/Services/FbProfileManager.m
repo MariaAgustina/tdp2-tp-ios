@@ -29,7 +29,7 @@
              NSLog(@"Error loading FB profile: %@", error);
              [self.delegate didFailedLoadingProfile:error];
              return;
-         } 
+         }
          if (profile == nil){
              [self.delegate notLoggedInFb];
              return;
@@ -38,5 +38,22 @@
      }];
 }
 
+//NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+//[parameters setValue:@"name, first_name, last_name, email" forKey:@"fields"];
+//
+//[[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:parameters]
+// startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+//     if (!error) {
+//         NSLog(@"fetched user:%@", result);
+//     }
+// }];
+
+- (NSString*)getToken {
+    if ([FBSDKAccessToken currentAccessToken] == nil){
+        return nil;
+    }
+    NSString *fbAccessToken = [FBSDKAccessToken currentAccessToken].tokenString;
+    return fbAccessToken;
+}
 
 @end

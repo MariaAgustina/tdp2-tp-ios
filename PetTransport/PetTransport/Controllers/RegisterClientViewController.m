@@ -2,20 +2,29 @@
 //  RegisterClientViewController.m
 //  PetTransport
 //
-//  Created by Kaoru Heanna on 4/13/19.
+//  Created by Kaoru Heanna on 4/14/19.
 //  Copyright © 2019 agustina markosich. All rights reserved.
 //
 
 #import "RegisterClientViewController.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "FbProfileManager.h"
+#import <QuartzCore/QuartzCore.h>
+#import "AuthService.h"
 
-@interface RegisterClientViewController () <FBSDKLoginButtonDelegate, FbProfileManagerDelegate>
+@interface RegisterClientViewController () <AuthServiceDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *customFbButton;
-@property (weak, nonatomic) IBOutlet FBSDKLoginButton *fbButton;
-@property (strong, nonatomic) FbProfileManager *fbProfileManager;
+@property (weak, nonatomic) IBOutlet UIView *formWrapper;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameField;
+@property (weak, nonatomic) IBOutlet UITextField *addressField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *birthdatePicker;
+@property (weak, nonatomic) IBOutlet UIButton *registrationButton;
+@property (strong, nonatomic) AuthService *authService;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *birthdateLabel;
 
 @end
 
@@ -24,65 +33,127 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Registrarme como cliente";
+    self.title = @"Registro";
+    self.authService = [[AuthService alloc] initWithDelegate:self];
     
-    self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
+    self.formWrapper.layer.borderColor = [UIColor blackColor].CGColor;
+    self.formWrapper.layer.borderWidth = 1.0f;
+    self.firstNameField.text = self.profile.firstName;
+    [self.firstNameField setEnabled:NO];
+    self.lastNameField.text = self.profile.lastName;
+    [self.lastNameField setEnabled:NO];
+    [self validateFields];
+}
+
+- (IBAction)registerButtonPressed:(id)sender {
+    self.profile.address = self.addressField.text;
+    self.profile.email = self.emailField.text;
+    self.profile.phoneNumber = self.phoneField.text;
+    self.profile.birthdate = self.birthdatePicker.date;
+    [self.authService registerClient:self.profile];
+}
+
+- (void)validateFields {
+    BOOL isValid = YES;
     
-    self.fbButton.delegate = self;
-    [self.fbButton setAttributedTitle:[[NSAttributedString alloc] initWithString:@"logueate fiera"]
-                                forState:UIControlStateNormal];
+    if (![self isValidText:self.firstNameField.text]){
+        isValid = NO;
+    }
+    if (![self isValidText:self.lastNameField.text]){
+        isValid = NO;
+    }
     
-    [self loadProfile];
+    if (![self isValidText:self.addressField.text]){
+        self.addressLabel.textColor = [UIColor redColor];
+        isValid = NO;
+    } else {
+        self.addressLabel.textColor = [UIColor blackColor];
+    }
+    
+    if (![self isValidPhoneNumber]){
+        self.phoneLabel.textColor = [UIColor redColor];
+        isValid = NO;
+    } else {
+        self.phoneLabel.textColor = [UIColor blackColor];
+    }
+    
+    
+    if (![self isValidEmail]){
+        self.emailLabel.textColor = [UIColor redColor];
+        isValid = NO;
+    } else {
+        self.emailLabel.textColor = [UIColor blackColor];
+    }
+    
+    if (![self isValidBirthdate]){
+        self.birthdateLabel.textColor = [UIColor redColor];
+        isValid = NO;
+    } else {
+        self.birthdateLabel.textColor = [UIColor blackColor];
+    }
+    
+    [self.registrationButton setEnabled:isValid];
 }
 
-- (void)loadProfile {
-    [self.fbProfileManager loadProfile];
+- (BOOL)isValidText:(NSString *)text {
+    NSString *trimmedText = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return [trimmedText length] > 0;
 }
 
-- (IBAction)customFbButtonPressed:(id)sender {
-    NSLog(@"CUSTOM BUTTON PRESSED");
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login
-     logInWithReadPermissions: @[@"public_profile"]
-     fromViewController:self
-     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-         if (error) {
-             NSLog(@"Process error");
-         } else if (result.isCancelled) {
-             NSLog(@"Cancelled");
-         } else {
-             NSLog(@"Logged in");
-             [self loadProfile];
-         }
-     }];
+- (BOOL)isValidPhoneNumber {
+    if (![self isValidText:self.phoneField.text]){
+        return NO;
+    }
+    return [self isValidPhoneNumberWithString:self.phoneField.text];
 }
 
-# pragma mark - FBSDKLoginButtonDelegate methods
-- (void)  loginButton:(FBSDKLoginButton *)loginButton
-didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
-                error:(NSError *)error{
-    NSLog(@"Login Completed");
-    [self loadProfile];
-}
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
-    NSLog(@"Logout");
+- (BOOL)isValidPhoneNumberWithString:(NSString*)phone {
+    NSString *phoneRegex = @"[0-9]{8,12}";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [phoneTest evaluateWithObject:phone];
 }
 
-#pragma mark - FbProfileManagerDelegate methods
-- (void)didLoadProfile: (FBSDKProfile *)profile {
-    NSLog(@"did load profile");
-    NSLog(@"name: %@!", profile.firstName);
-    NSLog(@"lastName: %@!", profile.lastName);
-    NSLog(@"name: %@!", profile.name);
-    NSLog(@"userId: %@!", profile.userID);
+- (BOOL)isValidEmail {
+    if (![self isValidText:self.emailField.text]){
+        return NO;
+    }
+    return [self isValidEmailWithString:self.emailField.text];
 }
 
-- (void)notLoggedInFb {
-    NSLog(@"no estoy logueado en FB");
+- (BOOL)isValidEmailWithString:(NSString*)email {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
 }
 
-- (void)didFailedLoadingProfile: (NSError *)error {
-    NSLog(@"no pude recuperar el profile");
+- (BOOL)isValidBirthdate {
+    NSDate *date = self.birthdatePicker.date;
+    return date != nil;
+}
+
+- (IBAction)fieldOnChange:(id)sender {
+    [self validateFields];
+}
+
+# pragma mark - AuthServiceDelegate methods
+- (void)didRegisterClient {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Registro exitoso!"
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"Ir a login"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                }];
+    [alert addAction:yesButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)didFailRegistering {
+    NSLog(@"No pudo registrarse el cliente");
 }
 
 

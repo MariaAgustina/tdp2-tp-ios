@@ -13,8 +13,11 @@
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
 		586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
-		58754C06226232AD00F12643 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C05226232AD00F12643 /* RegisterClientViewController.m */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
+		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
+		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
+		58E20BA12268D48800E024DF /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA02268D48800E024DF /* AuthService.m */; };
+		58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA32268F70900E024DF /* ClientLoginViewController.m */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
 		934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C357D2263C53D0062122E /* TripInformationViewController.m */; };
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
@@ -62,10 +65,16 @@
 		586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverViewController.h; sourceTree = "<group>"; };
 		586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverViewController.m; sourceTree = "<group>"; };
 		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
-		58754C04226232AD00F12643 /* RegisterClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterClientViewController.h; sourceTree = "<group>"; };
-		58754C05226232AD00F12643 /* RegisterClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClientViewController.m; sourceTree = "<group>"; };
 		58754C0722625E5C00F12643 /* FbProfileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FbProfileManager.h; sourceTree = "<group>"; };
 		58754C0822625E5C00F12643 /* FbProfileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FbProfileManager.m; sourceTree = "<group>"; };
+		58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterClientViewController.h; sourceTree = "<group>"; };
+		58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClientViewController.m; sourceTree = "<group>"; };
+		58BE1D1A2263AA960000C9D0 /* ClientProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientProfile.h; sourceTree = "<group>"; };
+		58BE1D1B2263AA960000C9D0 /* ClientProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientProfile.m; sourceTree = "<group>"; };
+		58E20B9F2268D48800E024DF /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
+		58E20BA02268D48800E024DF /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
+		58E20BA22268F70900E024DF /* ClientLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientLoginViewController.h; sourceTree = "<group>"; };
+		58E20BA32268F70900E024DF /* ClientLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientLoginViewController.m; sourceTree = "<group>"; };
 		58F022DC2253EFEA00318837 /* TrackDriverService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackDriverService.h; sourceTree = "<group>"; };
 		58F022DD2253EFEA00318837 /* TrackDriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackDriverService.m; sourceTree = "<group>"; };
 		58F022E02253F18C00318837 /* LocationCoordinate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationCoordinate.h; sourceTree = "<group>"; };
@@ -144,8 +153,10 @@
 				934C357D2263C53D0062122E /* TripInformationViewController.m */,
 				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
 				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
-				58754C04226232AD00F12643 /* RegisterClientViewController.h */,
-				58754C05226232AD00F12643 /* RegisterClientViewController.m */,
+				58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */,
+				58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */,
+				58E20BA22268F70900E024DF /* ClientLoginViewController.h */,
+				58E20BA32268F70900E024DF /* ClientLoginViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -159,6 +170,8 @@
 				58F022DD2253EFEA00318837 /* TrackDriverService.m */,
 				58754C0722625E5C00F12643 /* FbProfileManager.h */,
 				58754C0822625E5C00F12643 /* FbProfileManager.m */,
+				58E20B9F2268D48800E024DF /* AuthService.h */,
+				58E20BA02268D48800E024DF /* AuthService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -175,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				58F022E02253F18C00318837 /* LocationCoordinate.h */,
+				58BE1D1A2263AA960000C9D0 /* ClientProfile.h */,
+				58BE1D1B2263AA960000C9D0 /* ClientProfile.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -459,17 +474,20 @@
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
-				58754C06226232AD00F12643 /* RegisterClientViewController.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,
 				586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */,
 				58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */,
 				58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */,
+				58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
+				58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
+				58E20BA12268D48800E024DF /* AuthService.m in Sources */,
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
+				58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */,
 				934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

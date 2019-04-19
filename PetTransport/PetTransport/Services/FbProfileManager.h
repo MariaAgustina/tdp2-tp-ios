@@ -22,5 +22,6 @@
 
 - (instancetype)initWithDelegate: (id<FbProfileManagerDelegate>)delegate;
 - (void)loadProfile;
+- (NSString*)getToken;
 
 @end
