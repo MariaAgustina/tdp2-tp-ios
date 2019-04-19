@@ -25,7 +25,7 @@
 }
 
 - (void)registerClient: (ClientProfile*)profile {
-    NSString *relativeUrlString = @"users";
+    NSString *relativeUrlString = @"auth/facebook/register";
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
@@ -34,8 +34,6 @@
     NSString *birthdate = [formatter stringFromDate:profile.birthdate];
     
     NSDictionary *body = @{
-                           @"facebookId": profile.fbUserId,
-                           @"facebookToken": profile.fbToken,
                            @"email": profile.email,
                            @"birthDate": birthdate,
                            @"address": profile.address,
@@ -44,23 +42,29 @@
     
     [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
                                              body:body
+                                        authToken: profile.fbToken
                                           success:^(id _Nullable responseObject) {
                                               NSLog(@"Un exito! %@", responseObject);
+                                              [self.delegate didRegisterClient];
                                           } failure:^(NSError * _Nonnull error) {
                                               NSLog(@"fallo!: %@", error);
+                                              [self.delegate didFailRegistering];
                                           }];
 }
 
 
 - (void)makeApiPostRequestWithRelativeUrlString: (NSString*)relativeUrlString
                                            body: (NSDictionary*)body
+                                        authToken: (NSString*)authToken
                                         success: (void (^)(id _Nullable))success
                                         failure:(void (^)(NSError * _Nonnull))failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrlString];
-    NSLog(@"urlString: %@",urlString);
+    
+    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@",authToken];
+    [manager.requestSerializer setValue:authHeader forHTTPHeaderField:@"Authorization"];
     
     [manager POST:urlString parameters: body progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         success(responseObject);

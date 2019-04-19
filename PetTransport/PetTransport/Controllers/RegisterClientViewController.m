@@ -137,11 +137,11 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegisterClient {
-    
+    NSLog(@"ya registre el cliente");
 }
 
 - (void)didFailRegistering {
-    
+    NSLog(@"No pudo registrarse el cliente");
 }
 
 
