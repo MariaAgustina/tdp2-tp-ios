@@ -10,6 +10,8 @@
 #import "AFNetworking.h"
 #import "constants.h"
 
+#define UNAUTHORIZED_STATUS_CODE 401
+
 @interface AuthService ()
 
 @property (nonatomic, weak) id<AuthServiceDelegate> delegate;
@@ -31,9 +33,9 @@
                                         authToken: fbToken
                                           success:^(id _Nullable responseObject) {
                                               [self.delegate didLoginClient];
-                                          } failure:^(NSError * _Nonnull error) {
-                                              NSLog(@"fallo!: %@", error);
-                                              [self.delegate didFailLogin];
+                                          } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                              BOOL inexistentUser = (statusCode == UNAUTHORIZED_STATUS_CODE);
+                                              [self.delegate didFailLogin:inexistentUser];
                                           }];
 }
 
@@ -58,7 +60,7 @@
                                         authToken: profile.fbToken
                                           success:^(id _Nullable responseObject) {
                                               [self.delegate didRegisterClient];
-                                          } failure:^(NSError * _Nonnull error) {
+                                          } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                               NSLog(@"fallo!: %@", error);
                                               [self.delegate didFailRegistering];
                                           }];
@@ -69,7 +71,7 @@
                                            body: (NSDictionary*)body
                                         authToken: (NSString*)authToken
                                         success: (void (^)(id _Nullable))success
-                                        failure:(void (^)(NSError * _Nonnull))failure
+                                        failure:(void (^)(NSError * _Nonnull, NSInteger statusCode))failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -81,8 +83,9 @@
     [manager POST:urlString parameters: body progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)operation.response;
         NSLog(@"Error: %@", error);
-        failure(error);
+        failure(error, httpResponse.statusCode);
     }];
 }
 

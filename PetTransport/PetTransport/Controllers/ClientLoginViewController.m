@@ -142,7 +142,12 @@
     [self.navigationController pushViewController:clientMenuVC animated:YES];
 }
 
-- (void)didFailLogin {
+- (void)didFailLogin: (BOOL)inexistentUser {
+    if (inexistentUser){
+        self.pendingAction = @"Registration";
+        [self loadProfile];
+        return;
+    }
     [self showError:@"Error al loguearse"];
 }
 

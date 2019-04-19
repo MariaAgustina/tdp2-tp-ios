@@ -15,7 +15,7 @@
 - (void)didRegisterClient;
 - (void)didFailRegistering;
 - (void)didLoginClient;
-- (void)didFailLogin;
+- (void)didFailLogin: (BOOL)inexistentUser;
 
 @end
 
