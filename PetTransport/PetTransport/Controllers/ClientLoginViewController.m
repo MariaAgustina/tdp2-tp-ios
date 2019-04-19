@@ -131,7 +131,10 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didLoginClient {
-    NSLog(@"LOGIN COMPLETO");
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"ClientMenuViewController"];
+    
+    [self.navigationController pushViewController:clientMenuVC animated:YES];
 }
 
 - (void)didFailLogin {
