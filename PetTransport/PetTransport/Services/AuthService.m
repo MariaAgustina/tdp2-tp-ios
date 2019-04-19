@@ -24,6 +24,19 @@
     return self;
 }
 
+- (void)loginClient:(NSString*)fbToken {
+    NSString *relativeUrlString = @"auth/facebook/login";
+    [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
+                                             body:nil
+                                        authToken: fbToken
+                                          success:^(id _Nullable responseObject) {
+                                              [self.delegate didLoginClient];
+                                          } failure:^(NSError * _Nonnull error) {
+                                              NSLog(@"fallo!: %@", error);
+                                              [self.delegate didFailLogin];
+                                          }];
+}
+
 - (void)registerClient: (ClientProfile*)profile {
     NSString *relativeUrlString = @"auth/facebook/register";
     
@@ -44,7 +57,6 @@
                                              body:body
                                         authToken: profile.fbToken
                                           success:^(id _Nullable responseObject) {
-                                              NSLog(@"Un exito! %@", responseObject);
                                               [self.delegate didRegisterClient];
                                           } failure:^(NSError * _Nonnull error) {
                                               NSLog(@"fallo!: %@", error);

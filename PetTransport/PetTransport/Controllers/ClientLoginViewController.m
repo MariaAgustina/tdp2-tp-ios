@@ -12,11 +12,13 @@
 #import "FbProfileManager.h"
 #import "RegisterClientViewController.h"
 #import "ClientProfile.h"
+#import "AuthService.h"
 
 
-@interface ClientLoginViewController () <FBSDKLoginButtonDelegate, FbProfileManagerDelegate>
+@interface ClientLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 
 @property (strong, nonatomic) FbProfileManager *fbProfileManager;
+@property (strong, nonatomic) AuthService *authService;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registrationButton;
 @property (strong, nonatomic) NSString *pendingAction;
@@ -30,10 +32,22 @@
     self.title = @"Login";
     
     self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
+    self.authService = [[AuthService alloc] initWithDelegate:self];
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
     self.pendingAction = @"Login";
+    NSLog(@"Login button pressed");
+    if ([self.fbProfileManager getToken] == nil){
+        [self loginInFacebook];
+        return;
+    }
+    [self login];
+}
+
+- (void)login {
+    NSString *fbToken = [self.fbProfileManager getToken];
+    [self.authService loginClient:fbToken];
 }
 
 - (IBAction)registrationButtonPressed:(id)sender {
@@ -94,23 +108,16 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-# pragma mark - FBSDKLoginButtonDelegate methods
-- (void)  loginButton:(FBSDKLoginButton *)loginButton
-didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
-                error:(NSError *)error{
-    NSLog(@"Login Completed");
-    //[self loadProfile];
-}
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton{
-    NSLog(@"Logout");
-}
-
 #pragma mark - FbProfileManagerDelegate methods
 - (void)didLoadProfile: (FBSDKProfile *)profile {
-    NSLog(@"didLoadProfile");
-    
     if ([self.pendingAction isEqualToString:@"Registration"]){
         [self goToRegistrationScreen: profile];
+        return;
+    }
+    
+    if ([self.pendingAction isEqualToString:@"Login"]){
+        [self login];
+        return;
     }
 }
 
@@ -122,5 +129,13 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     [self showFbLoginError];
 }
 
+# pragma mark - AuthServiceDelegate methods
+- (void)didLoginClient {
+    NSLog(@"LOGIN COMPLETO");
+}
+
+- (void)didFailLogin {
+    NSLog(@"FALLO EL LOGIN");
+}
 
 @end

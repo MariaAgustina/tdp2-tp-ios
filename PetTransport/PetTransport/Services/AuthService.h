@@ -11,8 +11,11 @@
 
 @protocol AuthServiceDelegate <NSObject>
 
+@optional
 - (void)didRegisterClient;
 - (void)didFailRegistering;
+- (void)didLoginClient;
+- (void)didFailLogin;
 
 @end
 
@@ -20,5 +23,6 @@
 
 - (instancetype)initWithDelegate: (id<AuthServiceDelegate>)delegate;
 - (void)registerClient: (ClientProfile*)profile;
+- (void)loginClient:(NSString*)fbToken;
 
 @end
