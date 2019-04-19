@@ -94,8 +94,12 @@
 }
 
 - (void)showFbLoginError {
+    [self showError:@"Error al identificarse con Facebook"];
+}
+
+- (void)showError: (NSString*)message {
     UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"Error al identificarse con Facebook"
+                                 alertControllerWithTitle:message
                                  message:nil
                                  preferredStyle:UIAlertControllerStyleAlert];
     
@@ -107,6 +111,7 @@
     [alert addAction:yesButton];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 #pragma mark - FbProfileManagerDelegate methods
 - (void)didLoadProfile: (FBSDKProfile *)profile {
@@ -138,7 +143,7 @@
 }
 
 - (void)didFailLogin {
-    NSLog(@"FALLO EL LOGIN");
+    [self showError:@"Error al loguearse"];
 }
 
 @end
