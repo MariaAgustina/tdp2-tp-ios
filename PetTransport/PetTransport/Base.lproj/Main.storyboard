@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,9 +30,8 @@
                                     <segue destination="MRf-Tx-pg4" kind="show" id="wLd-yU-sof"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-bH-kll">
-                                <rect key="frame" x="48" y="142" width="282" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-bH-kll">
+                                <rect key="frame" x="86" y="170" width="203" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="Soy un cliente">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,6 +44,8 @@
                         <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="kgA-or-Yon" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="XKG-Fc-kXj"/>
+                            <constraint firstItem="0s5-bH-kll" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="XlU-6K-Rux"/>
+                            <constraint firstItem="0s5-bH-kll" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uJg-xT-U6z"/>
                             <constraint firstItem="kgA-or-Yon" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ymq-xi-oG5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -61,8 +63,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Transport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4z-OV-BpG">
+                                <rect key="frame" x="67" y="45" width="241" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <color key="textColor" red="0.0041693652849741358" green="0.0040185452805595158" blue="0.00095428379887810711" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="perro.png" translatesAutoresizingMaskIntoConstraints="NO" id="tzC-AI-XnT">
+                                <rect key="frame" x="75" y="113" width="225" height="225"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tzC-AI-XnT" secondAttribute="height" multiplier="1:1" id="0Pl-Vh-aPE"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-yx-gl2">
-                                <rect key="frame" x="146.5" y="186" width="81" height="53"/>
+                                <rect key="frame" x="147" y="388" width="81" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -70,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vED-zy-jgh">
-                                <rect key="frame" x="109.5" y="361" width="156" height="48"/>
+                                <rect key="frame" x="109.5" y="491" width="156" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Registrarme"/>
                                 <connections>
@@ -78,12 +92,16 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.84228842299999995" blue="0.2304059919" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.98862255030173551" green="1" blue="0.79064061585264778" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="oAr-yx-gl2" firstAttribute="top" secondItem="xb9-xl-NTk" secondAttribute="top" constant="166" id="Cku-xa-9Jt"/>
+                            <constraint firstItem="tzC-AI-XnT" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="3vR-oH-N6T"/>
+                            <constraint firstItem="oAr-yx-gl2" firstAttribute="top" secondItem="tzC-AI-XnT" secondAttribute="bottom" constant="50" id="ORT-db-DGt"/>
                             <constraint firstItem="vED-zy-jgh" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="bbd-rl-1JQ"/>
-                            <constraint firstItem="vED-zy-jgh" firstAttribute="top" secondItem="oAr-yx-gl2" secondAttribute="bottom" constant="122" id="cML-Wy-taI"/>
+                            <constraint firstItem="vED-zy-jgh" firstAttribute="top" secondItem="oAr-yx-gl2" secondAttribute="bottom" constant="50" id="cML-Wy-taI"/>
                             <constraint firstItem="oAr-yx-gl2" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="gUm-dI-7xv"/>
+                            <constraint firstItem="f4z-OV-BpG" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="nJI-Wo-PLr"/>
+                            <constraint firstItem="f4z-OV-BpG" firstAttribute="top" secondItem="xb9-xl-NTk" secondAttribute="top" constant="25" id="nzE-w6-yv7"/>
+                            <constraint firstItem="tzC-AI-XnT" firstAttribute="top" secondItem="f4z-OV-BpG" secondAttribute="bottom" constant="20" id="qIg-p9-pah"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xb9-xl-NTk"/>
                     </view>
@@ -94,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3S7-5p-KQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="-1055"/>
+            <point key="canvasLocation" x="924" y="-1294.0029985007498"/>
         </scene>
         <!--Register Client View Controller-->
         <scene sceneID="DZC-qE-FZE">
@@ -325,6 +343,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOy-tC-G9v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1861.5999999999999" y="-1042.128935532234"/>
+        </scene>
+        <!--Client Menu View Controller-->
+        <scene sceneID="ngq-t1-2rY">
+            <objects>
+                <viewController storyboardIdentifier="ClientMenuViewController" id="183-T4-P2n" customClass="ClientMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z0x-oo-6Vi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lns-h5-JRb">
+                                <rect key="frame" x="119.5" y="319.5" width="136" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Pedir Viaje">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MRf-Tx-pg4" kind="show" id="YMs-KH-aZw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Lns-h5-JRb" firstAttribute="centerX" secondItem="zPG-AM-9Dv" secondAttribute="centerX" id="P7d-rg-5TA"/>
+                            <constraint firstItem="Lns-h5-JRb" firstAttribute="centerY" secondItem="zPG-AM-9Dv" secondAttribute="centerY" id="xxV-Vj-6w9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zPG-AM-9Dv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2C0-OJ-3Ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="924" y="-593.25337331334333"/>
         </scene>
         <!--Book Transport View Controller-->
         <scene sceneID="UfV-aZ-lnY">
@@ -735,4 +784,10 @@
             <point key="canvasLocation" x="1740" y="109.29535232383809"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="perro.png" width="225" height="225"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wLd-yU-sof"/>
+    </inferredMetricsTieBreakers>
 </document>
