@@ -29,6 +29,7 @@
 		9396CA1E22474B3400F6248F /* PetTransportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA1D22474B3400F6248F /* PetTransportTests.m */; };
 		9396CA2922474B3400F6248F /* PetTransportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA2822474B3400F6248F /* PetTransportUITests.m */; };
 		93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */; };
+		93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		9396CA2A22474B3400F6248F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93A7F19422590B5900D076C0 /* UIViewController+ShowAlerts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ShowAlerts.h"; sourceTree = "<group>"; };
 		93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowAlerts.m"; sourceTree = "<group>"; };
+		93D0BEBF226A2AD700FEF7C9 /* PaymentMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethod.h; sourceTree = "<group>"; };
+		93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethod.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 			children = (
 				937ABFB42253DAF000086554 /* Trip.h */,
 				937ABFB52253DAF000086554 /* Trip.m */,
+				93D0BEBF226A2AD700FEF7C9 /* PaymentMethod.h */,
+				93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */,
 				937ABFBE225401AF00086554 /* TripServiceDelegate.h */,
 				937ABFBB225400DB00086554 /* TripService.h */,
 				937ABFBC225400DB00086554 /* TripService.m */,
@@ -459,6 +464,7 @@
 				586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */,
 				58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
+				93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */,
 				58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,

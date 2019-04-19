@@ -51,10 +51,11 @@ double const kMaximunPetsQuantity = 3;
     self.service = [[TripService alloc]initWithDelegate:self];
     
     self.trip.shouldHaveEscolt = self.escoltSwitch.on;
-    
-    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:CASH] forSegmentAtIndex:CASH];
-    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:CARD] forSegmentAtIndex:CARD];
-    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodTitle:MERCADOPAGO] forSegmentAtIndex:MERCADOPAGO];
+    self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:CASH];
+
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CASH].title forSegmentAtIndex:CASH];
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CARD].title forSegmentAtIndex:CARD];
+    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:MERCADOPAGO].title forSegmentAtIndex:MERCADOPAGO];
     
     [self setupView:self.petsView];
     [self setupView:self.escoltView];
@@ -116,7 +117,7 @@ double const kMaximunPetsQuantity = 3;
 }
 
 - (IBAction)paymentMethodSelected:(UISegmentedControl *)sender {
-    self.trip.selectedPaymentMethod = (PaymentMethod)sender.selectedSegmentIndex;
+    self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:(PaymentMethodType)sender.selectedSegmentIndex];
 }
 
 
