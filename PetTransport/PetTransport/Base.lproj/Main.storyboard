@@ -195,7 +195,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="given-name"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingDidEnd" id="vMD-4V-uhi"/>
+                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingChanged" id="s6k-Iy-keD"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apellido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vc-he-K39">
@@ -210,7 +210,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" textContentType="family-name"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingDidEnd" id="dhj-Va-EmI"/>
+                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingChanged" id="KDi-gn-fkR"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bf-Rz-v3A">
@@ -223,9 +223,9 @@
                                                         <rect key="frame" x="10" y="252" width="325" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartInsertDeleteType="no" textContentType="street-address"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingDidEnd" id="idR-Gd-pY1"/>
+                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingChanged" id="UZj-Vj-vXa"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefono" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-zS-jKb">
@@ -240,7 +240,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingDidEnd" id="xfF-Fs-Lma"/>
+                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingChanged" id="6EX-3Y-IjC"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igw-CL-UQ1">
@@ -253,9 +253,9 @@
                                                         <rect key="frame" x="10" y="420" width="325" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartQuotesType="no" textContentType="email"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingDidEnd" id="obo-jh-ZeY"/>
+                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingChanged" id="ISI-9o-rQM"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha de nacimiento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfY-Zh-vng">

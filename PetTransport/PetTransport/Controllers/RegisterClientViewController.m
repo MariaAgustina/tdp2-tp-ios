@@ -138,6 +138,7 @@
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegisterClient {
     NSLog(@"ya registre el cliente");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didFailRegistering {
