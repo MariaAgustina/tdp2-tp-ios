@@ -137,8 +137,19 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegisterClient {
-    NSLog(@"ya registre el cliente");
-    [self.navigationController popViewControllerAnimated:YES];
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Registro exitoso!"
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"Ir a login"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                }];
+    [alert addAction:yesButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)didFailRegistering {
