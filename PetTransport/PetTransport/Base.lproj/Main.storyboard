@@ -84,9 +84,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vED-zy-jgh">
-                                <rect key="frame" x="109.5" y="491" width="156" height="48"/>
+                                <rect key="frame" x="16" y="491" width="343" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Registrarme"/>
+                                <state key="normal" title="Registrarme con Facebook"/>
                                 <connections>
                                     <action selector="registrationButtonPressed:" destination="iCg-Qv-cg2" eventType="touchUpInside" id="kKb-RV-vi0"/>
                                 </connections>
