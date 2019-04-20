@@ -86,7 +86,7 @@
     clientProfile.fbToken = [self.fbProfileManager getToken];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    RegisterClientViewController *registerClientVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterClientViewController"];
+    RegisterClientViewController *registerClientVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterDriverViewController"];
     
     registerClientVC.profile = clientProfile;
     [self.navigationController pushViewController:registerClientVC animated:YES];
