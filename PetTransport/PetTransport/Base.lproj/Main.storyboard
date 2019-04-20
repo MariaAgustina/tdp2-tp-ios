@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-bH-kll">
-                                <rect key="frame" x="86" y="170" width="203" height="53"/>
+                                <rect key="frame" x="86" y="70" width="203" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="Soy un cliente">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,9 +38,8 @@
                                     <segue destination="iCg-Qv-cg2" kind="show" id="TuO-GR-t9P"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-f0-NU7">
-                                <rect key="frame" x="88" y="80" width="200" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-f0-NU7">
+                                <rect key="frame" x="87.5" y="148" width="200" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="Soy un chofer">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,8 +51,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="hL9-f0-NU7" firstAttribute="top" secondItem="0s5-bH-kll" secondAttribute="bottom" constant="25" id="EvW-MT-h9k"/>
+                            <constraint firstItem="hL9-f0-NU7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nr7-Gj-Zoz"/>
                             <constraint firstItem="kgA-or-Yon" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="XKG-Fc-kXj"/>
-                            <constraint firstItem="0s5-bH-kll" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="XlU-6K-Rux"/>
+                            <constraint firstItem="0s5-bH-kll" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="XlU-6K-Rux"/>
                             <constraint firstItem="0s5-bH-kll" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uJg-xT-U6z"/>
                             <constraint firstItem="kgA-or-Yon" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ymq-xi-oG5"/>
                         </constraints>
