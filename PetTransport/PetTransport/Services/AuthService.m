@@ -11,6 +11,7 @@
 #import "constants.h"
 
 #define INEXISTENT_USER_STATUS_CODE 403
+#define DUPLICATED_USER_STATUS_CODE 403
 
 @interface AuthService ()
 
@@ -61,8 +62,8 @@
                                           success:^(id _Nullable responseObject) {
                                               [self.delegate didRegisterClient];
                                           } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
-                                              NSLog(@"fallo!: %@", error);
-                                              [self.delegate didFailRegistering];
+                                              BOOL duplicatedUser = (statusCode == DUPLICATED_USER_STATUS_CODE);
+                                              [self.delegate didFailRegistering:duplicatedUser];
                                           }];
 }
 

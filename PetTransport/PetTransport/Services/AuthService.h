@@ -13,7 +13,7 @@
 
 @optional
 - (void)didRegisterClient;
-- (void)didFailRegistering;
+- (void)didFailRegistering: (BOOL)duplicatedUser;
 - (void)didLoginClient;
 - (void)didFailLogin: (BOOL)inexistentUser;
 

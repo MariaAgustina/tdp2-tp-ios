@@ -135,6 +135,24 @@
     [self validateFields];
 }
 
+- (void)showError: (NSString*)message shouldGoBack:(BOOL)shouldGoBack {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:message
+                                 message:nil
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"OK"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    if (shouldGoBack){
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    }
+                                }];
+    [alert addAction:yesButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegisterClient {
     UIAlertController * alert = [UIAlertController
@@ -152,8 +170,12 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)didFailRegistering {
-    NSLog(@"No pudo registrarse el cliente");
+- (void)didFailRegistering: (BOOL)duplicatedUser {
+    if (duplicatedUser){
+        [self showError:@"El usuario ya estaba registrado" shouldGoBack:YES];
+        return;
+    }
+    [self showError:@"Ups! Falló el registro. Por favor intentá de vuelta más tarde" shouldGoBack:NO];
 }
 
 
