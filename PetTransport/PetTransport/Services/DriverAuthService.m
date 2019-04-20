@@ -8,11 +8,12 @@
 
 #import "DriverAuthService.h"
 #import "DriverProfile.h"
+#import "UIImage+Base64.h"
 
 @implementation DriverAuthService
 
 - (void)loginDriver:(NSString*)fbToken {
-    NSString *relativeUrlString = @"/auth/driver/facebook/login";
+    NSString *relativeUrlString = @"auth/driver/facebook/login";
     [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
                                              body:nil
                                         authToken: fbToken
@@ -25,7 +26,7 @@
 }
 
 - (void)registerDriver:(DriverProfile*)profile {
-    NSString *relativeUrlString = @"/auth/driver/facebook/register";
+    NSString *relativeUrlString = @"auth/facebook/register";
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
@@ -37,7 +38,10 @@
                            @"email": profile.email,
                            @"birthDate": birthdate,
                            @"address": profile.address,
-                           @"phone": profile.phoneNumber
+                           @"phone": profile.phoneNumber,
+                           @"drivingRecordImage": [profile.drivingRecordImage getBase64],
+                           @"policyImage":[profile.policyImage getBase64],
+                           @"transportImage":[profile.transportImage getBase64]
                            };
     
     [self makeApiPostRequestWithRelativeUrlString:relativeUrlString

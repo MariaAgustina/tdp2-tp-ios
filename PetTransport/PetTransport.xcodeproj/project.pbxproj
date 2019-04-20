@@ -40,6 +40,7 @@
 		93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */; };
 		93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */; };
 		93D0BED0226BB10100FEF7C9 /* DriverAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */; };
+		93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,8 @@
 		93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverProfile.m; sourceTree = "<group>"; };
 		93D0BECE226BB10100FEF7C9 /* DriverAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverAuthService.h; sourceTree = "<group>"; };
 		93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverAuthService.m; sourceTree = "<group>"; };
+		93D0BED1226BB8A200FEF7C9 /* UIImage+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Base64.h"; sourceTree = "<group>"; };
+		93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +259,8 @@
 				937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */,
 				93A7F19422590B5900D076C0 /* UIViewController+ShowAlerts.h */,
 				93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */,
+				93D0BED1226BB8A200FEF7C9 /* UIImage+Base64.h */,
+				93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
+				93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */,
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,
 				586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */,
