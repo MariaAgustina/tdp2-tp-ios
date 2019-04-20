@@ -13,7 +13,7 @@
 
 double const kMaximunPetsQuantity = 3;
 
-@interface TripInformationViewController () <TripServiceDelegate>
+@interface TripInformationViewController () <TripServiceDelegate,UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *smallCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mediumCountLabel;
@@ -56,6 +56,8 @@ double const kMaximunPetsQuantity = 3;
     [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CASH].title forSegmentAtIndex:CASH];
     [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CARD].title forSegmentAtIndex:CARD];
     [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:MERCADOPAGO].title forSegmentAtIndex:MERCADOPAGO];
+    
+    self.commentsTextView.delegate = self;
     
     [self setupView:self.petsView];
     [self setupView:self.escoltView];
@@ -144,6 +146,12 @@ double const kMaximunPetsQuantity = 3;
 }
 - (void)tripServiceFailedWithError:(NSError*)error{
     [self showInternetConexionAlert];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    return ([[textView text] length] - range.length + text.length < 250);
 }
 
 @end
