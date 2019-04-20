@@ -26,7 +26,7 @@
 }
 
 - (void)registerDriver:(DriverProfile*)profile {
-    NSString *relativeUrlString = @"auth/facebook/register";
+    NSString *relativeUrlString = @"auth/driver/facebook/register";
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
