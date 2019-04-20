@@ -52,7 +52,11 @@ double const kMaximunPetsQuantity = 3;
     
     self.trip.shouldHaveEscolt = self.escoltSwitch.on;
     self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:CASH];
-
+    self.trip.smallPetsQuantity = self.smallStepper.value;
+    self.trip.mediumPetsQuantity = self.mediumStepper.value;
+    self.trip.bigPetsQuantity = self.bigStepper.value;
+    self.trip.comments = self.commentsTextView.text;
+    
     [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CASH].title forSegmentAtIndex:CASH];
     [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CARD].title forSegmentAtIndex:CARD];
     [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:MERCADOPAGO].title forSegmentAtIndex:MERCADOPAGO];
