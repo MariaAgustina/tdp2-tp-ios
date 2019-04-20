@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ClientProfile.h"
 
+#define INEXISTENT_USER_STATUS_CODE 403
+
 @protocol AuthServiceDelegate <NSObject>
 
 @optional
@@ -21,8 +23,14 @@
 
 @interface AuthService : NSObject
 
+@property (nonatomic, weak) id<AuthServiceDelegate> delegate;
+
 - (instancetype)initWithDelegate: (id<AuthServiceDelegate>)delegate;
 - (void)registerClient: (ClientProfile*)profile;
 - (void)loginClient:(NSString*)fbToken;
-
+- (void)makeApiPostRequestWithRelativeUrlString: (NSString*)relativeUrlString
+                                           body: (NSDictionary*)body
+                                      authToken: (NSString*)authToken
+                                        success: (void (^)(id _Nullable))success
+                                        failure:(void (^)(NSError * _Nonnull, NSInteger statusCode))failure;
 @end

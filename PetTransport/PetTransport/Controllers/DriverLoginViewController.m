@@ -12,12 +12,12 @@
 #import "FbProfileManager.h"
 #import "RegisterClientViewController.h"
 #import "ClientProfile.h"
-#import "AuthService.h"
+#import "DriverAuthService.h"
 
 @interface DriverLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 
 @property (strong, nonatomic) FbProfileManager *fbProfileManager;
-@property (strong, nonatomic) AuthService *authService;
+@property (strong, nonatomic) DriverAuthService *authService;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registrationButton;
 @property (strong, nonatomic) NSString *pendingAction;
@@ -31,7 +31,7 @@
     self.title = @"Login";
     
     self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
-    self.authService = [[AuthService alloc] initWithDelegate:self];
+    self.authService = [[DriverAuthService alloc] initWithDelegate:self];
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
@@ -46,7 +46,7 @@
 
 - (void)login {
     NSString *fbToken = [self.fbProfileManager getToken];
-    [self.authService loginClient:fbToken];
+    [self.authService loginDriver:fbToken];
 }
 
 - (IBAction)registrationButtonPressed:(id)sender {
@@ -79,16 +79,16 @@
 }
 
 - (void)goToRegistrationScreen:(FBSDKProfile *)profile {
-    ClientProfile *clientProfile = [ClientProfile new];
-    clientProfile.fbUserId = profile.userID;
-    clientProfile.firstName = profile.firstName;
-    clientProfile.lastName = profile.lastName;
-    clientProfile.fbToken = [self.fbProfileManager getToken];
+    DriverProfile *driverProfile = [DriverProfile new];
+    driverProfile.fbUserId = profile.userID;
+    driverProfile.firstName = profile.firstName;
+    driverProfile.lastName = profile.lastName;
+    driverProfile.fbToken = [self.fbProfileManager getToken];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterClientViewController *registerClientVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterDriverViewController"];
     
-    registerClientVC.profile = clientProfile;
+    registerClientVC.profile = driverProfile;
     [self.navigationController pushViewController:registerClientVC animated:YES];
 }
 

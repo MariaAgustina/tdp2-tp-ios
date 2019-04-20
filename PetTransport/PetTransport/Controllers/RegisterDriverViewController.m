@@ -8,10 +8,9 @@
 
 #import "RegisterDriverViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "AuthService.h"
 #import "RegisterPhotoDriverViewController.h"
 
-@interface RegisterDriverViewController () <AuthServiceDelegate>
+@interface RegisterDriverViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *formWrapper;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
@@ -21,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthdatePicker;
 @property (weak, nonatomic) IBOutlet UIButton *registrationButton;
-@property (strong, nonatomic) AuthService *authService;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
@@ -36,7 +34,6 @@
     [super viewDidLoad];
     
     self.title = @"Registro";
-    self.authService = [[AuthService alloc] initWithDelegate:self];
     
     self.formWrapper.layer.borderColor = [UIColor blackColor].CGColor;
     self.formWrapper.layer.borderWidth = 1.0f;
@@ -56,11 +53,9 @@
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterPhotoDriverViewController *registerPhotoVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterPhotoDriverViewController"];
+    registerPhotoVC.profile = self.profile;
     
     [self.navigationController pushViewController:registerPhotoVC animated:YES];
-    
-    //TODO: registerDriver in next VC
-//    [self.authService registerClient:self.profile];
 }
 
 - (void)validateFields {
@@ -102,8 +97,7 @@
         self.birthdateLabel.textColor = [UIColor blackColor];
     }
     
-    //TODO: lo dejo enabled para no tener q completar todos los campos todavia
-    [self.registrationButton setEnabled:YES];
+    [self.registrationButton setEnabled:isValid];
 }
 
 - (BOOL)isValidText:(NSString *)text {
@@ -144,27 +138,6 @@
 
 - (IBAction)fieldOnChange:(id)sender {
     [self validateFields];
-}
-
-# pragma mark - AuthServiceDelegate methods
-- (void)didRegisterClient {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"Registro exitoso!"
-                                 message:nil
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* yesButton = [UIAlertAction
-                                actionWithTitle:@"Ir a login"
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                }];
-    [alert addAction:yesButton];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)didFailRegistering {
-    NSLog(@"No pudo registrarse el cliente");
 }
 
 

@@ -1,19 +1,20 @@
 //
-//  RegisterDriverViewController.h
+//  DriverAuthService.h
 //  PetTransport
 //
 //  Created by agustina markosich on 4/20/19.
 //  Copyright © 2019 agustina markosich. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AuthService.h"
 #import "DriverProfile.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RegisterDriverViewController : UIViewController
+@interface DriverAuthService : AuthService
 
-@property (strong, nonatomic) DriverProfile *profile;
+- (void)loginDriver:(NSString*)fbToken;
+- (void)registerDriver:(DriverProfile*)profile;
 
 @end
 

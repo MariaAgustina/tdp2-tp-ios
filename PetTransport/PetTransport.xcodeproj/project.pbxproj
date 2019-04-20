@@ -38,6 +38,8 @@
 		93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */; };
 		93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC6226B79C000FEF7C9 /* RegisterDriverViewController.m */; };
 		93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */; };
+		93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */; };
+		93D0BED0226BB10100FEF7C9 /* DriverAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,10 @@
 		93D0BEC6226B79C000FEF7C9 /* RegisterDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterDriverViewController.m; sourceTree = "<group>"; };
 		93D0BEC8226B812F00FEF7C9 /* RegisterPhotoDriverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterPhotoDriverViewController.h; sourceTree = "<group>"; };
 		93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterPhotoDriverViewController.m; sourceTree = "<group>"; };
+		93D0BECB226BAC4300FEF7C9 /* DriverProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverProfile.h; sourceTree = "<group>"; };
+		93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverProfile.m; sourceTree = "<group>"; };
+		93D0BECE226BB10100FEF7C9 /* DriverAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverAuthService.h; sourceTree = "<group>"; };
+		93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverAuthService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,8 @@
 				58754C0822625E5C00F12643 /* FbProfileManager.m */,
 				58E20B9F2268D48800E024DF /* AuthService.h */,
 				58E20BA02268D48800E024DF /* AuthService.m */,
+				93D0BECE226BB10100FEF7C9 /* DriverAuthService.h */,
+				93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -213,6 +221,8 @@
 				58F022E02253F18C00318837 /* LocationCoordinate.h */,
 				58BE1D1A2263AA960000C9D0 /* ClientProfile.h */,
 				58BE1D1B2263AA960000C9D0 /* ClientProfile.m */,
+				93D0BECB226BAC4300FEF7C9 /* DriverProfile.h */,
+				93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -509,10 +519,12 @@
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
+				93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */,
 				58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */,
 				93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
 				58E20BA12268D48800E024DF /* AuthService.m in Sources */,
+				93D0BED0226BB10100FEF7C9 /* DriverAuthService.m in Sources */,
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
 				93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */,
 				58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */,

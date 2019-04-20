@@ -1120,11 +1120,14 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJB-u5-B72">
-                                                        <rect key="frame" x="132.5" y="725.5" width="80" height="35"/>
+                                                        <rect key="frame" x="124" y="725.5" width="97" height="35"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                        <state key="normal" title="Siguiente"/>
+                                                        <state key="normal" title="Registrarse"/>
+                                                        <connections>
+                                                            <action selector="registerButtonPressed:" destination="era-8F-he3" eventType="touchUpInside" id="MWt-gB-xcM"/>
+                                                        </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="aqX-ra-cig">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="photoPlaceholder" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqX-ra-cig">
                                                         <rect key="frame" x="90" y="91" width="165" height="165"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6il-eK-OFG" userLabel="driverRecordLicence">
@@ -1142,7 +1145,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="N9s-Zb-tGs">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="photoPlaceholder" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9s-Zb-tGs">
                                                         <rect key="frame" x="90" y="307" width="165" height="165"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWc-d7-BIF" userLabel="driverRecordLicence">
@@ -1160,7 +1163,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="6eG-Hk-cor">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="photoPlaceholder" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eG-Hk-cor">
                                                         <rect key="frame" x="90" y="545.5" width="165" height="165"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHy-L1-L74" userLabel="driverRecordLicence">
@@ -1253,6 +1256,7 @@
                     <connections>
                         <outlet property="drivingRecordImageView" destination="aqX-ra-cig" id="noD-Ia-4BM"/>
                         <outlet property="policyImageView" destination="N9s-Zb-tGs" id="9HL-Ls-bME"/>
+                        <outlet property="registerButton" destination="hJB-u5-B72" id="452-cL-HeC"/>
                         <outlet property="transportImageView" destination="6eG-Hk-cor" id="aJs-G1-6Kw"/>
                     </connections>
                 </viewController>
