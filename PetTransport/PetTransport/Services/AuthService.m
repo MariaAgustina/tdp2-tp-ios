@@ -10,7 +10,6 @@
 #import "AFNetworking.h"
 #import "constants.h"
 
-
 @interface AuthService ()
 
 @end
@@ -58,8 +57,8 @@
                                           success:^(id _Nullable responseObject) {
                                               [self.delegate didRegisterClient];
                                           } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
-                                              NSLog(@"fallo!: %@", error);
-                                              [self.delegate didFailRegistering];
+                                              BOOL duplicatedUser = (statusCode == DUPLICATED_USER_STATUS_CODE);
+                                              [self.delegate didFailRegistering:duplicatedUser];
                                           }];
 }
 

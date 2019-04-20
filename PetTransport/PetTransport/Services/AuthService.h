@@ -10,12 +10,13 @@
 #import "ClientProfile.h"
 
 #define INEXISTENT_USER_STATUS_CODE 403
+#define DUPLICATED_USER_STATUS_CODE 403
 
 @protocol AuthServiceDelegate <NSObject>
 
 @optional
 - (void)didRegisterClient;
-- (void)didFailRegistering;
+- (void)didFailRegistering: (BOOL)duplicatedUser;
 - (void)didLoginClient;
 - (void)didFailLogin: (BOOL)inexistentUser;
 
