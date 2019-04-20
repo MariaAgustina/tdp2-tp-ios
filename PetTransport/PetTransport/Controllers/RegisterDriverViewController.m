@@ -9,6 +9,7 @@
 #import "RegisterDriverViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AuthService.h"
+#import "RegisterPhotoDriverViewController.h"
 
 @interface RegisterDriverViewController () <AuthServiceDelegate>
 
@@ -47,11 +48,19 @@
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
+    
     self.profile.address = self.addressField.text;
     self.profile.email = self.emailField.text;
     self.profile.phoneNumber = self.phoneField.text;
     self.profile.birthdate = self.birthdatePicker.date;
-    [self.authService registerClient:self.profile];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RegisterPhotoDriverViewController *registerPhotoVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterPhotoDriverViewController"];
+    
+    [self.navigationController pushViewController:registerPhotoVC animated:YES];
+    
+    //TODO: registerDriver in next VC
+//    [self.authService registerClient:self.profile];
 }
 
 - (void)validateFields {
@@ -93,7 +102,8 @@
         self.birthdateLabel.textColor = [UIColor blackColor];
     }
     
-    [self.registrationButton setEnabled:isValid];
+    //TODO: lo dejo enabled para no tener q completar todos los campos todavia
+    [self.registrationButton setEnabled:YES];
 }
 
 - (BOOL)isValidText:(NSString *)text {
