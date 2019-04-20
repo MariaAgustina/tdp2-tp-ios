@@ -35,6 +35,7 @@
 		9396CA2922474B3400F6248F /* PetTransportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA2822474B3400F6248F /* PetTransportUITests.m */; };
 		93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */; };
 		93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */; };
+		93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,8 @@
 		93A7F19522590B5900D076C0 /* UIViewController+ShowAlerts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowAlerts.m"; sourceTree = "<group>"; };
 		93D0BEBF226A2AD700FEF7C9 /* PaymentMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentMethod.h; sourceTree = "<group>"; };
 		93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentMethod.m; sourceTree = "<group>"; };
+		93D0BEC2226B76E800FEF7C9 /* DriverLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverLoginViewController.h; sourceTree = "<group>"; };
+		93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */,
 				58E20BA22268F70900E024DF /* ClientLoginViewController.h */,
 				58E20BA32268F70900E024DF /* ClientLoginViewController.m */,
+				93D0BEC2226B76E800FEF7C9 /* DriverLoginViewController.h */,
+				93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */,
 				586235A8226A60BE007D9A0A /* ClientMenuViewController.h */,
 				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
 			);
@@ -497,6 +502,7 @@
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
 				58E20BA12268D48800E024DF /* AuthService.m in Sources */,
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
+				93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */,
 				58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */,
 				934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */,
 			);

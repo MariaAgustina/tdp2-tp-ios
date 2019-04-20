@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,6 +36,17 @@
                                 </state>
                                 <connections>
                                     <segue destination="iCg-Qv-cg2" kind="show" id="TuO-GR-t9P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-f0-NU7">
+                                <rect key="frame" x="88" y="80" width="200" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="Soy un chofer">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9re-y8-QLu" kind="show" id="8um-cW-nsc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -782,6 +791,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9c-Y6-ddw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1740" y="109.29535232383809"/>
+        </scene>
+        <!--Driver Login View Controller-->
+        <scene sceneID="w75-ep-Dmt">
+            <objects>
+                <viewController id="9re-y8-QLu" customClass="DriverLoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hCd-x0-dTh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Transport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7Q-PJ-uDJ">
+                                <rect key="frame" x="67" y="45" width="241" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <color key="textColor" red="0.0041693652849999997" green="0.0040185452810000003" blue="0.00095428379889999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="perro.png" translatesAutoresizingMaskIntoConstraints="NO" id="rpQ-as-cT4">
+                                <rect key="frame" x="75" y="113" width="225" height="225"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rpQ-as-cT4" secondAttribute="height" multiplier="1:1" id="ZqY-yI-XDD"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAO-je-PmR">
+                                <rect key="frame" x="147" y="388" width="81" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="9re-y8-QLu" eventType="touchUpInside" id="SXn-z5-I0P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svE-6R-o9i">
+                                <rect key="frame" x="109.5" y="491" width="156" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Registrarme"/>
+                                <connections>
+                                    <action selector="registrationButtonPressed:" destination="9re-y8-QLu" eventType="touchUpInside" id="gb2-ZV-0W6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98862255030000001" green="1" blue="0.79064061590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="i7Q-PJ-uDJ" firstAttribute="top" secondItem="uWn-FK-qDe" secondAttribute="top" constant="25" id="4Yb-ka-nJQ"/>
+                            <constraint firstItem="svE-6R-o9i" firstAttribute="top" secondItem="UAO-je-PmR" secondAttribute="bottom" constant="50" id="7Uj-Co-nxT"/>
+                            <constraint firstItem="rpQ-as-cT4" firstAttribute="top" secondItem="i7Q-PJ-uDJ" secondAttribute="bottom" constant="20" id="BF4-gX-N4P"/>
+                            <constraint firstItem="rpQ-as-cT4" firstAttribute="centerX" secondItem="uWn-FK-qDe" secondAttribute="centerX" id="NUS-6Y-MYM"/>
+                            <constraint firstItem="UAO-je-PmR" firstAttribute="centerX" secondItem="uWn-FK-qDe" secondAttribute="centerX" id="Rhm-1z-PUV"/>
+                            <constraint firstItem="UAO-je-PmR" firstAttribute="top" secondItem="rpQ-as-cT4" secondAttribute="bottom" constant="50" id="ae5-dM-yNo"/>
+                            <constraint firstItem="i7Q-PJ-uDJ" firstAttribute="centerX" secondItem="uWn-FK-qDe" secondAttribute="centerX" id="fsF-PR-pva"/>
+                            <constraint firstItem="svE-6R-o9i" firstAttribute="centerX" secondItem="uWn-FK-qDe" secondAttribute="centerX" id="sgk-K1-VmU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uWn-FK-qDe"/>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="UAO-je-PmR" id="0BW-eq-fyh"/>
+                        <outlet property="registrationButton" destination="svE-6R-o9i" id="izY-p5-0qc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKV-bU-mWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-94" y="-1294"/>
         </scene>
     </scenes>
     <resources>
