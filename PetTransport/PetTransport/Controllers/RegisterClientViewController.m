@@ -9,8 +9,9 @@
 #import "RegisterClientViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AuthService.h"
+#import <GooglePlaces/GooglePlaces.h>
 
-@interface RegisterClientViewController () <AuthServiceDelegate>
+@interface RegisterClientViewController () <AuthServiceDelegate, GMSAutocompleteViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *formWrapper;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
@@ -153,6 +154,28 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (IBAction)addressEditingDidBegin:(id)sender {
+    [self presentAutocompleteAdress];
+}
+
+- (void)presentAutocompleteAdress {
+    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    acController.delegate = self;
+    
+    // Specify the place data types to return, other types will be returned as nil.
+    GMSPlaceField fields = (GMSPlaceFieldName | GMSPlaceFieldPlaceID | GMSPlaceFieldCoordinate);
+    acController.placeFields = fields;
+    
+    // Specify a filter.
+    GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
+    filter.type = kGMSPlacesAutocompleteTypeFilterAddress;
+    filter.country = @"AR";
+    acController.autocompleteFilter = filter;
+    
+    // Display the autocomplete view controller
+    [self presentViewController:acController animated:YES completion:nil];
+}
+
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegisterClient {
     UIAlertController * alert = [UIAlertController
@@ -176,6 +199,37 @@
         return;
     }
     [self showError:@"Ups! Falló el registro. Por favor intentá de vuelta más tarde" shouldGoBack:NO];
+}
+
+#pragma mark - GMSAutocompleteViewControllerDelegate
+
+// Handle the user's selection.
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didAutocompleteWithPlace:(GMSPlace *)place {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (place){
+        self.addressField.text = place.name;
+    }
+    [self validateFields];
+}
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didFailAutocompleteWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // TODO: handle the error.
+    NSLog(@"Error: %@", [error description]);
+}
+
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 

@@ -190,7 +190,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartInsertDeleteType="no" textContentType="street-address"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="gq4-zU-gQZ" eventType="editingChanged" id="UZj-Vj-vXa"/>
+                                                            <action selector="addressEditingDidBegin:" destination="gq4-zU-gQZ" eventType="editingDidBegin" id="GXk-x0-omn"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefono" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MN-zS-jKb">
