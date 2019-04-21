@@ -34,14 +34,18 @@
     [formatter setTimeStyle:NSDateFormatterNoStyle];
     NSString *birthdate = [formatter stringFromDate:profile.birthdate];
     
+    NSDictionary* driverData = @{
+                                 @"drivingRecordImage": [profile.drivingRecordImage getBase64],
+                                 @"policyImage":[profile.policyImage getBase64],
+                                 @"transportImage":[profile.transportImage getBase64]
+                                 };
+    
     NSDictionary *body = @{
                            @"email": profile.email,
                            @"birthDate": birthdate,
                            @"address": profile.address,
                            @"phone": profile.phoneNumber,
-                           @"drivingRecordImage": [profile.drivingRecordImage getBase64],
-                           @"policyImage":[profile.policyImage getBase64],
-                           @"transportImage":[profile.transportImage getBase64]
+                           @"driverData":driverData
                            };
     
     [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
