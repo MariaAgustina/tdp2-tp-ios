@@ -930,7 +930,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartInsertDeleteType="no" textContentType="street-address"/>
                                                         <connections>
-                                                            <action selector="fieldOnChange:" destination="0K4-VE-kdZ" eventType="editingChanged" id="tpR-sj-uqM"/>
+                                                            <action selector="addressEditingDidBegin:" destination="0K4-VE-kdZ" eventType="editingDidBegin" id="v05-om-tiy"/>
                                                         </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefono" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei4-b1-Djt">
