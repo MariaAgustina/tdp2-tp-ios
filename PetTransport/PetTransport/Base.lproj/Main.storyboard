@@ -1269,6 +1269,33 @@
             </objects>
             <point key="canvasLocation" x="-1711.2" y="-1294.0029985007498"/>
         </scene>
+        <!--Driver Menu View Controller-->
+        <scene sceneID="Tqx-Rg-VPi">
+            <objects>
+                <viewController storyboardIdentifier="DriverMenuViewController" id="9nN-k8-vy9" customClass="DriverMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8fq-ic-R0D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenido!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-II-Ru2">
+                                <rect key="frame" x="121.5" y="159" width="132" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jZM-II-Ru2" firstAttribute="top" secondItem="GTB-oL-aBC" secondAttribute="top" constant="139" id="KbJ-77-Rmg"/>
+                            <constraint firstItem="jZM-II-Ru2" firstAttribute="centerX" secondItem="8fq-ic-R0D" secondAttribute="centerX" id="jTv-R8-ucf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GTB-oL-aBC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MCQ-tl-yhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-95" y="-593"/>
+        </scene>
     </scenes>
     <resources>
         <image name="perro.png" width="225" height="225"/>

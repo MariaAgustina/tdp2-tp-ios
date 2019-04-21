@@ -136,7 +136,7 @@
 # pragma mark - AuthServiceDelegate methods
 - (void)didLoginClient {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"ClientMenuViewController"];
+    UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverMenuViewController"];
     
     [self.navigationController pushViewController:clientMenuVC animated:YES];
 }

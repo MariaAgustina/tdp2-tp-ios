@@ -41,6 +41,7 @@
 		93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */; };
 		93D0BED0226BB10100FEF7C9 /* DriverAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */; };
 		93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */; };
+		93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverAuthService.m; sourceTree = "<group>"; };
 		93D0BED1226BB8A200FEF7C9 /* UIImage+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Base64.h"; sourceTree = "<group>"; };
 		93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Base64.m"; sourceTree = "<group>"; };
+		93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverMenuViewController.h; sourceTree = "<group>"; };
+		93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,9 +188,11 @@
 				93D0BEC2226B76E800FEF7C9 /* DriverLoginViewController.h */,
 				93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */,
 				586235A8226A60BE007D9A0A /* ClientMenuViewController.h */,
+				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
 				93D0BEC8226B812F00FEF7C9 /* RegisterPhotoDriverViewController.h */,
 				93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */,
-				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
+				93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */,
+				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 				586235AA226A60BE007D9A0A /* ClientMenuViewController.m in Sources */,
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
+				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */,
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
