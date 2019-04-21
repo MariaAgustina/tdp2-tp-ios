@@ -23,7 +23,7 @@
 }
 
 - (void)loginClient:(NSString*)fbToken {
-    NSString *relativeUrlString = @"auth/facebook/login";
+    NSString *relativeUrlString = @"auth/client/facebook/login";
     [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
                                              body:nil
                                         authToken: fbToken
@@ -36,7 +36,7 @@
 }
 
 - (void)registerClient: (ClientProfile*)profile {
-    NSString *relativeUrlString = @"auth/facebook/register";
+    NSString *relativeUrlString = @"auth/client/facebook/register";
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
