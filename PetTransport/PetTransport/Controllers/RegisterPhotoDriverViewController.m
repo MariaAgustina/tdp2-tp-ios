@@ -91,6 +91,12 @@
     [self.authService registerDriver:self.profile];
 }
 
+- (void)popRegisterControllers
+{
+    NSUInteger ownIndex = [self.navigationController.viewControllers indexOfObject:self];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:ownIndex - 2] animated:YES];
+}
+
 - (void)showError: (NSString*)message shouldGoBack:(BOOL)shouldGoBack {
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:message
@@ -102,7 +108,7 @@
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
                                     if (shouldGoBack){
-                                        [self.navigationController popViewControllerAnimated:YES];
+                                        [self popRegisterControllers];
                                     }
                                 }];
     [alert addAction:yesButton];
@@ -121,7 +127,7 @@
                                 actionWithTitle:@"Ir a login"
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
-                                    [self.navigationController popViewControllerAnimated:YES];
+                                    [self popRegisterControllers];
                                 }];
     [alert addAction:yesButton];
     [self presentViewController:alert animated:YES completion:nil];
