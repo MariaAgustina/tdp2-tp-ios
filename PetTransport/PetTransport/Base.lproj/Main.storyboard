@@ -1279,24 +1279,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenido!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-II-Ru2">
-                                <rect key="frame" x="121.5" y="159" width="132" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Estoy Disponible?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-II-Ru2">
+                                <rect key="frame" x="81" y="159" width="213" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hsd-Pq-VlG">
+                                <rect key="frame" x="163" y="230" width="51" height="31"/>
+                                <connections>
+                                    <action selector="availableSwitchDidChange:" destination="9nN-k8-vy9" eventType="valueChanged" id="IzE-sM-O4h"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Hsd-Pq-VlG" firstAttribute="centerX" secondItem="GTB-oL-aBC" secondAttribute="centerX" id="DXZ-97-ysk"/>
                             <constraint firstItem="jZM-II-Ru2" firstAttribute="top" secondItem="GTB-oL-aBC" secondAttribute="top" constant="139" id="KbJ-77-Rmg"/>
                             <constraint firstItem="jZM-II-Ru2" firstAttribute="centerX" secondItem="8fq-ic-R0D" secondAttribute="centerX" id="jTv-R8-ucf"/>
+                            <constraint firstItem="Hsd-Pq-VlG" firstAttribute="top" secondItem="jZM-II-Ru2" secondAttribute="bottom" constant="39" id="m6U-cO-31k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GTB-oL-aBC"/>
                     </view>
+                    <connections>
+                        <outlet property="availableSwitch" destination="Hsd-Pq-VlG" id="ke7-jc-vbn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MCQ-tl-yhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-95" y="-593"/>
+            <point key="canvasLocation" x="-1711" y="-2114"/>
         </scene>
     </scenes>
     <resources>
