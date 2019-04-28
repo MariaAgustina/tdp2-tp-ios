@@ -177,7 +177,7 @@
 }
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didRegisterClient {
+- (void)didRegister {
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"Registro exitoso!"
                                  message:nil

@@ -7,7 +7,7 @@
 //
 
 #import "RegisterPhotoDriverViewController.h"
-#import "DriverAuthService.h"
+#import "AuthService.h"
 
 @interface RegisterPhotoDriverViewController () <UINavigationControllerDelegate,UIImagePickerControllerDelegate,AuthServiceDelegate>
 
@@ -20,7 +20,7 @@
 @property (nonatomic, copy) void (^setImageBlock)(UIImage *);
 
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
-@property (strong, nonatomic) DriverAuthService *authService;
+@property (strong, nonatomic) AuthService *authService;
 
 @end
 
@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.authService = [[DriverAuthService alloc] initWithDelegate:self];
+    self.authService = [[AuthService alloc] initWithDelegate:self];
 
     self.imagePickerController = [[UIImagePickerController alloc] init];
     self.imagePickerController.delegate = self;
@@ -117,7 +117,7 @@
 
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didRegisterClient {
+- (void)didRegister {
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"Registro exitoso!"
                                  message:nil

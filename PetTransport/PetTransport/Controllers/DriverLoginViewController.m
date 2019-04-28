@@ -11,13 +11,13 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "FbProfileManager.h"
 #import "RegisterClientViewController.h"
-#import "ClientProfile.h"
-#import "DriverAuthService.h"
+#import "AuthService.h"
+#import "DriverService.h"
 
 @interface DriverLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 
 @property (strong, nonatomic) FbProfileManager *fbProfileManager;
-@property (strong, nonatomic) DriverAuthService *authService;
+@property (strong, nonatomic) AuthService *authService;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registrationButton;
 @property (strong, nonatomic) NSString *pendingAction;
@@ -31,7 +31,7 @@
     self.title = @"Login";
     
     self.fbProfileManager = [[FbProfileManager alloc] initWithDelegate:self];
-    self.authService = [[DriverAuthService alloc] initWithDelegate:self];
+    self.authService = [[AuthService alloc] initWithDelegate:self];
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
@@ -134,7 +134,9 @@
 }
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didLoginClient {
+- (void)didLoginWithToken:(NSString *)token {
+    [[DriverService sharedInstance] setDriverWithToken:token];
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverMenuViewController"];
     

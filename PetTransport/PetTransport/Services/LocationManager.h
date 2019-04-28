@@ -19,5 +19,6 @@
 @interface LocationManager : NSObject
 
 - (void)fetchCurrentLocation: (id<LocationManagerDelegate>)delegate;
+- (void)startUpdatingLocationWithDelegate: (id<LocationManagerDelegate>)delegate;
 
 @end

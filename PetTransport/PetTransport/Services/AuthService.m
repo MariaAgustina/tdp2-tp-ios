@@ -7,8 +7,8 @@
 //
 
 #import "AuthService.h"
-#import "AFNetworking.h"
-#import "constants.h"
+#import "ApiClient.h"
+#import "UIImage+Base64.h"
 
 @interface AuthService ()
 
@@ -24,15 +24,16 @@
 
 - (void)loginClient:(NSString*)fbToken {
     NSString *relativeUrlString = @"auth/client/facebook/login";
-    [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
-                                             body:nil
-                                        authToken: fbToken
-                                          success:^(id _Nullable responseObject) {
-                                              [self.delegate didLoginClient];
-                                          } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
-                                              BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
-                                              [self.delegate didFailLogin:inexistentUser];
-                                          }];
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:nil
+                                   token: fbToken
+                                 success:^(id _Nullable responseObject) {
+                                     [self.delegate didLoginWithToken: fbToken];
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
+                                     [self.delegate didFailLogin:inexistentUser];
+                                 }];
 }
 
 - (void)registerClient: (ClientProfile*)profile {
@@ -51,38 +52,65 @@
                            @"phone": profile.phoneNumber
                         };
     
-    [self makeApiPostRequestWithRelativeUrlString:relativeUrlString
-                                             body:body
-                                        authToken: profile.fbToken
-                                          success:^(id _Nullable responseObject) {
-                                              [self.delegate didRegisterClient];
-                                          } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
-                                              BOOL duplicatedUser = (statusCode == DUPLICATED_USER_STATUS_CODE);
-                                              [self.delegate didFailRegistering:duplicatedUser];
-                                          }];
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:body
+                                   token: profile.fbToken
+                                 success:^(id _Nullable responseObject) {
+                                     [self.delegate didRegister];
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     BOOL duplicatedUser = (statusCode == DUPLICATED_USER_STATUS_CODE);
+                                     [self.delegate didFailRegistering:duplicatedUser];
+                                 }];
 }
 
+- (void)loginDriver:(NSString*)fbToken {
+    NSString *relativeUrlString = @"auth/driver/facebook/login";
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:nil
+                                   token: fbToken
+                                 success:^(id _Nullable responseObject) {
+                                     [self.delegate didLoginWithToken:fbToken];
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
+                                     [self.delegate didFailLogin:inexistentUser];
+                                 }];
+}
 
-- (void)makeApiPostRequestWithRelativeUrlString: (NSString*)relativeUrlString
-                                           body: (NSDictionary*)body
-                                        authToken: (NSString*)authToken
-                                        success: (void (^)(id _Nullable))success
-                                        failure:(void (^)(NSError * _Nonnull, NSInteger statusCode))failure
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrlString];
+- (void)registerDriver:(DriverProfile*)profile {
+    NSString *relativeUrlString = @"auth/driver/facebook/register";
     
-    NSString *authHeader = [NSString stringWithFormat:@"Bearer %@",authToken];
-    [manager.requestSerializer setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    NSString *birthdate = [formatter stringFromDate:profile.birthdate];
     
-    [manager POST:urlString parameters: body progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        success(responseObject);
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)operation.response;
-        NSLog(@"Error: %@", error);
-        failure(error, httpResponse.statusCode);
-    }];
+    NSDictionary* driverData = @{
+                                 @"drivingRecordImage": [profile.drivingRecordImage getBase64],
+                                 @"policyImage":[profile.policyImage getBase64],
+                                 @"transportImage":[profile.transportImage getBase64]
+                                 };
+    
+    NSDictionary *body = @{
+                           @"email": profile.email,
+                           @"birthDate": birthdate,
+                           @"address": profile.address,
+                           @"phone": profile.phoneNumber,
+                           @"driverData":driverData
+                           };
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:body
+                                   token: profile.fbToken
+                                 success:^(id _Nullable responseObject) {
+                                     [self.delegate didRegister];
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     BOOL duplicatedUser = (statusCode == DUPLICATED_USER_STATUS_CODE);
+                                     [self.delegate didFailRegistering:duplicatedUser];
+                                 }];
 }
 
 @end
