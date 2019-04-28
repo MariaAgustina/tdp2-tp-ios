@@ -16,6 +16,7 @@
 		586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
+		58B34D9D2275D72200277F5A /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B34D9C2275D72200277F5A /* ApiClient.m */; };
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
 		58E20BA12268D48800E024DF /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA02268D48800E024DF /* AuthService.m */; };
@@ -40,7 +41,6 @@
 		93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC6226B79C000FEF7C9 /* RegisterDriverViewController.m */; };
 		93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */; };
 		93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */; };
-		93D0BED0226BB10100FEF7C9 /* DriverAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */; };
 		93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */; };
 		93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */; };
 /* End PBXBuildFile section */
@@ -80,6 +80,8 @@
 		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
 		58754C0722625E5C00F12643 /* FbProfileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FbProfileManager.h; sourceTree = "<group>"; };
 		58754C0822625E5C00F12643 /* FbProfileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FbProfileManager.m; sourceTree = "<group>"; };
+		58B34D9B2275D72200277F5A /* ApiClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
+		58B34D9C2275D72200277F5A /* ApiClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
 		58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterClientViewController.h; sourceTree = "<group>"; };
 		58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClientViewController.m; sourceTree = "<group>"; };
 		58BE1D1A2263AA960000C9D0 /* ClientProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientProfile.h; sourceTree = "<group>"; };
@@ -130,8 +132,6 @@
 		93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterPhotoDriverViewController.m; sourceTree = "<group>"; };
 		93D0BECB226BAC4300FEF7C9 /* DriverProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverProfile.h; sourceTree = "<group>"; };
 		93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverProfile.m; sourceTree = "<group>"; };
-		93D0BECE226BB10100FEF7C9 /* DriverAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverAuthService.h; sourceTree = "<group>"; };
-		93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverAuthService.m; sourceTree = "<group>"; };
 		93D0BED1226BB8A200FEF7C9 /* UIImage+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Base64.h"; sourceTree = "<group>"; };
 		93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Base64.m"; sourceTree = "<group>"; };
 		93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverMenuViewController.h; sourceTree = "<group>"; };
@@ -211,8 +211,6 @@
 				58754C0822625E5C00F12643 /* FbProfileManager.m */,
 				58E20B9F2268D48800E024DF /* AuthService.h */,
 				58E20BA02268D48800E024DF /* AuthService.m */,
-				93D0BECE226BB10100FEF7C9 /* DriverAuthService.h */,
-				93D0BECF226BB10100FEF7C9 /* DriverAuthService.m */,
 				58F64ED92274FD2000EAA7D8 /* DriverService.h */,
 				58F64EDA2274FD2000EAA7D8 /* DriverService.m */,
 			);
@@ -226,6 +224,15 @@
 				5872B7B322515A730034F2F9 /* car-icon.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		58B34D9A2275D70D00277F5A /* ApiCLient */ = {
+			isa = PBXGroup;
+			children = (
+				58B34D9B2275D72200277F5A /* ApiClient.h */,
+				58B34D9C2275D72200277F5A /* ApiClient.m */,
+			);
+			path = ApiCLient;
 			sourceTree = "<group>";
 		};
 		58F022DF2253F16D00318837 /* Entities */ = {
@@ -300,6 +307,7 @@
 		9396CA0322474B3400F6248F /* PetTransport */ = {
 			isa = PBXGroup;
 			children = (
+				58B34D9A2275D70D00277F5A /* ApiCLient */,
 				937ABFB72253F8D500086554 /* Categories */,
 				937ABFB32253DACD00086554 /* Trip */,
 				58F022DF2253F16D00318837 /* Entities */,
@@ -532,6 +540,7 @@
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */,
 				58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */,
+				58B34D9D2275D72200277F5A /* ApiClient.m in Sources */,
 				58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */,
 				9396CA0622474B3400F6248F /* AppDelegate.m in Sources */,
 				93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */,
@@ -542,7 +551,6 @@
 				93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
 				58E20BA12268D48800E024DF /* AuthService.m in Sources */,
-				93D0BED0226BB10100FEF7C9 /* DriverAuthService.m in Sources */,
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
 				93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */,
 				58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */,
