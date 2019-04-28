@@ -13,8 +13,9 @@
 
 @property (strong, nonatomic) NSString *token;
 @property BOOL isWorking;
-@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *statusTimer;
 @property (strong,nonatomic) LocationManager *locationManager;
+@property struct LocationCoordinate currentLocation;
 
 @end
 
@@ -31,14 +32,12 @@
 
 - (instancetype) init {
     self = [super init];
-    self.locationManager = [LocationManager new];
+    [self startUpdatingLocation];
     return self;
 }
 
 - (void)setDriverWithToken: (NSString*)token {
     self.token = token;
-    [self stopUpdatingStatus];
-    [self updateStatus];
     [self startUpdatingStatus];
 }
 
@@ -52,7 +51,9 @@
 
 
 - (void)startUpdatingStatus {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    [self stopUpdatingStatus];
+    [self updateStatus];
+    self.statusTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                   target:self
                                                 selector:@selector(updateStatus)
                                                 userInfo:nil
@@ -60,22 +61,27 @@
 }
 
 - (void)updateStatus {
-    NSLog(@"actualizo mi status");
     if (self.isWorking){
         NSLog(@"Trabajando");
     } else {
         NSLog(@"descansando");
     }
+    NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
 }
 
 - (void)stopUpdatingStatus {
-    [self.timer invalidate];
-    self.timer = nil;
+    [self.statusTimer invalidate];
+    self.statusTimer = nil;
 }
 
-#pragma mark - LocationManagerDelegate
+#pragma mark - Location
+- (void)startUpdatingLocation {
+    self.locationManager = [LocationManager new];
+    [self.locationManager startUpdatingLocationWithDelegate:self];
+}
+
 - (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
-    
+    self.currentLocation = coordinate;
 }
 
 - (void)didFailFetchingCurrentLocation {
