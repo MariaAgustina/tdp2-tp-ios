@@ -7,6 +7,7 @@
 //
 
 #import "DriverMenuViewController.h"
+#import "DriverService.h"
 
 @interface DriverMenuViewController ()
 
@@ -23,10 +24,11 @@
 
 - (IBAction)availableSwitchDidChange:(id)sender {
     NSLog(@"availableSwitch did change");
+    DriverService *driverService = [DriverService sharedInstance];
     if (self.availableSwitch.on){
-        NSLog(@"esta prendido");
+        [driverService setWorking];
     } else {
-        NSLog(@"esta apagado");
+        [driverService setNotWorking];
     }
 }
 
