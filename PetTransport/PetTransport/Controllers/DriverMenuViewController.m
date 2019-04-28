@@ -19,11 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.availableSwitch setOn:NO];
 }
 
 - (IBAction)availableSwitchDidChange:(id)sender {
-    NSLog(@"availableSwitch did change");
     DriverService *driverService = [DriverService sharedInstance];
     if (self.availableSwitch.on){
         [driverService setWorking];

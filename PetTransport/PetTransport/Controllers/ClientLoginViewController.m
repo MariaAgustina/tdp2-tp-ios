@@ -135,7 +135,7 @@
 }
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didLogin {
+- (void)didLoginWithToken:(NSString *)token {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"ClientMenuViewController"];
     

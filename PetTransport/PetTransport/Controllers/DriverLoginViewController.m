@@ -11,8 +11,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "FbProfileManager.h"
 #import "RegisterClientViewController.h"
-#import "ClientProfile.h"
 #import "AuthService.h"
+#import "DriverService.h"
 
 @interface DriverLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 
@@ -134,7 +134,9 @@
 }
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didLogin {
+- (void)didLoginWithToken:(NSString *)token {
+    [[DriverService sharedInstance] setDriverWithToken:token];
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverMenuViewController"];
     

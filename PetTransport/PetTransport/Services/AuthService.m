@@ -29,7 +29,7 @@
                                     body:nil
                                    token: fbToken
                                  success:^(id _Nullable responseObject) {
-                                     [self.delegate didLogin];
+                                     [self.delegate didLoginWithToken: fbToken];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
                                      [self.delegate didFailLogin:inexistentUser];
@@ -71,7 +71,7 @@
                                     body:nil
                                    token: fbToken
                                  success:^(id _Nullable responseObject) {
-                                     [self.delegate didLogin];
+                                     [self.delegate didLoginWithToken:fbToken];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
                                      [self.delegate didFailLogin:inexistentUser];

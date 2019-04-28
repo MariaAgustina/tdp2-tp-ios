@@ -11,6 +11,7 @@
 @interface DriverService : NSObject
 
 + (instancetype)sharedInstance;
+- (void)setDriverWithToken: (NSString*)token;
 - (void)setWorking;
 - (void)setNotWorking;
 
