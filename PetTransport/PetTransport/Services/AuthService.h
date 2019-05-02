@@ -20,7 +20,7 @@
 - (void)didRegister;
 - (void)didFailRegistering: (BOOL)duplicatedUser;
 
-- (void)didLoginWithToken: (NSString*)token;
+- (void)didLoginWithProfile: (ClientProfile*)profile;
 - (void)didFailLogin: (BOOL)inexistentUser;
 
 @end

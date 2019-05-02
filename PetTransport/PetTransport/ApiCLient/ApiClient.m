@@ -19,6 +19,7 @@
                           failure:(void (^)(NSError * _Nonnull, NSInteger statusCode))failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrlString];
     

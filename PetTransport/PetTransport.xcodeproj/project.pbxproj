@@ -24,6 +24,7 @@
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
 		58F64EDB2274FD2000EAA7D8 /* DriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F64EDA2274FD2000EAA7D8 /* DriverService.m */; };
 		934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C357D2263C53D0062122E /* TripInformationViewController.m */; };
+		937AADE3227A682600A9D4D5 /* RetryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937AADE2227A682600A9D4D5 /* RetryService.m */; };
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
@@ -97,6 +98,8 @@
 		58F64EDA2274FD2000EAA7D8 /* DriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverService.m; sourceTree = "<group>"; };
 		934C357C2263C53D0062122E /* TripInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripInformationViewController.h; sourceTree = "<group>"; };
 		934C357D2263C53D0062122E /* TripInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripInformationViewController.m; sourceTree = "<group>"; };
+		937AADE1227A682600A9D4D5 /* RetryService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RetryService.h; sourceTree = "<group>"; };
+		937AADE2227A682600A9D4D5 /* RetryService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RetryService.m; sourceTree = "<group>"; };
 		937ABFB42253DAF000086554 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		937ABFB52253DAF000086554 /* Trip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		937ABFB82253F8FF00086554 /* GMSMarker+Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GMSMarker+Setup.h"; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				58E20BA02268D48800E024DF /* AuthService.m */,
 				58F64ED92274FD2000EAA7D8 /* DriverService.h */,
 				58F64EDA2274FD2000EAA7D8 /* DriverService.m */,
+				937AADE1227A682600A9D4D5 /* RetryService.h */,
+				937AADE2227A682600A9D4D5 /* RetryService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,
 				586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */,
+				937AADE3227A682600A9D4D5 /* RetryService.m in Sources */,
 				58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */,

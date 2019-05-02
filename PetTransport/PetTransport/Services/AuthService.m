@@ -29,7 +29,9 @@
                                     body:nil
                                    token: fbToken
                                  success:^(id _Nullable responseObject) {
-                                     [self.delegate didLoginWithToken: fbToken];
+                                     ClientProfile* client = [ClientProfile new];
+                                     client.fbToken = fbToken;
+                                     [self.delegate didLoginWithProfile:client];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
                                      [self.delegate didFailLogin:inexistentUser];
@@ -71,7 +73,10 @@
                                     body:nil
                                    token: fbToken
                                  success:^(id _Nullable responseObject) {
-                                     [self.delegate didLoginWithToken:fbToken];
+                                     //TODO driver params
+                                     DriverProfile* driver = [DriverProfile new];
+                                     driver.fbToken = fbToken;
+                                     [self.delegate didLoginWithProfile:driver];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
                                      [self.delegate didFailLogin:inexistentUser];
@@ -90,7 +95,15 @@
     NSDictionary* driverData = @{
                                  @"drivingRecordImage": [profile.drivingRecordImage getBase64],
                                  @"policyImage":[profile.policyImage getBase64],
-                                 @"transportImage":[profile.transportImage getBase64]
+                                 @"transportImage": [profile.transportImage getBase64],
+                                 @"ratings": @{
+                                     @"one": @1,
+                                     @"two": @1,
+                                     @"three": @1,
+                                     @"four": @2,
+                                     @"five": @2,
+                                     @"rejections": @0
+                                 }
                                  };
     
     NSDictionary *body = @{
