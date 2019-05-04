@@ -8,16 +8,13 @@
 
 #import "DriverMenuViewController.h"
 #import "DriverService.h"
-#import "RetryService.h"
 #import "LocationManager.h"
+#import "TripOffer.h"
 
-@interface DriverMenuViewController () <LocationManagerDelegate>
+@interface DriverMenuViewController () <DriverServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *availableSwitch;
 @property (weak, nonatomic) NSTimer *retryTimer;
-@property (strong, nonatomic) RetryService *retryService;
-
-@property (strong,nonatomic) LocationManager *locationManager;
 
 @end
 
@@ -25,8 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.retryService = [RetryService new];
-    [self showNewTrip];
+    
+    DriverService *driverService = [DriverService sharedInstance];
+    driverService.delegate = self;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,34 +38,13 @@
     
     //TODO: unificar
     if (self.availableSwitch.on){
-        self.driver.status = @"Disponible";
         [driverService setWorking];
-        [self startRetrying];
     } else {
-        self.driver.status = @"Ocupado";
         [driverService setNotWorking];
     }
 }
 
-- (void)startRetrying {
-    self.retryTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
-                                                  target:self
-                                                selector:@selector(askForNewTrips)
-                                                userInfo:nil
-                                                 repeats:YES];
-}
-
-- (void)askForNewTrips {
-    //TODO: cancel pending request
-    [self.retryService getTripOffer:self.driver];    
-}
-
-- (void)stopRetrying {
-    [self.retryTimer invalidate];
-    self.retryTimer = nil;
-}
-
-- (void)showNewTrip{
+- (void)showNewTrip:(TripOffer*)tripOffer{
     
     //TODO: direcciones en el mensaje
     
@@ -84,19 +62,19 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Location
-- (void)startUpdatingLocation {
-    self.locationManager = [LocationManager new];
-    [self.locationManager startUpdatingLocationWithDelegate:self];
-}
+#pragma mark - Driver Service
 
-- (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
-    self.driver.currentLocation = coordinate;
-}
-
-
-- (void)didFailFetchingCurrentLocation {
-    NSLog(@"no pudo traer la location");
+- (void)driverServiceSuccededWithResponse:(NSDictionary*)response
+{
+    NSDictionary* tripOfferDictionary = [response objectForKey:@"tripOffer"];
+    if(!tripOfferDictionary){
+        return;
+    }
+    
+    TripOffer* tripOffer = [[TripOffer alloc] initWithDictionary:tripOfferDictionary];
+    if (tripOffer.status == PENDING){
+        [self showNewTrip:tripOffer];
+    }
 }
 
 @end

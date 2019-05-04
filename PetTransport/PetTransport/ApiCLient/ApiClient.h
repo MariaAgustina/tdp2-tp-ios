@@ -16,4 +16,9 @@
                           success: (void (^_Nonnull)(id _Nullable))success
                           failure:(void (^_Nonnull)(NSError * _Nonnull, NSInteger statusCode))failure;
 
+- (void)putWithRelativeUrlString: (NSString*)relativeUrlString
+                            body: (NSDictionary*)body
+                           token: (NSString*)token
+                         success: (void (^)(id _Nullable))success
+                         failure:(void (^)(NSError * _Nonnull))failure;
 @end

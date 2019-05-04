@@ -8,6 +8,7 @@
 
 #import "DriverService.h"
 #import "LocationManager.h"
+#import "ApiClient.h"
 
 @interface DriverService () <LocationManagerDelegate>
 
@@ -16,7 +17,7 @@
 @property (strong, nonatomic) NSTimer *statusTimer;
 @property (strong,nonatomic) LocationManager *locationManager;
 @property struct LocationCoordinate currentLocation;
-
+@property (copy,nonatomic)NSString* driverStatus;
 @end
 
 @implementation DriverService
@@ -62,16 +63,54 @@
 
 - (void)updateStatus {
     if (self.isWorking){
+        self.driverStatus = @"Disponible";
         NSLog(@"Trabajando");
     } else {
+        self.driverStatus = @"Ocupado";
         NSLog(@"descansando");
     }
     NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
+    
+    if(!self.currentLocation.longitude || !self.currentLocation.latitude){
+        return;
+    }
+    [self putStatus];
 }
 
+
 - (void)stopUpdatingStatus {
+    //TODO: cancel pending request
     [self.statusTimer invalidate];
     self.statusTimer = nil;
+}
+
+- (void)putStatus{
+    NSString *relativeUrlString = @"drivers/status";
+    
+    NSDictionary* locationDictionary = @{@"lat": [NSNumber numberWithDouble: self.currentLocation.latitude],@"lng": [NSNumber numberWithDouble: self.currentLocation.longitude]};
+    
+    NSDictionary *body = @{
+                           @"currentLocation": locationDictionary,
+                           @"status": self.driverStatus
+                           };
+    
+    ApiClient *apiClient = [ApiClient new];
+    
+    [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
+        //TODO: remove hardcoded
+        
+        responseObject = @{
+                           @"tripOffer":@{
+                                   @"status":@"Pendiente"
+                                   }
+                           };
+        [self.delegate driverServiceSuccededWithResponse:responseObject];
+        
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Fallo al actulizar el status del conductor");
+
+    }];
+    
 }
 
 #pragma mark - Location
