@@ -9,9 +9,14 @@
 #import "TripService.h"
 #import "AFNetworking.h"
 #import "constants.h"
+#import "ApiClient.h"
+#import "FbProfileManager.h"
+#import "ClientService.h"
 
 @interface TripService ()
+
 @property (nonatomic, weak) id <TripServiceDelegate> delegate;
+
 @end
 
 @implementation TripService
@@ -21,17 +26,11 @@
     return self;
 }
 
--(void)postTrip:(Trip*)trip
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    NSString* relativeUrl = @"trips/simulated";
-    NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrl];
-    NSLog(@"urlString: %@",urlString);
+-(void)postTrip:(Trip*)trip {
+    NSString* relativeUrlString = @"trips/simulated";
     
     NSDictionary* originDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
     NSDictionary* destinantionDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
-    
     
     NSNumber* smallPetsQuantity = [NSNumber numberWithDouble: trip.smallPetsQuantity];
     NSNumber* mediumPetsQuantity = [NSNumber numberWithDouble: trip.mediumPetsQuantity];
@@ -42,18 +41,27 @@
     NSString* paymentMethod = trip.selectedPaymentMethod.paymentKey;
     NSNumber* hasEscort = [NSNumber numberWithBool:trip.shouldHaveEscolt];
     
-    NSDictionary *parameters = @{@"origin":originDictionary,@"destination":destinantionDictionary,@"petQuantities":petQuantitiesDictionary,@"paymentMethod":paymentMethod,@"comments":trip.comments,@"bringsEscort":hasEscort};
+    NSDictionary *body =  @{
+                              @"origin":originDictionary,
+                              @"destination":destinantionDictionary,
+                              @"petQuantities":petQuantitiesDictionary,
+                              @"paymentMethod":paymentMethod,
+                              @"comments":trip.comments,
+                              @"bringsEscort":hasEscort
+                          };
     
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-
-    [manager POST:urlString parameters: parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
-        [strongDelegate tripServiceSuccededWithResponse:responseObject];
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
-        [strongDelegate tripServiceFailedWithError:error];
-    }];
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:body
+                                   token: [[ClientService sharedInstance] getToken]
+                                 success:^(id _Nullable responseObject) {
+                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     [strongDelegate tripServiceSuccededWithResponse:responseObject];
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     NSLog(@"Error: %@", error);
+                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     [strongDelegate tripServiceFailedWithError:error];
+                                 }];
 }
 
 @end

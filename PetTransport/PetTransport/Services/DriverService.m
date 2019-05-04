@@ -18,6 +18,7 @@
 @property (strong,nonatomic) LocationManager *locationManager;
 @property struct LocationCoordinate currentLocation;
 @property (copy,nonatomic)NSString* driverStatus;
+
 @end
 
 @implementation DriverService
@@ -96,7 +97,6 @@
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
         //TODO: remove hardcoded
-        
         responseObject = @{
                            @"tripOffer":@{
                                    @"status":@"Pendiente"
@@ -105,10 +105,8 @@
         [self.delegate driverServiceSuccededWithResponse:responseObject];
         
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"Fallo al actulizar el status del conductor");
-
+        NSLog(@"Fallo al actualizar el status del conductor");
     }];
-    
 }
 
 #pragma mark - Location
