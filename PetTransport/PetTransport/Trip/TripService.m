@@ -29,8 +29,16 @@
 -(void)postTrip:(Trip*)trip {
     NSString* relativeUrlString = @"trips/simulated";
     
-    NSDictionary* originDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
-    NSDictionary* destinantionDictionary = @{@"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude]  ,@"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude]};
+    NSDictionary* originDictionary = @{
+                                       @"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude],
+                                       @"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude],
+                                       @"address": trip.origin.name
+                                       };
+    NSDictionary* destinantionDictionary = @{
+                                             @"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude],
+                                             @"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude],
+                                             @"address": trip.destiny.name
+                                             };
     
     NSNumber* smallPetsQuantity = [NSNumber numberWithDouble: trip.smallPetsQuantity];
     NSNumber* mediumPetsQuantity = [NSNumber numberWithDouble: trip.mediumPetsQuantity];
