@@ -57,5 +57,28 @@
     }];
 }
 
+- (void)getWithRelativeUrlString: (NSString*_Nonnull)relativeUrlString
+                           token: (NSString*_Nullable)token
+                         success: (void (^_Nonnull)(id _Nullable))success
+                         failure:(void (^_Nonnull)(NSError * _Nonnull))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrlString];
+    
+    if (token){
+        NSString *authHeader = [NSString stringWithFormat:@"Bearer %@",token];
+        [manager.requestSerializer setValue:authHeader forHTTPHeaderField:@"Authorization"];
+    }
+    
+    [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        failure(error);
+    }];
+}
+
 
 @end
