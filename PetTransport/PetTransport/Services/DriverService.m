@@ -64,10 +64,8 @@
 - (void)updateStatus {
     if (self.isWorking){
         self.driverStatus = @"Disponible";
-        NSLog(@"Trabajando");
     } else {
-        self.driverStatus = @"Ocupado";
-        NSLog(@"descansando");
+        self.driverStatus = @"No disponible";
     }
     NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
     

@@ -36,7 +36,6 @@
 - (IBAction)availableSwitchDidChange:(id)sender {
     DriverService *driverService = [DriverService sharedInstance];
     
-    //TODO: unificar
     if (self.availableSwitch.on){
         [driverService setWorking];
     } else {
