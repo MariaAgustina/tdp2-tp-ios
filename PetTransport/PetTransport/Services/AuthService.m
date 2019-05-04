@@ -96,14 +96,6 @@
                                  @"drivingRecordImage": [profile.drivingRecordImage getBase64],
                                  @"policyImage":[profile.policyImage getBase64],
                                  @"transportImage": [profile.transportImage getBase64],
-                                 @"ratings": @{
-                                     @"one": @1,
-                                     @"two": @1,
-                                     @"three": @1,
-                                     @"four": @2,
-                                     @"five": @2,
-                                     @"rejections": @0
-                                 }
                                  };
     
     NSDictionary *body = @{
