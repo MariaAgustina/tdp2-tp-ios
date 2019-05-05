@@ -30,6 +30,7 @@
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
 		938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B99FD227DFB58001EBBEC /* TripOffer.m */; };
 		938B9A04227F36E5001EBBEC /* RateServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B9A03227F36E5001EBBEC /* RateServiceViewController.m */; };
+		938B9A09227F436C001EBBEC /* RateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B9A08227F436C001EBBEC /* RateModel.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -113,6 +114,8 @@
 		938B99FD227DFB58001EBBEC /* TripOffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripOffer.m; sourceTree = "<group>"; };
 		938B9A02227F36E5001EBBEC /* RateServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateServiceViewController.h; sourceTree = "<group>"; };
 		938B9A03227F36E5001EBBEC /* RateServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateServiceViewController.m; sourceTree = "<group>"; };
+		938B9A07227F436C001EBBEC /* RateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateModel.h; sourceTree = "<group>"; };
+		938B9A08227F436C001EBBEC /* RateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateModel.m; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -297,6 +300,15 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		938B9A06227F434A001EBBEC /* RateService */ = {
+			isa = PBXGroup;
+			children = (
+				938B9A07227F436C001EBBEC /* RateModel.h */,
+				938B9A08227F436C001EBBEC /* RateModel.m */,
+			);
+			path = RateService;
+			sourceTree = "<group>";
+		};
 		9396C9F822474B3400F6248F = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +334,7 @@
 		9396CA0322474B3400F6248F /* PetTransport */ = {
 			isa = PBXGroup;
 			children = (
+				938B9A06227F434A001EBBEC /* RateService */,
 				58B34D9A2275D70D00277F5A /* ApiCLient */,
 				937ABFB72253F8D500086554 /* Categories */,
 				937ABFB32253DACD00086554 /* Trip */,
@@ -545,6 +558,7 @@
 				58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */,
 				586235AA226A60BE007D9A0A /* ClientMenuViewController.m in Sources */,
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
+				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
