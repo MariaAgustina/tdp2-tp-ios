@@ -17,6 +17,7 @@
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
 		589798CF227F58480047EC92 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */; };
+		589798D2227F73900047EC92 /* RateClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589798D1227F73900047EC92 /* RateClientViewController.m */; };
 		58B34D9D2275D72200277F5A /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B34D9C2275D72200277F5A /* ApiClient.m */; };
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
@@ -85,6 +86,8 @@
 		58754C0822625E5C00F12643 /* FbProfileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FbProfileManager.m; sourceTree = "<group>"; };
 		589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitingTripConfirmationViewController.h; sourceTree = "<group>"; };
 		589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitingTripConfirmationViewController.m; sourceTree = "<group>"; };
+		589798D0227F73900047EC92 /* RateClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateClientViewController.h; sourceTree = "<group>"; };
+		589798D1227F73900047EC92 /* RateClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateClientViewController.m; sourceTree = "<group>"; };
 		58B34D9B2275D72200277F5A /* ApiClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
 		58B34D9C2275D72200277F5A /* ApiClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
 		58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterClientViewController.h; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				938B9A03227F36E5001EBBEC /* RateServiceViewController.m */,
 				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
 				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
+				589798D0227F73900047EC92 /* RateClientViewController.h */,
+				589798D1227F73900047EC92 /* RateClientViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
+				589798D2227F73900047EC92 /* RateClientViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */,
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
