@@ -152,16 +152,19 @@
 }
 
 - (IBAction)rateButtonPressed:(id)sender {
+    [self showLoading];
     [self.rateService postRate:self.rate trip:self.trip];
 }
 
 #pragma mark - RateDriverServiceDelegate
 
 - (void)rateDriverServiceSuccededWithResponse:(NSDictionary*)response{
+    [self hideLoading];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)rateDriverServiceFailedWithError:(NSError*)error{
+    [self hideLoading];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
