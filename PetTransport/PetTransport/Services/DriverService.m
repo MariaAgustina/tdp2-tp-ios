@@ -68,8 +68,7 @@
     } else {
         self.driverStatus = @"No disponible";
     }
-//    NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
-    
+
     if(!self.currentLocation.longitude || !self.currentLocation.latitude){
         return;
     }
