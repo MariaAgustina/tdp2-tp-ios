@@ -32,6 +32,7 @@
 }
 
 - (void)startUpdatingLocationWithDelegate: (id<LocationManagerDelegate>)delegate {
+    [self.cllocationManager requestWhenInUseAuthorization];
     self.delegate = delegate;
     [self.cllocationManager startUpdatingLocation];
 }
