@@ -44,10 +44,8 @@
 }
 
 - (void)showNewTrip:(TripOffer*)tripOffer{
-    
-    //TODO: direcciones en el mensaje
-    
-    NSString* message =[NSString stringWithFormat:@"%@\r%@", @"Origen: Carrasco 637",@"Destino: Av Paseo Colon 950"];
+        
+    NSString* message =[NSString stringWithFormat:@"%@%@\r%@%@", @"Origen: ",tripOffer.originAddress,@"Destino: ",tripOffer.destinationAddress];
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){

@@ -53,6 +53,12 @@ NSString* const kPending = @"Pendiente";
     if(self = [super init]){
         NSString* statusString = [dictionary objectForKey:@"status"];
         self.status = [self statusForString:statusString];
+        
+        NSDictionary* originDictionary = [dictionary objectForKey:@"origin"];
+        self.originAddress = [originDictionary objectForKey:@"address"];
+        
+        NSDictionary* destinationDictionary = [dictionary objectForKey:@"destination"];
+        self.destinationAddress = [destinationDictionary objectForKey:@"address"];
     }
     
     return self;

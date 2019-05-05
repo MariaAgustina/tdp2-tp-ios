@@ -27,7 +27,7 @@
 }
 
 -(void)postTrip:(Trip*)trip {
-    NSString* relativeUrlString = @"trips/simulated";
+    NSString* relativeUrlString = @"trips";
     
     NSDictionary* originDictionary = @{
                                        @"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude],
