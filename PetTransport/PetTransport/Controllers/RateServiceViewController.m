@@ -8,8 +8,9 @@
 
 #import "RateServiceViewController.h"
 #import "RateModel.h"
+#import "RateDriverService.h"
 
-@interface RateServiceViewController ()
+@interface RateServiceViewController () <RateDriverServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *firstStar;
 @property (weak, nonatomic) IBOutlet UIButton *secondStar;
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *appServiceSwitch;
 
 @property (strong,nonatomic) RateModel* rate;
+@property (strong,nonatomic)RateDriverService* rateService;
 
 @end
 
@@ -33,7 +35,7 @@
     [super viewDidLoad];
     
     self.rate = [RateModel new];
-    
+    self.rateService = [RateDriverService new];
     [self setImprovementHidden:YES];
     [self setRateButtonEnabled:NO];
     
@@ -57,6 +59,7 @@
     [self setUnselected:self.fifthStar];
     [self setImprovementHidden:NO];
     [self enableRatebuttonIfShould];
+    self.rate.rating = 1;
 }
 
 - (IBAction)secondStarPressed:(id)sender {
@@ -67,6 +70,7 @@
     [self setUnselected:self.fifthStar];
     [self setImprovementHidden:NO];
     [self enableRatebuttonIfShould];
+    self.rate.rating = 2;
 }
 
 - (IBAction)thirdStarPressed:(id)sender {
@@ -77,6 +81,7 @@
     [self setUnselected:self.fifthStar];
     [self setImprovementHidden:NO];
     [self enableRatebuttonIfShould];
+    self.rate.rating = 3;
 }
 
 - (IBAction)fourthStarPressed:(id)sender {
@@ -87,6 +92,8 @@
     [self setUnselected:self.fifthStar];
     [self setImprovementHidden:YES];
     [self setRateButtonEnabled:YES];
+    self.rate.rating = 4;
+    [self resetImprovementValues];
 }
 
 - (IBAction)fifthStarPressed:(id)sender {
@@ -97,7 +104,19 @@
     [self setSelected:self.fifthStar];
     [self setImprovementHidden:YES];
     [self setRateButtonEnabled:YES];
+    self.rate.rating = 5;
+    [self resetImprovementValues];
+}
 
+- (void)resetImprovementValues{
+    
+    self.carServiceSwitch.on = NO;
+    self.driverServiceSwitch.on = NO;
+    self.appServiceSwitch.on = NO;
+    
+    self.rate.app = NO;
+    self.rate.vehicle = NO;
+    self.rate.driver = NO;
 }
 
 - (void)setImprovementHidden:(BOOL)shouldHide{
@@ -133,6 +152,16 @@
 }
 
 - (IBAction)rateButtonPressed:(id)sender {
+    [self.rateService postRate:self.rate];
+}
+
+#pragma mark - RateDriverServiceDelegate
+
+- (void)rateDriverServiceSuccededWithResponse:(NSDictionary*)response{
+    //TODO
+}
+
+- (void)rateDriverServiceFailedWithError:(NSError*)error{
     //TODO
 }
 
