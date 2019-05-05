@@ -14,6 +14,7 @@
 #import "AuthService.h"
 #import "DriverService.h"
 #import "DriverMenuViewController.h"
+#import "BaseViewController.h"
 
 @interface DriverLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 

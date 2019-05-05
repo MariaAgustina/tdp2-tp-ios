@@ -10,23 +10,45 @@
 
 @interface BaseViewController ()
 
+@property UIActivityIndicatorView *activityView;
+
 @end
 
 @implementation BaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupActivityIndicatorView];
 }
 
-/*
-#pragma mark - Navigation
+- (void)setupActivityIndicatorView{
+    self.activityView = [[UIActivityIndicatorView alloc]
+                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    self.activityView.color = [UIColor whiteColor];
+    self.activityView.backgroundColor = [UIColor blackColor];
+    
+    CGRect newFrame = self.activityView.frame;
+    CGFloat size = 80;
+    
+    newFrame.size.width = size;
+    newFrame.size.height = size;
+    [self.activityView setFrame:newFrame];
+    
+    self.activityView.layer.cornerRadius = 10;
+    self.activityView.center= CGPointMake(self.view.center.x, self.view.center.y-size/2);
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+- (void)showLoading{
+    [self.activityView startAnimating];
+    [self.view addSubview:self.activityView];
+    [self.view bringSubviewToFront:self.activityView];
+}
+
+- (void)hideLoading{
+    [self.activityView stopAnimating];
+    [self.activityView removeFromSuperview];
+}
 
 @end
