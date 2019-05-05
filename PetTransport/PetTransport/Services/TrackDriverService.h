@@ -11,7 +11,9 @@
 
 typedef NS_ENUM(NSInteger, DriverStatus) {
     DRIVER_STATUS_GOING = 1,
-    DRIVER_STATUS_IN_ORIGIN = 2
+    DRIVER_STATUS_IN_ORIGIN = 2,
+    DRIVER_STATUS_CANCELLED = 3,
+    DRIVER_STATUS_SEARCHING = 4
 };
 
 @protocol TrackDriverServideDelegate <NSObject>

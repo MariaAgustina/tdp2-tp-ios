@@ -9,7 +9,7 @@
 #import "TripInformationViewController.h"
 #import "TripService.h"
 #import "UIViewController+ShowAlerts.h"
-#import "TrackDriverViewController.h"
+#import "WaitingTripConfirmationViewController.h"
 
 double const kMaximunPetsQuantity = 3;
 
@@ -181,7 +181,7 @@ double const kMaximunPetsQuantity = 3;
     self.trip.tripId = [[response objectForKey:@"id"] integerValue];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TrackDriverViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TrackDriverViewController"];
+    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
     startedTripVC.trip = self.trip;
     
     [self.navigationController pushViewController:startedTripVC animated:YES];

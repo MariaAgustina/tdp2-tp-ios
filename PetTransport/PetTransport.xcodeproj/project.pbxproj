@@ -16,6 +16,7 @@
 		586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
+		589798CF227F58480047EC92 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */; };
 		58B34D9D2275D72200277F5A /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B34D9C2275D72200277F5A /* ApiClient.m */; };
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
@@ -82,6 +83,8 @@
 		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
 		58754C0722625E5C00F12643 /* FbProfileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FbProfileManager.h; sourceTree = "<group>"; };
 		58754C0822625E5C00F12643 /* FbProfileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FbProfileManager.m; sourceTree = "<group>"; };
+		589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitingTripConfirmationViewController.h; sourceTree = "<group>"; };
+		589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitingTripConfirmationViewController.m; sourceTree = "<group>"; };
 		58B34D9B2275D72200277F5A /* ApiClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
 		58B34D9C2275D72200277F5A /* ApiClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
 		58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterClientViewController.h; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
 				938B9A02227F36E5001EBBEC /* RateServiceViewController.h */,
 				938B9A03227F36E5001EBBEC /* RateServiceViewController.m */,
+				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
+				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,7 +273,6 @@
 				E86903565904018278ACDC05 /* Pods-PetTransport.debug.xcconfig */,
 				AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -514,15 +518,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PetTransport-checkManifestLockResult.txt",
 			);
@@ -536,8 +536,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PetTransport/Pods-PetTransport-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
@@ -545,8 +543,6 @@
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
@@ -587,6 +583,7 @@
 				93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
 				93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */,
+				589798CF227F58480047EC92 /* WaitingTripConfirmationViewController.m in Sources */,
 				58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */,
 				58F64EDB2274FD2000EAA7D8 /* DriverService.m in Sources */,
 				93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */,
