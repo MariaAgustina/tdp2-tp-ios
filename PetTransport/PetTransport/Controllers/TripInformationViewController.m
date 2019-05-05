@@ -131,13 +131,18 @@ double const kMaximunPetsQuantity = 3;
     self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:(PaymentMethodType)sender.selectedSegmentIndex];
 }
 
+- (BOOL)isScheduleTripActivated {
+    return self.timeSelectionSwitch.on;
+}
+
 - (IBAction)searchTripButtonPressed:(id)sender {
-    
     if(![self.trip isValid]){
         return;
     }
 
     self.trip.comments = self.commentsTextView.text;
+    self.trip.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
+    
     [self.service postTrip:self.trip];
 }
 
@@ -157,7 +162,7 @@ double const kMaximunPetsQuantity = 3;
 }
 
 - (void)updateTimeSelectionView {
-    if (self.timeSelectionSwitch.on) {
+    if ([self isScheduleTripActivated]) {
         self.timeSelectionLabel.text = @"Programar viaje para";
         self.datePicker.hidden = NO;
         self.datePickerHeightConstraint.constant = 200;
