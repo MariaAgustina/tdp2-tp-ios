@@ -37,6 +37,7 @@
 }
 
 - (IBAction)loginButtonPressed:(id)sender {
+    [self showLoading];
     self.pendingAction = @"Login";
     NSLog(@"Login button pressed");
     if ([self.fbProfileManager getToken] == nil){
@@ -137,6 +138,7 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didLoginWithProfile:(DriverProfile*)profile{
+    [self hideLoading];
     [[DriverService sharedInstance] setDriverWithToken:profile.fbToken];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -147,6 +149,7 @@
 }
 
 - (void)didFailLogin: (BOOL)inexistentUser {
+    [self hideLoading];
     if (inexistentUser){
         self.pendingAction = @"Registration";
         [self loadProfile];
