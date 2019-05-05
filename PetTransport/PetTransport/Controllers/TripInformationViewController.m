@@ -160,7 +160,7 @@ double const kMaximunPetsQuantity = 3;
     if (self.timeSelectionSwitch.on) {
         self.timeSelectionLabel.text = @"Programar viaje para";
         self.datePicker.hidden = NO;
-        self.datePickerHeightConstraint.constant = 150;
+        self.datePickerHeightConstraint.constant = 200;
         [self.view updateConstraints];
         return;
     }

@@ -472,28 +472,29 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="577"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIb-ng-huK" userLabel="Time Selection View">
-                                        <rect key="frame" x="18.5" y="20" width="337.5" height="191"/>
+                                        <rect key="frame" x="18.5" y="20" width="337.5" height="256"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NCz-dT-TFY">
-                                                <rect key="frame" x="15" y="5" width="51" height="31"/>
+                                                <rect key="frame" x="15" y="10" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="timeSelectionSwitchChanged:" destination="rM7-2L-X50" eventType="valueChanged" id="RRv-QG-ceA"/>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiero viajar ahora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0W-Cz-OrP">
-                                                <rect key="frame" x="79" y="10" width="243.5" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="79" y="13.5" width="243.5" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="B9y-Wf-9MN">
-                                                <rect key="frame" x="5" y="41" width="327.5" height="150"/>
+                                                <rect key="frame" x="5" y="46" width="327.5" height="200"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="K4d-c5-4Ws"/>
+                                                    <constraint firstAttribute="height" constant="200" id="K4d-c5-4Ws"/>
                                                 </constraints>
                                                 <date key="date" timeIntervalSinceReferenceDate="578757201.21730995">
                                                     <!--2019-05-05 13:53:21 +0000-->
                                                 </date>
+                                                <locale key="locale" localeIdentifier="es_AR"/>
                                             </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -501,16 +502,16 @@
                                             <constraint firstItem="NCz-dT-TFY" firstAttribute="leading" secondItem="eIb-ng-huK" secondAttribute="leading" constant="15" id="2Hs-js-p76"/>
                                             <constraint firstItem="B9y-Wf-9MN" firstAttribute="top" secondItem="NCz-dT-TFY" secondAttribute="bottom" constant="5" id="3SX-pB-ouv"/>
                                             <constraint firstItem="A0W-Cz-OrP" firstAttribute="centerY" secondItem="NCz-dT-TFY" secondAttribute="centerY" id="Ftq-Sl-gWP"/>
-                                            <constraint firstItem="NCz-dT-TFY" firstAttribute="top" secondItem="eIb-ng-huK" secondAttribute="top" constant="5" id="LYh-ih-ebW"/>
+                                            <constraint firstItem="NCz-dT-TFY" firstAttribute="top" secondItem="eIb-ng-huK" secondAttribute="top" constant="10" id="LYh-ih-ebW"/>
                                             <constraint firstAttribute="trailing" secondItem="A0W-Cz-OrP" secondAttribute="trailing" constant="15" id="Mux-eq-PzO"/>
                                             <constraint firstAttribute="trailing" secondItem="B9y-Wf-9MN" secondAttribute="trailing" constant="5" id="Q2X-tT-PUE"/>
                                             <constraint firstItem="B9y-Wf-9MN" firstAttribute="leading" secondItem="eIb-ng-huK" secondAttribute="leading" constant="5" id="cmz-sk-teC"/>
                                             <constraint firstItem="A0W-Cz-OrP" firstAttribute="leading" secondItem="NCz-dT-TFY" secondAttribute="trailing" constant="15" id="oMU-cc-kSE"/>
-                                            <constraint firstAttribute="bottom" secondItem="B9y-Wf-9MN" secondAttribute="bottom" id="zMc-Gv-LUG"/>
+                                            <constraint firstAttribute="bottom" secondItem="B9y-Wf-9MN" secondAttribute="bottom" constant="10" id="zMc-Gv-LUG"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d6-ue-hw2">
-                                        <rect key="frame" x="18.5" y="231" width="337.5" height="230"/>
+                                        <rect key="frame" x="18.5" y="296" width="337.5" height="230"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantidad de mascotas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqz-V1-Ipt">
                                                 <rect key="frame" x="71.5" y="5" width="195" height="24"/>
@@ -621,7 +622,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0IM-4X-vUX">
-                                        <rect key="frame" x="18.5" y="481" width="337.5" height="54"/>
+                                        <rect key="frame" x="18.5" y="546" width="337.5" height="54"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acompañante" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dX-2T-dcQ">
                                                 <rect key="frame" x="15" y="15" width="122" height="24"/>
@@ -647,7 +648,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JOs-Bf-mQG">
-                                        <rect key="frame" x="18.5" y="555" width="337.5" height="101"/>
+                                        <rect key="frame" x="18.5" y="620" width="337.5" height="101"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forma de Pago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PI-rR-tkH">
                                                 <rect key="frame" x="15" y="15" width="130" height="24"/>
@@ -679,7 +680,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0F-qs-ioA">
-                                        <rect key="frame" x="18.5" y="676" width="337.5" height="162"/>
+                                        <rect key="frame" x="18.5" y="741" width="337.5" height="162"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comentarios" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEo-GR-iyG">
                                                 <rect key="frame" x="15" y="15" width="112" height="24"/>
