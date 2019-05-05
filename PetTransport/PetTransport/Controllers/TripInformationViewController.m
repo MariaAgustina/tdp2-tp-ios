@@ -68,6 +68,8 @@ double const kMaximunPetsQuantity = 3;
     
     self.commentsTextView.delegate = self;
     
+    [self configDatePicker];
+    
     [self setupView:self.petsView];
     [self setupView:self.escoltView];
     [self setupView:self.paymentMethodView];
@@ -91,7 +93,6 @@ double const kMaximunPetsQuantity = 3;
     self.searchTripButton.enabled = [self.trip isValid];
     self.searchTripButton.backgroundColor = (self.searchTripButton.enabled) ? [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:1.0f] : [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:0.5f];
 }
-
 
 - (IBAction)smallStepperPressed:(UIStepper *)sender {
     self.trip.smallPetsQuantity = sender.value;
@@ -130,7 +131,6 @@ double const kMaximunPetsQuantity = 3;
     self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:(PaymentMethodType)sender.selectedSegmentIndex];
 }
 
-
 - (IBAction)searchTripButtonPressed:(id)sender {
     
     if(![self.trip isValid]){
@@ -139,6 +139,17 @@ double const kMaximunPetsQuantity = 3;
 
     self.trip.comments = self.commentsTextView.text;
     [self.service postTrip:self.trip];
+}
+
+- (void)configDatePicker {
+    NSDate *now = [NSDate date];
+    [self.datePicker setMinimumDate:now];
+    
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = 7;
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *maxDate = [theCalendar dateByAddingComponents:dayComponent toDate:now options:0];
+    [self.datePicker setMaximumDate:maxDate];
 }
 
 - (IBAction)timeSelectionSwitchChanged:(id)sender {
