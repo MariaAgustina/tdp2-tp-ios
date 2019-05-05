@@ -11,8 +11,10 @@
 #import "LocationCoordinate.h"
 #import "TrackDriverService.h"
 #import "UIViewController+ShowAlerts.h"
+#import "FinishTripService.h"
+#import "RateServiceViewController.h"
 
-@interface TrackDriverViewController () <TrackDriverServideDelegate>
+@interface TrackDriverViewController () <TrackDriverServideDelegate, FinishTripServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
@@ -20,6 +22,8 @@
 @property (strong, nonatomic) GMSMarker *originMarker;
 @property BOOL tracking;
 @property (strong, nonatomic) NSTimer *timer;
+
+@property (strong, nonatomic) FinishTripService *finishTripService;
 
 @end
 
@@ -30,6 +34,18 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Seguimiento";
+    self.finishTripService = [[FinishTripService alloc]initWithDelegate:self];
+    
+   //Esto es solo para finalizar el viaje y mostrar los ratings, luego vamos a tener que cambiarlo y sacar el timer
+    [NSTimer scheduledTimerWithTimeInterval:5.0
+                                     target:self
+                                   selector:@selector(endTrip)
+                                   userInfo:nil
+                                    repeats:NO];
+}
+
+- (void)endTrip{
+    [self.finishTripService finishTrip:self.trip];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -148,5 +164,16 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     [self showInternetConexionAlert];
 }
 
+#pragma mark - FinishTripService
 
+- (void)finishTripServiceSuccededWithResponse:(NSDictionary*)response{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RateServiceViewController *rateServiceViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RateServiceViewController"];
+    rateServiceViewController.trip = self.trip;
+    [self.navigationController pushViewController:rateServiceViewController animated:YES];
+}
+
+- (void)finishTripServiceFailedWithError:(NSError*)error{
+    
+}
 @end

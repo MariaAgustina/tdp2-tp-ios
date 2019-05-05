@@ -35,7 +35,7 @@
     [super viewDidLoad];
     
     self.rate = [RateModel new];
-    self.rateService = [RateDriverService new];
+    self.rateService = [[RateDriverService alloc]initWithDelegate:self];
     [self setImprovementHidden:YES];
     [self setRateButtonEnabled:NO];
     
@@ -152,17 +152,17 @@
 }
 
 - (IBAction)rateButtonPressed:(id)sender {
-    [self.rateService postRate:self.rate];
+    [self.rateService postRate:self.rate trip:self.trip];
 }
 
 #pragma mark - RateDriverServiceDelegate
 
 - (void)rateDriverServiceSuccededWithResponse:(NSDictionary*)response{
-    //TODO
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)rateDriverServiceFailedWithError:(NSError*)error{
-    //TODO
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

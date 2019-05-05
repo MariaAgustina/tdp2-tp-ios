@@ -24,9 +24,9 @@
     return self;
 }
 
--(void)postRate:(RateModel*)rate {
-    
-    NSString* relativeUrlString = @"trips/14/rate/driver";
+- (void)postRate:(RateModel*)rate trip:(Trip*)trip{
+
+    NSString* relativeUrlString =[NSString stringWithFormat:@"trips/%ld/rate/driver",(long)trip.tripId] ;
     
     NSDictionary* suggestionsDictionary = @{
                                        @"app": [NSNumber numberWithBool:rate.app],

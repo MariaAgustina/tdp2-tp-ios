@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RateModel.h"
+#import "Trip.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RateDriverService : NSObject
 
 - (instancetype)initWithDelegate:(id <RateDriverServiceDelegate>)delegate;
-- (void)postRate:(RateModel*)rate;
+- (void)postRate:(RateModel*)rate trip:(Trip*)trip;
 
 @end
 
