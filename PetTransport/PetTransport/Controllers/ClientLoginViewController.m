@@ -13,7 +13,7 @@
 #import "RegisterClientViewController.h"
 #import "ClientProfile.h"
 #import "AuthService.h"
-
+#import "ClientService.h"
 
 @interface ClientLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 
@@ -135,7 +135,9 @@
 }
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didLoginWithToken:(NSString *)token {
+- (void)didLoginWithProfile: (ClientProfile*)profile{
+    [[ClientService sharedInstance] setClientWithToken:profile.fbToken];
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"ClientMenuViewController"];
     

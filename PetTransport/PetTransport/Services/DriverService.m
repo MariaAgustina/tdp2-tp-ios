@@ -8,6 +8,7 @@
 
 #import "DriverService.h"
 #import "LocationManager.h"
+#import "ApiClient.h"
 
 @interface DriverService () <LocationManagerDelegate>
 
@@ -16,6 +17,7 @@
 @property (strong, nonatomic) NSTimer *statusTimer;
 @property (strong,nonatomic) LocationManager *locationManager;
 @property struct LocationCoordinate currentLocation;
+@property (copy,nonatomic)NSString* driverStatus;
 
 @end
 
@@ -62,16 +64,54 @@
 
 - (void)updateStatus {
     if (self.isWorking){
-        NSLog(@"Trabajando");
+        self.driverStatus = @"Disponible";
     } else {
-        NSLog(@"descansando");
+        self.driverStatus = @"No disponible";
     }
-    NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
+//    NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
+    
+    if(!self.currentLocation.longitude || !self.currentLocation.latitude){
+        return;
+    }
+    [self putStatusWithBody:[self bodyWithLocationAndStatus]];
 }
 
+
 - (void)stopUpdatingStatus {
+    //TODO: cancel pending request
     [self.statusTimer invalidate];
     self.statusTimer = nil;
+}
+
+- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary{
+    NSMutableDictionary* body = [[self bodyWithLocationAndStatus] mutableCopy];
+    if(tripOfferDictionary){
+        [body setValue:tripOfferDictionary forKey:@"tripOffer"];
+    }
+    [self putStatusWithBody:[body copy]];
+}
+
+- (NSDictionary*)bodyWithLocationAndStatus{
+    NSDictionary* locationDictionary = @{@"lat": [NSNumber numberWithDouble: self.currentLocation.latitude],@"lng": [NSNumber numberWithDouble: self.currentLocation.longitude]};
+    
+    return @{
+             @"currentLocation": locationDictionary,
+             @"status": self.driverStatus
+             };
+}
+
+- (void)putStatusWithBody:(NSDictionary*)body{
+    NSString *relativeUrlString = @"drivers/status";
+    
+    ApiClient *apiClient = [ApiClient new];
+    
+    [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
+        NSLog(@"response = %@",responseObject);
+        [self.delegate driverServiceSuccededWithResponse:responseObject];
+        
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Fallo al actualizar el status del conductor");
+    }];
 }
 
 #pragma mark - Location

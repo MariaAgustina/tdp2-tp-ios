@@ -13,6 +13,7 @@
 #import "RegisterClientViewController.h"
 #import "AuthService.h"
 #import "DriverService.h"
+#import "DriverMenuViewController.h"
 
 @interface DriverLoginViewController () <FbProfileManagerDelegate, AuthServiceDelegate>
 
@@ -134,13 +135,14 @@
 }
 
 # pragma mark - AuthServiceDelegate methods
-- (void)didLoginWithToken:(NSString *)token {
-    [[DriverService sharedInstance] setDriverWithToken:token];
+- (void)didLoginWithProfile:(DriverProfile*)profile{
+    [[DriverService sharedInstance] setDriverWithToken:profile.fbToken];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *clientMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverMenuViewController"];
+    DriverMenuViewController *driverMenuVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverMenuViewController"];
+    driverMenuVC.driver = profile;
     
-    [self.navigationController pushViewController:clientMenuVC animated:YES];
+    [self.navigationController pushViewController:driverMenuVC animated:YES];
 }
 
 - (void)didFailLogin: (BOOL)inexistentUser {

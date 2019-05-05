@@ -8,6 +8,9 @@
 
 #import "ClientProfile.h"
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <GooglePlaces/GooglePlaces.h>
+#import "LocationCoordinate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) UIImage *drivingRecordImage;
 @property (strong,nonatomic) UIImage *policyImage;
 @property (strong,nonatomic) UIImage *transportImage;
+@property struct LocationCoordinate currentLocation;
+@property (assign,nonatomic) NSString *status;
 
 @end
 

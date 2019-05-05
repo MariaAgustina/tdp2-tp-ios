@@ -8,10 +8,13 @@
 
 #import "DriverMenuViewController.h"
 #import "DriverService.h"
+#import "LocationManager.h"
+#import "TripOffer.h"
 
-@interface DriverMenuViewController ()
+@interface DriverMenuViewController () <DriverServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *availableSwitch;
+@property (weak, nonatomic) NSTimer *retryTimer;
 
 @end
 
@@ -19,6 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    DriverService *driverService = [DriverService sharedInstance];
+    driverService.delegate = self;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -28,10 +35,60 @@
 
 - (IBAction)availableSwitchDidChange:(id)sender {
     DriverService *driverService = [DriverService sharedInstance];
+    
     if (self.availableSwitch.on){
         [driverService setWorking];
     } else {
         [driverService setNotWorking];
+    }
+}
+
+- (void)showNewTrip:(TripOffer*)tripOffer{
+    
+    BOOL isShowingAlert = (self.presentedViewController != nil);
+    if(isShowingAlert){
+        return;
+    }
+    
+    //Lo pongo en 40 para que se cancele primero del lado del back y no me vuelva a aparecer el cartelito
+    [NSTimer scheduledTimerWithTimeInterval:40.0
+                                     target:self
+                                   selector:@selector(closeAlert)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    NSString* message =[NSString stringWithFormat:@"%@%@\r%@%@", @"Origen: ",tripOffer.originAddress,@"Destino: ",tripOffer.destinationAddress];
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        NSDictionary* params = [tripOffer updateDictionaryForStatus:ACCEPTED];
+        [[DriverService sharedInstance] putStatusWithTripOffer:params];
+    }];
+    [alert addAction:okAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Rechazar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        NSDictionary* params = [tripOffer updateDictionaryForStatus:REJECTED];
+        [[DriverService sharedInstance] putStatusWithTripOffer:params];
+    }];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)closeAlert{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Driver Service
+
+- (void)driverServiceSuccededWithResponse:(NSDictionary*)response
+{
+    NSDictionary* tripOfferDictionary = [response objectForKey:@"tripOffer"];
+    if(!tripOfferDictionary){
+        return;
+    }
+    
+    TripOffer* tripOffer = [[TripOffer alloc] initWithDictionary:tripOfferDictionary];
+    if (tripOffer.status == PENDING){
+        [self showNewTrip:tripOffer];
     }
 }
 

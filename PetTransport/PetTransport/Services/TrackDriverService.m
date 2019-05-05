@@ -8,15 +8,14 @@
 
 #import "TrackDriverService.h"
 #import <UIKit/UIKit.h>
-#import "AFNetworking.h"
 #import "constants.h"
+#import "ApiClient.h"
 
 @interface TrackDriverService ()
 
 @property (nonatomic, weak) id<TrackDriverServideDelegate> delegate;
 @property (strong, nonatomic) NSTimer *timer;
 @property NSInteger tripId;
-@property (strong, nonatomic) AFHTTPSessionManager *httpManager;
 
 @end
 
@@ -34,15 +33,6 @@
 - (id)init {
     self = [super init];
     return self;
-}
-
-- (AFHTTPSessionManager *)httpManager {
-    if (_httpManager == nil){
-        _httpManager = [AFHTTPSessionManager manager];
-        _httpManager.requestSerializer = [AFJSONRequestSerializer serializer];
-
-    }
-    return _httpManager;
 }
 
 - (void)startTrackingDriverForTrip:(NSInteger)tripId WithDelegate:(id<TrackDriverServideDelegate>)delegate {
@@ -65,14 +55,14 @@
         return;
     }
     
-    NSString* relativeUrl = [NSString stringWithFormat:@"trips/%ld/location",self.tripId];
-    NSString* urlString = [NSString stringWithFormat:@"%@/%@",API_BASE_URL, relativeUrl];
-    [self.httpManager GET:urlString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld/location",self.tripId];
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
         struct LocationCoordinate location = [self coordinateFromResponse:responseObject];
         DriverStatus status = [self statusFromResponse:responseObject];
         [self didUpdateDriverLocation:location withStatus:status];
-        
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
+    } failure:^(NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
         [self didFailUpdating];
     }];

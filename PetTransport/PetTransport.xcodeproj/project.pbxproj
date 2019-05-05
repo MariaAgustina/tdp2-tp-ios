@@ -19,6 +19,7 @@
 		58B34D9D2275D72200277F5A /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B34D9C2275D72200277F5A /* ApiClient.m */; };
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
+		58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CB7CDB227E1BA90007F3DE /* ClientService.m */; };
 		58E20BA12268D48800E024DF /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA02268D48800E024DF /* AuthService.m */; };
 		58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA32268F70900E024DF /* ClientLoginViewController.m */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
@@ -27,6 +28,7 @@
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
+		938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B99FD227DFB58001EBBEC /* TripOffer.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
 		9396CA0922474B3400F6248F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0822474B3400F6248F /* ViewController.m */; };
 		9396CA0C22474B3400F6248F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9396CA0A22474B3400F6248F /* Main.storyboard */; };
@@ -86,6 +88,8 @@
 		58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterClientViewController.m; sourceTree = "<group>"; };
 		58BE1D1A2263AA960000C9D0 /* ClientProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientProfile.h; sourceTree = "<group>"; };
 		58BE1D1B2263AA960000C9D0 /* ClientProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientProfile.m; sourceTree = "<group>"; };
+		58CB7CDA227E1BA90007F3DE /* ClientService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientService.h; sourceTree = "<group>"; };
+		58CB7CDB227E1BA90007F3DE /* ClientService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientService.m; sourceTree = "<group>"; };
 		58E20B9F2268D48800E024DF /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		58E20BA02268D48800E024DF /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
 		58E20BA22268F70900E024DF /* ClientLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientLoginViewController.h; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 		937ABFBB225400DB00086554 /* TripService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripService.h; sourceTree = "<group>"; };
 		937ABFBC225400DB00086554 /* TripService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripService.m; sourceTree = "<group>"; };
 		937ABFBE225401AF00086554 /* TripServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripServiceDelegate.h; sourceTree = "<group>"; };
+		938B99FC227DFB58001EBBEC /* TripOffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripOffer.h; sourceTree = "<group>"; };
+		938B99FD227DFB58001EBBEC /* TripOffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripOffer.m; sourceTree = "<group>"; };
 		9396CA0122474B3400F6248F /* PetTransport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetTransport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9396CA0422474B3400F6248F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9396CA0522474B3400F6248F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -213,6 +219,8 @@
 				58E20BA02268D48800E024DF /* AuthService.m */,
 				58F64ED92274FD2000EAA7D8 /* DriverService.h */,
 				58F64EDA2274FD2000EAA7D8 /* DriverService.m */,
+				58CB7CDA227E1BA90007F3DE /* ClientService.h */,
+				58CB7CDB227E1BA90007F3DE /* ClientService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -260,6 +268,8 @@
 			children = (
 				937ABFB42253DAF000086554 /* Trip.h */,
 				937ABFB52253DAF000086554 /* Trip.m */,
+				938B99FC227DFB58001EBBEC /* TripOffer.h */,
+				938B99FD227DFB58001EBBEC /* TripOffer.m */,
 				93D0BEBF226A2AD700FEF7C9 /* PaymentMethod.h */,
 				93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */,
 				937ABFBE225401AF00086554 /* TripServiceDelegate.h */,
@@ -527,9 +537,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */,
 				586235AA226A60BE007D9A0A /* ClientMenuViewController.m in Sources */,
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
+				938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */,

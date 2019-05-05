@@ -16,4 +16,14 @@
                           success: (void (^_Nonnull)(id _Nullable))success
                           failure:(void (^_Nonnull)(NSError * _Nonnull, NSInteger statusCode))failure;
 
+- (void)putWithRelativeUrlString: (NSString*_Nonnull)relativeUrlString
+                            body: (NSDictionary*_Nonnull)body
+                           token: (NSString*_Nullable)token
+                         success: (void (^_Nonnull)(id _Nullable))success
+                         failure:(void (^_Nonnull)(NSError * _Nonnull))failure;
+
+- (void)getWithRelativeUrlString: (NSString*_Nonnull)relativeUrlString
+                           token: (NSString*_Nullable)token
+                         success: (void (^_Nonnull)(id _Nullable))success
+                         failure:(void (^_Nonnull)(NSError * _Nonnull))failure;
 @end
