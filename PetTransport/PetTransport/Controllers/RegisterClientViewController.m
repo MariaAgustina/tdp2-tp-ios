@@ -47,6 +47,7 @@
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
+    [self showLoading];
     self.profile.address = self.addressField.text;
     self.profile.email = self.emailField.text;
     self.profile.phoneNumber = self.phoneField.text;
@@ -178,6 +179,7 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegister {
+    [self hideLoading];
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"Registro exitoso!"
                                  message:nil
@@ -194,6 +196,7 @@
 }
 
 - (void)didFailRegistering: (BOOL)duplicatedUser {
+    [self hideLoading];
     if (duplicatedUser){
         [self showError:@"El usuario ya estaba registrado" shouldGoBack:YES];
         return;
