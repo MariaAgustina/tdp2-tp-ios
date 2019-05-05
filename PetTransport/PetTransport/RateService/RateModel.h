@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL driver;
 @property (nonatomic) BOOL app;
 @property (nonatomic) BOOL vehicle;
+@property (nonatomic) NSInteger rating;
 
 @end
 
