@@ -38,7 +38,12 @@ double const kMaximunPetsQuantity = 3;
 @property (weak, nonatomic) IBOutlet UIView *escoltView;
 @property (weak, nonatomic) IBOutlet UIView *paymentMethodView;
 @property (weak, nonatomic) IBOutlet UIView *commentsView;
+@property (weak, nonatomic) IBOutlet UIView *timeSelectionView;
 
+@property (weak, nonatomic) IBOutlet UISwitch *timeSelectionSwitch;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UILabel *timeSelectionLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *datePickerHeightConstraint;
 
 @end
 
@@ -68,7 +73,7 @@ double const kMaximunPetsQuantity = 3;
     [self setupView:self.paymentMethodView];
     [self setupView:self.commentsView];
     [self setupView:self.commentsTextView];
-
+    [self setupView:self.timeSelectionView];
 }
 
 - (void)setupView:(UIView*)view {
@@ -78,6 +83,7 @@ double const kMaximunPetsQuantity = 3;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [self updateTimeSelectionView];
     [self setupSearchTripButton];
 }
 
@@ -117,9 +123,7 @@ double const kMaximunPetsQuantity = 3;
 
 }
 - (IBAction)escortSwitchPressed:(UISwitch *)sender {
-    
     self.trip.shouldHaveEscolt = sender.on;
-    
 }
 
 - (IBAction)paymentMethodSelected:(UISegmentedControl *)sender {
@@ -135,6 +139,24 @@ double const kMaximunPetsQuantity = 3;
 
     self.trip.comments = self.commentsTextView.text;
     [self.service postTrip:self.trip];
+}
+
+- (IBAction)timeSelectionSwitchChanged:(id)sender {
+    [self updateTimeSelectionView];
+}
+
+- (void)updateTimeSelectionView {
+    if (self.timeSelectionSwitch.on) {
+        self.timeSelectionLabel.text = @"Programar viaje para";
+        self.datePicker.hidden = NO;
+        self.datePickerHeightConstraint.constant = 150;
+        [self.view updateConstraints];
+        return;
+    }
+    self.timeSelectionLabel.text = @"Quiero viajar ahora";
+    self.datePicker.hidden = YES;
+    self.datePickerHeightConstraint.constant = 0;
+    [self.view updateConstraints];
 }
 
 #pragma mark - TripServiceDelegate
