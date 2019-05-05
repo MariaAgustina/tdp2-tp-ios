@@ -8,7 +8,7 @@
 
 #import "RateClientViewController.h"
 
-@interface RateClientViewController ()
+@interface RateClientViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *firstStar;
 @property (weak, nonatomic) IBOutlet UIButton *secondStar;
@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *fourthStar;
 @property (weak, nonatomic) IBOutlet UIButton *fifthStar;
 @property (weak, nonatomic) IBOutlet UIButton *rateButton;
+@property (weak, nonatomic) IBOutlet UIView *commentsView;
+@property (weak, nonatomic) IBOutlet UITextView *commentsTextArea;
+
+@property NSInteger rating;
 
 @end
 
@@ -23,7 +27,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.rating = 0;
+    
     [self setRateButtonEnabled:NO];
+    [self setupView:self.commentsView];
+    
+    self.commentsTextArea.layer.borderWidth = 1;
+    self.commentsTextArea.layer.borderColor =  [UIColor colorWithRed:220/255 green:220/255 blue:220/255 alpha:0.5].CGColor;
+    self.commentsTextArea.layer.cornerRadius = 8.0;
+    self.commentsTextArea.delegate = self;
+}
+
+- (void)setupView:(UIView*)view {
+    view.layer.borderWidth = 0.5;
+    view.layer.borderColor =  [UIColor colorWithRed:220/255 green:220/255 blue:220/255 alpha:0.5].CGColor;
+    view.layer.cornerRadius = 8.0;
 }
 
 - (IBAction)firstStarPressed:(id)sender {
@@ -33,6 +52,7 @@
     [self setUnselected:self.fourthStar];
     [self setUnselected:self.fifthStar];
     [self setRateButtonEnabled:YES];
+    self.rating = 1;
 }
 
 - (IBAction)secondStarPressed:(id)sender {
@@ -42,6 +62,7 @@
     [self setUnselected:self.fourthStar];
     [self setUnselected:self.fifthStar];
     [self setRateButtonEnabled:YES];
+    self.rating = 2;
 }
 
 - (IBAction)thirdStarPressed:(id)sender {
@@ -51,6 +72,7 @@
     [self setUnselected:self.fourthStar];
     [self setUnselected:self.fifthStar];
     [self setRateButtonEnabled:YES];
+    self.rating = 3;
 }
 
 - (IBAction)fourthStarPressed:(id)sender {
@@ -60,6 +82,7 @@
     [self setSelected:self.fourthStar];
     [self setUnselected:self.fifthStar];
     [self setRateButtonEnabled:YES];
+    self.rating = 4;
 }
 
 - (IBAction)fifthStarPressed:(id)sender {
@@ -69,6 +92,7 @@
     [self setSelected:self.fourthStar];
     [self setSelected:self.fifthStar];
     [self setRateButtonEnabled:YES];
+    self.rating = 5;
 }
 
 - (void)setSelected:(UIButton*)star{
@@ -87,7 +111,17 @@
 }
 
 - (IBAction)rateButtonPressed:(id)sender {
+    NSLog(@"rating: %ld", self.rating);
+    NSLog(@"observacion: %@", self.commentsTextArea.text);
     NSLog(@"rate button pressed");
 }
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSInteger totalLength = [[textView text] length] - range.length + text.length;
+    return (totalLength <= 500);
+}
+
 
 @end
