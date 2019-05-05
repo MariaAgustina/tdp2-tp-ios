@@ -106,32 +106,7 @@
     ApiClient *apiClient = [ApiClient new];
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-        //TODO: remove hardcoded
-        
-        responseObject = @{
-                           @"tripOffer": @{
-                               @"origin": @{
-                                   @"lat": @34.023,
-                                   @"lng": @30.001,
-                                   @"address":@"Julian Alvarez 2744"
-                               },
-                               @"destination": @{
-                                   @"lat": @15,
-                                   @"lng": @20,
-                                   @"address":@"Honduras 4367"
-                               },
-                               @"id": @20,
-                               @"status": @"Pendiente",
-                               @"petQuantities": @{
-                                   @"big": @1,
-                                   @"small": @0,
-                                   @"medium": @0
-                               },
-                               @"paymentMethod": @"mp",
-                               @"comments": @"",
-                               @"clientId": @1
-                           }
-                           };
+
         [self.delegate driverServiceSuccededWithResponse:responseObject];
         
     } failure:^(NSError * _Nonnull error) {
