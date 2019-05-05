@@ -36,6 +36,7 @@ typedef enum paymentMethodsTypes
 @property (assign,nonatomic) BOOL shouldHaveEscolt;
 @property (strong,nonatomic) PaymentMethod* selectedPaymentMethod;
 @property (copy,nonatomic) NSString* comments;
+@property (strong, nonatomic) NSDate *scheduleDate;
 
 
 - (BOOL)hasValidAdresses;

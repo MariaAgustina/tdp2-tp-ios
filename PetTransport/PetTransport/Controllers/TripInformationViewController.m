@@ -38,7 +38,12 @@ double const kMaximunPetsQuantity = 3;
 @property (weak, nonatomic) IBOutlet UIView *escoltView;
 @property (weak, nonatomic) IBOutlet UIView *paymentMethodView;
 @property (weak, nonatomic) IBOutlet UIView *commentsView;
+@property (weak, nonatomic) IBOutlet UIView *timeSelectionView;
 
+@property (weak, nonatomic) IBOutlet UISwitch *timeSelectionSwitch;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UILabel *timeSelectionLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *datePickerHeightConstraint;
 
 @end
 
@@ -63,12 +68,14 @@ double const kMaximunPetsQuantity = 3;
     
     self.commentsTextView.delegate = self;
     
+    [self configDatePicker];
+    
     [self setupView:self.petsView];
     [self setupView:self.escoltView];
     [self setupView:self.paymentMethodView];
     [self setupView:self.commentsView];
     [self setupView:self.commentsTextView];
-
+    [self setupView:self.timeSelectionView];
 }
 
 - (void)setupView:(UIView*)view {
@@ -78,6 +85,7 @@ double const kMaximunPetsQuantity = 3;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [self updateTimeSelectionView];
     [self setupSearchTripButton];
 }
 
@@ -85,7 +93,6 @@ double const kMaximunPetsQuantity = 3;
     self.searchTripButton.enabled = [self.trip isValid];
     self.searchTripButton.backgroundColor = (self.searchTripButton.enabled) ? [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:1.0f] : [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:0.5f];
 }
-
 
 - (IBAction)smallStepperPressed:(UIStepper *)sender {
     self.trip.smallPetsQuantity = sender.value;
@@ -117,24 +124,55 @@ double const kMaximunPetsQuantity = 3;
 
 }
 - (IBAction)escortSwitchPressed:(UISwitch *)sender {
-    
     self.trip.shouldHaveEscolt = sender.on;
-    
 }
 
 - (IBAction)paymentMethodSelected:(UISegmentedControl *)sender {
     self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:(PaymentMethodType)sender.selectedSegmentIndex];
 }
 
+- (BOOL)isScheduleTripActivated {
+    return self.timeSelectionSwitch.on;
+}
 
 - (IBAction)searchTripButtonPressed:(id)sender {
-    
     if(![self.trip isValid]){
         return;
     }
 
     self.trip.comments = self.commentsTextView.text;
+    self.trip.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
+    
     [self.service postTrip:self.trip];
+}
+
+- (void)configDatePicker {
+    NSDate *now = [NSDate date];
+    [self.datePicker setMinimumDate:now];
+    
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = 7;
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *maxDate = [theCalendar dateByAddingComponents:dayComponent toDate:now options:0];
+    [self.datePicker setMaximumDate:maxDate];
+}
+
+- (IBAction)timeSelectionSwitchChanged:(id)sender {
+    [self updateTimeSelectionView];
+}
+
+- (void)updateTimeSelectionView {
+    if ([self isScheduleTripActivated]) {
+        self.timeSelectionLabel.text = @"Programar viaje para";
+        self.datePicker.hidden = NO;
+        self.datePickerHeightConstraint.constant = 200;
+        [self.view updateConstraints];
+        return;
+    }
+    self.timeSelectionLabel.text = @"Quiero viajar ahora";
+    self.datePicker.hidden = YES;
+    self.datePickerHeightConstraint.constant = 0;
+    [self.view updateConstraints];
 }
 
 #pragma mark - TripServiceDelegate

@@ -49,6 +49,12 @@
     NSString* paymentMethod = trip.selectedPaymentMethod.paymentKey;
     NSNumber* hasEscort = [NSNumber numberWithBool:trip.shouldHaveEscolt];
     
+    if (trip.scheduleDate){
+        NSLog(@"tengo que reservar el viaje: %@",[self dateToString:trip.scheduleDate]);
+    } else {
+        NSLog(@"no tengo que reservarlo");
+    }
+    
     NSDictionary *body =  @{
                               @"origin":originDictionary,
                               @"destination":destinantionDictionary,
@@ -70,6 +76,12 @@
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
                                      [strongDelegate tripServiceFailedWithError:error];
                                  }];
+}
+
+- (NSString*)dateToString: (NSDate*)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    return [formatter stringFromDate:date];
 }
 
 @end
