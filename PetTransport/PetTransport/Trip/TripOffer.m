@@ -11,6 +11,13 @@
 NSString* const kAccepted = @"Aceptado";
 NSString* const kRejected = @"Rechazado";
 NSString* const kPending = @"Pendiente";
+NSString* const kStatus = @"status";
+
+@interface TripOffer ()
+
+@property (strong,nonatomic) NSDictionary* tripOfferDictionary;
+
+@end
 
 @implementation TripOffer
 
@@ -51,6 +58,8 @@ NSString* const kPending = @"Pendiente";
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary
 {
     if(self = [super init]){
+        self.tripOfferDictionary = dictionary;
+        
         NSString* statusString = [dictionary objectForKey:@"status"];
         self.status = [self statusForString:statusString];
         
@@ -63,4 +72,13 @@ NSString* const kPending = @"Pendiente";
     
     return self;
 }
+
+- (NSDictionary*)updateDictionaryForStatus:(TripOfferStatusType)status
+{
+    NSString* statusString = [self statusForType:status];
+    NSMutableDictionary* tripOfferMutable = [self.tripOfferDictionary mutableCopy];
+    [tripOfferMutable setValue:statusString forKey:kStatus];
+    return [tripOfferMutable copy];
+}
+
 @end

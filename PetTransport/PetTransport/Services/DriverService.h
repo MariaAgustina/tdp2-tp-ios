@@ -22,6 +22,6 @@
 - (void)setDriverWithToken: (NSString*)token;
 - (void)setWorking;
 - (void)setNotWorking;
-
+- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary;
 
 @end

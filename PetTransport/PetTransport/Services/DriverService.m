@@ -73,7 +73,7 @@
     if(!self.currentLocation.longitude || !self.currentLocation.latitude){
         return;
     }
-    [self putStatus];
+    [self putStatusWithBody:[self bodyWithLocationAndStatus]];
 }
 
 
@@ -83,15 +83,25 @@
     self.statusTimer = nil;
 }
 
-- (void)putStatus{
-    NSString *relativeUrlString = @"drivers/status";
-    
+- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary{
+    NSMutableDictionary* body = [[self bodyWithLocationAndStatus] mutableCopy];
+    if(tripOfferDictionary){
+        [body setValue:tripOfferDictionary forKey:@"tripOffer"];
+    }
+    [self putStatusWithBody:[body copy]];
+}
+
+- (NSDictionary*)bodyWithLocationAndStatus{
     NSDictionary* locationDictionary = @{@"lat": [NSNumber numberWithDouble: self.currentLocation.latitude],@"lng": [NSNumber numberWithDouble: self.currentLocation.longitude]};
     
-    NSDictionary *body = @{
-                           @"currentLocation": locationDictionary,
-                           @"status": self.driverStatus
-                           };
+    return @{
+             @"currentLocation": locationDictionary,
+             @"status": self.driverStatus
+             };
+}
+
+- (void)putStatusWithBody:(NSDictionary*)body{
+    NSString *relativeUrlString = @"drivers/status";
     
     ApiClient *apiClient = [ApiClient new];
     

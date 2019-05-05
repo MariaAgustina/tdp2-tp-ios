@@ -23,6 +23,7 @@ typedef enum TripOfferStatus
 
 - (NSString*)statusForType:(TripOfferStatusType)tripOfferStatusType;
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
+- (NSDictionary*)updateDictionaryForStatus:(TripOfferStatusType)status;
 
 @property (copy,nonatomic) NSString* originAddress;
 @property (copy,nonatomic) NSString* destinationAddress;

@@ -46,14 +46,16 @@
 - (void)showNewTrip:(TripOffer*)tripOffer{
         
     NSString* message =[NSString stringWithFormat:@"%@%@\r%@%@", @"Origen: ",tripOffer.originAddress,@"Destino: ",tripOffer.destinationAddress];
-    
+
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-        //TODO: Ok action
+        NSDictionary* params = [tripOffer updateDictionaryForStatus:ACCEPTED];
+        [[DriverService sharedInstance] putStatusWithTripOffer:params];
     }];
     [alert addAction:okAction];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Rechazar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-        // TODO: cancel action
+        NSDictionary* params = [tripOffer updateDictionaryForStatus:REJECTED];
+        [[DriverService sharedInstance] putStatusWithTripOffer:params];
     }];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
