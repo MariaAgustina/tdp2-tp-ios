@@ -44,7 +44,19 @@
 }
 
 - (void)showNewTrip:(TripOffer*)tripOffer{
-        
+    
+    BOOL isShowingAlert = (self.presentedViewController != nil);
+    if(isShowingAlert){
+        return;
+    }
+    
+    //Lo pongo en 40 para que se cancele primero del lado del back y no me vuelva a aparecer el cartelito
+    [NSTimer scheduledTimerWithTimeInterval:40.0
+                                     target:self
+                                   selector:@selector(closeAlert)
+                                   userInfo:nil
+                                    repeats:NO];
+    
     NSString* message =[NSString stringWithFormat:@"%@%@\r%@%@", @"Origen: ",tripOffer.originAddress,@"Destino: ",tripOffer.destinationAddress];
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -59,6 +71,10 @@
     }];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)closeAlert{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Driver Service

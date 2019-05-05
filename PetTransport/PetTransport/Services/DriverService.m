@@ -68,7 +68,7 @@
     } else {
         self.driverStatus = @"No disponible";
     }
-    NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
+//    NSLog(@"current location: %f, %f",self.currentLocation.latitude, self.currentLocation.longitude);
     
     if(!self.currentLocation.longitude || !self.currentLocation.latitude){
         return;
@@ -106,7 +106,7 @@
     ApiClient *apiClient = [ApiClient new];
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-
+        NSLog(@"response = %@",responseObject);
         [self.delegate driverServiceSuccededWithResponse:responseObject];
         
     } failure:^(NSError * _Nonnull error) {
