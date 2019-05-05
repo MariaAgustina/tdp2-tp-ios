@@ -50,20 +50,21 @@
     NSString* paymentMethod = trip.selectedPaymentMethod.paymentKey;
     NSNumber* hasEscort = [NSNumber numberWithBool:trip.shouldHaveEscolt];
     
-    if (trip.scheduleDate){
-        NSLog(@"tengo que reservar el viaje: %@",[self dateToString:trip.scheduleDate]);
-    } else {
-        NSLog(@"no tengo que reservarlo");
-    }
     
-    NSDictionary *body =  @{
+    
+    NSDictionary *inmutableBody =  @{
                               @"origin":originDictionary,
                               @"destination":destinantionDictionary,
                               @"petQuantities":petQuantitiesDictionary,
                               @"paymentMethod":paymentMethod,
                               @"comments":trip.comments,
-                              @"bringsEscort":hasEscort
+                              @"bringsEscort":hasEscort,
                           };
+    
+    NSMutableDictionary *body = [inmutableBody mutableCopy];
+    if (trip.scheduleDate){
+        [body setObject:[self dateToString:trip.scheduleDate] forKey:@"reservationDate"];
+    }
     
     ApiClient *apiClient = [ApiClient new];
     [apiClient postWithRelativeUrlString:relativeUrlString
