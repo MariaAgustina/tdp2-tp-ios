@@ -27,6 +27,7 @@
 }
 
 -(void)postTrip:(Trip*)trip {
+    //NSString* relativeUrlString = @"trips/simulated";
     NSString* relativeUrlString = @"trips";
     
     NSDictionary* originDictionary = @{

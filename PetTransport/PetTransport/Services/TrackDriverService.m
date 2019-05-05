@@ -42,6 +42,7 @@
 }
 
 - (void)startUpdating {
+    [self updateDriverLocation];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                   target:self
                                                 selector:@selector(updateDriverLocation)
@@ -59,13 +60,22 @@
     
     ApiClient *apiClient = [ApiClient new];
     [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
-        struct LocationCoordinate location = [self coordinateFromResponse:responseObject];
-        DriverStatus status = [self statusFromResponse:responseObject];
-        [self didUpdateDriverLocation:location withStatus:status];
+        [self didUpdateDriverLocationWithResponse: responseObject];
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
         [self didFailUpdating];
     }];
+}
+
+- (void) didUpdateDriverLocationWithResponse:(NSDictionary *)responseObject{
+    DriverStatus status = [self statusFromResponse:responseObject];
+    if (status == DRIVER_STATUS_CANCELLED || status == DRIVER_STATUS_SEARCHING){
+        struct LocationCoordinate emptyLocation;
+        [self didUpdateDriverLocation:emptyLocation withStatus:status];
+        return;
+    }
+    struct LocationCoordinate location = [self coordinateFromResponse:responseObject];
+    [self didUpdateDriverLocation:location withStatus:status];
 }
 
 - (struct LocationCoordinate)coordinateFromResponse:(NSDictionary *)responseObject {
@@ -84,7 +94,13 @@
     if ([statusString isEqualToString:@"En origen"]){
         return DRIVER_STATUS_IN_ORIGIN;
     }
-    return DRIVER_STATUS_GOING;
+    if ([statusString isEqualToString:@"Cancelado"]){
+        return DRIVER_STATUS_CANCELLED;
+    }
+    if ([statusString isEqualToString:@"Buscando"]){
+        return DRIVER_STATUS_SEARCHING;
+    }
+    return DRIVER_STATUS_SEARCHING;
 }
 
 - (void)didUpdateDriverLocation:(struct LocationCoordinate)location withStatus:(DriverStatus)status {
