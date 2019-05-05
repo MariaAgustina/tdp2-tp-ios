@@ -140,6 +140,7 @@ double const kMaximunPetsQuantity = 3;
         return;
     }
 
+    [self showLoading];
     self.trip.comments = self.commentsTextView.text;
     self.trip.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
     
@@ -178,6 +179,7 @@ double const kMaximunPetsQuantity = 3;
 #pragma mark - TripServiceDelegate
 
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
+    [self hideLoading];
     self.trip.tripId = [[response objectForKey:@"id"] integerValue];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -187,6 +189,7 @@ double const kMaximunPetsQuantity = 3;
     [self.navigationController pushViewController:startedTripVC animated:YES];
 }
 - (void)tripServiceFailedWithError:(NSError*)error{
+    [self hideLoading];
     [self showInternetConexionAlert];
 }
 

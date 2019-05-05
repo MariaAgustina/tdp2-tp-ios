@@ -84,6 +84,7 @@
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
+    [self showLoading];
     self.profile.drivingRecordImage = self.drivingRecordImageView.image;
     self.profile.policyImage = self.policyImageView.image;
     self.profile.transportImage = self.transportImageView.image;
@@ -118,6 +119,7 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didRegister {
+    [self hideLoading];
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"Registro exitoso!"
                                  message:nil
@@ -134,6 +136,7 @@
 }
 
 - (void)didFailRegistering: (BOOL)duplicatedUser {
+    [self hideLoading];
     if (duplicatedUser){
         [self showError:@"El usuario ya estaba registrado" shouldGoBack:YES];
         return;

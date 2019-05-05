@@ -46,6 +46,7 @@
 }
 
 - (void)login {
+    [self showLoading];
     NSString *fbToken = [self.fbProfileManager getToken];
     [self.authService loginClient:fbToken];
 }
@@ -136,6 +137,7 @@
 
 # pragma mark - AuthServiceDelegate methods
 - (void)didLoginWithProfile: (ClientProfile*)profile{
+    [self hideLoading];
     [[ClientService sharedInstance] setClientWithToken:profile.fbToken];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -145,6 +147,7 @@
 }
 
 - (void)didFailLogin: (BOOL)inexistentUser {
+    [self hideLoading];
     if (inexistentUser){
         self.pendingAction = @"Registration";
         [self loadProfile];

@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import "ClientProfile.h"
+#import "BaseViewController.h"
 
-@interface RegisterClientViewController : ViewController
+@interface RegisterClientViewController : BaseViewController
 
 @property (strong, nonatomic) ClientProfile *profile;
 

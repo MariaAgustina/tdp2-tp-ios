@@ -28,6 +28,7 @@
 		58F64EDB2274FD2000EAA7D8 /* DriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F64EDA2274FD2000EAA7D8 /* DriverService.m */; };
 		931E30C7227F556800F5081F /* RateDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E30C6227F556800F5081F /* RateDriverService.m */; };
 		931E30CA227F71C500F5081F /* FinishTripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E30C9227F71C500F5081F /* FinishTripService.m */; };
+		931E30CD227F954800F5081F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931E30CC227F954800F5081F /* BaseViewController.m */; };
 		934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934C357D2263C53D0062122E /* TripInformationViewController.m */; };
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
@@ -111,6 +112,8 @@
 		931E30C6227F556800F5081F /* RateDriverService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateDriverService.m; sourceTree = "<group>"; };
 		931E30C8227F71C500F5081F /* FinishTripService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishTripService.h; sourceTree = "<group>"; };
 		931E30C9227F71C500F5081F /* FinishTripService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishTripService.m; sourceTree = "<group>"; };
+		931E30CB227F954800F5081F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		931E30CC227F954800F5081F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		934C357C2263C53D0062122E /* TripInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripInformationViewController.h; sourceTree = "<group>"; };
 		934C357D2263C53D0062122E /* TripInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripInformationViewController.m; sourceTree = "<group>"; };
 		937ABFB42253DAF000086554 /* Trip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 		58492B95225007D000496C82 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				931E30CB227F954800F5081F /* BaseViewController.h */,
+				931E30CC227F954800F5081F /* BaseViewController.m */,
 				58492B96225007E200496C82 /* BookTransportViewController.h */,
 				58492B97225007E200496C82 /* BookTransportViewController.m */,
 				934C357C2263C53D0062122E /* TripInformationViewController.h */,
@@ -576,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */,
+				931E30CD227F954800F5081F /* BaseViewController.m in Sources */,
 				586235AA226A60BE007D9A0A /* ClientMenuViewController.m in Sources */,
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,

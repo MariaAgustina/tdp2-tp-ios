@@ -1,19 +1,19 @@
 //
-//  DriverLoginViewController.h
+//  BaseViewController.h
 //  PetTransport
 //
-//  Created by agustina markosich on 4/20/19.
+//  Created by agustina markosich on 5/5/19.
 //  Copyright © 2019 agustina markosich. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DriverLoginViewController : BaseViewController
+@interface BaseViewController : UIViewController
 
-
+- (void)showLoading;
+- (void)hideLoading;
 
 @end
 
