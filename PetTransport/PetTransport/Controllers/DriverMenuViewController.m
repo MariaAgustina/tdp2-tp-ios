@@ -11,6 +11,7 @@
 #import "LocationManager.h"
 #import "TripOffer.h"
 #import <UserNotifications/UserNotifications.h>
+#import "constants.h"
 
 @interface DriverMenuViewController () <DriverServiceDelegate>
 
@@ -102,7 +103,13 @@
     content.body = [self getOfferMessage:tripOffer];
     content.sound = [UNNotificationSound defaultSound];
     
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:30];
+    NSDate *date = [tripOffer.scheduleDate dateByAddingTimeInterval: -1 * REMINDER_TIME_SECONDS];
+    NSLog(@"schedule date for notification: %@", date);
+    if ([date timeIntervalSinceNow] < 0.0) {
+        NSLog(@"Falta menos de una hora para el viaje, NO MUESTRO RECORDATORIO");
+        return;
+    }
+    
     NSDateComponents *triggerDate = [[NSCalendar currentCalendar]
                                      components:NSCalendarUnitYear +
                                      NSCalendarUnitMonth + NSCalendarUnitDay +

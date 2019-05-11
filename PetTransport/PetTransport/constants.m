@@ -15,7 +15,6 @@
 
 #define ENV LOCALHOST
 
-
 #if ENV == LOCALHOST
 NSString* const API_BASE_URL = @"http://localhost:3000";
 #elif ENV == STAGING
@@ -23,3 +22,5 @@ NSString* const API_BASE_URL = @"http://stagingserver7547.herokuapp.com";
 #else
 NSString* const API_BASE_URL = @"http://server7547.herokuapp.com";
 #endif
+
+NSInteger const REMINDER_TIME_SECONDS = 3600;

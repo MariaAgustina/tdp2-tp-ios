@@ -59,8 +59,6 @@
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     
-    NSLog(@"me llegó una notification");
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Recordatorio" message:@"Viaje Programado" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"OK");

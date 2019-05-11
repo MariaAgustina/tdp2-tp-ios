@@ -10,5 +10,6 @@
 #define constants_h
 
 extern NSString* const API_BASE_URL;
+extern NSInteger const REMINDER_TIME_SECONDS;
 
 #endif /* constants_h */
