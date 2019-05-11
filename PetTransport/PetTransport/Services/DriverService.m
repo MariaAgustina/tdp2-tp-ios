@@ -105,7 +105,6 @@
     ApiClient *apiClient = [ApiClient new];
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-        NSLog(@"response = %@",responseObject);
         [self.delegate driverServiceSuccededWithResponse:responseObject];
         
     } failure:^(NSError * _Nonnull error) {

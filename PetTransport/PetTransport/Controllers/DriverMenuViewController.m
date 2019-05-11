@@ -100,8 +100,9 @@
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = @"Recordatorio";
     content.body = [self getOfferMessage:tripOffer];
+    content.sound = [UNNotificationSound defaultSound];
     
-    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:30];
     NSDateComponents *triggerDate = [[NSCalendar currentCalendar]
                                      components:NSCalendarUnitYear +
                                      NSCalendarUnitMonth + NSCalendarUnitDay +
