@@ -13,7 +13,7 @@
 #define STAGING 1
 #define PROD 2
 
-#define ENV STAGING
+#define ENV LOCALHOST
 
 
 #if ENV == LOCALHOST
