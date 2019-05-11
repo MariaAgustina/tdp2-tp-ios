@@ -10,6 +10,7 @@
 #import "DriverService.h"
 #import "LocationManager.h"
 #import "TripOffer.h"
+#import <UserNotifications/UserNotifications.h>
 
 @interface DriverMenuViewController () <DriverServiceDelegate>
 
@@ -57,20 +58,69 @@
                                    userInfo:nil
                                     repeats:NO];
     
-    NSString* message =[NSString stringWithFormat:@"%@%@\r%@%@", @"Origen: ",tripOffer.originAddress,@"Destino: ",tripOffer.destinationAddress];
+    NSString* message = [self getOfferMessage:tripOffer];
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        [self scheduleNotification:tripOffer];
         NSDictionary* params = [tripOffer updateDictionaryForStatus:ACCEPTED];
         [[DriverService sharedInstance] putStatusWithTripOffer:params];
     }];
     [alert addAction:okAction];
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Rechazar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
         NSDictionary* params = [tripOffer updateDictionaryForStatus:REJECTED];
         [[DriverService sharedInstance] putStatusWithTripOffer:params];
     }];
     [alert addAction:cancelAction];
+    
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (NSString *)getOfferMessage: (TripOffer*)tripOffer {
+    NSString *origin = [NSString stringWithFormat:@"Origen: %@", tripOffer.originAddress];
+    NSString *destination = [NSString stringWithFormat:@"Destion: %@", tripOffer.destinationAddress];
+    NSString *reservationDate = @"";
+    if ([tripOffer isScheduled]){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+        reservationDate = [NSString stringWithFormat:@"Dia y horario: %@\r", [formatter stringFromDate:tripOffer.scheduleDate]];
+    }
+    
+    NSString* message =[NSString stringWithFormat:@"%@\r%@\r%@", origin, destination, reservationDate];
+    return message;
+}
+
+- (void)scheduleNotification: (TripOffer*)tripOffer {
+    if (![tripOffer isScheduled]){
+        return;
+    }
+    
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"Recordatorio";
+    content.body = [self getOfferMessage:tripOffer];
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:1];
+    NSDateComponents *triggerDate = [[NSCalendar currentCalendar]
+                                     components:NSCalendarUnitYear +
+                                     NSCalendarUnitMonth + NSCalendarUnitDay +
+                                     NSCalendarUnitHour + NSCalendarUnitMinute +
+                                     NSCalendarUnitSecond fromDate:date];
+    NSLog(@"scheduling notification: %@", date);
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDate repeats:NO];
+
+    
+    // Create the request object.
+    NSString *notificationIdentifier = [NSString stringWithFormat:@"trip_%ld", tripOffer.tripId];
+    UNNotificationRequest* request = [UNNotificationRequest
+                                      requestWithIdentifier:notificationIdentifier content:content trigger:trigger];
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)closeAlert{

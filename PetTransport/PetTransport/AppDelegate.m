@@ -10,6 +10,7 @@
 @import GoogleMaps;
 @import GooglePlaces;
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import UserNotifications;
 
 #define GMAPS_API_KEY @"AIzaSyBHopQabuqy_MPF6b0Pse8vEtwmXbL8r58"
 
@@ -43,7 +44,30 @@
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:options
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (!granted) {
+                                  NSLog(@"Something went wrong");
+                              }
+                          }];
+    
     return YES;
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
+    NSLog(@"me llego una notification: ", notification.request.content.body);
+    
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Recordatorio" message:notification.request.content.body preferredStyle:UIAlertControllerStyleAlert];
+//
+//    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+//    }];
+//    [alert addAction:okAction];
+//
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
