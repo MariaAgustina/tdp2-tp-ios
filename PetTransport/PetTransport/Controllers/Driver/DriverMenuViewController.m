@@ -12,6 +12,7 @@
 #import "TripOffer.h"
 #import <UserNotifications/UserNotifications.h>
 #import "constants.h"
+#import "DriverTripViewController.h"
 
 @interface DriverMenuViewController () <DriverServiceDelegate>
 
@@ -33,6 +34,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.availableSwitch setOn:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    DriverService *driverService = [DriverService sharedInstance];
+    driverService.delegate = nil;
 }
 
 - (IBAction)availableSwitchDidChange:(id)sender {
@@ -135,6 +142,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)showTripScreen: (Trip *)trip {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DriverTripViewController *driverTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverTripViewController"];
+    driverTripVC.tripId = trip.tripId;
+    
+    [self.navigationController pushViewController:driverTripVC animated:YES];
+}
+
 #pragma mark - Driver Service
 
 - (void)driverServiceSuccededWithResponse:(NSDictionary*)response
@@ -145,8 +160,14 @@
     }
     
     TripOffer* tripOffer = [[TripOffer alloc] initWithDictionary:tripOfferDictionary];
-    if (tripOffer.status == PENDING){
+    if ([tripOffer isPending]){
         [self showNewTrip:tripOffer];
+        return;
+    }
+    
+    if ([tripOffer isAccepted] && ![tripOffer isScheduled]){
+        [self showTripScreen:tripOffer];
+        return;
     }
 }
 

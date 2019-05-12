@@ -23,6 +23,7 @@
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
 		58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CB7CDB227E1BA90007F3DE /* ClientService.m */; };
+		58D439552288946500EDC691 /* DriverTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439542288946500EDC691 /* DriverTripViewController.m */; };
 		58E20BA12268D48800E024DF /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA02268D48800E024DF /* AuthService.m */; };
 		58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA32268F70900E024DF /* ClientLoginViewController.m */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
@@ -101,6 +102,8 @@
 		58BE1D1B2263AA960000C9D0 /* ClientProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientProfile.m; sourceTree = "<group>"; };
 		58CB7CDA227E1BA90007F3DE /* ClientService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientService.h; sourceTree = "<group>"; };
 		58CB7CDB227E1BA90007F3DE /* ClientService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientService.m; sourceTree = "<group>"; };
+		58D439532288946500EDC691 /* DriverTripViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverTripViewController.h; sourceTree = "<group>"; };
+		58D439542288946500EDC691 /* DriverTripViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverTripViewController.m; sourceTree = "<group>"; };
 		58E20B9F2268D48800E024DF /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		58E20BA02268D48800E024DF /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
 		58E20BA22268F70900E024DF /* ClientLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientLoginViewController.h; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 		58492B95225007D000496C82 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				58D439522288944A00EDC691 /* Driver */,
 				931E30CB227F954800F5081F /* BaseViewController.h */,
 				931E30CC227F954800F5081F /* BaseViewController.m */,
 				58492B96225007E200496C82 /* BookTransportViewController.h */,
@@ -226,14 +230,10 @@
 				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
 				93D0BEC8226B812F00FEF7C9 /* RegisterPhotoDriverViewController.h */,
 				93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */,
-				93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */,
-				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
 				938B9A02227F36E5001EBBEC /* RateServiceViewController.h */,
 				938B9A03227F36E5001EBBEC /* RateServiceViewController.m */,
 				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
 				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
-				589798D0227F73900047EC92 /* RateClientViewController.h */,
-				589798D1227F73900047EC92 /* RateClientViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -275,6 +275,19 @@
 				58B34D9C2275D72200277F5A /* ApiClient.m */,
 			);
 			path = ApiCLient;
+			sourceTree = "<group>";
+		};
+		58D439522288944A00EDC691 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */,
+				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
+				58D439532288946500EDC691 /* DriverTripViewController.h */,
+				58D439542288946500EDC691 /* DriverTripViewController.m */,
+				589798D0227F73900047EC92 /* RateClientViewController.h */,
+				589798D1227F73900047EC92 /* RateClientViewController.m */,
+			);
+			path = Driver;
 			sourceTree = "<group>";
 		};
 		58F022DF2253F16D00318837 /* Entities */ = {
@@ -591,6 +604,7 @@
 				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */,
+				58D439552288946500EDC691 /* DriverTripViewController.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				589798D2227F73900047EC92 /* RateClientViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,

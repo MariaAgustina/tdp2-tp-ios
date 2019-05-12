@@ -91,4 +91,15 @@ NSString* const kStatus = @"status";
     return self.scheduleDate != nil;
 }
 
+- (BOOL)isAccepted {
+    return self.status == ACCEPTED;
+}
+
+- (BOOL)isPending {
+    return self.status == PENDING;
+}
+
+- (BOOL)isRejected {
+    return self.status == REJECTED;
+}
 @end
