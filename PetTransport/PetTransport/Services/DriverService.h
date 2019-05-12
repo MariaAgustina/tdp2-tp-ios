@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Trip.h"
+
 
 @protocol DriverServiceDelegate <NSObject>
 
 - (void)driverServiceSuccededWithResponse:(NSDictionary*)response;
+
+@optional
+- (void)didReceiveTripOffer: (Trip*)trip;
 
 @end
 

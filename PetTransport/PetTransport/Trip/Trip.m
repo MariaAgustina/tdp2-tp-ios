@@ -69,4 +69,20 @@ typedef enum TripStatusTypes {
     return PENDING;
 }
 
+- (BOOL)isScheduled {
+    return self.scheduleDate != nil;
+}
+
+- (BOOL)isAccepted {
+    return self.status == ACCEPTED;
+}
+
+- (BOOL)isPending {
+    return self.status == PENDING;
+}
+
+- (BOOL)isRejected {
+    return self.status == REJECTED;
+}
+
 @end

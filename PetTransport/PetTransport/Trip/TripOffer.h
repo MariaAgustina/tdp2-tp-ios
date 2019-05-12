@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// TODO: MATAR ESTA ENTIDAD
+
 @interface TripOffer : Trip
 
 typedef enum TripOfferStatus

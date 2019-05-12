@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (struct LocationCoordinate)getOriginCoordinate;
+- (BOOL)isScheduled;
+- (BOOL)isPending;
+- (BOOL)isAccepted;
+- (BOOL)isRejected;
+
 
 @end
 
