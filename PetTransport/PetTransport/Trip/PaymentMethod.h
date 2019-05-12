@@ -10,6 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum paymentMethodsTypes
+{
+    CASH,
+    CARD,
+    MERCADOPAGO
+} PaymentMethodType;
+
 @interface PaymentMethod : NSObject
 
 @property (copy,nonatomic) NSString* title;

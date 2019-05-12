@@ -53,18 +53,18 @@ double const kMaximunPetsQuantity = 3;
     
     [super viewDidLoad];
     
-    self.service = [[TripService alloc]initWithDelegate:self];
+    self.service = [[TripService alloc] initWithDelegate:self];
     
-    self.trip.shouldHaveEscolt = self.escoltSwitch.on;
-    self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:CASH];
-    self.trip.smallPetsQuantity = self.smallStepper.value;
-    self.trip.mediumPetsQuantity = self.mediumStepper.value;
-    self.trip.bigPetsQuantity = self.bigStepper.value;
-    self.trip.comments = self.commentsTextView.text;
+    self.tripRequest.shouldHaveEscort = self.escoltSwitch.on;
+    self.tripRequest.selectedPaymentMethod = [self.tripRequest paymentMethodForType:CASH];
+    self.tripRequest.smallPetsQuantity = self.smallStepper.value;
+    self.tripRequest.mediumPetsQuantity = self.mediumStepper.value;
+    self.tripRequest.bigPetsQuantity = self.bigStepper.value;
+    self.tripRequest.comments = self.commentsTextView.text;
     
-    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CASH].title forSegmentAtIndex:CASH];
-    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:CARD].title forSegmentAtIndex:CARD];
-    [self.paymentMethodsSegmentControl setTitle:[self.trip paymentMethodForType:MERCADOPAGO].title forSegmentAtIndex:MERCADOPAGO];
+    [self.paymentMethodsSegmentControl setTitle:[self.tripRequest paymentMethodForType:CASH].title forSegmentAtIndex:CASH];
+    [self.paymentMethodsSegmentControl setTitle:[self.tripRequest paymentMethodForType:CARD].title forSegmentAtIndex:CARD];
+    [self.paymentMethodsSegmentControl setTitle:[self.tripRequest paymentMethodForType:MERCADOPAGO].title forSegmentAtIndex:MERCADOPAGO];
     
     self.commentsTextView.delegate = self;
     
@@ -90,31 +90,31 @@ double const kMaximunPetsQuantity = 3;
 }
 
 - (void)setupSearchTripButton{
-    self.searchTripButton.enabled = [self.trip isValid];
+    self.searchTripButton.enabled = [self.tripRequest isValid];
     self.searchTripButton.backgroundColor = (self.searchTripButton.enabled) ? [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:1.0f] : [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:0.5f];
 }
 
 - (IBAction)smallStepperPressed:(UIStepper *)sender {
-    self.trip.smallPetsQuantity = sender.value;
+    self.tripRequest.smallPetsQuantity = sender.value;
     self.smallCountLabel.text = [NSString stringWithFormat:@"%.0f",sender.value];
     [self updateQuantities];
 }
 
 - (IBAction)mediumStepperPressed:(UIStepper *)sender {
-    self.trip.mediumPetsQuantity = sender.value;
+    self.tripRequest.mediumPetsQuantity = sender.value;
     self.mediumCountLabel.text = [NSString stringWithFormat:@"%.0f",sender.value];
     [self updateQuantities];
 }
 
 - (IBAction)bigStepperPressed:(UIStepper *)sender {
-    self.trip.bigPetsQuantity = sender.value;
+    self.tripRequest.bigPetsQuantity = sender.value;
     self.bigCountLabel.text = [NSString stringWithFormat:@"%.0f",sender.value];
     [self updateQuantities];
 }
 
 - (void)updateQuantities {
     
-    self.totalCountLabel.text = [NSString stringWithFormat:@"%.0f",[self.trip totalPets]];
+    self.totalCountLabel.text = [NSString stringWithFormat:@"%.0f",[self.tripRequest totalPets]];
     
     self.smallStepper.maximumValue = kMaximunPetsQuantity - self.bigStepper.value - self.mediumStepper.value;
     self.mediumStepper.maximumValue = kMaximunPetsQuantity - self.smallStepper.value - self.bigStepper.value;
@@ -124,11 +124,11 @@ double const kMaximunPetsQuantity = 3;
 
 }
 - (IBAction)escortSwitchPressed:(UISwitch *)sender {
-    self.trip.shouldHaveEscolt = sender.on;
+    self.tripRequest.shouldHaveEscort = sender.on;
 }
 
 - (IBAction)paymentMethodSelected:(UISegmentedControl *)sender {
-    self.trip.selectedPaymentMethod = [self.trip paymentMethodForType:(PaymentMethodType)sender.selectedSegmentIndex];
+    self.tripRequest.selectedPaymentMethod = [self.tripRequest paymentMethodForType:(PaymentMethodType)sender.selectedSegmentIndex];
 }
 
 - (BOOL)isScheduleTripActivated {
@@ -136,15 +136,15 @@ double const kMaximunPetsQuantity = 3;
 }
 
 - (IBAction)searchTripButtonPressed:(id)sender {
-    if(![self.trip isValid]){
+    if(![self.tripRequest isValid]){
         return;
     }
 
     [self showLoading];
-    self.trip.comments = self.commentsTextView.text;
-    self.trip.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
+    self.tripRequest.comments = self.commentsTextView.text;
+    self.tripRequest.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
     
-    [self.service postTrip:self.trip];
+    [self.service sendTripRequest:self.tripRequest];
 }
 
 - (void)configDatePicker {
@@ -180,13 +180,14 @@ double const kMaximunPetsQuantity = 3;
 
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
     [self hideLoading];
-    self.trip.tripId = [[response objectForKey:@"id"] integerValue];
+    NSLog(@"creado: %@", response);
+//    self.trip.tripId = [[response objectForKey:@"id"] integerValue];
+//
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
+//    startedTripVC.trip = self.tripRequest;
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
-    startedTripVC.trip = self.trip;
-    
-    [self.navigationController pushViewController:startedTripVC animated:YES];
+//    [self.navigationController pushViewController:startedTripVC animated:YES];
 }
 - (void)tripServiceFailedWithError:(NSError*)error{
     [self hideLoading];

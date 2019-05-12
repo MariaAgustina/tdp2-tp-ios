@@ -1,8 +1,8 @@
 //
-//  Trip.h
+//  TripRequest.h
 //  PetTransport
 //
-//  Created by agustina markosich on 4/2/19.
+//  Created by Kaoru Heanna on 5/12/19.
 //  Copyright © 2019 agustina markosich. All rights reserved.
 //
 
@@ -12,26 +12,24 @@
 #import "LocationCoordinate.h"
 #import "PaymentMethod.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
-@interface Trip : NSObject
+@interface TripRequest : NSObject
 
 @property (strong, nonatomic) GMSPlace *origin;
 @property (strong, nonatomic) GMSPlace *destiny;
-
-@property (assign, nonatomic) NSInteger tripId;
 
 @property (assign,nonatomic) double smallPetsQuantity;
 @property (assign,nonatomic) double mediumPetsQuantity;
 @property (assign,nonatomic) double bigPetsQuantity;
 
-@property (assign,nonatomic) BOOL shouldHaveEscolt;
+@property (assign,nonatomic) BOOL shouldHaveEscort;
 @property (strong,nonatomic) PaymentMethod* selectedPaymentMethod;
 @property (copy,nonatomic) NSString* comments;
 @property (strong, nonatomic) NSDate *scheduleDate;
 
-- (struct LocationCoordinate)getOriginCoordinate;
+- (BOOL)isValid;
+- (BOOL)hasValidAdresses;
+- (double)totalPets;
+- (PaymentMethod*)paymentMethodForType:(PaymentMethodType)paymentMethodType;
 
 @end
-
-NS_ASSUME_NONNULL_END
