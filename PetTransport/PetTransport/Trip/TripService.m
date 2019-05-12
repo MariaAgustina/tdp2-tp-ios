@@ -70,6 +70,9 @@
                                    token: [[ClientService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     
+                                     Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+                                     
                                      [strongDelegate tripServiceSuccededWithResponse:responseObject];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      NSLog(@"Error: %@", error);

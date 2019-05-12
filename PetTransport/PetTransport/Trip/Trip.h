@@ -11,25 +11,27 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "LocationCoordinate.h"
 #import "PaymentMethod.h"
+#import "PTLocation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Trip : NSObject
 
-@property (strong, nonatomic) GMSPlace *origin;
-@property (strong, nonatomic) GMSPlace *destiny;
-
 @property (assign, nonatomic) NSInteger tripId;
+
+@property (strong,nonatomic) PTLocation *origin;
+@property (strong,nonatomic) PTLocation *destination;
 
 @property (assign,nonatomic) double smallPetsQuantity;
 @property (assign,nonatomic) double mediumPetsQuantity;
 @property (assign,nonatomic) double bigPetsQuantity;
 
-@property (assign,nonatomic) BOOL shouldHaveEscolt;
-@property (strong,nonatomic) PaymentMethod* selectedPaymentMethod;
+@property (assign,nonatomic) BOOL bringsEscort;
+@property (strong,nonatomic) PaymentMethod* paymentMethod;
 @property (copy,nonatomic) NSString* comments;
 @property (strong, nonatomic) NSDate *scheduleDate;
 
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (struct LocationCoordinate)getOriginCoordinate;
 
 @end

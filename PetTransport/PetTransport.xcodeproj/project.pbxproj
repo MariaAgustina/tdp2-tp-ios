@@ -25,6 +25,7 @@
 		58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CB7CDB227E1BA90007F3DE /* ClientService.m */; };
 		58D439552288946500EDC691 /* DriverTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439542288946500EDC691 /* DriverTripViewController.m */; };
 		58D439582288BCA200EDC691 /* TripRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439572288BCA200EDC691 /* TripRequest.m */; };
+		58D439612288CC9A00EDC691 /* PTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439602288CC9A00EDC691 /* PTLocation.m */; };
 		58E20BA12268D48800E024DF /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA02268D48800E024DF /* AuthService.m */; };
 		58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA32268F70900E024DF /* ClientLoginViewController.m */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
@@ -107,6 +108,8 @@
 		58D439542288946500EDC691 /* DriverTripViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverTripViewController.m; sourceTree = "<group>"; };
 		58D439562288BCA200EDC691 /* TripRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripRequest.h; sourceTree = "<group>"; };
 		58D439572288BCA200EDC691 /* TripRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripRequest.m; sourceTree = "<group>"; };
+		58D4395F2288CC9A00EDC691 /* PTLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTLocation.h; sourceTree = "<group>"; };
+		58D439602288CC9A00EDC691 /* PTLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTLocation.m; sourceTree = "<group>"; };
 		58E20B9F2268D48800E024DF /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		58E20BA02268D48800E024DF /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
 		58E20BA22268F70900E024DF /* ClientLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientLoginViewController.h; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				58BE1D1B2263AA960000C9D0 /* ClientProfile.m */,
 				93D0BECB226BAC4300FEF7C9 /* DriverProfile.h */,
 				93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */,
+				58D4395F2288CC9A00EDC691 /* PTLocation.h */,
+				58D439602288CC9A00EDC691 /* PTLocation.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
 				93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */,
 				931E30C7227F556800F5081F /* RateDriverService.m in Sources */,
+				58D439612288CC9A00EDC691 /* PTLocation.m in Sources */,
 				58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */,
 				58D439582288BCA200EDC691 /* TripRequest.m in Sources */,
 				934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */,
