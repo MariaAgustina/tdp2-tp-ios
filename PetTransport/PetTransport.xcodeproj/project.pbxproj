@@ -220,14 +220,10 @@
 				58D439522288944A00EDC691 /* Driver */,
 				931E30CB227F954800F5081F /* BaseViewController.h */,
 				931E30CC227F954800F5081F /* BaseViewController.m */,
-				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
-				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
 				586235A8226A60BE007D9A0A /* ClientMenuViewController.h */,
 				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
 				938B9A02227F36E5001EBBEC /* RateServiceViewController.h */,
 				938B9A03227F36E5001EBBEC /* RateServiceViewController.m */,
-				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
-				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -291,6 +287,10 @@
 				58492B97225007E200496C82 /* BookTransportViewController.m */,
 				934C357C2263C53D0062122E /* TripInformationViewController.h */,
 				934C357D2263C53D0062122E /* TripInformationViewController.m */,
+				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
+				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
+				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
+				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";

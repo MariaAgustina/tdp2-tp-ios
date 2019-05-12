@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Trip.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol TripServiceDelegate <NSObject>
 
 @optional
+- (void)didReturnTrip: (Trip*)trip;
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response;
 
 @required

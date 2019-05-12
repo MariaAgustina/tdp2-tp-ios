@@ -178,17 +178,16 @@ double const kMaximunPetsQuantity = 3;
 
 #pragma mark - TripServiceDelegate
 
-- (void)tripServiceSuccededWithResponse:(NSDictionary*)response{
+- (void)didReturnTrip:(Trip *)trip {
     [self hideLoading];
-    NSLog(@"creado: %@", response);
-//    self.trip.tripId = [[response objectForKey:@"id"] integerValue];
-//
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
-//    startedTripVC.trip = self.tripRequest;
     
-//    [self.navigationController pushViewController:startedTripVC animated:YES];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
+    startedTripVC.trip = trip;
+    
+    [self.navigationController pushViewController:startedTripVC animated:YES];
 }
+
 - (void)tripServiceFailedWithError:(NSError*)error{
     [self hideLoading];
     [self showInternetConexionAlert];

@@ -31,6 +31,8 @@ typedef enum TripStatusTypes {
 - (instancetype)initWithDictionary: (NSDictionary*)dictionary {
     self = [super init];
     
+    self.tripId = [[dictionary objectForKey:@"id"] integerValue];
+    
     NSString* statusString = [dictionary objectForKey:@"status"];
     self.status = [self statusForString:statusString];
     
