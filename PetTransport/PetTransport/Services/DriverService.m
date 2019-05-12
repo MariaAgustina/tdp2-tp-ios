@@ -82,13 +82,21 @@
     self.statusTimer = nil;
 }
 
-- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary{
-    NSMutableDictionary* body = [[self bodyWithLocationAndStatus] mutableCopy];
-    if(tripOfferDictionary){
-        [body setValue:tripOfferDictionary forKey:@"tripOffer"];
-    }
-    [self putStatusWithBody:[body copy]];
+- (void)acceptTrip:(Trip *)trip {
+    [trip accept];
 }
+
+- (void)rejectTrip:(Trip *)trip {
+    [trip reject];
+}
+
+//- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary{
+//    NSMutableDictionary* body = [[self bodyWithLocationAndStatus] mutableCopy];
+//    if(tripOfferDictionary){
+//        [body setValue:tripOfferDictionary forKey:@"tripOffer"];
+//    }
+//    [self putStatusWithBody:[body copy]];
+//}
 
 - (NSDictionary*)bodyWithLocationAndStatus{
     NSDictionary* locationDictionary = @{@"lat": [NSNumber numberWithDouble: self.currentLocation.latitude],@"lng": [NSNumber numberWithDouble: self.currentLocation.longitude]};

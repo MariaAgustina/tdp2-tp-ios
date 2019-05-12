@@ -37,7 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isPending;
 - (BOOL)isAccepted;
 - (BOOL)isRejected;
-
+- (void)accept;
+- (void)reject;
 
 @end
 

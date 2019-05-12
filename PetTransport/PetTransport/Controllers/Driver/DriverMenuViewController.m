@@ -71,15 +71,14 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-//        [self scheduleNotification:trip];
-//        NSDictionary* params = [trip updateDictionaryForStatus:ACCEPTED];
-//        [[DriverService sharedInstance] putStatusWithTripOffer:params];
+        [self scheduleNotification:trip];
+        [[DriverService sharedInstance] acceptTrip:trip];
     }];
     [alert addAction:okAction];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Rechazar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
-//        NSDictionary* params = [trip updateDictionaryForStatus:REJECTED];
-//        [[DriverService sharedInstance] putStatusWithTripOffer:params];
+        [trip reject];
+        [[DriverService sharedInstance] rejectTrip:trip];
     }];
     [alert addAction:cancelAction];
     
@@ -101,41 +100,41 @@
 }
 
 - (void)scheduleNotification: (Trip*)trip {
-//    if (![trip isScheduled]){
-//        return;
-//    }
-//
-//    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-//    content.title = @"Recordatorio";
-//    content.body = [self getOfferMessage:trip];
-//    content.sound = [UNNotificationSound defaultSound];
-//
-//    NSDate *date = [trip.scheduleDate dateByAddingTimeInterval: -1 * REMINDER_TIME_SECONDS];
-//    NSLog(@"schedule date for notification: %@", date);
-//    if ([date timeIntervalSinceNow] < 0.0) {
-//        NSLog(@"Falta menos de una hora para el viaje, NO MUESTRO RECORDATORIO");
-//        return;
-//    }
-//
-//    NSDateComponents *triggerDate = [[NSCalendar currentCalendar]
-//                                     components:NSCalendarUnitYear +
-//                                     NSCalendarUnitMonth + NSCalendarUnitDay +
-//                                     NSCalendarUnitHour + NSCalendarUnitMinute +
-//                                     NSCalendarUnitSecond fromDate:date];
-//    NSLog(@"scheduling notification: %@", date);
-//    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDate repeats:NO];
-//
-//
-//    // Create the request object.
-//    NSString *notificationIdentifier = [NSString stringWithFormat:@"trip_%ld", trip.tripId];
-//    UNNotificationRequest* request = [UNNotificationRequest
-//                                      requestWithIdentifier:notificationIdentifier content:content trigger:trigger];
-//    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-//    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-//        if (error != nil) {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//    }];
+    if (![trip isScheduled]){
+        return;
+    }
+
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"Recordatorio";
+    content.body = [self getOfferMessage:trip];
+    content.sound = [UNNotificationSound defaultSound];
+
+    NSDate *date = [trip.scheduleDate dateByAddingTimeInterval: -1 * REMINDER_TIME_SECONDS];
+    NSLog(@"schedule date for notification: %@", date);
+    if ([date timeIntervalSinceNow] < 0.0) {
+        NSLog(@"Falta menos de una hora para el viaje, NO MUESTRO RECORDATORIO");
+        return;
+    }
+
+    NSDateComponents *triggerDate = [[NSCalendar currentCalendar]
+                                     components:NSCalendarUnitYear +
+                                     NSCalendarUnitMonth + NSCalendarUnitDay +
+                                     NSCalendarUnitHour + NSCalendarUnitMinute +
+                                     NSCalendarUnitSecond fromDate:date];
+    NSLog(@"scheduling notification: %@", date);
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDate repeats:NO];
+
+
+    // Create the request object.
+    NSString *notificationIdentifier = [NSString stringWithFormat:@"trip_%ld", trip.tripId];
+    UNNotificationRequest* request = [UNNotificationRequest
+                                      requestWithIdentifier:notificationIdentifier content:content trigger:trigger];
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)closeAlert{
@@ -152,29 +151,15 @@
 
 #pragma mark - Driver Service
 
-//- (void)driverServiceSuccededWithResponse:(NSDictionary*)response
-//{
-//    NSDictionary* tripOfferDictionary = [response objectForKey:@"tripOffer"];
-//    if(!tripOfferDictionary){
-//        return;
-//    }
-//
-//    TripOffer* tripOffer = [[TripOffer alloc] initWithDictionary:tripOfferDictionary];
-//    if ([tripOffer isPending]){
-//        [self showNewTrip:tripOffer];
-//        return;
-//    }
-//
-//    if ([tripOffer isAccepted] && ![tripOffer isScheduled]){
-//        [self showTripScreen:tripOffer];
-//        return;
-//    }
-//}
-
 - (void)didReceiveTripOffer:(Trip *)trip {
     if ([trip isPending]){
         [self showNewTrip:trip];
         return;
+    }
+    
+    if ([trip isAccepted] && ![trip isScheduled]){
+//        [self showTripScreen:tripOffer];
+//        return;
     }
 }
 

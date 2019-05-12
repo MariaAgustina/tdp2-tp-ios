@@ -85,4 +85,12 @@ typedef enum TripStatusTypes {
     return self.status == REJECTED;
 }
 
+- (void)accept {
+    self.status = ACCEPTED;
+}
+
+- (void)reject {
+    self.status = REJECTED;
+}
+
 @end
