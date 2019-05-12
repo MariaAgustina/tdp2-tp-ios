@@ -165,7 +165,7 @@
         return;
     }
     
-    if ([tripOffer isAccepted]){
+    if ([tripOffer isAccepted] && ![tripOffer isScheduled]){
         [self showTripScreen:tripOffer];
         return;
     }
