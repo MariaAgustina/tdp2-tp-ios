@@ -80,6 +80,17 @@
                                  }];
 }
 
+- (void)retrieveTripWithId: (NSInteger)tripId {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld",tripId];
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
+        NSLog(@"response: %@", responseObject);
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
 - (NSString*)dateToString: (NSDate*)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];

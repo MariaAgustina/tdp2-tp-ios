@@ -12,7 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol TripServiceDelegate <NSObject>
 
+@optional
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response;
+
+@required
 - (void)tripServiceFailedWithError:(NSError*)error;
 
 @end

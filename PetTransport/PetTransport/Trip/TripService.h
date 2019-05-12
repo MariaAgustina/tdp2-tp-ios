@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDelegate:(id <TripServiceDelegate>)delegate;
 - (void)postTrip:(Trip*)trip;
+- (void)retrieveTripWithId: (NSInteger)tripId;
 
 @end
 
