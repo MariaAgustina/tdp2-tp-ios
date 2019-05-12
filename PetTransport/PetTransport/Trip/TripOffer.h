@@ -25,6 +25,9 @@ typedef enum TripOfferStatus
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (NSDictionary*)updateDictionaryForStatus:(TripOfferStatusType)status;
 - (BOOL)isScheduled;
+- (BOOL)isPending;
+- (BOOL)isAccepted;
+- (BOOL)isRejected;
 
 @property (copy,nonatomic) NSString* originAddress;
 @property (copy,nonatomic) NSString* destinationAddress;
