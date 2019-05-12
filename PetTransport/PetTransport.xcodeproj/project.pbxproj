@@ -230,14 +230,10 @@
 				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
 				93D0BEC8226B812F00FEF7C9 /* RegisterPhotoDriverViewController.h */,
 				93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */,
-				93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */,
-				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
 				938B9A02227F36E5001EBBEC /* RateServiceViewController.h */,
 				938B9A03227F36E5001EBBEC /* RateServiceViewController.m */,
 				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
 				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
-				589798D0227F73900047EC92 /* RateClientViewController.h */,
-				589798D1227F73900047EC92 /* RateClientViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -284,8 +280,12 @@
 		58D439522288944A00EDC691 /* Driver */ = {
 			isa = PBXGroup;
 			children = (
+				93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */,
+				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
 				58D439532288946500EDC691 /* DriverTripViewController.h */,
 				58D439542288946500EDC691 /* DriverTripViewController.m */,
+				589798D0227F73900047EC92 /* RateClientViewController.h */,
+				589798D1227F73900047EC92 /* RateClientViewController.m */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
