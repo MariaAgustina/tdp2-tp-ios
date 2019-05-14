@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -224,6 +222,36 @@
             </objects>
             <point key="canvasLocation" x="-1578.4000000000001" y="843.32833583208401"/>
         </scene>
+        <!--Map Direction Example View Controller-->
+        <scene sceneID="fkj-uM-jOr">
+            <objects>
+                <viewController id="vWX-wm-bu5" customClass="MapDirectionExampleViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QIQ-vK-Gix">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qB9-tk-eVm" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qB9-tk-eVm" firstAttribute="leading" secondItem="gDi-zV-TaW" secondAttribute="leading" id="N9U-vu-UFo"/>
+                            <constraint firstItem="qB9-tk-eVm" firstAttribute="top" secondItem="gDi-zV-TaW" secondAttribute="top" id="SaW-IO-seW"/>
+                            <constraint firstItem="qB9-tk-eVm" firstAttribute="bottom" secondItem="gDi-zV-TaW" secondAttribute="bottom" id="Wck-U0-tFY"/>
+                            <constraint firstItem="qB9-tk-eVm" firstAttribute="trailing" secondItem="gDi-zV-TaW" secondAttribute="trailing" id="i47-ZG-Cee"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gDi-zV-TaW"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="qB9-tk-eVm" id="8g3-Cf-zN9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MU0-6z-9e0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="994.45277361319347"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -252,12 +280,27 @@
                                     <segue destination="9re-y8-QLu" kind="show" id="8um-cW-nsc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAL-6R-0GQ">
+                                <rect key="frame" x="129.5" y="338" width="116" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7FG-pm-7Q0"/>
+                                    <constraint firstAttribute="width" constant="116" id="JT4-lf-RBv"/>
+                                </constraints>
+                                <state key="normal" title="Camino dibujado">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vWX-wm-bu5" kind="show" id="R44-2J-nOe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.33428723189999998" green="0.52146308949999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="oAL-6R-0GQ" firstAttribute="top" secondItem="0s5-bH-kll" secondAttribute="bottom" constant="115" id="MS9-Ym-wWa"/>
                             <constraint firstItem="hL9-f0-NU7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nr7-Gj-Zoz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hL9-f0-NU7" secondAttribute="bottom" constant="150" id="OZu-NR-L9r"/>
                             <constraint firstItem="0s5-bH-kll" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="XlU-6K-Rux"/>
+                            <constraint firstItem="oAL-6R-0GQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gHI-Ni-QJq"/>
                             <constraint firstItem="0s5-bH-kll" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uJg-xT-U6z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
