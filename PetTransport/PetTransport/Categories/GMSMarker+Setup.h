@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GMSMarker (Setup)
 
 - (void)setupWithPlace:(GMSPlace*)place andMapView:(GMSMapView*)mapView;
+-(void)setupWithCoordinate:(CLLocationCoordinate2D)coordinate address:(NSString*)address andMapView:(GMSMapView*)mapView;
 
 @end
 
