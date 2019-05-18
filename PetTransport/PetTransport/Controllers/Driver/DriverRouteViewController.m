@@ -12,14 +12,17 @@
 #import "LocationManager.h"
 #import "GMSMarker+Setup.h"
 #import "CoordinateAddapter.h"
+#import "RoutesService.h"
 
-@interface DriverRouteViewController () <LocationManagerDelegate>
+@interface DriverRouteViewController () <LocationManagerDelegate, RoutesServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong,nonatomic) LocationManager *locationManager;
 
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
+
+@property (strong,nonatomic) RoutesService* routesService;
 
 @end
 
@@ -31,7 +34,8 @@
     
     [self setupOriginAndDestinationMarkers];
     
-    //TODO: call server to get coordinates
+    self.routesService = [[RoutesService alloc] initWithDelegate:self];
+    [self.routesService getTripCoordinates:self.trip];
 }
 
 - (void)setupOriginAndDestinationMarkers
@@ -87,6 +91,12 @@
     NSLog(@"no pudo traer la location");
 }
 
+- (void)succededReceivingRoute:(WayPoints*)coordinates{
+    //TODO
+}
 
+- (void)failedReceivingRoute{
+    //TODO
+}
 
 @end

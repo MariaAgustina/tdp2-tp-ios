@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Trip.h"
+#import "BaseViewController.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DriverRouteViewController : UIViewController
+@interface DriverRouteViewController : BaseViewController
 
 @property (strong,nonatomic)Trip* trip;
 
