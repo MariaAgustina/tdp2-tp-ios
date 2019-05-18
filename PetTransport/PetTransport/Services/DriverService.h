@@ -12,8 +12,6 @@
 
 @protocol DriverServiceDelegate <NSObject>
 
-- (void)driverServiceSuccededWithResponse:(NSDictionary*)response;
-
 @optional
 - (void)didReceiveTripOffer: (Trip*)trip;
 
@@ -27,7 +25,6 @@
 - (void)setDriverWithToken: (NSString*)token;
 - (void)setWorking;
 - (void)setNotWorking;
-//- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary;
 - (void)acceptTrip: (Trip*)trip;
 - (void)rejectTrip: (Trip*)trip;
 

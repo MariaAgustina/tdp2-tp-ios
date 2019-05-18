@@ -130,8 +130,6 @@
             [self.delegate didReceiveTripOffer:trip];
             return;
         }
-        //[self.delegate driverServiceSuccededWithResponse:responseObject];
-        
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Fallo al actualizar el status del conductor");
     }];
