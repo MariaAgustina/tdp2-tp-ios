@@ -7,8 +7,11 @@
 //
 
 #import "DriverTripViewController.h"
+#import "TripService.h"
 
-@interface DriverTripViewController ()
+@interface DriverTripViewController () <TripServiceDelegate>
+
+@property (strong, nonatomic) TripService *tripService;
 
 @end
 
@@ -21,6 +24,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tripService = [[TripService alloc] initWithDelegate:self];
+    //[self.tripService retrieveTripWithId:self.tripId];
+}
+
+#pragma mark - TripServiceDelegate methods
+- (void)tripServiceFailedWithError:(NSError*)error {
+    
 }
 
 @end

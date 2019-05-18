@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Trip.h"
+#import "TripRequest.h"
 #import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TripInformationViewController : BaseViewController
 
-@property (strong, nonatomic) Trip *trip;
+@property (strong, nonatomic) TripRequest *tripRequest;
 
 @end
 

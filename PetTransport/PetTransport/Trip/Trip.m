@@ -8,58 +8,121 @@
 
 #import "Trip.h"
 
+NSString* const kAcceptedStatusKey = @"Aceptado";
+NSString* const kRejectedStatusKey = @"Rechazado";
+NSString* const kPendingStatusKey = @"Pendiente";
+NSString* const kSearchingStatusKey = @"Buscando";
+
+typedef enum TripStatusTypes {
+    ACCEPTED,
+    REJECTED,
+    PENDING,
+    SEARCHING
+} TripStatus;
+
+@interface Trip ()
+
+@property (nonatomic) TripStatus status;
+
+@end
+
 @implementation Trip
 
-- (BOOL)hasValidAdresses
-{
-    return (self.origin && self.destiny);
-}
-
-- (BOOL)hasPets
-{
-    return ([self totalPets] > 0);
-}
-
-- (BOOL)isValid
-{
-    return ([self hasValidAdresses] && [self hasPets]);
-}
-
-- (double)totalPets {
-    return self.smallPetsQuantity + self.mediumPetsQuantity + self.bigPetsQuantity;
-}
-
-
-- (struct LocationCoordinate)getOriginCoordinate {
-    struct LocationCoordinate coordinate;
-    coordinate.latitude = self.origin.coordinate.latitude;
-    coordinate.longitude = self.origin.coordinate.longitude;
-    return coordinate;
-}
-
-- (PaymentMethod*)paymentMethodForType:(PaymentMethodType)paymentMethodType {
+- (instancetype)initWithDictionary: (NSDictionary*)dictionary {
+    self = [super init];
     
-    PaymentMethod *paymentMethod = [PaymentMethod new];
+    self.tripId = [[dictionary objectForKey:@"id"] integerValue];
     
-    switch(paymentMethodType) {
-            case CASH:
-            paymentMethod.title = @"Efectivo";
-            paymentMethod.paymentKey = @"cash";
-            break;
-            case CARD:
-            paymentMethod.title = @"Tarjeta";
-            paymentMethod.paymentKey = @"card";
-            break;
-            case MERCADOPAGO:
-            paymentMethod.title = @"Mercado Pago";
-            paymentMethod.paymentKey = @"mp";
-            break;
-        default:
-            paymentMethod.title = @"Efectivo";
-            paymentMethod.paymentKey = @"cash";
+    NSString* statusString = [dictionary objectForKey:@"status"];
+    self.status = [self statusForString:statusString];
+    
+    NSDictionary* originDictionary = [dictionary objectForKey:@"origin"];
+    self.origin = [[PTLocation alloc] initWithDictionary:originDictionary];
+    
+    NSDictionary* destinationDictionary = [dictionary objectForKey:@"destination"];
+    self.destination = [[PTLocation alloc] initWithDictionary:destinationDictionary];
+    
+    NSString *reservationDateString = [dictionary objectForKey:@"reservationDate"];
+    if ((id)reservationDateString != [NSNull null]){
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+        self.scheduleDate = [dateFormatter dateFromString:reservationDateString];
     }
     
-    return paymentMethod;
+    return self;
+}
+
+- (NSDictionary*)toDictionary {
+    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
+    [attrs setObject:[NSString stringWithFormat:@"%ld",self.tripId] forKey:@"id"];
+    [attrs setObject:[self getStatusName] forKey:@"status"];
+    
+    return attrs;
+}
+
+- (struct LocationCoordinate)getOriginCoordinate {
+    return self.origin.coordinate;
+}
+
+- (TripStatus)statusForString:(NSString*)status {
+    if([status isEqualToString:kAcceptedStatusKey]){
+        return ACCEPTED;
+    }
+    if ([status isEqualToString:kRejectedStatusKey]){
+        return REJECTED;
+    }
+    if ([status isEqualToString:kSearchingStatusKey]){
+        return SEARCHING;
+    }
+    return PENDING;
+}
+
+- (NSString*)getStatusName {
+    switch (self.status) {
+        case ACCEPTED:
+            return kAcceptedStatusKey;
+            break;
+            
+        case REJECTED:
+            return kRejectedStatusKey;
+            break;
+            
+        case SEARCHING:
+            return kSearchingStatusKey;
+            break;
+            
+        case PENDING:
+            return kPendingStatusKey;
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
+- (BOOL)isScheduled {
+    return self.scheduleDate != nil;
+}
+
+- (BOOL)isAccepted {
+    return self.status == ACCEPTED;
+}
+
+- (BOOL)isPending {
+    return self.status == PENDING;
+}
+
+- (BOOL)isRejected {
+    return self.status == REJECTED;
+}
+
+- (void)accept {
+    self.status = ACCEPTED;
+}
+
+- (void)reject {
+    self.status = REJECTED;
 }
 
 @end

@@ -17,13 +17,14 @@
 		586D013422877D6E00F6FCAF /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586D013322877D6E00F6FCAF /* UserNotifications.framework */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
-		589798CF227F58480047EC92 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */; };
 		589798D2227F73900047EC92 /* RateClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589798D1227F73900047EC92 /* RateClientViewController.m */; };
 		58B34D9D2275D72200277F5A /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B34D9C2275D72200277F5A /* ApiClient.m */; };
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
 		58BE1D1C2263AA960000C9D0 /* ClientProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D1B2263AA960000C9D0 /* ClientProfile.m */; };
 		58CB7CDC227E1BA90007F3DE /* ClientService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CB7CDB227E1BA90007F3DE /* ClientService.m */; };
 		58D439552288946500EDC691 /* DriverTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439542288946500EDC691 /* DriverTripViewController.m */; };
+		58D439582288BCA200EDC691 /* TripRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439572288BCA200EDC691 /* TripRequest.m */; };
+		58D439612288CC9A00EDC691 /* PTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D439602288CC9A00EDC691 /* PTLocation.m */; };
 		58E20BA12268D48800E024DF /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA02268D48800E024DF /* AuthService.m */; };
 		58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E20BA32268F70900E024DF /* ClientLoginViewController.m */; };
 		58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F022DD2253EFEA00318837 /* TrackDriverService.m */; };
@@ -36,7 +37,6 @@
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
 		9388CB87228A3ED900055B20 /* DriverRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388CB86228A3ED900055B20 /* DriverRouteViewController.m */; };
-		938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B99FD227DFB58001EBBEC /* TripOffer.m */; };
 		938B9A04227F36E5001EBBEC /* RateServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B9A03227F36E5001EBBEC /* RateServiceViewController.m */; };
 		938B9A09227F436C001EBBEC /* RateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B9A08227F436C001EBBEC /* RateModel.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
@@ -55,6 +55,7 @@
 		93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */; };
 		93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */; };
 		93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */; };
+		93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +92,6 @@
 		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
 		58754C0722625E5C00F12643 /* FbProfileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FbProfileManager.h; sourceTree = "<group>"; };
 		58754C0822625E5C00F12643 /* FbProfileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FbProfileManager.m; sourceTree = "<group>"; };
-		589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitingTripConfirmationViewController.h; sourceTree = "<group>"; };
-		589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitingTripConfirmationViewController.m; sourceTree = "<group>"; };
 		589798D0227F73900047EC92 /* RateClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateClientViewController.h; sourceTree = "<group>"; };
 		589798D1227F73900047EC92 /* RateClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateClientViewController.m; sourceTree = "<group>"; };
 		58B34D9B2275D72200277F5A /* ApiClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
@@ -105,6 +104,10 @@
 		58CB7CDB227E1BA90007F3DE /* ClientService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientService.m; sourceTree = "<group>"; };
 		58D439532288946500EDC691 /* DriverTripViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverTripViewController.h; sourceTree = "<group>"; };
 		58D439542288946500EDC691 /* DriverTripViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverTripViewController.m; sourceTree = "<group>"; };
+		58D439562288BCA200EDC691 /* TripRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripRequest.h; sourceTree = "<group>"; };
+		58D439572288BCA200EDC691 /* TripRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripRequest.m; sourceTree = "<group>"; };
+		58D4395F2288CC9A00EDC691 /* PTLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTLocation.h; sourceTree = "<group>"; };
+		58D439602288CC9A00EDC691 /* PTLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTLocation.m; sourceTree = "<group>"; };
 		58E20B9F2268D48800E024DF /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		58E20BA02268D48800E024DF /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
 		58E20BA22268F70900E024DF /* ClientLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClientLoginViewController.h; sourceTree = "<group>"; };
@@ -131,8 +134,6 @@
 		937ABFBE225401AF00086554 /* TripServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripServiceDelegate.h; sourceTree = "<group>"; };
 		9388CB85228A3ED900055B20 /* DriverRouteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverRouteViewController.h; sourceTree = "<group>"; };
 		9388CB86228A3ED900055B20 /* DriverRouteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverRouteViewController.m; sourceTree = "<group>"; };
-		938B99FC227DFB58001EBBEC /* TripOffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripOffer.h; sourceTree = "<group>"; };
-		938B99FD227DFB58001EBBEC /* TripOffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripOffer.m; sourceTree = "<group>"; };
 		938B9A02227F36E5001EBBEC /* RateServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateServiceViewController.h; sourceTree = "<group>"; };
 		938B9A03227F36E5001EBBEC /* RateServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateServiceViewController.m; sourceTree = "<group>"; };
 		938B9A07227F436C001EBBEC /* RateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateModel.h; sourceTree = "<group>"; };
@@ -169,6 +170,8 @@
 		93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Base64.m"; sourceTree = "<group>"; };
 		93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverMenuViewController.h; sourceTree = "<group>"; };
 		93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverMenuViewController.m; sourceTree = "<group>"; };
+		93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingTripConfirmationViewController.m; sourceTree = "<group>"; };
+		93FB8A33229067900006FD16 /* WaitingTripConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingTripConfirmationViewController.h; sourceTree = "<group>"; };
 		AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
 		E86903565904018278ACDC05 /* Pods-PetTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.debug.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,33 +215,15 @@
 		58492B95225007D000496C82 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				58D4395B2288BEA000EDC691 /* Auth */,
+				58D4395A2288BE6100EDC691 /* Client */,
 				58D439522288944A00EDC691 /* Driver */,
 				931E30CB227F954800F5081F /* BaseViewController.h */,
 				931E30CC227F954800F5081F /* BaseViewController.m */,
-				58492B96225007E200496C82 /* BookTransportViewController.h */,
-				58492B97225007E200496C82 /* BookTransportViewController.m */,
-				934C357C2263C53D0062122E /* TripInformationViewController.h */,
-				934C357D2263C53D0062122E /* TripInformationViewController.m */,
-				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
-				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
-				58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */,
-				58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */,
-				93D0BEC5226B79C000FEF7C9 /* RegisterDriverViewController.h */,
-				93D0BEC6226B79C000FEF7C9 /* RegisterDriverViewController.m */,
-				58E20BA22268F70900E024DF /* ClientLoginViewController.h */,
-				58E20BA32268F70900E024DF /* ClientLoginViewController.m */,
-				93D0BEC2226B76E800FEF7C9 /* DriverLoginViewController.h */,
-				93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */,
 				586235A8226A60BE007D9A0A /* ClientMenuViewController.h */,
 				586235A9226A60BE007D9A0A /* ClientMenuViewController.m */,
-				93D0BEC8226B812F00FEF7C9 /* RegisterPhotoDriverViewController.h */,
-				93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */,
 				938B9A02227F36E5001EBBEC /* RateServiceViewController.h */,
 				938B9A03227F36E5001EBBEC /* RateServiceViewController.m */,
-				589798CD227F58480047EC92 /* WaitingTripConfirmationViewController.h */,
-				589798CE227F58480047EC92 /* WaitingTripConfirmationViewController.m */,
-				9388CB85228A3ED900055B20 /* DriverRouteViewController.h */,
-				9388CB86228A3ED900055B20 /* DriverRouteViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -291,8 +276,42 @@
 				58D439542288946500EDC691 /* DriverTripViewController.m */,
 				589798D0227F73900047EC92 /* RateClientViewController.h */,
 				589798D1227F73900047EC92 /* RateClientViewController.m */,
+				9388CB85228A3ED900055B20 /* DriverRouteViewController.h */,
+				9388CB86228A3ED900055B20 /* DriverRouteViewController.m */,
 			);
 			path = Driver;
+			sourceTree = "<group>";
+		};
+		58D4395A2288BE6100EDC691 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				58492B96225007E200496C82 /* BookTransportViewController.h */,
+				58492B97225007E200496C82 /* BookTransportViewController.m */,
+				934C357C2263C53D0062122E /* TripInformationViewController.h */,
+				934C357D2263C53D0062122E /* TripInformationViewController.m */,
+				586A6A84225141E8001E3FB2 /* TrackDriverViewController.h */,
+				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
+				93FB8A33229067900006FD16 /* WaitingTripConfirmationViewController.h */,
+				93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		58D4395B2288BEA000EDC691 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				58E20BA22268F70900E024DF /* ClientLoginViewController.h */,
+				58E20BA32268F70900E024DF /* ClientLoginViewController.m */,
+				93D0BEC2226B76E800FEF7C9 /* DriverLoginViewController.h */,
+				93D0BEC3226B76E800FEF7C9 /* DriverLoginViewController.m */,
+				58BE1D172263A8F50000C9D0 /* RegisterClientViewController.h */,
+				58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */,
+				93D0BEC5226B79C000FEF7C9 /* RegisterDriverViewController.h */,
+				93D0BEC6226B79C000FEF7C9 /* RegisterDriverViewController.m */,
+				93D0BEC8226B812F00FEF7C9 /* RegisterPhotoDriverViewController.h */,
+				93D0BEC9226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		58F022DF2253F16D00318837 /* Entities */ = {
@@ -303,6 +322,8 @@
 				58BE1D1B2263AA960000C9D0 /* ClientProfile.m */,
 				93D0BECB226BAC4300FEF7C9 /* DriverProfile.h */,
 				93D0BECC226BAC4300FEF7C9 /* DriverProfile.m */,
+				58D4395F2288CC9A00EDC691 /* PTLocation.h */,
+				58D439602288CC9A00EDC691 /* PTLocation.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -321,8 +342,6 @@
 			children = (
 				937ABFB42253DAF000086554 /* Trip.h */,
 				937ABFB52253DAF000086554 /* Trip.m */,
-				938B99FC227DFB58001EBBEC /* TripOffer.h */,
-				938B99FD227DFB58001EBBEC /* TripOffer.m */,
 				93D0BEBF226A2AD700FEF7C9 /* PaymentMethod.h */,
 				93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */,
 				937ABFBE225401AF00086554 /* TripServiceDelegate.h */,
@@ -330,6 +349,8 @@
 				937ABFBC225400DB00086554 /* TripService.m */,
 				931E30C8227F71C500F5081F /* FinishTripService.h */,
 				931E30C9227F71C500F5081F /* FinishTripService.m */,
+				58D439562288BCA200EDC691 /* TripRequest.h */,
+				58D439572288BCA200EDC691 /* TripRequest.m */,
 			);
 			path = Trip;
 			sourceTree = "<group>";
@@ -608,7 +629,7 @@
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
-				938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */,
+				93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */,
 				58D439552288946500EDC691 /* DriverTripViewController.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				589798D2227F73900047EC92 /* RateClientViewController.m in Sources */,
@@ -628,7 +649,6 @@
 				93D0BECA226B812F00FEF7C9 /* RegisterPhotoDriverViewController.m in Sources */,
 				58492B98225007E200496C82 /* BookTransportViewController.m in Sources */,
 				93D0BECD226BAC4300FEF7C9 /* DriverProfile.m in Sources */,
-				589798CF227F58480047EC92 /* WaitingTripConfirmationViewController.m in Sources */,
 				58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */,
 				58F64EDB2274FD2000EAA7D8 /* DriverService.m in Sources */,
 				93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */,
@@ -639,7 +659,9 @@
 				93A7F19622590B5900D076C0 /* UIViewController+ShowAlerts.m in Sources */,
 				93D0BEC4226B76E800FEF7C9 /* DriverLoginViewController.m in Sources */,
 				931E30C7227F556800F5081F /* RateDriverService.m in Sources */,
+				58D439612288CC9A00EDC691 /* PTLocation.m in Sources */,
 				58E20BA42268F70900E024DF /* ClientLoginViewController.m in Sources */,
+				58D439582288BCA200EDC691 /* TripRequest.m in Sources */,
 				934C357E2263C53D0062122E /* TripInformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
