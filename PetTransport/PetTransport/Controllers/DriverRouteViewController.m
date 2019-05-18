@@ -6,19 +6,19 @@
 //  Copyright © 2019 agustina markosich. All rights reserved.
 //
 
-#import "MapDirectionExampleViewController.h"
+#import "DriverRouteViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 #import "LocationManager.h"
 
-@interface MapDirectionExampleViewController () <LocationManagerDelegate>
+@interface DriverRouteViewController () <LocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong,nonatomic) LocationManager *locationManager;
 
 @end
 
-@implementation MapDirectionExampleViewController
+@implementation DriverRouteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
