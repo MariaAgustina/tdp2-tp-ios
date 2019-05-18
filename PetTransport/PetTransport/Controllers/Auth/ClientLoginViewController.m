@@ -37,7 +37,6 @@
 
 - (IBAction)loginButtonPressed:(id)sender {
     self.pendingAction = @"Login";
-    NSLog(@"Login button pressed");
     if ([self.fbProfileManager getToken] == nil){
         [self loginInFacebook];
         return;
