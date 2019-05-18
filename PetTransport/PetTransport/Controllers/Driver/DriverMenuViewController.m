@@ -11,7 +11,7 @@
 #import "LocationManager.h"
 #import <UserNotifications/UserNotifications.h>
 #import "constants.h"
-#import "DriverTripViewController.h"
+#import "DriverRouteViewController.h"
 
 @interface DriverMenuViewController () <DriverServiceDelegate>
 
@@ -140,8 +140,8 @@
 
 - (void)showTripScreen: (Trip *)trip {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    DriverTripViewController *driverTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverTripViewController"];
-    driverTripVC.tripId = trip.tripId;
+    DriverRouteViewController *driverTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverRouteViewController"];
+    driverTripVC.trip = trip;
     
     [self.navigationController pushViewController:driverTripVC animated:YES];
 }

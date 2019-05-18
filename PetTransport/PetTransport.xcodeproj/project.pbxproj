@@ -56,6 +56,7 @@
 		93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED2226BB8A200FEF7C9 /* UIImage+Base64.m */; };
 		93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */; };
 		93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */; };
+		93FB8A372290760C0006FD16 /* CoordinateAddapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A362290760C0006FD16 /* CoordinateAddapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,8 @@
 		93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverMenuViewController.m; sourceTree = "<group>"; };
 		93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingTripConfirmationViewController.m; sourceTree = "<group>"; };
 		93FB8A33229067900006FD16 /* WaitingTripConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingTripConfirmationViewController.h; sourceTree = "<group>"; };
+		93FB8A352290760C0006FD16 /* CoordinateAddapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoordinateAddapter.h; sourceTree = "<group>"; };
+		93FB8A362290760C0006FD16 /* CoordinateAddapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoordinateAddapter.m; sourceTree = "<group>"; };
 		AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
 		E86903565904018278ACDC05 /* Pods-PetTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.debug.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -318,6 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				58F022E02253F18C00318837 /* LocationCoordinate.h */,
+				93FB8A352290760C0006FD16 /* CoordinateAddapter.h */,
+				93FB8A362290760C0006FD16 /* CoordinateAddapter.m */,
 				58BE1D1A2263AA960000C9D0 /* ClientProfile.h */,
 				58BE1D1B2263AA960000C9D0 /* ClientProfile.m */,
 				93D0BECB226BAC4300FEF7C9 /* DriverProfile.h */,
@@ -653,6 +658,7 @@
 				58F64EDB2274FD2000EAA7D8 /* DriverService.m in Sources */,
 				93D0BEC7226B79C000FEF7C9 /* RegisterDriverViewController.m in Sources */,
 				937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */,
+				93FB8A372290760C0006FD16 /* CoordinateAddapter.m in Sources */,
 				931E30CA227F71C500F5081F /* FinishTripService.m in Sources */,
 				9388CB87228A3ED900055B20 /* DriverRouteViewController.m in Sources */,
 				58E20BA12268D48800E024DF /* AuthService.m in Sources */,

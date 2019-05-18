@@ -10,11 +10,16 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 #import "LocationManager.h"
+#import "GMSMarker+Setup.h"
+#import "CoordinateAddapter.h"
 
 @interface DriverRouteViewController () <LocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong,nonatomic) LocationManager *locationManager;
+
+@property (strong,nonatomic) GMSMarker* originMarker;
+@property (strong,nonatomic) GMSMarker* destinyMarker;
 
 @end
 
@@ -23,11 +28,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.locationManager = [[LocationManager alloc] init];
+    
+    [self setupOriginAndDestinationMarkers];
+    
+    //TODO: call server to get coordinates
+}
+
+- (void)setupOriginAndDestinationMarkers
+{
+    self.originMarker = [GMSMarker new];
+    self.originMarker.title = @"Origen";
+    CLLocationCoordinate2D origin = [CoordinateAddapter getCoordinate:self.trip.origin.coordinate];
+    [self.originMarker setupWithCoordinate:origin address:self.trip.origin.address andMapView:self.mapView];
+
+    self.destinyMarker = [GMSMarker new];
+    self.destinyMarker.title = @"Destino";
+    self.destinyMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+    CLLocationCoordinate2D destination = [CoordinateAddapter getCoordinate:self.trip.destination.coordinate];
+    [self.destinyMarker setupWithCoordinate:destination address:self.trip.destination.address andMapView:self.mapView];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    
     self.mapView.myLocationEnabled = YES;
-
     [self fetchCurrentLocation];
 
 }
