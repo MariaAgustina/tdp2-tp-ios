@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDate *scheduleDate;
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
+- (NSDictionary*)toDictionary;
 - (struct LocationCoordinate)getOriginCoordinate;
 - (BOOL)isScheduled;
 - (BOOL)isPending;

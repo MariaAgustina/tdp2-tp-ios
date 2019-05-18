@@ -84,19 +84,29 @@
 
 - (void)acceptTrip:(Trip *)trip {
     [trip accept];
+    [self updateTrip:trip];
 }
 
 - (void)rejectTrip:(Trip *)trip {
     [trip reject];
 }
 
-//- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary{
-//    NSMutableDictionary* body = [[self bodyWithLocationAndStatus] mutableCopy];
-//    if(tripOfferDictionary){
-//        [body setValue:tripOfferDictionary forKey:@"tripOffer"];
-//    }
-//    [self putStatusWithBody:[body copy]];
-//}
+- (void)updateTrip:(Trip *)trip {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld", trip.tripId];
+    
+    NSDictionary *body = [trip toDictionary];
+    NSLog(@"body: %@", body);
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient putWithRelativeUrlString:relativeUrlString
+                                   body: body
+                                  token: self.token
+                                success:^(id _Nullable responseObject){
+                                    NSLog(@"1) response: %@", responseObject);
+                                } failure:^(NSError * _Nonnull error) {
+                                    NSLog(@"Error: %@", error);
+                                }];
+}
 
 - (NSDictionary*)bodyWithLocationAndStatus{
     NSDictionary* locationDictionary = @{@"lat": [NSNumber numberWithDouble: self.currentLocation.latitude],@"lng": [NSNumber numberWithDouble: self.currentLocation.longitude]};

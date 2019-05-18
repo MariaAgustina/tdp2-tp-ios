@@ -52,6 +52,14 @@ typedef enum TripStatusTypes {
     return self;
 }
 
+- (NSDictionary*)toDictionary {
+    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
+    [attrs setObject:[NSString stringWithFormat:@"%ld",self.tripId] forKey:@"id"];
+    [attrs setObject:[self getStatusName] forKey:@"status"];
+    
+    return attrs;
+}
+
 - (struct LocationCoordinate)getOriginCoordinate {
     return self.origin.coordinate;
 }
@@ -67,6 +75,30 @@ typedef enum TripStatusTypes {
         return SEARCHING;
     }
     return PENDING;
+}
+
+- (NSString*)getStatusName {
+    switch (self.status) {
+        case ACCEPTED:
+            return kAcceptedStatusKey;
+            break;
+            
+        case REJECTED:
+            return kRejectedStatusKey;
+            break;
+            
+        case SEARCHING:
+            return kSearchingStatusKey;
+            break;
+            
+        case PENDING:
+            return kPendingStatusKey;
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
 }
 
 - (BOOL)isScheduled {
