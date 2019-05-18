@@ -57,7 +57,6 @@
 		93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */; };
 		93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */; };
 		93FB8A372290760C0006FD16 /* CoordinateAddapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A362290760C0006FD16 /* CoordinateAddapter.m */; };
-		93FB8A3A229084740006FD16 /* RoutesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A39229084740006FD16 /* RoutesService.m */; };
 		93FB8A3D22908A1B0006FD16 /* WayPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A3C22908A1B0006FD16 /* WayPoints.m */; };
 /* End PBXBuildFile section */
 
@@ -177,8 +176,6 @@
 		93FB8A33229067900006FD16 /* WaitingTripConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingTripConfirmationViewController.h; sourceTree = "<group>"; };
 		93FB8A352290760C0006FD16 /* CoordinateAddapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoordinateAddapter.h; sourceTree = "<group>"; };
 		93FB8A362290760C0006FD16 /* CoordinateAddapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoordinateAddapter.m; sourceTree = "<group>"; };
-		93FB8A38229084740006FD16 /* RoutesService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoutesService.h; sourceTree = "<group>"; };
-		93FB8A39229084740006FD16 /* RoutesService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoutesService.m; sourceTree = "<group>"; };
 		93FB8A3B22908A1B0006FD16 /* WayPoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoints.h; sourceTree = "<group>"; };
 		93FB8A3C22908A1B0006FD16 /* WayPoints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoints.m; sourceTree = "<group>"; };
 		AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
@@ -254,8 +251,6 @@
 				58CB7CDB227E1BA90007F3DE /* ClientService.m */,
 				931E30C5227F556800F5081F /* RateDriverService.h */,
 				931E30C6227F556800F5081F /* RateDriverService.m */,
-				93FB8A38229084740006FD16 /* RoutesService.h */,
-				93FB8A39229084740006FD16 /* RoutesService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -649,7 +644,6 @@
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				589798D2227F73900047EC92 /* RateClientViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
-				93FB8A3A229084740006FD16 /* RoutesService.m in Sources */,
 				93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */,
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,

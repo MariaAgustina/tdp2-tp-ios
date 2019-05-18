@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithDictionary: (NSDictionary*)dictionary;
 
-@property (strong, nonatomic)NSArray<CLLocation*>* wayPoints;
+@property (strong, nonatomic)NSArray<CLLocation*>* points;
 
 @end
 

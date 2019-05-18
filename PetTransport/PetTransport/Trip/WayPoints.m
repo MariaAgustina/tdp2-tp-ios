@@ -19,7 +19,7 @@
         double lng = [[point objectForKey:@"lng"] doubleValue];
         [mutableWaypoitns addObject:[[CLLocation alloc] initWithLatitude:lat longitude:lng]];
     }
-    self.wayPoints = [wayPointsArray copy];
+    self.points = [mutableWaypoitns copy];
     
     return self;
 }

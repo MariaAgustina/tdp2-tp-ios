@@ -12,9 +12,10 @@
 #import "LocationManager.h"
 #import "GMSMarker+Setup.h"
 #import "CoordinateAddapter.h"
-#import "RoutesService.h"
+#import "TripService.h"
+#import "UIViewController+ShowAlerts.h"
 
-@interface DriverRouteViewController () <LocationManagerDelegate, RoutesServiceDelegate>
+@interface DriverRouteViewController () <LocationManagerDelegate, TripServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong,nonatomic) LocationManager *locationManager;
@@ -22,7 +23,7 @@
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
-@property (strong,nonatomic) RoutesService* routesService;
+@property (strong,nonatomic) TripService* routesService;
 
 @end
 
@@ -34,7 +35,9 @@
     
     [self setupOriginAndDestinationMarkers];
     
-    self.routesService = [[RoutesService alloc] initWithDelegate:self];
+    self.routesService = [[TripService alloc] initWithDelegate:self];
+    
+    [self showLoading];
     [self.routesService getTripCoordinates:self.trip];
 }
 
@@ -73,30 +76,29 @@
 #pragma mark - LocationManagerDelegate
 - (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
     [self centerCamera:coordinate];
-    
-    GMSMutablePath *path = [GMSMutablePath path];
-
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.584991,-58.412257)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.585696, -58.413139)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.587215, -58.410997)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.588039, -58.411563)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.589054, -58.410139)];
-    
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-    polyline.strokeWidth = 6.f;
-    polyline.map = self.mapView;
 }
 
 - (void)didFailFetchingCurrentLocation {
     NSLog(@"no pudo traer la location");
 }
 
-- (void)succededReceivingRoute:(WayPoints*)coordinates{
-    //TODO
+- (void)succededReceivingRoute:(WayPoints*)wayPoints{
+    [self hideLoading];
+    GMSMutablePath *path = [GMSMutablePath path];
+    
+    for(CLLocation* waypoint in wayPoints.points){
+        [path addCoordinate:waypoint.coordinate];
+    }
+    
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 6.f;
+    polyline.map = self.mapView;
+    
 }
 
-- (void)failedReceivingRoute{
-    //TODO
+- (void)tripServiceFailedWithError:(NSError*)error{
+    [self hideLoading];
+    [self showInternetConexionAlert];
 }
 
 @end
