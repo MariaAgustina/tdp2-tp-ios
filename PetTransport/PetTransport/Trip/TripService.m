@@ -36,8 +36,8 @@
                                        @"address": tripRequest.origin.name
                                        };
     NSDictionary* destinantionDictionary = @{
-                                             @"lat": [NSNumber numberWithDouble: tripRequest.origin.coordinate.latitude],
-                                             @"lng": [NSNumber numberWithDouble: tripRequest.origin.coordinate.longitude],
+                                             @"lat": [NSNumber numberWithDouble: tripRequest.destiny.coordinate.latitude],
+                                             @"lng": [NSNumber numberWithDouble: tripRequest.destiny.coordinate.longitude],
                                              @"address": tripRequest.destiny.name
                                              };
     
@@ -96,5 +96,45 @@
     [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
     return [formatter stringFromDate:date];
 }
+
+- (void)getTripCoordinates:(Trip*)trip{
+    
+    NSString* relativeUrlString = @"info/route";
+    
+    NSDictionary* originDictionary = @{
+                                       @"lat":[NSNumber numberWithDouble:trip.origin.coordinate.latitude],
+                                       @"lng":[NSNumber numberWithDouble:trip.origin.coordinate.longitude],
+                                       @"address": trip.origin.address
+                                       };
+    
+    NSDictionary* destinationDictionary = @{
+                                            @"lat":[NSNumber numberWithDouble:trip.destination.coordinate.latitude],
+                                            @"lng":[NSNumber numberWithDouble:trip.destination.coordinate.longitude],
+                                            @"address": trip.destination.address
+                                            };
+    
+    
+    NSDictionary* body = @{
+                           @"origin": originDictionary,
+                           @"destination": destinationDictionary
+                           };
+    
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:body
+                                   token: [[ClientService sharedInstance] getToken]
+                                 success:^(id _Nullable responseObject) {
+                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     WayPoints* wayPoints = [[WayPoints alloc]initWithDictionary:responseObject];
+                                     [strongDelegate succededReceivingRoute:wayPoints];
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     NSLog(@"Error: %@", error);
+                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     [strongDelegate tripServiceFailedWithError:error];
+                                 }];
+}
+
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Trip.h"
+#import "WayPoints.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (void)didReturnTrip: (Trip*)trip;
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response;
+
+- (void)succededReceivingRoute:(WayPoints*)wayPoints;
 
 @required
 - (void)tripServiceFailedWithError:(NSError*)error;

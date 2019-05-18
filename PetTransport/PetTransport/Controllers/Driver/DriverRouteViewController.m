@@ -12,14 +12,23 @@
 #import "LocationManager.h"
 #import "GMSMarker+Setup.h"
 #import "CoordinateAddapter.h"
+#import "TripService.h"
+#import "UIViewController+ShowAlerts.h"
 
-@interface DriverRouteViewController () <LocationManagerDelegate>
+@interface DriverRouteViewController () <LocationManagerDelegate, TripServiceDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *clientLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *tripButton;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong,nonatomic) LocationManager *locationManager;
 
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
+
+@property (strong,nonatomic) TripService* routesService;
 
 @end
 
@@ -31,7 +40,10 @@
     
     [self setupOriginAndDestinationMarkers];
     
-    //TODO: call server to get coordinates
+    self.routesService = [[TripService alloc] initWithDelegate:self];
+    
+    [self showLoading];
+    [self.routesService getTripCoordinates:self.trip];
 }
 
 - (void)setupOriginAndDestinationMarkers
@@ -66,27 +78,37 @@
     [self.mapView setCamera:camera];
 }
 
+- (IBAction)tripButtonPressed:(id)sender {
+    
+}
+
 #pragma mark - LocationManagerDelegate
 - (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
     [self centerCamera:coordinate];
-    
-    GMSMutablePath *path = [GMSMutablePath path];
-
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.584991,-58.412257)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.585696, -58.413139)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.587215, -58.410997)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.588039, -58.411563)];
-    [path addCoordinate:CLLocationCoordinate2DMake(-34.589054, -58.410139)];
-    
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-    polyline.strokeWidth = 6.f;
-    polyline.map = self.mapView;
 }
 
 - (void)didFailFetchingCurrentLocation {
     NSLog(@"no pudo traer la location");
 }
 
+#pragma mark - TripServiceDelegate
+- (void)succededReceivingRoute:(WayPoints*)wayPoints{
+    [self hideLoading];
+    GMSMutablePath *path = [GMSMutablePath path];
+    
+    for(CLLocation* waypoint in wayPoints.points){
+        [path addCoordinate:waypoint.coordinate];
+    }
+    
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 6.f;
+    polyline.map = self.mapView;
+    
+}
 
+- (void)tripServiceFailedWithError:(NSError*)error{
+    [self hideLoading];
+    [self showInternetConexionAlert];
+}
 
 @end
