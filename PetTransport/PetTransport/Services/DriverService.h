@@ -14,7 +14,6 @@
 
 @optional
 - (void)didReceiveTripOffer: (Trip*)trip;
-- (void)didUpdateTrip:(Trip*)trip;
 
 @end
 

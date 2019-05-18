@@ -23,6 +23,7 @@ typedef enum TripStatusTypes {
 @interface Trip ()
 
 @property (nonatomic) TripStatus status;
+@property (strong, nonatomic) NSDictionary *originalDict;
 
 @end
 
@@ -30,6 +31,7 @@ typedef enum TripStatusTypes {
 
 - (instancetype)initWithDictionary: (NSDictionary*)dictionary {
     self = [super init];
+    self.originalDict = [dictionary copy];
     
     self.tripId = [[dictionary objectForKey:@"id"] integerValue];
     
@@ -49,12 +51,21 @@ typedef enum TripStatusTypes {
         self.scheduleDate = [dateFormatter dateFromString:reservationDateString];
     }
     
+    self.cost = [dictionary objectForKey:@"cost"];
+    
+    NSDictionary *petQuantities = [dictionary objectForKey:@"petQuantities"];
+    self.smallPetsQuantity = [[petQuantities objectForKey:@"small"] integerValue];
+    self.mediumPetsQuantity = [[petQuantities objectForKey:@"medium"] integerValue];
+    self.bigPetsQuantity = [[petQuantities objectForKey:@"big"] integerValue];
+    self.bringsEscort = [[dictionary objectForKey:@"bringsEscort"] boolValue];
+    self.comments = [dictionary objectForKey:@"comments"];
+    self.clientName = [[dictionary objectForKey:@"client"] objectForKey:@"name"];
+    
     return self;
 }
 
 - (NSDictionary*)toDictionary {
-    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
-    [attrs setObject:[NSString stringWithFormat:@"%ld",self.tripId] forKey:@"id"];
+    NSMutableDictionary *attrs = [self.originalDict mutableCopy];
     [attrs setObject:[self getStatusName] forKey:@"status"];
     
     return attrs;

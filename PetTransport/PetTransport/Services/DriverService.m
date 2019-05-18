@@ -92,20 +92,10 @@
     [self updateTrip:trip];
 }
 
-- (void)updateTrip:(Trip *)trip {
-    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld", trip.tripId];
-    
-    NSDictionary *body = [trip toDictionary];
-    ApiClient *apiClient = [ApiClient new];
-    [apiClient putWithRelativeUrlString:relativeUrlString
-                                   body: body
-                                  token: self.token
-                                success:^(id _Nullable responseObject){
-                                    Trip *updatedTrip = [[Trip alloc] initWithDictionary:responseObject];
-                                    [self.delegate didUpdateTrip:updatedTrip];
-                                } failure:^(NSError * _Nonnull error) {
-                                    NSLog(@"Error: %@", error);
-                                }];
+- (void)updateTrip: (Trip*)trip {
+    NSMutableDictionary *body = [[self bodyWithLocationAndStatus] mutableCopy];
+    [body setObject:[trip toDictionary] forKey:@"tripOffer"];
+    [self putStatusWithBody:body];
 }
 
 - (NSDictionary*)bodyWithLocationAndStatus{
@@ -123,8 +113,8 @@
     ApiClient *apiClient = [ApiClient new];
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-        NSLog(@"Response object: %@", responseObject);
         if ([responseObject objectForKey:@"tripOffer"] != nil){
+            NSLog(@"Response object: %@", responseObject);
             Trip *trip = [[Trip alloc] initWithDictionary:[responseObject objectForKey:@"tripOffer"]];
             [self.delegate didReceiveTripOffer:trip];
             return;
