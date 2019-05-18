@@ -69,6 +69,13 @@
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
     
+    NSString *priceMessage = [NSString stringWithFormat:@"Precio: $%@", trip.cost];
+    NSMutableAttributedString *priceLabel = [[NSMutableAttributedString alloc] initWithString:priceMessage];
+    [priceLabel addAttribute:NSFontAttributeName
+                  value:[UIFont boldSystemFontOfSize:16]
+                  range:NSMakeRange(0, priceMessage.length)];
+    [alert setValue:priceLabel forKey:@"attributedTitle"];
+    
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
         [self scheduleNotification:trip];
         [[DriverService sharedInstance] acceptTrip:trip];
@@ -85,6 +92,8 @@
 }
 
 - (NSString *)getOfferMessage: (Trip*)trip {
+    NSString *client = [NSString stringWithFormat:@"Cliente: %@", trip.clientName];
+    
     NSString *origin = [NSString stringWithFormat:@"Origen: %@", trip.origin.address];
     NSString *destination = [NSString stringWithFormat:@"Destino: %@", trip.destination.address];
     NSString *reservationDate = @"";
@@ -94,7 +103,38 @@
         reservationDate = [NSString stringWithFormat:@"Dia y horario: %@\r", [formatter stringFromDate:trip.scheduleDate]];
     }
     
-    NSString* message =[NSString stringWithFormat:@"%@\r%@\r%@", origin, destination, reservationDate];
+    NSString *pets = [NSString stringWithFormat:@"Cantidad de mascotas:\r %@", [self getPetsMessage:trip]];
+    
+    NSString *escort = (trip.bringsEscort) ? @"Sí" : @"No";
+    escort = [NSString stringWithFormat:@"¿Con acompañante?: %@", escort];
+    
+    NSString* message =[NSString stringWithFormat:@"%@\r\r%@\r%@\r%@\r%@\r%@", client, origin, destination, reservationDate, pets, escort];
+    return message;
+}
+
+- (NSString*)getPetsMessage: (Trip*)trip {
+    NSString *bigPets = @"";
+    if (trip.bigPetsQuantity > 0){
+        bigPets = (trip.bigPetsQuantity == 1) ? @"1 grande" : [NSString stringWithFormat:@"%ld grandes", trip.bigPetsQuantity];
+    }
+    NSString *mediumPets = @"";
+    if (trip.mediumPetsQuantity > 0){
+        mediumPets = (trip.mediumPetsQuantity == 1) ? @"1 mediana" : [NSString stringWithFormat:@"%ld medianas", trip.mediumPetsQuantity];
+    }
+    NSString *smallPets = @"";
+    if (trip.smallPetsQuantity > 0){
+        smallPets = (trip.smallPetsQuantity == 1) ? @"1 chica" : [NSString stringWithFormat:@"%ld chicas", trip.smallPetsQuantity];
+    }
+    NSString *message = @"";
+    if (trip.bigPetsQuantity > 0){
+        message = [bigPets copy];
+    }
+    if (trip.mediumPetsQuantity > 0){
+        message = ([message isEqualToString:@""]) ? [mediumPets copy] : [NSString stringWithFormat:@"%@, %@", message, mediumPets];
+    }
+    if (trip.smallPetsQuantity > 0){
+        message = ([message isEqualToString:@""]) ? [smallPets copy] : [NSString stringWithFormat:@"%@, %@", message, smallPets];
+    }
     return message;
 }
 
@@ -105,7 +145,7 @@
 
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
     content.title = @"Recordatorio";
-    content.body = [self getOfferMessage:trip];
+    content.body = [self getNotificationMessage:trip];
     content.sound = [UNNotificationSound defaultSound];
 
     NSDate *date = [trip.scheduleDate dateByAddingTimeInterval: -1 * REMINDER_TIME_SECONDS];
@@ -134,6 +174,20 @@
     }];
 }
 
+- (NSString *)getNotificationMessage: (Trip*)trip {
+    NSString *origin = [NSString stringWithFormat:@"Origen: %@", trip.origin.address];
+    NSString *destination = [NSString stringWithFormat:@"Destino: %@", trip.destination.address];
+    NSString *reservationDate = @"";
+    if ([trip isScheduled]){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+        reservationDate = [NSString stringWithFormat:@"Dia y horario: %@\r", [formatter stringFromDate:trip.scheduleDate]];
+    }
+    
+    NSString* message =[NSString stringWithFormat:@"%@\r%@\r%@", origin, destination, reservationDate];
+    return message;
+}
+
 - (void)closeAlert{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -153,18 +207,15 @@
         [self showNewTrip:trip];
         return;
     }
-}
-
-- (void)didUpdateTrip:(Trip *)trip {
-    if (![trip isAccepted]){
-        return;
-    }
     
-    if ([trip isScheduled]){
+    if ([trip isAccepted] && [trip isScheduled]){
         NSLog(@"viaje agendado");
         return;
     }
-    [self showTripScreen:trip];
+    
+    if ([trip isAccepted] && ![trip isScheduled]){
+        [self showTripScreen:trip];
+        return;
+    }
 }
-
 @end

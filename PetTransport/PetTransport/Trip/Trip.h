@@ -22,14 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) PTLocation *origin;
 @property (strong,nonatomic) PTLocation *destination;
 
-@property (assign,nonatomic) double smallPetsQuantity;
-@property (assign,nonatomic) double mediumPetsQuantity;
-@property (assign,nonatomic) double bigPetsQuantity;
+@property (assign,nonatomic) NSInteger smallPetsQuantity;
+@property (assign,nonatomic) NSInteger mediumPetsQuantity;
+@property (assign,nonatomic) NSInteger bigPetsQuantity;
 
 @property (assign,nonatomic) BOOL bringsEscort;
 @property (strong,nonatomic) PaymentMethod* paymentMethod;
 @property (copy,nonatomic) NSString* comments;
 @property (strong, nonatomic) NSDate *scheduleDate;
+@property (strong, nonatomic) NSString *cost;
+@property (strong, nonatomic) NSString *clientName;
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (NSDictionary*)toDictionary;
