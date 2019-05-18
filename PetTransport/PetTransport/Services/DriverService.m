@@ -113,7 +113,7 @@
     ApiClient *apiClient = [ApiClient new];
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-        NSLog(@"Response object: %@", responseObject);
+        //NSLog(@"Response object: %@", responseObject);
         if ([responseObject objectForKey:@"tripOffer"] != nil){
             Trip *trip = [[Trip alloc] initWithDictionary:[responseObject objectForKey:@"tripOffer"]];
             [self.delegate didReceiveTripOffer:trip];

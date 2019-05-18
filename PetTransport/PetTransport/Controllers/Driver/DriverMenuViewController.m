@@ -213,7 +213,7 @@
     }
     
     if ([trip isAccepted] && [trip isScheduled]){
-        NSLog(@"viaje agendado");
+        //NSLog(@"viaje agendado");
         return;
     }
     
