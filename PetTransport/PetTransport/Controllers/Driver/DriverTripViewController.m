@@ -25,7 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tripService = [[TripService alloc] initWithDelegate:self];
-    [self.tripService retrieveTripWithId:self.tripId];
+    //[self.tripService retrieveTripWithId:self.tripId];
 }
 
 #pragma mark - TripServiceDelegate methods

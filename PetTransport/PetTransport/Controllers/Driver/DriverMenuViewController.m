@@ -9,7 +9,6 @@
 #import "DriverMenuViewController.h"
 #import "DriverService.h"
 #import "LocationManager.h"
-#import "TripOffer.h"
 #import <UserNotifications/UserNotifications.h>
 #import "constants.h"
 #import "DriverTripViewController.h"
@@ -157,8 +156,8 @@
     }
     
     if ([trip isAccepted] && ![trip isScheduled]){
-//        [self showTripScreen:tripOffer];
-//        return;
+        //[self showTripScreen:trip];
+        //return;
     }
 }
 
