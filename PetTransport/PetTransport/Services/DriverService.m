@@ -96,14 +96,13 @@
     NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld", trip.tripId];
     
     NSDictionary *body = [trip toDictionary];
-    NSLog(@"body: %@", body);
-    
     ApiClient *apiClient = [ApiClient new];
     [apiClient putWithRelativeUrlString:relativeUrlString
                                    body: body
                                   token: self.token
                                 success:^(id _Nullable responseObject){
-                                    NSLog(@"1) response: %@", responseObject);
+                                    Trip *updatedTrip = [[Trip alloc] initWithDictionary:responseObject];
+                                    [self.delegate didUpdateTrip:updatedTrip];
                                 } failure:^(NSError * _Nonnull error) {
                                     NSLog(@"Error: %@", error);
                                 }];

@@ -109,7 +109,6 @@
     content.sound = [UNNotificationSound defaultSound];
 
     NSDate *date = [trip.scheduleDate dateByAddingTimeInterval: -1 * REMINDER_TIME_SECONDS];
-    NSLog(@"schedule date for notification: %@", date);
     if ([date timeIntervalSinceNow] < 0.0) {
         NSLog(@"Falta menos de una hora para el viaje, NO MUESTRO RECORDATORIO");
         return;
@@ -154,11 +153,18 @@
         [self showNewTrip:trip];
         return;
     }
-    
-    if ([trip isAccepted] && ![trip isScheduled]){
-        //[self showTripScreen:trip];
-        //return;
+}
+
+- (void)didUpdateTrip:(Trip *)trip {
+    if (![trip isAccepted]){
+        return;
     }
+    
+    if ([trip isScheduled]){
+        NSLog(@"viaje agendado");
+        return;
+    }
+    [self showTripScreen:trip];
 }
 
 @end
