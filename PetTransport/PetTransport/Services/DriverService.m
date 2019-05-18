@@ -82,12 +82,30 @@
     self.statusTimer = nil;
 }
 
-- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary{
-    NSMutableDictionary* body = [[self bodyWithLocationAndStatus] mutableCopy];
-    if(tripOfferDictionary){
-        [body setValue:tripOfferDictionary forKey:@"tripOffer"];
-    }
-    [self putStatusWithBody:[body copy]];
+- (void)acceptTrip:(Trip *)trip {
+    [trip accept];
+    [self updateTrip:trip];
+}
+
+- (void)rejectTrip:(Trip *)trip {
+    [trip reject];
+    [self updateTrip:trip];
+}
+
+- (void)updateTrip:(Trip *)trip {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld", trip.tripId];
+    
+    NSDictionary *body = [trip toDictionary];
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient putWithRelativeUrlString:relativeUrlString
+                                   body: body
+                                  token: self.token
+                                success:^(id _Nullable responseObject){
+                                    Trip *updatedTrip = [[Trip alloc] initWithDictionary:responseObject];
+                                    [self.delegate didUpdateTrip:updatedTrip];
+                                } failure:^(NSError * _Nonnull error) {
+                                    NSLog(@"Error: %@", error);
+                                }];
 }
 
 - (NSDictionary*)bodyWithLocationAndStatus{
@@ -105,8 +123,12 @@
     ApiClient *apiClient = [ApiClient new];
     
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-        [self.delegate driverServiceSuccededWithResponse:responseObject];
-        
+        NSLog(@"Response object: %@", responseObject);
+        if ([responseObject objectForKey:@"tripOffer"] != nil){
+            Trip *trip = [[Trip alloc] initWithDictionary:[responseObject objectForKey:@"tripOffer"]];
+            [self.delegate didReceiveTripOffer:trip];
+            return;
+        }
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Fallo al actualizar el status del conductor");
     }];

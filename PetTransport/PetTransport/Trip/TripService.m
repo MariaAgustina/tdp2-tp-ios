@@ -26,44 +26,42 @@
     return self;
 }
 
--(void)postTrip:(Trip*)trip {
+- (void)sendTripRequest: (TripRequest*)tripRequest {
     //NSString* relativeUrlString = @"trips/simulated";
     NSString* relativeUrlString = @"trips";
     
     NSDictionary* originDictionary = @{
-                                       @"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude],
-                                       @"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude],
-                                       @"address": trip.origin.name
+                                       @"lat": [NSNumber numberWithDouble: tripRequest.origin.coordinate.latitude],
+                                       @"lng": [NSNumber numberWithDouble: tripRequest.origin.coordinate.longitude],
+                                       @"address": tripRequest.origin.name
                                        };
     NSDictionary* destinantionDictionary = @{
-                                             @"lat": [NSNumber numberWithDouble: trip.origin.coordinate.latitude],
-                                             @"lng": [NSNumber numberWithDouble: trip.origin.coordinate.longitude],
-                                             @"address": trip.destiny.name
+                                             @"lat": [NSNumber numberWithDouble: tripRequest.origin.coordinate.latitude],
+                                             @"lng": [NSNumber numberWithDouble: tripRequest.origin.coordinate.longitude],
+                                             @"address": tripRequest.destiny.name
                                              };
     
-    NSNumber* smallPetsQuantity = [NSNumber numberWithDouble: trip.smallPetsQuantity];
-    NSNumber* mediumPetsQuantity = [NSNumber numberWithDouble: trip.mediumPetsQuantity];
-    NSNumber* bigPetsQuantity = [NSNumber numberWithDouble: trip.bigPetsQuantity];
+    NSNumber* smallPetsQuantity = [NSNumber numberWithDouble: tripRequest.smallPetsQuantity];
+    NSNumber* mediumPetsQuantity = [NSNumber numberWithDouble: tripRequest.mediumPetsQuantity];
+    NSNumber* bigPetsQuantity = [NSNumber numberWithDouble: tripRequest.bigPetsQuantity];
 
     NSDictionary* petQuantitiesDictionary = @{@"small":smallPetsQuantity,@"medium":mediumPetsQuantity,@"big":bigPetsQuantity};
     
-    NSString* paymentMethod = trip.selectedPaymentMethod.paymentKey;
-    NSNumber* hasEscort = [NSNumber numberWithBool:trip.shouldHaveEscolt];
-    
-    
+    NSString* paymentMethod = tripRequest.selectedPaymentMethod.paymentKey;
+    NSNumber* hasEscort = [NSNumber numberWithBool:tripRequest.shouldHaveEscort];
     
     NSDictionary *inmutableBody =  @{
                               @"origin":originDictionary,
                               @"destination":destinantionDictionary,
                               @"petQuantities":petQuantitiesDictionary,
                               @"paymentMethod":paymentMethod,
-                              @"comments":trip.comments,
+                              @"comments":tripRequest.comments,
                               @"bringsEscort":hasEscort,
                           };
     
     NSMutableDictionary *body = [inmutableBody mutableCopy];
-    if (trip.scheduleDate){
-        [body setObject:[self dateToString:trip.scheduleDate] forKey:@"reservationDate"];
+    if (tripRequest.scheduleDate){
+        [body setObject:[self dateToString:tripRequest.scheduleDate] forKey:@"reservationDate"];
     }
     
     ApiClient *apiClient = [ApiClient new];
@@ -72,12 +70,25 @@
                                    token: [[ClientService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
-                                     [strongDelegate tripServiceSuccededWithResponse:responseObject];
+                                     
+                                     Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+                                     [strongDelegate didReturnTrip:trip];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      NSLog(@"Error: %@", error);
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
                                      [strongDelegate tripServiceFailedWithError:error];
                                  }];
+}
+
+- (void)retrieveTripWithId: (NSInteger)tripId {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld",tripId];
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
+        NSLog(@"response: %@", responseObject);
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (NSString*)dateToString: (NSDate*)date {

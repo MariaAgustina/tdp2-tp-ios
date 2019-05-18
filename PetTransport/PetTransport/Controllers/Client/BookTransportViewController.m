@@ -10,9 +10,9 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 #import "LocationManager.h"
-#import "Trip.h"
 #import "GMSMarker+Setup.h"
 #import "TripInformationViewController.h"
+#import "TripRequest.h"
 
 
 @interface BookTransportViewController () <LocationManagerDelegate, GMSAutocompleteViewControllerDelegate>
@@ -21,7 +21,7 @@
 @property (strong, nonatomic) GMSAutocompleteFilter *filter;
 @property (weak, nonatomic) IBOutlet UIButton *searchTripButton;
 
-@property (strong,nonatomic) Trip* trip;
+@property (strong,nonatomic) TripRequest* tripRequest;
 @property (nonatomic, copy) void (^autocompleteAdressCompletionBlock)(GMSPlace *);
 
 @property (strong,nonatomic) GMSMarker* originMarker;
@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Pedir viaje";
-    self.trip = [Trip new];
+    self.tripRequest = [TripRequest new];
     
     self.originMarker = [GMSMarker new];
     self.originMarker.title = @"Origen";
@@ -60,7 +60,7 @@
 }
 
 - (void)setupSearchTripButton{
-    self.searchTripButton.enabled = [self.trip hasValidAdresses];
+    self.searchTripButton.enabled = [self.tripRequest hasValidAdresses];
     self.searchTripButton.backgroundColor = (self.searchTripButton.enabled) ? [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:1.0f] : [UIColor colorWithRed:85.0f/255.0f green:133.0f/255.0f blue:255.0f/255.0f alpha:0.5f];
 }
 
@@ -90,7 +90,7 @@
 
 - (IBAction)originButtonPressed:(id)sender {
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
-        self.trip.origin = place;
+        self.tripRequest.origin = place;
         [self.originMarker setupWithPlace:place andMapView:self.mapView];
         [self setupSearchTripButton];
         
@@ -103,7 +103,7 @@
 
 - (IBAction)destinyButtonPressed:(id)sender {
     [self presentAutocompleteAdressCompletionBlock: ^(GMSPlace *place) {
-        self.trip.destiny = place;
+        self.tripRequest.destiny = place;
         [self.destinyMarker setupWithPlace:place andMapView:self.mapView];
         [self setupSearchTripButton];
         
@@ -116,13 +116,13 @@
 
 - (IBAction)searchTripButtonPressed:(id)sender {    
     
-    if(![self.trip hasValidAdresses]){
+    if(![self.tripRequest hasValidAdresses]){
         return;
     }
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     TripInformationViewController *tripInformationVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"TripInformationViewController"];
-    tripInformationVC.trip = self.trip;
+    tripInformationVC.tripRequest = self.tripRequest;
     
     [self.navigationController pushViewController:tripInformationVC animated:YES];    
     

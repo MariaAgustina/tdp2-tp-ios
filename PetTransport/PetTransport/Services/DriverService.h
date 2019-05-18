@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Trip.h"
+
 
 @protocol DriverServiceDelegate <NSObject>
 
-- (void)driverServiceSuccededWithResponse:(NSDictionary*)response;
+@optional
+- (void)didReceiveTripOffer: (Trip*)trip;
+- (void)didUpdateTrip:(Trip*)trip;
 
 @end
 
@@ -22,6 +26,7 @@
 - (void)setDriverWithToken: (NSString*)token;
 - (void)setWorking;
 - (void)setNotWorking;
-- (void)putStatusWithTripOffer:(NSDictionary*)tripOfferDictionary;
+- (void)acceptTrip: (Trip*)trip;
+- (void)rejectTrip: (Trip*)trip;
 
 @end

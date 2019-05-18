@@ -11,39 +11,35 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "LocationCoordinate.h"
 #import "PaymentMethod.h"
+#import "PTLocation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Trip : NSObject
 
-typedef enum paymentMethodsTypes
-{
-    CASH,
-    CARD,
-    MERCADOPAGO
-} PaymentMethodType;
-
-
-@property (strong, nonatomic) GMSPlace *origin;
-@property (strong, nonatomic) GMSPlace *destiny;
-
 @property (assign, nonatomic) NSInteger tripId;
+
+@property (strong,nonatomic) PTLocation *origin;
+@property (strong,nonatomic) PTLocation *destination;
 
 @property (assign,nonatomic) double smallPetsQuantity;
 @property (assign,nonatomic) double mediumPetsQuantity;
 @property (assign,nonatomic) double bigPetsQuantity;
 
-@property (assign,nonatomic) BOOL shouldHaveEscolt;
-@property (strong,nonatomic) PaymentMethod* selectedPaymentMethod;
+@property (assign,nonatomic) BOOL bringsEscort;
+@property (strong,nonatomic) PaymentMethod* paymentMethod;
 @property (copy,nonatomic) NSString* comments;
 @property (strong, nonatomic) NSDate *scheduleDate;
 
-
-- (BOOL)hasValidAdresses;
-- (BOOL)isValid;
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
+- (NSDictionary*)toDictionary;
 - (struct LocationCoordinate)getOriginCoordinate;
-- (double)totalPets;
-- (PaymentMethod*)paymentMethodForType:(PaymentMethodType)paymentMethodType;
+- (BOOL)isScheduled;
+- (BOOL)isPending;
+- (BOOL)isAccepted;
+- (BOOL)isRejected;
+- (void)accept;
+- (void)reject;
 
 @end
 

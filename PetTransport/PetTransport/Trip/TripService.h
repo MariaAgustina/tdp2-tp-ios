@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "TripServiceDelegate.h"
 #import "Trip.h"
+#import "TripRequest.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TripService : NSObject
 
 - (instancetype)initWithDelegate:(id <TripServiceDelegate>)delegate;
-- (void)postTrip:(Trip*)trip;
+- (void)sendTripRequest: (TripRequest*)tripRequest;
+- (void)retrieveTripWithId: (NSInteger)tripId;
 
 @end
 
