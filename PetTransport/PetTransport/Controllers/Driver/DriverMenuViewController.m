@@ -127,8 +127,7 @@
 
     // Create the request object.
     NSString *notificationIdentifier = [NSString stringWithFormat:@"trip_%ld", trip.tripId];
-    UNNotificationRequest* request = [UNNotificationRequest
-                                      requestWithIdentifier:notificationIdentifier content:content trigger:trigger];
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:notificationIdentifier content:content trigger:trigger];
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (error != nil) {

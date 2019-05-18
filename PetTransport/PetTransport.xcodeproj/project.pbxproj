@@ -37,7 +37,6 @@
 		937ABFB62253DAF000086554 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB52253DAF000086554 /* Trip.m */; };
 		937ABFBA2253F8FF00086554 /* GMSMarker+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFB92253F8FF00086554 /* GMSMarker+Setup.m */; };
 		937ABFBD225400DB00086554 /* TripService.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ABFBC225400DB00086554 /* TripService.m */; };
-		938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B99FD227DFB58001EBBEC /* TripOffer.m */; };
 		938B9A04227F36E5001EBBEC /* RateServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B9A03227F36E5001EBBEC /* RateServiceViewController.m */; };
 		938B9A09227F436C001EBBEC /* RateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938B9A08227F436C001EBBEC /* RateModel.m */; };
 		9396CA0622474B3400F6248F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9396CA0522474B3400F6248F /* AppDelegate.m */; };
@@ -134,8 +133,6 @@
 		937ABFBB225400DB00086554 /* TripService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripService.h; sourceTree = "<group>"; };
 		937ABFBC225400DB00086554 /* TripService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripService.m; sourceTree = "<group>"; };
 		937ABFBE225401AF00086554 /* TripServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripServiceDelegate.h; sourceTree = "<group>"; };
-		938B99FC227DFB58001EBBEC /* TripOffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripOffer.h; sourceTree = "<group>"; };
-		938B99FD227DFB58001EBBEC /* TripOffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripOffer.m; sourceTree = "<group>"; };
 		938B9A02227F36E5001EBBEC /* RateServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateServiceViewController.h; sourceTree = "<group>"; };
 		938B9A03227F36E5001EBBEC /* RateServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateServiceViewController.m; sourceTree = "<group>"; };
 		938B9A07227F436C001EBBEC /* RateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateModel.h; sourceTree = "<group>"; };
@@ -340,8 +337,6 @@
 			children = (
 				937ABFB42253DAF000086554 /* Trip.h */,
 				937ABFB52253DAF000086554 /* Trip.m */,
-				938B99FC227DFB58001EBBEC /* TripOffer.h */,
-				938B99FD227DFB58001EBBEC /* TripOffer.m */,
 				93D0BEBF226A2AD700FEF7C9 /* PaymentMethod.h */,
 				93D0BEC0226A2AD700FEF7C9 /* PaymentMethod.m */,
 				937ABFBE225401AF00086554 /* TripServiceDelegate.h */,
@@ -629,7 +624,6 @@
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
-				938B99FE227DFB58001EBBEC /* TripOffer.m in Sources */,
 				58D439552288946500EDC691 /* DriverTripViewController.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				589798D2227F73900047EC92 /* RateClientViewController.m in Sources */,

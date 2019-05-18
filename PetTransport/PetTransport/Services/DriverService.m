@@ -89,6 +89,7 @@
 
 - (void)rejectTrip:(Trip *)trip {
     [trip reject];
+    [self updateTrip:trip];
 }
 
 - (void)updateTrip:(Trip *)trip {
