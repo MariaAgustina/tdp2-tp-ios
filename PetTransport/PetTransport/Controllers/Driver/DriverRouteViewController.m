@@ -16,7 +16,12 @@
 #import "UIViewController+ShowAlerts.h"
 
 @interface DriverRouteViewController () <LocationManagerDelegate, TripServiceDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *clientLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *tripButton;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (strong,nonatomic) LocationManager *locationManager;
 
@@ -73,6 +78,10 @@
     [self.mapView setCamera:camera];
 }
 
+- (IBAction)tripButtonPressed:(id)sender {
+    
+}
+
 #pragma mark - LocationManagerDelegate
 - (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
     [self centerCamera:coordinate];
@@ -82,6 +91,7 @@
     NSLog(@"no pudo traer la location");
 }
 
+#pragma mark - TripServiceDelegate
 - (void)succededReceivingRoute:(WayPoints*)wayPoints{
     [self hideLoading];
     GMSMutablePath *path = [GMSMutablePath path];
