@@ -58,7 +58,8 @@ typedef enum TripStatusTypes {
     self.mediumPetsQuantity = [[petQuantities objectForKey:@"medium"] integerValue];
     self.bigPetsQuantity = [[petQuantities objectForKey:@"big"] integerValue];
     self.bringsEscort = [[dictionary objectForKey:@"bringsEscort"] boolValue];
-    self.clientName = @"Juan Gomez";
+    self.comments = [dictionary objectForKey:@"comments"];
+    self.clientName = [[dictionary objectForKey:@"client"] objectForKey:@"name"];
     
     return self;
 }

@@ -108,7 +108,11 @@
     NSString *escort = (trip.bringsEscort) ? @"Sí" : @"No";
     escort = [NSString stringWithFormat:@"¿Con acompañante?: %@", escort];
     
-    NSString* message =[NSString stringWithFormat:@"%@\r\r%@\r%@\r%@\r%@\r%@", client, origin, destination, reservationDate, pets, escort];
+    NSString *comments = (trip.comments && ![trip.comments isEqualToString:@""])
+        ? [NSString stringWithFormat:@"\rComentarios: '%@'", trip.comments]
+        : @"";
+    
+    NSString* message =[NSString stringWithFormat:@"%@\r\r%@\r%@\r%@\r%@\r%@\r%@", client, origin, destination, reservationDate, pets, escort, comments];
     return message;
 }
 
