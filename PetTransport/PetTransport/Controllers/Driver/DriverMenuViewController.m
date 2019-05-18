@@ -213,7 +213,12 @@
     }
     
     if ([trip isAccepted] && [trip isScheduled]){
-        //NSLog(@"viaje agendado");
+        if ([trip.scheduleDate timeIntervalSinceNow] > 0.0) {
+            NSLog(@"viaje agendado");
+            return;
+        }
+        NSLog(@"ES MOMENTO DE COMENZAR EL VIAJE RESERVADO");
+        [self showTripScreen:trip];
         return;
     }
     
