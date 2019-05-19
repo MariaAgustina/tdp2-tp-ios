@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Trip.h"
+#import "BaseViewController.h"
 
-@interface WaitingTripConfirmationViewController : UIViewController
+@interface WaitingTripConfirmationViewController : BaseViewController
 
 @property (strong, nonatomic) Trip *trip;
 

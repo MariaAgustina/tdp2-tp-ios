@@ -19,7 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupActivityIndicatorView];
+    
+    UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    imgView.image = [UIImage imageNamed:@"AppIcon"];
+    
+    self.navigationItem.titleView = imgView;
+    self.navigationController.navigationBar.topItem.title = @"";
 }
+
 
 - (void)setupActivityIndicatorView{
     self.activityView = [[UIActivityIndicatorView alloc]

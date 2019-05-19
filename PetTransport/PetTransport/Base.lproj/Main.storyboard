@@ -368,28 +368,28 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
         </scene>
-        <!--Client Login View Controller-->
+        <!--Pet Transport-->
         <scene sceneID="MR0-X7-AMr">
             <objects>
-                <viewController id="iCg-Qv-cg2" customClass="ClientLoginViewController" sceneMemberID="viewController">
+                <viewController title="Pet Transport" id="iCg-Qv-cg2" customClass="ClientLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y3x-WD-NMn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet Transport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4z-OV-BpG">
-                                <rect key="frame" x="67" y="45" width="241" height="48"/>
+                                <rect key="frame" x="67" y="25" width="241" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                 <color key="textColor" red="0.0041693652849741358" green="0.0040185452805595158" blue="0.00095428379887810711" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="perro.png" translatesAutoresizingMaskIntoConstraints="NO" id="tzC-AI-XnT">
-                                <rect key="frame" x="75" y="113" width="225" height="225"/>
+                                <rect key="frame" x="75" y="93" width="225" height="225"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tzC-AI-XnT" secondAttribute="height" multiplier="1:1" id="0Pl-Vh-aPE"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-yx-gl2">
-                                <rect key="frame" x="147" y="388" width="81" height="53"/>
+                                <rect key="frame" x="147" y="368" width="81" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -397,7 +397,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vED-zy-jgh">
-                                <rect key="frame" x="16" y="491" width="343" height="48"/>
+                                <rect key="frame" x="16" y="471" width="343" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Registrarme con Facebook"/>
                                 <connections>
@@ -418,6 +418,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xb9-xl-NTk"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="loginButton" destination="oAr-yx-gl2" id="hKM-6f-MlV"/>
                         <outlet property="registrationButton" destination="vED-zy-jgh" id="Je1-iQ-5E0"/>
