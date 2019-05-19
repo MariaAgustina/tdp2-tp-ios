@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES];
     
     self.rate = [RateModel new];
     self.rateService = [[RateDriverService alloc]initWithDelegate:self];
