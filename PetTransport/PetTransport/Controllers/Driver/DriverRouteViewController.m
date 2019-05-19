@@ -41,9 +41,6 @@
     [super viewDidLoad];
     self.locationManager = [[LocationManager alloc] init];
     self.tripService = [[TripService alloc] initWithDelegate:self];
-    
-    [self showLoading];
-    [self.tripService retrieveTripWithId:self.tripId];
 }
 
 - (void)setupOriginAndDestinationMarkers
@@ -61,6 +58,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [self showLoading];
+    [self.tripService retrieveTripWithId:self.tripId];
     
     self.mapView.myLocationEnabled = YES;
     [self fetchCurrentLocation];

@@ -122,6 +122,11 @@ NSString* const kFinishedStatusKey = @"Finalizado";
 }
 
 - (BOOL)isGoingToPickup {
+    // HACK
+    if ([self.status isEqualToString:kSearchingStatusKey] || [self.status isEqualToString:kAcceptedStatusKey]){
+        return YES;
+    }
+    
     return [self.status isEqualToString:kGoingToPickupStatusKey];
 }
 
