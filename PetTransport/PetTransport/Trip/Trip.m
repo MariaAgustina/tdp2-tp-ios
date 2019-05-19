@@ -12,17 +12,17 @@ NSString* const kAcceptedStatusKey = @"Aceptado";
 NSString* const kRejectedStatusKey = @"Rechazado";
 NSString* const kPendingStatusKey = @"Pendiente";
 NSString* const kSearchingStatusKey = @"Buscando";
-
-typedef enum TripStatusTypes {
-    ACCEPTED,
-    REJECTED,
-    PENDING,
-    SEARCHING
-} TripStatus;
+NSString* const kReservedStatusKey = @"Reservado";
+NSString* const kCancelledStatusKey = @"Cancelado";
+NSString* const kGoingToPickupStatusKey = @"En camino";
+NSString* const kInOriginStatusKey = @"En origen";
+NSString* const kTravellingStatusKey = @"En viaje";
+NSString* const kInDestinatioStatusKey = @"Llegamos";
+NSString* const kFinishedStatusKey = @"Finalizado";
 
 @interface Trip ()
 
-@property (nonatomic) TripStatus status;
+@property (nonatomic) NSString *status;
 @property (strong, nonatomic) NSDictionary *originalDict;
 
 @end
@@ -35,8 +35,7 @@ typedef enum TripStatusTypes {
     
     self.tripId = [[dictionary objectForKey:@"id"] integerValue];
     
-    NSString* statusString = [dictionary objectForKey:@"status"];
-    self.status = [self statusForString:statusString];
+    self.status = [dictionary objectForKey:@"status"];
     
     NSDictionary* originDictionary = [dictionary objectForKey:@"origin"];
     self.origin = [[PTLocation alloc] initWithDictionary:originDictionary];
@@ -53,7 +52,8 @@ typedef enum TripStatusTypes {
         self.scheduleDate = date;
     }
     
-    self.cost = [dictionary objectForKey:@"cost"];
+    NSNumber *cost = [dictionary objectForKey:@"cost"];
+    self.cost = [cost stringValue];
     
     NSDictionary *petQuantities = [dictionary objectForKey:@"petQuantities"];
     self.smallPetsQuantity = [[petQuantities objectForKey:@"small"] integerValue];
@@ -62,13 +62,14 @@ typedef enum TripStatusTypes {
     self.bringsEscort = [[dictionary objectForKey:@"bringsEscort"] boolValue];
     self.comments = [dictionary objectForKey:@"comments"];
     self.clientName = [[dictionary objectForKey:@"client"] objectForKey:@"name"];
+    self.clientId = [[dictionary objectForKey:@"clientId"] integerValue];
     
     return self;
 }
 
 - (NSDictionary*)toDictionary {
     NSMutableDictionary *attrs = [self.originalDict mutableCopy];
-    [attrs setObject:[self getStatusName] forKey:@"status"];
+    [attrs setObject:self.status forKey:@"status"];
     
     return attrs;
 }
@@ -77,65 +78,67 @@ typedef enum TripStatusTypes {
     return self.origin.coordinate;
 }
 
-- (TripStatus)statusForString:(NSString*)status {
-    if([status isEqualToString:kAcceptedStatusKey]){
-        return ACCEPTED;
-    }
-    if ([status isEqualToString:kRejectedStatusKey]){
-        return REJECTED;
-    }
-    if ([status isEqualToString:kSearchingStatusKey]){
-        return SEARCHING;
-    }
-    return PENDING;
-}
-
-- (NSString*)getStatusName {
-    switch (self.status) {
-        case ACCEPTED:
-            return kAcceptedStatusKey;
-            break;
-            
-        case REJECTED:
-            return kRejectedStatusKey;
-            break;
-            
-        case SEARCHING:
-            return kSearchingStatusKey;
-            break;
-            
-        case PENDING:
-            return kPendingStatusKey;
-            break;
-            
-        default:
-            return @"";
-            break;
-    }
-}
-
 - (BOOL)isScheduled {
     return self.scheduleDate != nil;
 }
 
+- (NSString*) getStatusName {
+    if ([self isGoingToPickup]){
+        return @"En Camino";
+    }
+    if ([self isAtOrigin]){
+        return @"En Origen";
+    }
+    if ([self isTravelling]){
+        return @"En Viaje";
+    }
+    if ([self isAtDestination]){
+        return @"Llegamos";
+    }
+    if ([self isFinished]){
+        return @"Finalizado";
+    }
+    return @"";
+}
+
 - (BOOL)isAccepted {
-    return self.status == ACCEPTED;
+    return [self.status isEqualToString:kAcceptedStatusKey];
 }
 
 - (BOOL)isPending {
-    return self.status == PENDING;
+    return [self.status isEqualToString:kPendingStatusKey];
 }
 
 - (BOOL)isRejected {
-    return self.status == REJECTED;
+    return [self.status isEqualToString:kRejectedStatusKey];
 }
 
 - (void)accept {
-    self.status = ACCEPTED;
+    self.status = [kAcceptedStatusKey copy];
 }
 
 - (void)reject {
-    self.status = REJECTED;
+    self.status = [kRejectedStatusKey copy];
+}
+
+- (BOOL)isGoingToPickup {
+    return [self.status isEqualToString:kGoingToPickupStatusKey];
+}
+
+- (BOOL)isAtOrigin {
+    return [self.status isEqualToString:kInOriginStatusKey];
+}
+
+- (BOOL)isTravelling {
+    return [self.status isEqualToString:kTravellingStatusKey];
+}
+
+- (BOOL)isAtDestination {
+    return [self.status isEqualToString:kInDestinatioStatusKey];
+}
+
+- (BOOL)isFinished {
+    return [self.status isEqualToString:kFinishedStatusKey];
 }
 
 @end

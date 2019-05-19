@@ -12,6 +12,7 @@
 #import "ApiClient.h"
 #import "FbProfileManager.h"
 #import "ClientService.h"
+#import "ClientProfile.h"
 
 @interface TripService ()
 
@@ -85,7 +86,10 @@
     
     ApiClient *apiClient = [ApiClient new];
     [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
-        NSLog(@"response: %@", responseObject);
+        //NSLog(@"retrieveTripWithId: %@", responseObject);
+        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+        Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+        [strongDelegate didReturnTrip:trip];
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
     }];
@@ -135,6 +139,56 @@
                                  }];
 }
 
+- (void)markTripAtOrigin:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"atorigin"];
+}
 
+- (void)markTripTravelling:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"travelling"];
+}
+
+- (void)markTripAtDestination:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"atdestination"];
+}
+
+- (void)markTripFinished:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"finished"];
+}
+
+- (void)markTripCancelled:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"cancelled"];
+}
+
+- (void)updateTrip:(Trip*)trip withStatusKey:(NSString*)statusKey {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld/status/%@",trip.tripId, statusKey];
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient putWithRelativeUrlString:relativeUrlString
+                                   body:@{}
+                                  token:[[ClientService sharedInstance] getToken]
+                                success:^(id _Nullable responseObject) {
+                                    __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                    Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+                                    [strongDelegate didReturnTrip:trip];
+                                } failure:^(NSError * _Nonnull error) {
+                                    NSLog(@"Error: %@", error);
+                                    __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                    [strongDelegate tripServiceFailedWithError:error];
+                                }];
+}
+
+- (void)retrieveTripClient: (Trip*)trip {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"users/%ld",trip.clientId];
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
+        ClientProfile *profile = [ClientProfile new];
+        profile.firstName = [responseObject objectForKey:@"name"];
+        profile.phoneNumber = [responseObject objectForKey:@"phone"];
+        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+        [strongDelegate didReturnClient:profile];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 
 @end

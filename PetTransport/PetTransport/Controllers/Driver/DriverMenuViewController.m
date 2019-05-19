@@ -199,7 +199,7 @@
 - (void)showTripScreen: (Trip *)trip {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     DriverRouteViewController *driverTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverRouteViewController"];
-    driverTripVC.trip = trip;
+    driverTripVC.tripId = trip.tripId;
     
     [self.navigationController pushViewController:driverTripVC animated:YES];
 }
