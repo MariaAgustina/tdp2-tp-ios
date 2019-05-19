@@ -14,6 +14,7 @@
 #import "CoordinateAddapter.h"
 #import "TripService.h"
 #import "UIViewController+ShowAlerts.h"
+#import "RateClientViewController.h"
 
 @interface DriverRouteViewController () <LocationManagerDelegate, TripServiceDelegate>
 
@@ -118,6 +119,14 @@
     }
 }
 
+- (void)showRateScreen {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RateClientViewController *rateViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RateClientViewController"];
+    rateViewController.tripId = self.trip.tripId;
+    
+    [self.navigationController pushViewController:rateViewController animated:YES];
+}
+
 #pragma mark - LocationManagerDelegate
 - (void)didFetchCurrentLocation: (struct LocationCoordinate)coordinate {
     [self centerCamera:coordinate];
@@ -152,6 +161,11 @@
     self.trip = trip;
     [self updateStatusLabel];
     [self updateActionButton];
+    
+    if ([self.trip isFinished]){
+        [self showRateScreen];
+        return;
+    }
     
     if (updatingTrip){
         return;

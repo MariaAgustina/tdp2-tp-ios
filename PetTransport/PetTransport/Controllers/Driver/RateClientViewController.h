@@ -10,4 +10,6 @@
 
 @interface RateClientViewController : UIViewController
 
+@property NSInteger tripId;
+
 @end

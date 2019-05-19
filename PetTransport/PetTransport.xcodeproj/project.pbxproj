@@ -275,10 +275,10 @@
 			children = (
 				93D0BED4226CBBD100FEF7C9 /* DriverMenuViewController.h */,
 				93D0BED5226CBBD100FEF7C9 /* DriverMenuViewController.m */,
-				589798D0227F73900047EC92 /* RateClientViewController.h */,
-				589798D1227F73900047EC92 /* RateClientViewController.m */,
 				9388CB85228A3ED900055B20 /* DriverRouteViewController.h */,
 				9388CB86228A3ED900055B20 /* DriverRouteViewController.m */,
+				589798D0227F73900047EC92 /* RateClientViewController.h */,
+				589798D1227F73900047EC92 /* RateClientViewController.m */,
 			);
 			path = Driver;
 			sourceTree = "<group>";
