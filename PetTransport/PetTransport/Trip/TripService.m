@@ -27,10 +27,7 @@
     return self;
 }
 
-- (void)sendTripRequest: (TripRequest*)tripRequest {
-    //NSString* relativeUrlString = @"trips/simulated";
-    NSString* relativeUrlString = @"trips";
-    
+-(NSDictionary*)tripRequestBody:(TripRequest*)tripRequest{
     NSDictionary* originDictionary = @{
                                        @"lat": [NSNumber numberWithDouble: tripRequest.origin.coordinate.latitude],
                                        @"lng": [NSNumber numberWithDouble: tripRequest.origin.coordinate.longitude],
@@ -45,25 +42,33 @@
     NSNumber* smallPetsQuantity = [NSNumber numberWithDouble: tripRequest.smallPetsQuantity];
     NSNumber* mediumPetsQuantity = [NSNumber numberWithDouble: tripRequest.mediumPetsQuantity];
     NSNumber* bigPetsQuantity = [NSNumber numberWithDouble: tripRequest.bigPetsQuantity];
-
+    
     NSDictionary* petQuantitiesDictionary = @{@"small":smallPetsQuantity,@"medium":mediumPetsQuantity,@"big":bigPetsQuantity};
     
     NSString* paymentMethod = tripRequest.selectedPaymentMethod.paymentKey;
     NSNumber* hasEscort = [NSNumber numberWithBool:tripRequest.shouldHaveEscort];
     
     NSDictionary *inmutableBody =  @{
-                              @"origin":originDictionary,
-                              @"destination":destinantionDictionary,
-                              @"petQuantities":petQuantitiesDictionary,
-                              @"paymentMethod":paymentMethod,
-                              @"comments":tripRequest.comments,
-                              @"bringsEscort":hasEscort,
-                          };
+                                     @"origin":originDictionary,
+                                     @"destination":destinantionDictionary,
+                                     @"petQuantities":petQuantitiesDictionary,
+                                     @"paymentMethod":paymentMethod,
+                                     @"comments":tripRequest.comments,
+                                     @"bringsEscort":hasEscort,
+                                     };
     
     NSMutableDictionary *body = [inmutableBody mutableCopy];
     if (tripRequest.scheduleDate){
         [body setObject:[self dateToString:tripRequest.scheduleDate] forKey:@"reservationDate"];
     }
+    return body;
+}
+
+- (void)sendTripRequest: (TripRequest*)tripRequest {
+    //NSString* relativeUrlString = @"trips/simulated";
+    NSString* relativeUrlString = @"trips";
+    
+    NSDictionary* body = [self tripRequestBody:tripRequest];
     
     ApiClient *apiClient = [ApiClient new];
     [apiClient postWithRelativeUrlString:relativeUrlString
@@ -189,6 +194,33 @@
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+
+- (void)getTripPrice:(TripRequest*)tripRequest{
+    NSString* relativeUrlString = @"info/costs";
+    
+    NSDictionary* body = [self tripRequestBody:tripRequest];
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient postWithRelativeUrlString:relativeUrlString
+                                    body:body
+                                   token: [[ClientService sharedInstance] getToken]
+                                 success:^(id _Nullable responseObject) {
+                                     
+                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     
+                                     CGFloat cost = [[responseObject objectForKey:@"cost"] floatValue];
+                                     NSString* priceString = [NSString stringWithFormat: @"$ %.2f", cost];
+                                     
+                                     [strongDelegate succededReceivingPrice:priceString];
+                                     
+                                     
+                                 } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
+                                     NSLog(@"Error: %@", error);
+                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                     [strongDelegate tripServiceFailedWithError:error];
+                                 }];
 }
 
 @end
