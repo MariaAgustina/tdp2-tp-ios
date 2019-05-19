@@ -50,8 +50,7 @@ typedef enum TripStatusTypes {
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     
         NSDate *date = [dateFormatter dateFromString:reservationDateString];
-        // HACK porque viene mal la hora de la api
-        self.scheduleDate = [date dateByAddingTimeInterval:3 * 3600];
+        self.scheduleDate = date;
     }
     
     self.cost = [dictionary objectForKey:@"cost"];
