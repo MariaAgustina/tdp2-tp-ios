@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES];
     self.locationManager = [[LocationManager alloc] init];
     self.tripService = [[TripService alloc] initWithDelegate:self];
 }
