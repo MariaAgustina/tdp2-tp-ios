@@ -14,8 +14,10 @@
 #import "CoordinateAddapter.h"
 #import "TripService.h"
 #import "UIViewController+ShowAlerts.h"
+#import "RateClientViewController.h"
 
 @interface DriverRouteViewController () <LocationManagerDelegate, TripServiceDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *clientLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -28,7 +30,8 @@
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
-@property (strong,nonatomic) TripService* routesService;
+@property (strong,nonatomic) TripService* tripService;
+@property (strong,nonatomic) Trip* trip;
 
 @end
 
@@ -37,13 +40,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.locationManager = [[LocationManager alloc] init];
-    
-    [self setupOriginAndDestinationMarkers];
-    
-    self.routesService = [[TripService alloc] initWithDelegate:self];
+    self.tripService = [[TripService alloc] initWithDelegate:self];
     
     [self showLoading];
-    [self.routesService getTripCoordinates:self.trip];
+    [self.tripService retrieveTripWithId:self.tripId];
 }
 
 - (void)setupOriginAndDestinationMarkers
@@ -78,8 +78,53 @@
     [self.mapView setCamera:camera];
 }
 
+- (void)updateStatusLabel {
+    NSString *statusName = @"";
+    if (self.trip){
+        statusName = [self.trip getStatusName];
+    }
+    [self.statusLabel setText:[NSString stringWithFormat:@"Estado actual: %@", statusName]];
+}
+
+- (void)updateActionButton {
+    if (!self.trip){
+        return;
+    }
+    if ([self.trip isGoingToPickup]){
+        [self.tripButton setTitle:@"Esperando al cliente" forState:UIControlStateNormal];
+    }
+    if ([self.trip isAtOrigin]){
+        [self.tripButton setTitle:@"Estoy en viaje" forState:UIControlStateNormal];
+    }
+    if ([self.trip isTravelling]){
+        [self.tripButton setTitle:@"Llegamos!" forState:UIControlStateNormal];
+    }
+    if ([self.trip isAtDestination]){
+        [self.tripButton setTitle:@"Viaje finalizado" forState:UIControlStateNormal];
+    }
+}
+
 - (IBAction)tripButtonPressed:(id)sender {
+    if ([self.trip isGoingToPickup]){
+        [self.tripService markTripAtOrigin:self.trip];
+    }
+    if ([self.trip isAtOrigin]){
+        [self.tripService markTripTravelling:self.trip];
+    }
+    if ([self.trip isTravelling]){
+        [self.tripService markTripAtDestination:self.trip];
+    }
+    if ([self.trip isAtDestination]){
+        [self.tripService markTripFinished:self.trip];
+    }
+}
+
+- (void)showRateScreen {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RateClientViewController *rateViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RateClientViewController"];
+    rateViewController.tripId = self.trip.tripId;
     
+    [self.navigationController pushViewController:rateViewController animated:YES];
 }
 
 #pragma mark - LocationManagerDelegate
@@ -109,6 +154,32 @@
 - (void)tripServiceFailedWithError:(NSError*)error{
     [self hideLoading];
     [self showInternetConexionAlert];
+}
+
+- (void)didReturnTrip: (Trip*)trip {
+    BOOL updatingTrip = (self.trip != nil);
+    self.trip = trip;
+    [self updateStatusLabel];
+    [self updateActionButton];
+    
+    if ([self.trip isFinished]){
+        [self showRateScreen];
+        return;
+    }
+    
+    if (updatingTrip){
+        return;
+    }
+    
+    [self setupOriginAndDestinationMarkers];
+    [self.tripService getTripCoordinates:self.trip];
+    [self.tripService retrieveTripClient:self.trip];
+    [self.priceLabel setText:[NSString stringWithFormat:@"$%@",self.trip.cost]];
+}
+
+- (void)didReturnClient: (ClientProfile*)clientProfile {
+    [self.clientLabel setText:[NSString stringWithFormat:@"Cliente: %@", clientProfile.firstName]];
+    [self.phoneLabel setText:[NSString stringWithFormat:@"Teléfono: %@", clientProfile.phoneNumber]];
 }
 
 @end

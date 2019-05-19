@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDate *scheduleDate;
 @property (strong, nonatomic) NSString *cost;
 @property (strong, nonatomic) NSString *clientName;
+@property (assign, nonatomic) NSInteger clientId;
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (NSDictionary*)toDictionary;
@@ -42,6 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isRejected;
 - (void)accept;
 - (void)reject;
+- (BOOL)isGoingToPickup;
+- (BOOL)isAtOrigin;
+- (BOOL)isTravelling;
+- (BOOL)isAtDestination;
+- (BOOL)isFinished;
+- (NSString*)getStatusName;
 
 @end
 
