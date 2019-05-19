@@ -7,10 +7,9 @@
 //
 
 #import "ClientService.h"
+#import "IdentityService.h"
 
 @interface ClientService ()
-
-@property (strong, nonatomic) NSString *token;
 
 @end
 
@@ -31,11 +30,13 @@
 }
 
 - (void)setClientWithToken: (NSString*)token {
-    self.token = token;
+    IdentityService *identityService = [IdentityService sharedInstance];
+    [identityService setAsClient];
+    [identityService setToken:token];
 }
 
 - (NSString*)getToken {
-    return _token;
+    return [[IdentityService sharedInstance] getToken];
 }
 
 @end

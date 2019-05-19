@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL app;
 @property (nonatomic) BOOL vehicle;
 @property (nonatomic) NSInteger rating;
+@property (strong, nonatomic) NSString *comments;
 
 @end
 

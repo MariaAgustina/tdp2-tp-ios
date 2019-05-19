@@ -9,10 +9,10 @@
 #import "DriverService.h"
 #import "LocationManager.h"
 #import "ApiClient.h"
+#import "IdentityService.h"
 
 @interface DriverService () <LocationManagerDelegate>
 
-@property (strong, nonatomic) NSString *token;
 @property BOOL isWorking;
 @property (strong, nonatomic) NSTimer *statusTimer;
 @property (strong,nonatomic) LocationManager *locationManager;
@@ -39,7 +39,9 @@
 }
 
 - (void)setDriverWithToken: (NSString*)token {
-    self.token = token;
+    IdentityService *identityService = [IdentityService sharedInstance];
+    [identityService setAsDriver];
+    [identityService setToken:token];
     [self startUpdatingStatus];
 }
 
@@ -111,8 +113,8 @@
     NSString *relativeUrlString = @"drivers/status";
     
     ApiClient *apiClient = [ApiClient new];
-    
-    [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
+    NSString *token = [[IdentityService sharedInstance] getToken];
+    [apiClient putWithRelativeUrlString:relativeUrlString body:body token:token success:^(id _Nullable responseObject){
         if (!self.isWorking){
             return;
         }
