@@ -9,7 +9,6 @@
 #import "TripInformationViewController.h"
 #import "TripService.h"
 #import "UIViewController+ShowAlerts.h"
-#import "WaitingTripConfirmationViewController.h"
 #import "RequireTripViewController.h"
 
 double const kMaximunPetsQuantity = 3;
@@ -142,21 +141,11 @@ double const kMaximunPetsQuantity = 3;
         return;
     }
     
-
-//    [self showLoading];
+    [self showLoading];
     self.tripRequest.comments = self.commentsTextView.text;
     self.tripRequest.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    RequireTripViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RequireTripViewController"];
-    startedTripVC.tripRequest = self.tripRequest;
-    
-    [self.navigationController pushViewController:startedTripVC animated:YES];
-    
-    //TODO: mover esto ;)
-    return;
-    
-    [self.service sendTripRequest:self.tripRequest];
+    [self.service getTripPrice:self.tripRequest];
 }
 
 - (void)configDatePicker {
@@ -189,21 +178,14 @@ double const kMaximunPetsQuantity = 3;
 }
 
 #pragma mark - TripServiceDelegate
-
-- (void)didReturnTrip:(Trip *)trip {
+- (void)succededReceivingPrice:(NSString*)price{
     [self hideLoading];
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    RequireTripViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RequireTripViewController"];
 
-    [self.navigationController pushViewController:startedTripVC animated:YES];
-    
-//
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
-//    startedTripVC.trip = trip;
-//
-//    [self.navigationController pushViewController:startedTripVC animated:YES];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RequireTripViewController *requireTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RequireTripViewController"];
+    requireTripVC.tripRequest = self.tripRequest;
+    requireTripVC.price = price;
+    [self.navigationController pushViewController:requireTripVC animated:YES];
 }
 
 - (void)tripServiceFailedWithError:(NSError*)error{

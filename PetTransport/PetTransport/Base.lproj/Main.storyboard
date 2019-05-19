@@ -405,7 +405,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.98950934410095215" green="1" blue="0.79214960336685181" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.9882352941176471" green="1" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="tzC-AI-XnT" firstAttribute="centerX" secondItem="xb9-xl-NTk" secondAttribute="centerX" id="3vR-oH-N6T"/>
                             <constraint firstItem="oAr-yx-gl2" firstAttribute="top" secondItem="tzC-AI-XnT" secondAttribute="bottom" constant="50" id="ORT-db-DGt"/>
@@ -1110,7 +1110,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmar Viaje" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40G-hE-xdh">
-                                                <rect key="frame" x="97" y="47" width="181.5" height="30"/>
+                                                <rect key="frame" x="97" y="40" width="181.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1119,7 +1119,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="40G-hE-xdh" firstAttribute="centerX" secondItem="Gu2-8d-3Xs" secondAttribute="centerX" id="2Z7-qE-gkV"/>
-                                            <constraint firstItem="40G-hE-xdh" firstAttribute="top" secondItem="Gu2-8d-3Xs" secondAttribute="top" constant="47" id="N3V-dc-9LO"/>
+                                            <constraint firstItem="40G-hE-xdh" firstAttribute="top" secondItem="Gu2-8d-3Xs" secondAttribute="top" constant="40" id="N3V-dc-9LO"/>
                                             <constraint firstAttribute="height" constant="88" id="bkg-po-ZP5"/>
                                         </constraints>
                                     </view>
@@ -1139,7 +1139,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.9882352941176471" green="1" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vny-Ve-tdx" secondAttribute="trailing" constant="20" symbolic="YES" id="1vd-SQ-kXC"/>
                                             <constraint firstItem="vny-Ve-tdx" firstAttribute="leading" secondItem="Pz7-84-BfU" secondAttribute="leading" constant="60" id="Dg8-tR-lLY"/>
@@ -1193,7 +1193,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="1" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="g8l-5s-oWZ" firstAttribute="leading" secondItem="wRt-Zf-PwR" secondAttribute="leading" constant="60" id="1GA-oV-Jkx"/>
                                             <constraint firstAttribute="height" constant="100" id="4Ea-Qc-Ez9"/>
@@ -1247,7 +1247,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="1" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="juo-kJ-blA" firstAttribute="top" secondItem="SQG-Tm-Awv" secondAttribute="bottom" constant="11" id="3EQ-dn-p10"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SQG-Tm-Awv" secondAttribute="trailing" constant="20" symbolic="YES" id="8jU-Si-LfN"/>
@@ -1301,7 +1301,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="1" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstItem="MdC-qT-sSg" firstAttribute="leading" secondItem="jUK-Un-t9l" secondAttribute="leading" constant="20" id="Cdz-pS-cZp"/>
                                             <constraint firstAttribute="height" constant="100" id="a1w-bY-fJN"/>
@@ -1348,6 +1348,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="D01-9Q-KFs"/>
                                                 </constraints>
                                                 <state key="normal" title="Rechazar"/>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="b3o-Iz-UkF" eventType="touchUpInside" id="wJv-4x-dfg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-ar-XKZ">
                                                 <rect key="frame" x="23" y="30" width="150" height="30"/>
@@ -1357,6 +1360,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="sMO-z2-uXy"/>
                                                 </constraints>
                                                 <state key="normal" title="Confirmar"/>
+                                                <connections>
+                                                    <action selector="confirmButtonPressed:" destination="b3o-Iz-UkF" eventType="touchUpInside" id="bgr-5M-nKp"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

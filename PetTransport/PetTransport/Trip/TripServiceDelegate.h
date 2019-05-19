@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)tripServiceSuccededWithResponse:(NSDictionary*)response;
 
 - (void)succededReceivingRoute:(WayPoints*)wayPoints;
+- (void)succededReceivingPrice:(NSString*)price;
 
 @required
 - (void)tripServiceFailedWithError:(NSError*)error;

@@ -7,8 +7,11 @@
 //
 
 #import "RequireTripViewController.h"
+#import "WaitingTripConfirmationViewController.h"
+#import "UIViewController+ShowAlerts.h"
+#import "TripService.h"
 
-@interface RequireTripViewController ()
+@interface RequireTripViewController () <TripServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *originAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationAddressLabel;
@@ -19,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *paymentMethodLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bringsScortLabel;
 
+@property (strong,nonatomic) TripService* service;
+
 @end
 
 @implementation RequireTripViewController
@@ -26,6 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.service = [[TripService alloc] initWithDelegate:self];
+
     self.originAddressLabel.text = self.tripRequest.origin.name;
     self.destinationAddressLabel.text = self.tripRequest.destiny.name;
 
@@ -38,6 +45,8 @@
     
     self.bringsScortLabel.text = (self.tripRequest.shouldHaveEscort) ? @"Sí" : @"No";
     self.paymentMethodLabel.text = self.tripRequest.selectedPaymentMethod.title;
+    
+    self.priceLabel.text = self.price;
     
 }
 
@@ -83,6 +92,33 @@
         result = [result stringByAppendingString:smallPetsString];
     }
     return result;
+}
+
+- (IBAction)confirmButtonPressed:(id)sender {
+    [self showLoading];
+    [self.service sendTripRequest:self.tripRequest];
+
+}
+
+- (IBAction)cancelButtonPressed:(id)sender {
+    //TODO
+}
+
+#pragma mark - TripServiceDelegate
+
+- (void)didReturnTrip:(Trip *)trip {
+    [self hideLoading];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
+    startedTripVC.trip = trip;
+    
+    [self.navigationController pushViewController:startedTripVC animated:YES];
+}
+
+- (void)tripServiceFailedWithError:(NSError*)error{
+    [self hideLoading];
+    [self showInternetConexionAlert];
 }
 
 

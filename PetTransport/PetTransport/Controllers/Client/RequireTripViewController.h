@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RequireTripViewController : BaseViewController
 
 @property (strong,nonatomic) TripRequest* tripRequest;
+@property (strong,nonatomic) NSString* price;
 
 @end
 

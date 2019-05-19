@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)retrieveTripWithId: (NSInteger)tripId;
 - (void)getTripCoordinates:(Trip*)trip;
 
+- (void)getTripPrice:(TripRequest*)tripRequest;
+
 @end
 
 NS_ASSUME_NONNULL_END
