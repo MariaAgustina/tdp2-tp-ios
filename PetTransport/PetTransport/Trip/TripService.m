@@ -205,7 +205,7 @@
     ApiClient *apiClient = [ApiClient new];
     [apiClient postWithRelativeUrlString:relativeUrlString
                                     body:body
-                                   token: [[ClientService sharedInstance] getToken]
+                                   token: [[IdentityService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
