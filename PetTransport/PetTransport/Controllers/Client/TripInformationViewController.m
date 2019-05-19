@@ -137,13 +137,24 @@ double const kMaximunPetsQuantity = 3;
 }
 
 - (IBAction)searchTripButtonPressed:(id)sender {
+    
     if(![self.tripRequest isValid]){
         return;
     }
+    
 
-    [self showLoading];
+//    [self showLoading];
     self.tripRequest.comments = self.commentsTextView.text;
     self.tripRequest.scheduleDate = [self isScheduleTripActivated] ? self.datePicker.date : nil;
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RequireTripViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RequireTripViewController"];
+    startedTripVC.tripRequest = self.tripRequest;
+    
+    [self.navigationController pushViewController:startedTripVC animated:YES];
+    
+    //TODO: mover esto ;)
+    return;
     
     [self.service sendTripRequest:self.tripRequest];
 }
@@ -184,7 +195,6 @@ double const kMaximunPetsQuantity = 3;
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RequireTripViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RequireTripViewController"];
-//    startedTripVC.trip = trip;
 
     [self.navigationController pushViewController:startedTripVC animated:YES];
     
