@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DriverRouteViewController : BaseViewController
 
-//@property (strong,nonatomic)Trip* trip;
 @property NSInteger tripId;
 
 @end

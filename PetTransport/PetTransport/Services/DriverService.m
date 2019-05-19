@@ -9,11 +9,11 @@
 #import "DriverService.h"
 #import "LocationManager.h"
 #import "ApiClient.h"
+#import "IdentityService.h"
 
 @interface DriverService () <LocationManagerDelegate>
 
-@property (strong, nonatomic) NSString *token;
-@property BOOL isWorking;
+@property BOOL working;
 @property (strong, nonatomic) NSTimer *statusTimer;
 @property (strong,nonatomic) LocationManager *locationManager;
 @property struct LocationCoordinate currentLocation;
@@ -34,23 +34,29 @@
 
 - (instancetype) init {
     self = [super init];
+    self.working = NO;
     [self startUpdatingLocation];
     return self;
 }
 
 - (void)setDriverWithToken: (NSString*)token {
-    self.token = token;
+    IdentityService *identityService = [IdentityService sharedInstance];
+    [identityService setAsDriver];
+    [identityService setToken:token];
     [self startUpdatingStatus];
 }
 
 - (void)setWorking {
-    self.isWorking = YES;
+    self.working = YES;
 }
 
 - (void)setNotWorking {
-    self.isWorking = NO;
+    self.working = NO;
 }
 
+- (BOOL)isWorking {
+    return self.working;
+}
 
 - (void)startUpdatingStatus {
     [self stopUpdatingStatus];
@@ -63,7 +69,7 @@
 }
 
 - (void)updateStatus {
-    if (self.isWorking){
+    if (self.working){
         self.driverStatus = @"Disponible";
     } else {
         self.driverStatus = @"No disponible";
@@ -111,9 +117,9 @@
     NSString *relativeUrlString = @"drivers/status";
     
     ApiClient *apiClient = [ApiClient new];
-    
-    [apiClient putWithRelativeUrlString:relativeUrlString body:body token:self.token success:^(id _Nullable responseObject){
-        if (!self.isWorking){
+    NSString *token = [[IdentityService sharedInstance] getToken];
+    [apiClient putWithRelativeUrlString:relativeUrlString body:body token:token success:^(id _Nullable responseObject){
+        if (!self.working){
             return;
         }
         if ([responseObject objectForKey:@"tripOffer"] != nil){
