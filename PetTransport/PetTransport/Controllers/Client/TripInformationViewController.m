@@ -10,6 +10,7 @@
 #import "TripService.h"
 #import "UIViewController+ShowAlerts.h"
 #import "WaitingTripConfirmationViewController.h"
+#import "RequireTripViewController.h"
 
 double const kMaximunPetsQuantity = 3;
 
@@ -182,10 +183,17 @@ double const kMaximunPetsQuantity = 3;
     [self hideLoading];
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
-    startedTripVC.trip = trip;
-    
+    RequireTripViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"RequireTripViewController"];
+//    startedTripVC.trip = trip;
+
     [self.navigationController pushViewController:startedTripVC animated:YES];
+    
+//
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    WaitingTripConfirmationViewController *startedTripVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"WaitingTripConfirmationViewController"];
+//    startedTripVC.trip = trip;
+//
+//    [self.navigationController pushViewController:startedTripVC animated:YES];
 }
 
 - (void)tripServiceFailedWithError:(NSError*)error{
