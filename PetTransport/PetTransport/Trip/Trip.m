@@ -84,13 +84,13 @@ NSString* const kFinishedStatusKey = @"Finalizado";
     if ([self isGoingToPickup]){
         return @"En Camino";
     }
-    if ([self isInOrigin]){
+    if ([self isAtOrigin]){
         return @"En Origen";
     }
     if ([self isTravelling]){
         return @"En Viaje";
     }
-    if ([self isInDestination]){
+    if ([self isAtDestination]){
         return @"Llegamos";
     }
     if ([self isFinished]){
@@ -123,7 +123,7 @@ NSString* const kFinishedStatusKey = @"Finalizado";
     return [self.status isEqualToString:kGoingToPickupStatusKey];
 }
 
-- (BOOL)isInOrigin {
+- (BOOL)isAtOrigin {
     return [self.status isEqualToString:kInOriginStatusKey];
 }
 
@@ -131,7 +131,7 @@ NSString* const kFinishedStatusKey = @"Finalizado";
     return [self.status isEqualToString:kTravellingStatusKey];
 }
 
-- (BOOL)isInDestination {
+- (BOOL)isAtDestination {
     return [self.status isEqualToString:kInDestinatioStatusKey];
 }
 

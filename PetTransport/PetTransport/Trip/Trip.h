@@ -42,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isRejected;
 - (void)accept;
 - (void)reject;
+- (BOOL)isGoingToPickup;
+- (BOOL)isAtOrigin;
+- (BOOL)isTravelling;
+- (BOOL)isAtDestination;
+- (BOOL)isFinished;
 - (NSString*)getStatusName;
 
 @end

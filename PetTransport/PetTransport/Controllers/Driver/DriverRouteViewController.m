@@ -77,16 +77,45 @@
     [self.mapView setCamera:camera];
 }
 
-- (IBAction)tripButtonPressed:(id)sender {
-    NSLog(@"tengo que cambiar el estado del viaje");
-}
-
 - (void)updateStatusLabel {
     NSString *statusName = @"";
     if (self.trip){
         statusName = [self.trip getStatusName];
     }
     [self.statusLabel setText:[NSString stringWithFormat:@"Estado actual: %@", statusName]];
+}
+
+- (void)updateActionButton {
+    if (!self.trip){
+        return;
+    }
+    if ([self.trip isGoingToPickup]){
+        [self.tripButton setTitle:@"Esperando al cliente" forState:UIControlStateNormal];
+    }
+    if ([self.trip isAtOrigin]){
+        [self.tripButton setTitle:@"Estoy en viaje" forState:UIControlStateNormal];
+    }
+    if ([self.trip isTravelling]){
+        [self.tripButton setTitle:@"Llegamos!" forState:UIControlStateNormal];
+    }
+    if ([self.trip isAtDestination]){
+        [self.tripButton setTitle:@"Viaje finalizado" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)tripButtonPressed:(id)sender {
+    if ([self.trip isGoingToPickup]){
+        [self.tripService markTripAtOrigin:self.trip];
+    }
+    if ([self.trip isAtOrigin]){
+        [self.tripService markTripTravelling:self.trip];
+    }
+    if ([self.trip isTravelling]){
+        [self.tripService markTripAtDestination:self.trip];
+    }
+    if ([self.trip isAtDestination]){
+        [self.tripService markTripFinished:self.trip];
+    }
 }
 
 #pragma mark - LocationManagerDelegate
@@ -122,6 +151,7 @@
     BOOL updatingTrip = (self.trip != nil);
     self.trip = trip;
     [self updateStatusLabel];
+    [self updateActionButton];
     
     if (updatingTrip){
         return;

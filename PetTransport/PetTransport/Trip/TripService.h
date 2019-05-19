@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendTripRequest: (TripRequest*)tripRequest;
 - (void)retrieveTripWithId: (NSInteger)tripId;
 - (void)getTripCoordinates:(Trip*)trip;
+- (void)markTripAtOrigin:(Trip*)trip;
+- (void)markTripTravelling:(Trip*)trip;
+- (void)markTripAtDestination:(Trip*)trip;
+- (void)markTripFinished:(Trip*)trip;
+- (void)markTripCancelled:(Trip*)trip;
 
 @end
 

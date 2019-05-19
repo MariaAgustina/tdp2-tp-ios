@@ -138,6 +138,41 @@
                                  }];
 }
 
+- (void)markTripAtOrigin:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"atorigin"];
+}
 
+- (void)markTripTravelling:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"travelling"];
+}
+
+- (void)markTripAtDestination:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"atdestination"];
+}
+
+- (void)markTripFinished:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"finished"];
+}
+
+- (void)markTripCancelled:(Trip*)trip {
+    [self updateTrip:trip withStatusKey:@"cancelled"];
+}
+
+- (void)updateTrip:(Trip*)trip withStatusKey:(NSString*)statusKey {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"trips/%ld/status/%@",trip.tripId, statusKey];
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient putWithRelativeUrlString:relativeUrlString
+                                   body:@{}
+                                  token:[[ClientService sharedInstance] getToken]
+                                success:^(id _Nullable responseObject) {
+                                    __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                    Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+                                    [strongDelegate didReturnTrip:trip];
+                                } failure:^(NSError * _Nonnull error) {
+                                    NSLog(@"Error: %@", error);
+                                    __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+                                    [strongDelegate tripServiceFailedWithError:error];
+                                }];
+}
 
 @end
