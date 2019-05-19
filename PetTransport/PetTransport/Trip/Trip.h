@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDate *scheduleDate;
 @property (strong, nonatomic) NSString *cost;
 @property (strong, nonatomic) NSString *clientName;
+@property (assign, nonatomic) NSInteger clientId;
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (NSDictionary*)toDictionary;

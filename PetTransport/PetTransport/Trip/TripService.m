@@ -12,6 +12,7 @@
 #import "ApiClient.h"
 #import "FbProfileManager.h"
 #import "ClientService.h"
+#import "ClientProfile.h"
 
 @interface TripService ()
 
@@ -173,6 +174,21 @@
                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
                                     [strongDelegate tripServiceFailedWithError:error];
                                 }];
+}
+
+- (void)retrieveTripClient: (Trip*)trip {
+    NSString* relativeUrlString = [NSString stringWithFormat:@"users/%ld",trip.clientId];
+    
+    ApiClient *apiClient = [ApiClient new];
+    [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
+        ClientProfile *profile = [ClientProfile new];
+        profile.firstName = [responseObject objectForKey:@"name"];
+        profile.phoneNumber = [responseObject objectForKey:@"phone"];
+        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+        [strongDelegate didReturnClient:profile];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end

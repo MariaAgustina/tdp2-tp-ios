@@ -173,7 +173,13 @@
     
     [self setupOriginAndDestinationMarkers];
     [self.tripService getTripCoordinates:self.trip];
+    [self.tripService retrieveTripClient:self.trip];
     [self.priceLabel setText:[NSString stringWithFormat:@"$%@",self.trip.cost]];
+}
+
+- (void)didReturnClient: (ClientProfile*)clientProfile {
+    [self.clientLabel setText:[NSString stringWithFormat:@"Cliente: %@", clientProfile.firstName]];
+    [self.phoneLabel setText:[NSString stringWithFormat:@"Teléfono: %@", clientProfile.phoneNumber]];
 }
 
 @end

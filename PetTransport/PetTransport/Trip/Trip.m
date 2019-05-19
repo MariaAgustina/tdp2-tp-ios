@@ -62,6 +62,7 @@ NSString* const kFinishedStatusKey = @"Finalizado";
     self.bringsEscort = [[dictionary objectForKey:@"bringsEscort"] boolValue];
     self.comments = [dictionary objectForKey:@"comments"];
     self.clientName = [[dictionary objectForKey:@"client"] objectForKey:@"name"];
+    self.clientId = [[dictionary objectForKey:@"clientId"] integerValue];
     
     return self;
 }
