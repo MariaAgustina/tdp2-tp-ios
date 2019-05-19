@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)markTripCancelled:(Trip*)trip;
 - (void)retrieveTripClient: (Trip*)trip;
 
+- (void)getTripPrice:(TripRequest*)tripRequest;
+
 @end
 
 NS_ASSUME_NONNULL_END

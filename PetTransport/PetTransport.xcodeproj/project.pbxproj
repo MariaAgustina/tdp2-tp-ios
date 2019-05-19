@@ -57,6 +57,7 @@
 		93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */; };
 		93FB8A372290760C0006FD16 /* CoordinateAddapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A362290760C0006FD16 /* CoordinateAddapter.m */; };
 		93FB8A3D22908A1B0006FD16 /* WayPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A3C22908A1B0006FD16 /* WayPoints.m */; };
+		93FB8A402291A4520006FD16 /* RequireTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB8A3F2291A4520006FD16 /* RequireTripViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,8 @@
 		93FB8A362290760C0006FD16 /* CoordinateAddapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoordinateAddapter.m; sourceTree = "<group>"; };
 		93FB8A3B22908A1B0006FD16 /* WayPoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WayPoints.h; sourceTree = "<group>"; };
 		93FB8A3C22908A1B0006FD16 /* WayPoints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WayPoints.m; sourceTree = "<group>"; };
+		93FB8A3E2291A4520006FD16 /* RequireTripViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequireTripViewController.h; sourceTree = "<group>"; };
+		93FB8A3F2291A4520006FD16 /* RequireTripViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequireTripViewController.m; sourceTree = "<group>"; };
 		AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
 		E86903565904018278ACDC05 /* Pods-PetTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.debug.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -294,6 +297,8 @@
 				586A6A85225141E8001E3FB2 /* TrackDriverViewController.m */,
 				93FB8A33229067900006FD16 /* WaitingTripConfirmationViewController.h */,
 				93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */,
+				93FB8A3E2291A4520006FD16 /* RequireTripViewController.h */,
+				93FB8A3F2291A4520006FD16 /* RequireTripViewController.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -646,6 +651,7 @@
 				93FB8A3D22908A1B0006FD16 /* WayPoints.m in Sources */,
 				9396CA1422474B3400F6248F /* main.m in Sources */,
 				93D0BEC1226A2AD700FEF7C9 /* PaymentMethod.m in Sources */,
+				93FB8A402291A4520006FD16 /* RequireTripViewController.m in Sources */,
 				58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */,
 				58B34D9D2275D72200277F5A /* ApiClient.m in Sources */,
 				938B9A04227F36E5001EBBEC /* RateServiceViewController.m in Sources */,

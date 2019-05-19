@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (void)didReturnTrip: (Trip*)trip;
 - (void)succededReceivingRoute:(WayPoints*)wayPoints;
+- (void)succededReceivingPrice:(NSString*)price;
 - (void)didReturnClient: (ClientProfile*)clientProfile;
 
 @required
