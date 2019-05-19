@@ -85,7 +85,10 @@
     
     ApiClient *apiClient = [ApiClient new];
     [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
-        NSLog(@"response: %@", responseObject);
+        //NSLog(@"retrieveTripWithId: %@", responseObject);
+        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+        Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+        [strongDelegate didReturnTrip:trip];
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
     }];

@@ -81,6 +81,25 @@ NSString* const kFinishedStatusKey = @"Finalizado";
     return self.scheduleDate != nil;
 }
 
+- (NSString*) getStatusName {
+    if ([self isGoingToPickup]){
+        return @"En Camino";
+    }
+    if ([self isInOrigin]){
+        return @"En Origen";
+    }
+    if ([self isTravelling]){
+        return @"En Viaje";
+    }
+    if ([self isInDestination]){
+        return @"Llegamos";
+    }
+    if ([self isFinished]){
+        return @"Finalizado";
+    }
+    return @"";
+}
+
 - (BOOL)isAccepted {
     return [self.status isEqualToString:kAcceptedStatusKey];
 }
@@ -99,6 +118,26 @@ NSString* const kFinishedStatusKey = @"Finalizado";
 
 - (void)reject {
     self.status = [kRejectedStatusKey copy];
+}
+
+- (BOOL)isGoingToPickup {
+    return [self.status isEqualToString:kGoingToPickupStatusKey];
+}
+
+- (BOOL)isInOrigin {
+    return [self.status isEqualToString:kInOriginStatusKey];
+}
+
+- (BOOL)isTravelling {
+    return [self.status isEqualToString:kTravellingStatusKey];
+}
+
+- (BOOL)isInDestination {
+    return [self.status isEqualToString:kInDestinatioStatusKey];
+}
+
+- (BOOL)isFinished {
+    return [self.status isEqualToString:kFinishedStatusKey];
 }
 
 @end

@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isRejected;
 - (void)accept;
 - (void)reject;
+- (NSString*)getStatusName;
 
 @end
 

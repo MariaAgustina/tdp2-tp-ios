@@ -16,6 +16,7 @@
 #import "UIViewController+ShowAlerts.h"
 
 @interface DriverRouteViewController () <LocationManagerDelegate, TripServiceDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *clientLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -28,7 +29,8 @@
 @property (strong,nonatomic) GMSMarker* originMarker;
 @property (strong,nonatomic) GMSMarker* destinyMarker;
 
-@property (strong,nonatomic) TripService* routesService;
+@property (strong,nonatomic) TripService* tripService;
+@property (strong,nonatomic) Trip* trip;
 
 @end
 
@@ -37,13 +39,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.locationManager = [[LocationManager alloc] init];
-    
-    [self setupOriginAndDestinationMarkers];
-    
-    self.routesService = [[TripService alloc] initWithDelegate:self];
+    self.tripService = [[TripService alloc] initWithDelegate:self];
     
     [self showLoading];
-    [self.routesService getTripCoordinates:self.trip];
+    [self.tripService retrieveTripWithId:self.tripId];
 }
 
 - (void)setupOriginAndDestinationMarkers
@@ -79,7 +78,15 @@
 }
 
 - (IBAction)tripButtonPressed:(id)sender {
-    
+    NSLog(@"tengo que cambiar el estado del viaje");
+}
+
+- (void)updateStatusLabel {
+    NSString *statusName = @"";
+    if (self.trip){
+        statusName = [self.trip getStatusName];
+    }
+    [self.statusLabel setText:[NSString stringWithFormat:@"Estado actual: %@", statusName]];
 }
 
 #pragma mark - LocationManagerDelegate
@@ -109,6 +116,19 @@
 - (void)tripServiceFailedWithError:(NSError*)error{
     [self hideLoading];
     [self showInternetConexionAlert];
+}
+
+- (void)didReturnTrip: (Trip*)trip {
+    BOOL updatingTrip = (self.trip != nil);
+    self.trip = trip;
+    [self updateStatusLabel];
+    
+    if (updatingTrip){
+        return;
+    }
+    
+    [self setupOriginAndDestinationMarkers];
+    [self.tripService getTripCoordinates:self.trip];
 }
 
 @end
