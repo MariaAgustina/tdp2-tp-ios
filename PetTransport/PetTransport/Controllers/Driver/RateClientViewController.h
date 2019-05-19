@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface RateClientViewController : UIViewController
+@interface RateClientViewController : BaseViewController
 
 @property NSInteger tripId;
 

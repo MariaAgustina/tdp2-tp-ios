@@ -7,12 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import "Trip.h"
 #import "RateModel.h"
+
+@protocol RateServiceDelegate <NSObject>
+
+- (void)rateSuccesful;
+- (void)rateFailedWithError:(NSError*)error;
+
+@end
+
 
 @interface RateService : NSObject
 
-- (void)rateClient: (RateModel*)rate forTrip:(Trip*)trip;
+- (instancetype)initWithDelegate:(id<RateServiceDelegate>)delegate;
+- (void)rateClient: (RateModel*)rate forTripId:(NSInteger)tripId;
 
 @end

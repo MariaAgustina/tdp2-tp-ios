@@ -105,18 +105,24 @@
 }
 
 - (IBAction)tripButtonPressed:(id)sender {
+    [self showLoading];
     if ([self.trip isGoingToPickup]){
         [self.tripService markTripAtOrigin:self.trip];
+        return;
     }
     if ([self.trip isAtOrigin]){
         [self.tripService markTripTravelling:self.trip];
+        return;
     }
     if ([self.trip isTravelling]){
         [self.tripService markTripAtDestination:self.trip];
+        return;
     }
     if ([self.trip isAtDestination]){
         [self.tripService markTripFinished:self.trip];
+        return;
     }
+    [self hideLoading];
 }
 
 - (void)showRateScreen {
@@ -163,11 +169,13 @@
     [self updateActionButton];
     
     if ([self.trip isFinished]){
+        [self hideLoading];
         [self showRateScreen];
         return;
     }
     
     if (updatingTrip){
+        [self hideLoading];
         return;
     }
     
@@ -178,6 +186,7 @@
 }
 
 - (void)didReturnClient: (ClientProfile*)clientProfile {
+    [self hideLoading];
     [self.clientLabel setText:[NSString stringWithFormat:@"Cliente: %@", clientProfile.firstName]];
     [self.phoneLabel setText:[NSString stringWithFormat:@"Teléfono: %@", clientProfile.phoneNumber]];
 }
