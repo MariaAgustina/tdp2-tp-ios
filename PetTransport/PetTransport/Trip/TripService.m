@@ -151,17 +151,18 @@
                                    token: [[ClientService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      
-                                     //TODO: integrar con la api bien
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
-                                     [strongDelegate succededReceivingPrice:@"$ 50,46"];
+                                     
+                                     CGFloat cost = [[responseObject objectForKey:@"cost"] floatValue];
+                                     NSString* priceString = [NSString stringWithFormat: @"$ %.2f", cost];
+                                     
+                                     [strongDelegate succededReceivingPrice:priceString];
 
                                      
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      NSLog(@"Error: %@", error);
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
-                                     //TODO: integrar con la api bien
-                                     [strongDelegate succededReceivingPrice:@"$ 50,46"];
-//                                     [strongDelegate tripServiceFailedWithError:error];
+                                     [strongDelegate tripServiceFailedWithError:error];
                                  }];
 }
 
