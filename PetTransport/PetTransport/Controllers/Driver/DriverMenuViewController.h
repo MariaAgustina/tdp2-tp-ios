@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DriverProfile.h"
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DriverMenuViewController : UIViewController
+@interface DriverMenuViewController : BaseViewController
 
 @property (strong, nonatomic) DriverProfile *driver;
 

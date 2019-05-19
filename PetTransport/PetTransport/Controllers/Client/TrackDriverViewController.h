@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Trip.h"
+#import "BaseViewController.h"
 
-@interface TrackDriverViewController : UIViewController
+@interface TrackDriverViewController : BaseViewController
 
 @property (strong, nonatomic) Trip *trip;
 

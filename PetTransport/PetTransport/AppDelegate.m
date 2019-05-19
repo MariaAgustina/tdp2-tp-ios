@@ -31,10 +31,10 @@
     
     navController.navigationBar.topItem.title = @"";
     navController.navigationBar.barStyle = UIBarStyleDefault;
-    navController.navigationBar.barTintColor = [UIColor colorWithRed:38.0/255.0 green:166.0/255.0 blue:154.0/255.0 alpha:1.0];
+    navController.navigationBar.barTintColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
     navController.navigationBar.translucent = NO;
     navController.navigationBar.opaque = YES;
-    
+
     [self.window setRootViewController:navController];
     [self.window makeKeyAndVisible];
     
