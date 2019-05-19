@@ -1693,49 +1693,6 @@
             </objects>
             <point key="canvasLocation" x="-1711.2" y="-2114.3928035982012"/>
         </scene>
-        <!--Driver Trip View Controller-->
-        <scene sceneID="Eq0-Fz-qcD">
-            <objects>
-                <viewController storyboardIdentifier="DriverTripViewController" id="Qyw-Rz-agN" customClass="DriverTripViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4AY-Ev-0Oh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="En VIaje" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a97-cj-Tz7">
-                                <rect key="frame" x="126" y="110" width="149" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiw-Fs-Y8t">
-                                <rect key="frame" x="85" y="402" width="199" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Calificar cliente"/>
-                                <connections>
-                                    <segue destination="ddw-oV-1U5" kind="show" id="98w-52-2xe"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destino" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M24-cw-MOT">
-                                <rect key="frame" x="120" y="187" width="128" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="8rT-vH-7B9"/>
-                    </view>
-                    <connections>
-                        <outlet property="destinationLabel" destination="M24-cw-MOT" id="53L-Lx-043"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vym-LO-alc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-607.20000000000005" y="-2115.2923538230884"/>
-        </scene>
         <!--Rate Client View Controller-->
         <scene sceneID="cLC-TF-h3B">
             <objects>
