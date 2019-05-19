@@ -37,7 +37,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     self.finishTripService = [[FinishTripService alloc]initWithDelegate:self];
     
    //Esto es solo para finalizar el viaje y mostrar los ratings, luego vamos a tener que cambiarlo y sacar el timer
-    [NSTimer scheduledTimerWithTimeInterval:5.0
+    [NSTimer scheduledTimerWithTimeInterval:15.0
                                      target:self
                                    selector:@selector(endTrip)
                                    userInfo:nil
