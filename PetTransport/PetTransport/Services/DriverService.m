@@ -13,7 +13,7 @@
 
 @interface DriverService () <LocationManagerDelegate>
 
-@property BOOL isWorking;
+@property BOOL working;
 @property (strong, nonatomic) NSTimer *statusTimer;
 @property (strong,nonatomic) LocationManager *locationManager;
 @property struct LocationCoordinate currentLocation;
@@ -34,6 +34,7 @@
 
 - (instancetype) init {
     self = [super init];
+    self.working = NO;
     [self startUpdatingLocation];
     return self;
 }
@@ -46,13 +47,16 @@
 }
 
 - (void)setWorking {
-    self.isWorking = YES;
+    self.working = YES;
 }
 
 - (void)setNotWorking {
-    self.isWorking = NO;
+    self.working = NO;
 }
 
+- (BOOL)isWorking {
+    return self.working;
+}
 
 - (void)startUpdatingStatus {
     [self stopUpdatingStatus];
@@ -65,7 +69,7 @@
 }
 
 - (void)updateStatus {
-    if (self.isWorking){
+    if (self.working){
         self.driverStatus = @"Disponible";
     } else {
         self.driverStatus = @"No disponible";
@@ -115,7 +119,7 @@
     ApiClient *apiClient = [ApiClient new];
     NSString *token = [[IdentityService sharedInstance] getToken];
     [apiClient putWithRelativeUrlString:relativeUrlString body:body token:token success:^(id _Nullable responseObject){
-        if (!self.isWorking){
+        if (!self.working){
             return;
         }
         if ([responseObject objectForKey:@"tripOffer"] != nil){

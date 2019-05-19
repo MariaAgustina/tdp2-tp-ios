@@ -24,15 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    DriverService *driverService = [DriverService sharedInstance];
-    driverService.delegate = self;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.availableSwitch setOn:NO];
+    
+    DriverService *driverService = [DriverService sharedInstance];
+    driverService.delegate = self;
+    [self.availableSwitch setOn:[driverService isWorking]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

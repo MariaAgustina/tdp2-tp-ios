@@ -123,6 +123,11 @@
     [self.rateService rateClient:rate forTripId:self.tripId];
 }
 
+- (void)popToDriverMenu {
+    NSArray *array = [self.navigationController viewControllers];
+    [self.navigationController popToViewController:[array objectAtIndex:2] animated:YES];
+}
+
 #pragma mark - UITextViewDelegate
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
@@ -134,13 +139,13 @@
 
 - (void)rateSuccesful {
     [self hideLoading];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self popToDriverMenu];
 }
 
 - (void)rateFailedWithError:(NSError*)error {
     NSLog(@"no pudo hacerse el rate");
     [self hideLoading];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self popToDriverMenu];
 }
 
 @end
