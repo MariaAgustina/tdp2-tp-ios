@@ -1051,7 +1051,6 @@
                                 <state key="normal" title="Buscar"/>
                                 <connections>
                                     <action selector="searchTripButtonPressed:" destination="rM7-2L-X50" eventType="touchUpInside" id="jxh-f6-uwH"/>
-                                    <action selector="searchTripButtonPressed:" destination="MRf-Tx-pg4" eventType="touchUpInside" id="yMl-kN-780"/>
                                 </connections>
                             </button>
                         </subviews>
