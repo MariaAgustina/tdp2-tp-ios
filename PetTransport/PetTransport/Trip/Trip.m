@@ -52,7 +52,8 @@ NSString* const kFinishedStatusKey = @"Finalizado";
         self.scheduleDate = date;
     }
     
-    self.cost = [dictionary objectForKey:@"cost"];
+    NSNumber *cost = [dictionary objectForKey:@"cost"];
+    self.cost = [cost stringValue];
     
     NSDictionary *petQuantities = [dictionary objectForKey:@"petQuantities"];
     self.smallPetsQuantity = [[petQuantities objectForKey:@"small"] integerValue];

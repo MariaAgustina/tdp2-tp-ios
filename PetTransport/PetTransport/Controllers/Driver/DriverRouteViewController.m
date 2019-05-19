@@ -173,6 +173,7 @@
     
     [self setupOriginAndDestinationMarkers];
     [self.tripService getTripCoordinates:self.trip];
+    [self.priceLabel setText:[NSString stringWithFormat:@"$%@",self.trip.cost]];
 }
 
 @end
