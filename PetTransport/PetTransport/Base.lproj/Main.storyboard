@@ -1347,9 +1347,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="D01-9Q-KFs"/>
                                                 </constraints>
-                                                <state key="normal" title="Rechazar"/>
+                                                <state key="normal" title="Confirmar"/>
                                                 <connections>
-                                                    <action selector="cancelButtonPressed:" destination="b3o-Iz-UkF" eventType="touchUpInside" id="wJv-4x-dfg"/>
+                                                    <action selector="confirmButtonPressed:" destination="b3o-Iz-UkF" eventType="touchUpInside" id="Mq7-yW-2X0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-ar-XKZ">
@@ -1359,9 +1359,9 @@
                                                     <constraint firstAttribute="width" constant="150" id="gtw-71-bep"/>
                                                     <constraint firstAttribute="height" constant="30" id="sMO-z2-uXy"/>
                                                 </constraints>
-                                                <state key="normal" title="Confirmar"/>
+                                                <state key="normal" title="Rechazar"/>
                                                 <connections>
-                                                    <action selector="confirmButtonPressed:" destination="b3o-Iz-UkF" eventType="touchUpInside" id="bgr-5M-nKp"/>
+                                                    <action selector="cancelButtonPressed:" destination="b3o-Iz-UkF" eventType="touchUpInside" id="Hu6-TQ-LrL"/>
                                                 </connections>
                                             </button>
                                         </subviews>

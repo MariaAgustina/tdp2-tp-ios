@@ -101,7 +101,8 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-    //TODO
+    NSUInteger ownIndex = [self.navigationController.viewControllers indexOfObject:self];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:ownIndex - 2] animated:YES];
 }
 
 #pragma mark - TripServiceDelegate
