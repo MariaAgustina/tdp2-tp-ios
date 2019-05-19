@@ -10,4 +10,11 @@
 
 @implementation RateModel
 
+- (NSString*)getComments {
+    if (_comments == nil){
+        _comments = @"";
+    }
+    return _comments;
+}
+
 @end

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-
 @interface RateClientViewController : BaseViewController
 
 @property NSInteger tripId;

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C90430875081E08DA5FCA1A /* libPods-PetTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258276CCE7709C51AC9AF279 /* libPods-PetTransport.a */; };
+		5816D4E22291CDC100237D00 /* RateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5816D4E12291CDC100237D00 /* RateService.m */; };
+		5816D4E52291D1C500237D00 /* IdentityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5816D4E42291D1C500237D00 /* IdentityService.m */; };
 		581D567E225AA46B00AE4BFE /* constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D567D225AA46B00AE4BFE /* constants.m */; };
 		58492B98225007E200496C82 /* BookTransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B97225007E200496C82 /* BookTransportViewController.m */; };
 		58492B9C2250133E00496C82 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58492B9B2250133E00496C82 /* LocationManager.m */; };
@@ -79,6 +81,10 @@
 
 /* Begin PBXFileReference section */
 		258276CCE7709C51AC9AF279 /* libPods-PetTransport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PetTransport.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5816D4E02291CDC100237D00 /* RateService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateService.h; sourceTree = "<group>"; };
+		5816D4E12291CDC100237D00 /* RateService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateService.m; sourceTree = "<group>"; };
+		5816D4E32291D1C500237D00 /* IdentityService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentityService.h; sourceTree = "<group>"; };
+		5816D4E42291D1C500237D00 /* IdentityService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentityService.m; sourceTree = "<group>"; };
 		581D567C225AA37D00AE4BFE /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		581D567D225AA46B00AE4BFE /* constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = constants.m; sourceTree = "<group>"; };
 		58492B96225007E200496C82 /* BookTransportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTransportViewController.h; sourceTree = "<group>"; };
@@ -251,6 +257,8 @@
 				58CB7CDB227E1BA90007F3DE /* ClientService.m */,
 				931E30C5227F556800F5081F /* RateDriverService.h */,
 				931E30C6227F556800F5081F /* RateDriverService.m */,
+				5816D4E32291D1C500237D00 /* IdentityService.h */,
+				5816D4E42291D1C500237D00 /* IdentityService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -383,6 +391,8 @@
 			children = (
 				938B9A07227F436C001EBBEC /* RateModel.h */,
 				938B9A08227F436C001EBBEC /* RateModel.m */,
+				5816D4E02291CDC100237D00 /* RateService.h */,
+				5816D4E12291CDC100237D00 /* RateService.m */,
 			);
 			path = RateService;
 			sourceTree = "<group>";
@@ -640,12 +650,14 @@
 				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
 				93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */,
+				5816D4E52291D1C500237D00 /* IdentityService.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,
 				589798D2227F73900047EC92 /* RateClientViewController.m in Sources */,
 				58492B9C2250133E00496C82 /* LocationManager.m in Sources */,
 				93D0BED3226BB8A200FEF7C9 /* UIImage+Base64.m in Sources */,
 				581D567E225AA46B00AE4BFE /* constants.m in Sources */,
 				937ABFB62253DAF000086554 /* Trip.m in Sources */,
+				5816D4E22291CDC100237D00 /* RateService.m in Sources */,
 				586A6A86225141E8001E3FB2 /* TrackDriverViewController.m in Sources */,
 				58F022DE2253EFEA00318837 /* TrackDriverService.m in Sources */,
 				93FB8A3D22908A1B0006FD16 /* WayPoints.m in Sources */,

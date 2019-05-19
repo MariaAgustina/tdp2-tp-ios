@@ -7,8 +7,10 @@
 //
 
 #import "RateClientViewController.h"
+#import "RateService.h"
+#import "RateModel.h"
 
-@interface RateClientViewController () <UITextViewDelegate>
+@interface RateClientViewController () <UITextViewDelegate, RateServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *firstStar;
 @property (weak, nonatomic) IBOutlet UIButton *secondStar;
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *commentsTextArea;
 
 @property NSInteger rating;
+@property (strong, nonatomic) RateService *rateService;
 
 @end
 
@@ -27,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES];
     
     self.rating = 0;
     
@@ -37,6 +41,8 @@
     self.commentsTextArea.layer.borderColor =  [UIColor colorWithRed:220/255 green:220/255 blue:220/255 alpha:0.5].CGColor;
     self.commentsTextArea.layer.cornerRadius = 8.0;
     self.commentsTextArea.delegate = self;
+    
+    self.rateService = [[RateService alloc] initWithDelegate:self];
 }
 
 - (void)setupView:(UIView*)view {
@@ -111,9 +117,16 @@
 }
 
 - (IBAction)rateButtonPressed:(id)sender {
-    NSLog(@"rating: %ld", self.rating);
-    NSLog(@"observacion: %@", self.commentsTextArea.text);
-    NSLog(@"rate button pressed");
+    [self showLoading];
+    RateModel *rate = [RateModel new];
+    rate.rating = self.rating;
+    rate.comments = self.commentsTextArea.text;
+    [self.rateService rateClient:rate forTripId:self.tripId];
+}
+
+- (void)popToDriverMenu {
+    NSArray *array = [self.navigationController viewControllers];
+    [self.navigationController popToViewController:[array objectAtIndex:2] animated:YES];
 }
 
 #pragma mark - UITextViewDelegate
@@ -123,5 +136,17 @@
     return (totalLength <= 500);
 }
 
+#pragma mark - RateServiceDelegate
+
+- (void)rateSuccesful {
+    [self hideLoading];
+    [self popToDriverMenu];
+}
+
+- (void)rateFailedWithError:(NSError*)error {
+    NSLog(@"no pudo hacerse el rate");
+    [self hideLoading];
+    [self popToDriverMenu];
+}
 
 @end

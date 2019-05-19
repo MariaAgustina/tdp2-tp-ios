@@ -11,7 +11,7 @@
 #import "constants.h"
 #import "ApiClient.h"
 #import "FbProfileManager.h"
-#import "ClientService.h"
+#import "IdentityService.h"
 #import "ClientProfile.h"
 
 @interface TripService ()
@@ -73,7 +73,7 @@
     ApiClient *apiClient = [ApiClient new];
     [apiClient postWithRelativeUrlString:relativeUrlString
                                     body:body
-                                   token: [[ClientService sharedInstance] getToken]
+                                   token: [[IdentityService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
                                      
@@ -91,9 +91,9 @@
     
     ApiClient *apiClient = [ApiClient new];
     [apiClient getWithRelativeUrlString:relativeUrlString token:nil success:^(id _Nullable responseObject){
-        //NSLog(@"retrieveTripWithId: %@", responseObject);
-        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
+//        NSLog(@"retrieveTripWithId: %@", responseObject);
         Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
+        __strong id <TripServiceDelegate> strongDelegate = self.delegate;
         [strongDelegate didReturnTrip:trip];
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Error: %@", error);
@@ -132,7 +132,7 @@
     ApiClient *apiClient = [ApiClient new];
     [apiClient postWithRelativeUrlString:relativeUrlString
                                     body:body
-                                   token: [[ClientService sharedInstance] getToken]
+                                   token: [[IdentityService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
                                      WayPoints* wayPoints = [[WayPoints alloc]initWithDictionary:responseObject];
@@ -169,7 +169,7 @@
     ApiClient *apiClient = [ApiClient new];
     [apiClient putWithRelativeUrlString:relativeUrlString
                                    body:@{}
-                                  token:[[ClientService sharedInstance] getToken]
+                                  token:[[IdentityService sharedInstance] getToken]
                                 success:^(id _Nullable responseObject) {
                                     __strong id <TripServiceDelegate> strongDelegate = self.delegate;
                                     Trip *trip = [[Trip alloc] initWithDictionary:responseObject];
@@ -205,7 +205,7 @@
     ApiClient *apiClient = [ApiClient new];
     [apiClient postWithRelativeUrlString:relativeUrlString
                                     body:body
-                                   token: [[ClientService sharedInstance] getToken]
+                                   token: [[IdentityService sharedInstance] getToken]
                                  success:^(id _Nullable responseObject) {
                                      
                                      __strong id <TripServiceDelegate> strongDelegate = self.delegate;
