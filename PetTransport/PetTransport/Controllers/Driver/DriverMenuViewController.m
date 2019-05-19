@@ -98,7 +98,7 @@
     NSString *reservationDate = @"";
     if ([trip isScheduled]){
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+        [formatter setDateFormat: @"yyyy-MM-dd HH:mm"];
         reservationDate = [NSString stringWithFormat:@"Dia y horario: %@\r", [formatter stringFromDate:trip.scheduleDate]];
     }
     
@@ -183,7 +183,7 @@
     NSString *reservationDate = @"";
     if ([trip isScheduled]){
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+        [formatter setDateFormat: @"yyyy-MM-dd HH:mm"];
         reservationDate = [NSString stringWithFormat:@"Dia y horario: %@\r", [formatter stringFromDate:trip.scheduleDate]];
     }
     
