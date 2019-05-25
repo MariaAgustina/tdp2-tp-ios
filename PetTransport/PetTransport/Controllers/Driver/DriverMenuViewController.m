@@ -68,13 +68,6 @@
 
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"¡Nuevo viaje encontrado!" message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    NSString *priceMessage = [NSString stringWithFormat:@"Precio: $%@", trip.cost];
-    NSMutableAttributedString *priceLabel = [[NSMutableAttributedString alloc] initWithString:priceMessage];
-    [priceLabel addAttribute:NSFontAttributeName
-                  value:[UIFont boldSystemFontOfSize:16]
-                  range:NSMakeRange(0, priceMessage.length)];
-    [alert setValue:priceLabel forKey:@"attributedTitle"];
-    
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
         [self scheduleNotification:trip];
         [[DriverService sharedInstance] acceptTrip:trip];
@@ -111,7 +104,9 @@
         ? [NSString stringWithFormat:@"\rComentarios: '%@'", trip.comments]
         : @"";
     
-    NSString* message =[NSString stringWithFormat:@"%@\r\r%@\r%@\r%@\r%@\r%@\r%@", client, origin, destination, reservationDate, pets, escort, comments];
+    NSString *price = [NSString stringWithFormat:@"Precio: $%@", trip.cost];
+    
+    NSString* message =[NSString stringWithFormat:@"%@\r\r%@\r%@\r%@\r%@\r%@\r%@\r\r%@", client, origin, destination, reservationDate, pets, escort, comments, price];
     return message;
 }
 
