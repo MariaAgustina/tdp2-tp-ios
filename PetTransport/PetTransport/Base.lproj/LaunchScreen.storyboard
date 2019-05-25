@@ -33,7 +33,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.98950934410000002" green="1" blue="0.79214960339999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dNK-Qm-cub" firstAttribute="top" secondItem="Gdl-N2-qur" secondAttribute="bottom" constant="50" id="31x-O5-iul"/>
                             <constraint firstItem="Gdl-N2-qur" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WkE-zy-Kry"/>
