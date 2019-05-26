@@ -19,6 +19,8 @@
 		586D013422877D6E00F6FCAF /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586D013322877D6E00F6FCAF /* UserNotifications.framework */; };
 		5872B7B422515A730034F2F9 /* car-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5872B7B322515A730034F2F9 /* car-icon.png */; };
 		58754C0922625E5C00F12643 /* FbProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58754C0822625E5C00F12643 /* FbProfileManager.m */; };
+		58919C1E229B1DF1005C9778 /* radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 58919C1D229B1DF0005C9778 /* radar.png */; };
+		58919C21229B230B005C9778 /* DriverNotFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58919C20229B230B005C9778 /* DriverNotFoundViewController.m */; };
 		589798D2227F73900047EC92 /* RateClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589798D1227F73900047EC92 /* RateClientViewController.m */; };
 		58B34D9D2275D72200277F5A /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B34D9C2275D72200277F5A /* ApiClient.m */; };
 		58BE1D192263A8F50000C9D0 /* RegisterClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BE1D182263A8F50000C9D0 /* RegisterClientViewController.m */; };
@@ -100,6 +102,9 @@
 		5872B7B322515A730034F2F9 /* car-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car-icon.png"; sourceTree = "<group>"; };
 		58754C0722625E5C00F12643 /* FbProfileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FbProfileManager.h; sourceTree = "<group>"; };
 		58754C0822625E5C00F12643 /* FbProfileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FbProfileManager.m; sourceTree = "<group>"; };
+		58919C1D229B1DF0005C9778 /* radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radar.png; sourceTree = "<group>"; };
+		58919C1F229B230B005C9778 /* DriverNotFoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriverNotFoundViewController.h; sourceTree = "<group>"; };
+		58919C20229B230B005C9778 /* DriverNotFoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriverNotFoundViewController.m; sourceTree = "<group>"; };
 		589798D0227F73900047EC92 /* RateClientViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateClientViewController.h; sourceTree = "<group>"; };
 		589798D1227F73900047EC92 /* RateClientViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateClientViewController.m; sourceTree = "<group>"; };
 		58B34D9B2275D72200277F5A /* ApiClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
@@ -268,6 +273,7 @@
 			children = (
 				586235AD226A6892007D9A0A /* perro.png */,
 				5872B7B322515A730034F2F9 /* car-icon.png */,
+				58919C1D229B1DF0005C9778 /* radar.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -307,6 +313,8 @@
 				93FB8A322290678F0006FD16 /* WaitingTripConfirmationViewController.m */,
 				93FB8A3E2291A4520006FD16 /* RequireTripViewController.h */,
 				93FB8A3F2291A4520006FD16 /* RequireTripViewController.m */,
+				58919C1F229B230B005C9778 /* DriverNotFoundViewController.h */,
+				58919C20229B230B005C9778 /* DriverNotFoundViewController.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -575,6 +583,7 @@
 				9396CA0E22474B3400F6248F /* Assets.xcassets in Resources */,
 				586235AE226A6892007D9A0A /* perro.png in Resources */,
 				9396CA0C22474B3400F6248F /* Main.storyboard in Resources */,
+				58919C1E229B1DF1005C9778 /* radar.png in Resources */,
 				5872B7B422515A730034F2F9 /* car-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +658,7 @@
 				937ABFBD225400DB00086554 /* TripService.m in Sources */,
 				938B9A09227F436C001EBBEC /* RateModel.m in Sources */,
 				9396CA0922474B3400F6248F /* ViewController.m in Sources */,
+				58919C21229B230B005C9778 /* DriverNotFoundViewController.m in Sources */,
 				93FB8A34229067900006FD16 /* WaitingTripConfirmationViewController.m in Sources */,
 				5816D4E52291D1C500237D00 /* IdentityService.m in Sources */,
 				93D0BED6226CBBD100FEF7C9 /* DriverMenuViewController.m in Sources */,

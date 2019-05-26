@@ -1087,7 +1087,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.27058823529411763" green="0.71372549019607845" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.32492601871490479" green="0.71580040454864502" blue="0.61181020736694336" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4W7-Zm-aiW" firstAttribute="top" secondItem="REY-sL-wFQ" secondAttribute="top" id="4bw-0Q-a9i"/>
                             <constraint firstItem="13B-zg-ugH" firstAttribute="centerX" secondItem="REY-sL-wFQ" secondAttribute="centerX" id="Jfx-SO-CyT"/>
@@ -1471,31 +1471,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Esperando confirmación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTM-tw-Ptj">
-                                <rect key="frame" x="104" y="139" width="186" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cancelado: No se encontró chofer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfH-qk-x1H">
-                                <rect key="frame" x="56" y="220" width="262" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar.png" translatesAutoresizingMaskIntoConstraints="NO" id="CYD-fX-btL">
+                                <rect key="frame" x="46.5" y="210" width="281" height="267"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CYD-fX-btL" secondAttribute="height" multiplier="20:19" id="lwy-kS-evR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buscando chofer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTM-tw-Ptj">
+                                <rect key="frame" x="87.5" y="123" width="199" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32549019607843138" green="0.71764705882352942" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="CYD-fX-btL" firstAttribute="centerY" secondItem="noE-bF-U3L" secondAttribute="centerY" id="0IO-MD-Aod"/>
+                            <constraint firstItem="CYD-fX-btL" firstAttribute="top" secondItem="XTM-tw-Ptj" secondAttribute="bottom" constant="57" id="V9t-T8-AwV"/>
+                            <constraint firstItem="XTM-tw-Ptj" firstAttribute="centerX" secondItem="noE-bF-U3L" secondAttribute="centerX" id="WMY-9O-O3q"/>
+                            <constraint firstItem="CYD-fX-btL" firstAttribute="width" secondItem="DOA-c1-Ok7" secondAttribute="width" multiplier="0.75" id="bPW-yo-xjz"/>
+                            <constraint firstItem="CYD-fX-btL" firstAttribute="centerX" secondItem="noE-bF-U3L" secondAttribute="centerX" id="qfE-rv-BbM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="noE-bF-U3L"/>
                     </view>
-                    <connections>
-                        <outlet property="cancelledLabel" destination="WfH-qk-x1H" id="u6V-j8-mlL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5BC-kl-V8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2488.8000000000002" y="116.49175412293854"/>
+            <point key="canvasLocation" x="2655" y="117"/>
         </scene>
         <!--Track Driver View Controller-->
         <scene sceneID="RHD-12-BMa">
@@ -1545,7 +1547,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9c-Y6-ddw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3262" y="118"/>
+            <point key="canvasLocation" x="4023" y="-291"/>
+        </scene>
+        <!--Driver Not Found View Controller-->
+        <scene sceneID="H3q-0K-XYy">
+            <objects>
+                <viewController storyboardIdentifier="DriverNotFoundViewController" id="C7f-Nb-YIe" customClass="DriverNotFoundViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sW9-Z4-Y7R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Lo sentimos!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzg-61-dSM">
+                                <rect key="frame" x="108" y="140" width="158" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No se encuentra ningún chofer disponible actualmente" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVy-aZ-JFL">
+                                <rect key="frame" x="74" y="190" width="227" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="Bqe-er-eSv"/>
+                                    <constraint firstAttribute="height" constant="105" id="ymA-ZE-pMh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsN-is-JIa">
+                                <rect key="frame" x="87.5" y="345" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="L3o-zT-y6Y"/>
+                                    <constraint firstAttribute="height" constant="30" id="q94-ow-g5S"/>
+                                </constraints>
+                                <state key="normal" title="Reintentar"/>
+                                <connections>
+                                    <action selector="retryButtonPressed:" destination="C7f-Nb-YIe" eventType="touchUpInside" id="Rbm-gs-i3B"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GpG-Nn-nae">
+                                <rect key="frame" x="87.5" y="425" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VgJ-jx-bPv"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="fEc-Wh-HRt"/>
+                                </constraints>
+                                <state key="normal" title="Volver al inicio"/>
+                                <connections>
+                                    <action selector="homeButtonPressed:" destination="C7f-Nb-YIe" eventType="touchUpInside" id="aPE-nX-BUR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.32549019610000002" green="0.71764705880000002" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="GpG-Nn-nae" firstAttribute="top" secondItem="UsN-is-JIa" secondAttribute="bottom" constant="50" id="C2v-gA-1Vj"/>
+                            <constraint firstItem="Tzg-61-dSM" firstAttribute="centerX" secondItem="key-VU-qc2" secondAttribute="centerX" id="DXA-xL-uc7"/>
+                            <constraint firstItem="UsN-is-JIa" firstAttribute="top" secondItem="iVy-aZ-JFL" secondAttribute="bottom" constant="50" id="EKi-pN-7va"/>
+                            <constraint firstItem="UsN-is-JIa" firstAttribute="centerX" secondItem="key-VU-qc2" secondAttribute="centerX" id="QKF-w3-ch5"/>
+                            <constraint firstItem="Tzg-61-dSM" firstAttribute="top" secondItem="key-VU-qc2" secondAttribute="top" constant="120" id="bTB-nd-5JB"/>
+                            <constraint firstItem="iVy-aZ-JFL" firstAttribute="centerX" secondItem="key-VU-qc2" secondAttribute="centerX" id="cdJ-0J-awW"/>
+                            <constraint firstItem="GpG-Nn-nae" firstAttribute="centerX" secondItem="key-VU-qc2" secondAttribute="centerX" id="dh6-0m-aY0"/>
+                            <constraint firstItem="key-VU-qc2" firstAttribute="trailing" secondItem="iVy-aZ-JFL" secondAttribute="trailing" constant="74" id="fwe-Wk-i9U"/>
+                            <constraint firstItem="iVy-aZ-JFL" firstAttribute="top" secondItem="Tzg-61-dSM" secondAttribute="bottom" constant="20" id="iyo-ea-WaS"/>
+                            <constraint firstItem="GpG-Nn-nae" firstAttribute="width" secondItem="UsN-is-JIa" secondAttribute="width" id="nOs-ZI-NEX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="key-VU-qc2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0nu-3J-kSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4021.5999999999999" y="538.38080959520244"/>
         </scene>
         <!--Driver Login View Controller-->
         <scene sceneID="w75-ep-Dmt">
@@ -2238,6 +2309,7 @@
     <resources>
         <image name="perro.png" width="225" height="225"/>
         <image name="photoPlaceholder" width="112" height="112"/>
+        <image name="radar.png" width="777" height="800"/>
         <image name="rating-star-empty" width="256" height="256"/>
     </resources>
 </document>

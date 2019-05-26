@@ -11,10 +11,9 @@
 #import "LocationCoordinate.h"
 #import "UIViewController+ShowAlerts.h"
 #import "TrackDriverViewController.h"
+#import "DriverNotFoundViewController.h"
 
 @interface WaitingTripConfirmationViewController () <TrackDriverServideDelegate>
-
-@property (weak, nonatomic) IBOutlet UILabel *cancelledLabel;
 
 @end
 
@@ -22,15 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cancelledLabel.hidden = YES;
+    [self.navigationItem setHidesBackButton:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    if (self.trip == nil){
-        NSLog(@"------ NO TENGO TRIP ---------");
-    }
     [self trackDriver];
 }
 
@@ -53,7 +48,9 @@
 }
 
 - (void)tripCancelled {
-    self.cancelledLabel.hidden = NO;
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DriverNotFoundViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"DriverNotFoundViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - TrackDriverServiceDelegate
