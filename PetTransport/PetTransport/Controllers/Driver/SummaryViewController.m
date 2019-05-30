@@ -7,8 +7,9 @@
 //
 
 #import "SummaryViewController.h"
+#import "DriverService.h"
 
-@interface SummaryViewController ()
+@interface SummaryViewController () <SummaryDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *previousMonthTitle;
 @property (weak, nonatomic) IBOutlet UILabel *previousMonthTripsLabel;
@@ -16,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentMonthTitle;
 @property (weak, nonatomic) IBOutlet UILabel *currentMonthTripsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentMonthMoneyLabel;
-
 
 @end
 
@@ -30,7 +30,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateTitles];
-    [self updateTotals];
+    [self fetchSummary];
+}
+
+- (void)fetchSummary {
+    DriverService *driverService = [DriverService sharedInstance];
+    [driverService getSummaryWithDelegate:self];
 }
 
 - (void)updateTitles {
@@ -80,16 +85,16 @@
     return [months objectForKey:monthNumber];
 }
 
-- (void)updateTotals {
-    self.currentMonthTripsLabel.text = @"15";
-    self.currentMonthMoneyLabel.text = [NSString stringWithFormat:@"$%@", @"1245"];
-    
-    self.previousMonthTripsLabel.text = @"87";
-    self.previousMonthMoneyLabel.text = [NSString stringWithFormat:@"$%@", @"19765"];
-}
-
 - (IBAction)buttonPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didReceiveSummary:(DriverSummary *)summary {
+    self.currentMonthTripsLabel.text = summary.currentTrips;
+    self.currentMonthMoneyLabel.text = [NSString stringWithFormat:@"$%@", summary.currentMoney];
+    
+    self.previousMonthTripsLabel.text = summary.previousTrips;
+    self.previousMonthMoneyLabel.text = [NSString stringWithFormat:@"$%@", summary.previousMoney];
 }
 
 @end

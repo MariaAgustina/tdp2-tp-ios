@@ -133,6 +133,20 @@
     }];
 }
 
+- (void)getSummaryWithDelegate: (id<SummaryDelegate>)summaryDelegate {
+    NSString *relativeUrlString = @"drivers/summary";
+    
+    ApiClient *apiClient = [ApiClient new];
+    NSString *token = [[IdentityService sharedInstance] getToken];
+    [apiClient getWithRelativeUrlString:relativeUrlString token:token success:^(id _Nullable responseObject){
+        __strong id <SummaryDelegate> strongDelegate = summaryDelegate;
+        DriverSummary *summary = [[DriverSummary alloc] initWithDictionary:responseObject];
+        [strongDelegate didReceiveSummary:summary];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Fallo el get summary");
+    }];
+}
+
 #pragma mark - Location
 - (void)startUpdatingLocation {
     self.locationManager = [LocationManager new];

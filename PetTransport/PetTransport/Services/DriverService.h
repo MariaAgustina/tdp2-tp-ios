@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "Trip.h"
-
+#import "DriverSummary.h"
 
 @protocol DriverServiceDelegate <NSObject>
 
 @optional
 - (void)didReceiveTripOffer: (Trip*)trip;
+
+@end
+
+@protocol SummaryDelegate <NSObject>
+
+@optional
+- (void)didReceiveSummary: (DriverSummary*)summary;
 
 @end
 
@@ -28,5 +35,6 @@
 - (BOOL)isWorking;
 - (void)acceptTrip: (Trip*)trip;
 - (void)rejectTrip: (Trip*)trip;
+- (void)getSummaryWithDelegate: (id<SummaryDelegate>)summaryDelegate;
 
 @end
