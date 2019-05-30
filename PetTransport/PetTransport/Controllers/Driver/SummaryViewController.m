@@ -30,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateTitles];
+    [self updateTotals];
 }
 
 - (void)updateTitles {
@@ -77,6 +78,14 @@
                              @"12": @"Diciembre",
                              };
     return [months objectForKey:monthNumber];
+}
+
+- (void)updateTotals {
+    self.currentMonthTripsLabel.text = @"15";
+    self.currentMonthMoneyLabel.text = [NSString stringWithFormat:@"$%@", @"1245"];
+    
+    self.previousMonthTripsLabel.text = @"87";
+    self.previousMonthMoneyLabel.text = [NSString stringWithFormat:@"$%@", @"19765"];
 }
 
 - (IBAction)buttonPressed:(id)sender {
