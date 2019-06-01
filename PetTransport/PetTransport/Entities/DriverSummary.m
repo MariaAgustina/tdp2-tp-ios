@@ -14,12 +14,12 @@
     self = [super init];
     
     NSDictionary *current = [dictionary objectForKey:@"current"];
-    self.currentTrips = [[current objectForKey:@"trips"] stringValue];
-    self.currentMoney = [[current objectForKey:@"money"] stringValue];
+    self.currentTrips = [current objectForKey:@"trips"];
+    self.currentMoney = [current objectForKey:@"money"];
     
     NSDictionary *previous = [dictionary objectForKey:@"previous"];
-    self.previousTrips = [[previous objectForKey:@"trips"] stringValue];
-    self.previousMoney = [[previous objectForKey:@"money"] stringValue];
+    self.previousTrips = [previous objectForKey:@"trips"];
+    self.previousMoney = [previous objectForKey:@"money"];
     
     return self;
 }
