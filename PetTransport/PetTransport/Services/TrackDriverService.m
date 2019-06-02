@@ -69,7 +69,7 @@
 
 - (void) didUpdateDriverLocationWithResponse:(NSDictionary *)responseObject{
     DriverStatus status = [self statusFromResponse:responseObject];
-    if (status == DRIVER_STATUS_CANCELLED || status == DRIVER_STATUS_SEARCHING){
+    if (status == DRIVER_STATUS_CANCELLED || status == DRIVER_STATUS_SEARCHING || status == DRIVER_STATUS_FINISHED){
         struct LocationCoordinate emptyLocation;
         [self didUpdateDriverLocation:emptyLocation withStatus:status];
         return;
@@ -88,6 +88,7 @@
 
 - (DriverStatus)statusFromResponse:(NSDictionary *)responseObject {
     NSString *statusString = [responseObject objectForKey:@"status"];
+        
     if ([statusString isEqualToString:@"En camino"]){
         return DRIVER_STATUS_GOING;
     }
@@ -100,15 +101,21 @@
     if ([statusString isEqualToString:@"Buscando"]){
         return DRIVER_STATUS_SEARCHING;
     }
+    if ([statusString isEqualToString:@"En viaje"]){
+        return DRIVER_STATUS_ON_TRIP;
+    }
+    if ([statusString isEqualToString:@"Llegamos"]){
+        return DRIVER_STATUS_ARRIVED;
+    }
+    if ([statusString isEqualToString:@"Finalizado"]){
+        return DRIVER_STATUS_FINISHED;
+    }
+    
     return DRIVER_STATUS_SEARCHING;
 }
 
 - (void)didUpdateDriverLocation:(struct LocationCoordinate)location withStatus:(DriverStatus)status {
-    BOOL didArrive = (status == DRIVER_STATUS_IN_ORIGIN);
     [self.delegate didUpdateDriverLocation:location andStatus:status];
-    if (didArrive) {
-        [self stopTracking];
-    }
 }
 
 - (void)stopTracking {

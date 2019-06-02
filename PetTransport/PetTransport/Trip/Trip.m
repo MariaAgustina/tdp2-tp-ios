@@ -64,6 +64,11 @@ NSString* const kFinishedStatusKey = @"Finalizado";
     self.clientName = [[dictionary objectForKey:@"client"] objectForKey:@"name"];
     self.clientId = [[dictionary objectForKey:@"clientId"] integerValue];
     
+    
+    NSDictionary* driverDic = [dictionary objectForKey:@"driver"];
+    self.driverName = [driverDic objectForKey:@"name"];
+    self.driverPhone = [driverDic objectForKey:@"phone"];
+
     return self;
 }
 

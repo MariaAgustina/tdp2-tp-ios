@@ -34,6 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *clientName;
 @property (assign, nonatomic) NSInteger clientId;
 
+@property (strong, nonatomic) NSString *driverName;
+@property (strong, nonatomic) NSString *driverPhone;
+
+
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 - (NSDictionary*)toDictionary;
 - (struct LocationCoordinate)getOriginCoordinate;
