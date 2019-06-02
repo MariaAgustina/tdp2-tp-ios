@@ -196,6 +196,8 @@
 		93FB8A3E2291A4520006FD16 /* RequireTripViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequireTripViewController.h; sourceTree = "<group>"; };
 		93FB8A3F2291A4520006FD16 /* RequireTripViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequireTripViewController.m; sourceTree = "<group>"; };
 		AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
+		C7F9A3E1A29D15AF4ABC6B92 /* Pods-PetTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetTransport/Pods-PetTransport.debug.xcconfig"; sourceTree = "<group>"; };
+		E06151DE3780C55975676F65 /* Pods-PetTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetTransport/Pods-PetTransport.release.xcconfig"; sourceTree = "<group>"; };
 		E86903565904018278ACDC05 /* Pods-PetTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetTransport.debug.xcconfig"; path = "Target Support Files/Pods-PetTransport/Pods-PetTransport.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -367,6 +369,8 @@
 			children = (
 				E86903565904018278ACDC05 /* Pods-PetTransport.debug.xcconfig */,
 				AB2B90C4CB40EBE69435845F /* Pods-PetTransport.release.xcconfig */,
+				C7F9A3E1A29D15AF4ABC6B92 /* Pods-PetTransport.debug.xcconfig */,
+				E06151DE3780C55975676F65 /* Pods-PetTransport.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
