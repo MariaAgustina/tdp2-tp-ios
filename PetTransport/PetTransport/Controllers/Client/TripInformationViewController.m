@@ -45,6 +45,11 @@ double const kMaximunPetsQuantity = 3;
 @property (weak, nonatomic) IBOutlet UILabel *timeSelectionLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *datePickerHeightConstraint;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchButtonBottomConstraint;
+@property (nonatomic)BOOL hasShownKeyboard;
+
 @end
 
 @implementation TripInformationViewController
@@ -85,8 +90,45 @@ double const kMaximunPetsQuantity = 3;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self updateTimeSelectionView];
     [self setupSearchTripButton];
+    [self registerForKeyboardNotifications];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    [self deregisterFromKeyboardNotifications];
+
+}
+
+
+
+- (void)registerForKeyboardNotifications {
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+}
+
+- (void)deregisterFromKeyboardNotifications {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    
 }
 
 - (void)setupSearchTripButton{
@@ -197,6 +239,28 @@ double const kMaximunPetsQuantity = 3;
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     return ([[textView text] length] - range.length + text.length < 250);
+}
+
+#pragma mark - KeyboardShownView
+
+- (void)keyboardWasShown:(NSNotification *)notification {
+    if(self.hasShownKeyboard){
+        return;
+    }
+    
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.searchButtonBottomConstraint.constant = self.searchButtonBottomConstraint.constant + keyboardSize.height;
+    CGPoint scrollPoint = CGPointMake(0.0, self.scrollView.contentOffset.y + keyboardSize.height);
+    [self.scrollView setContentOffset:scrollPoint animated:YES];
+    self.hasShownKeyboard = YES;
+    
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.searchButtonBottomConstraint.constant = self.searchButtonBottomConstraint.constant - keyboardSize.height;
 }
 
 @end

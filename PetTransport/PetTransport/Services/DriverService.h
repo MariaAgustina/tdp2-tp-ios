@@ -14,6 +14,7 @@
 
 @optional
 - (void)didReceiveTripOffer: (Trip*)trip;
+- (void)didFailDriverNotAvailable;
 
 @end
 

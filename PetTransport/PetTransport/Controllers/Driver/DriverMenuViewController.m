@@ -221,4 +221,19 @@
         return;
     }
 }
+
+- (void)didFailDriverNotAvailable{
+    
+    DriverService *driverService = [DriverService sharedInstance];
+    [driverService setNotWorking];
+    [self.availableSwitch setOn:NO];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Lo sentimos, usted todavía no está habilitado para comenzar a trabajar" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Aceptar" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+    }];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end
