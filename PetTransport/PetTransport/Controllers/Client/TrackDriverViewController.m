@@ -13,17 +13,29 @@
 #import "UIViewController+ShowAlerts.h"
 #import "FinishTripService.h"
 #import "RateServiceViewController.h"
+#import "TripService.h"
+#import "GMSMarker+Setup.h"
+#import <GooglePlaces/GooglePlaces.h>
+#import "CoordinateAddapter.h"
 
-@interface TrackDriverViewController () <TrackDriverServideDelegate, FinishTripServiceDelegate>
+@interface TrackDriverViewController () <TrackDriverServideDelegate, FinishTripServiceDelegate, TripServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) GMSMarker *driverMarker;
 @property (strong, nonatomic) GMSMarker *originMarker;
+@property (strong, nonatomic) GMSMarker *destinationMarker;
+
 @property BOOL tracking;
 @property (strong, nonatomic) NSTimer *timer;
 
 @property (strong, nonatomic) FinishTripService *finishTripService;
+@property (weak, nonatomic) IBOutlet UILabel *driverLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
+@property (strong,nonatomic) TripService* tripService;
+
 
 @end
 
@@ -35,14 +47,27 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     [super viewDidLoad];
     self.title = @"Seguimiento";
     self.finishTripService = [[FinishTripService alloc]initWithDelegate:self];
-    
-   //Esto es solo para finalizar el viaje y mostrar los ratings, luego vamos a tener que cambiarlo y sacar el timer
-    [NSTimer scheduledTimerWithTimeInterval:15.0
-                                     target:self
-                                   selector:@selector(endTrip)
-                                   userInfo:nil
-                                    repeats:NO];
+    self.tripService = [[TripService alloc] initWithDelegate:self];
+
+    [self.tripService retrieveTripWithId:self.trip.tripId];
+    [self.tripService getTripCoordinates:self.trip];
+
 }
+
+- (void)setupOriginAndDestinationMarkers
+{
+    self.originMarker = [GMSMarker new];
+    self.originMarker.title = @"Origen";
+    CLLocationCoordinate2D origin = [CoordinateAddapter getCoordinate:self.trip.origin.coordinate];
+    [self.originMarker setupWithCoordinate:origin address:self.trip.origin.address andMapView:self.mapView];
+    
+    self.destinationMarker = [GMSMarker new];
+    self.destinationMarker.title = @"Destino";
+    self.destinationMarker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+    CLLocationCoordinate2D destination = [CoordinateAddapter getCoordinate:self.trip.destination.coordinate];
+    [self.destinationMarker setupWithCoordinate:destination address:self.trip.destination.address andMapView:self.mapView];
+}
+
 
 - (void)endTrip{
     [self.finishTripService finishTrip:self.trip];
@@ -56,7 +81,7 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     }
     [self.statusLabel setText:@""];
     [self centerCamera:[self.trip getOriginCoordinate]];
-    [self positionMarker:self.originMarker inCoordinate:[self.trip getOriginCoordinate]];
+    [self setupOriginAndDestinationMarkers];
     self.tracking = false;
     [self trackDriver];
 }
@@ -76,15 +101,6 @@ const float ANIMATION_TIME_SECONDS = 5.0;
         _driverMarker.map = self.mapView;
     }
     return _driverMarker;
-}
-
-- (GMSMarker *)originMarker {
-    if (_originMarker == nil) {
-        _originMarker = [[GMSMarker alloc] init];
-        _originMarker.title = @"Origen";
-        _originMarker.map = self.mapView;
-    }
-    return _originMarker;
 }
 
 - (void)trackDriver {
@@ -110,33 +126,6 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     [CATransaction commit];
 }
 
-- (void)driverDidArrive {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-                                                  target:self
-                                                selector:@selector(showDriverArrivedMessage)
-                                                userInfo:nil
-                                                 repeats:NO];
-}
-
-- (void)showDriverArrivedMessage {
-    [self.statusLabel setText:@"Estado: En origen"];
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"El chofer ya está esperandote"
-                                 message:nil
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    
-    
-    UIAlertAction* yesButton = [UIAlertAction
-                                actionWithTitle:@"OK!"
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                    //Handle your yes please button action here
-                                }];
-    [alert addAction:yesButton];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 #pragma mark - TrackDriverServiceDelegate
 
 - (void)didUpdateDriverLocation: (struct LocationCoordinate)coordinate andStatus:(DriverStatus)status {
@@ -154,9 +143,19 @@ const float ANIMATION_TIME_SECONDS = 5.0;
     self.tracking = true;
     
     if (status == DRIVER_STATUS_IN_ORIGIN){
-        [self driverDidArrive];
+        [self.statusLabel setText:@"Estado actual: En origen"];
     } else if (status == DRIVER_STATUS_GOING) {
-        [self.statusLabel setText:@"Estado: En camino"];
+        [self.statusLabel setText:@"Estado actual: En camino"];
+    }else if (status == DRIVER_STATUS_SEARCHING){
+        //esto no deberia pasar nunca
+        [self.statusLabel setText:@"Estado actual: Buscando conductor"];
+    }else if (status == DRIVER_STATUS_ON_TRIP){
+        [self.statusLabel setText:@"Estado actual: En viaje"];
+    }else if (status == DRIVER_STATUS_ARRIVED){
+        [self.statusLabel setText:@"Estado actual: Llegamos"];
+    }else if (status == DRIVER_STATUS_FINISHED){
+        [self.statusLabel setText:@"Estado actual: Finalizado"];
+        [self endTrip];
     }
 }
 
@@ -174,6 +173,35 @@ const float ANIMATION_TIME_SECONDS = 5.0;
 }
 
 - (void)finishTripServiceFailedWithError:(NSError*)error{
+    
+}
+
+#pragma mark - TripServiceDelegate
+
+- (void)didReturnTrip:(Trip*)trip{
+    self.trip = trip;
+    if(trip.driverName){
+        self.driverLabel.text = [NSString stringWithFormat:@"Chofer: %@",trip.driverName];
+    }
+    if(trip.driverPhone){
+        self.phoneLabel.text = [NSString stringWithFormat:@"Teléfono: %@",trip.driverPhone];
+    }
+    if(trip.cost){
+        self.priceLabel.text = [NSString stringWithFormat:@"$ %@",trip.cost];
+    }
+}
+
+- (void)succededReceivingRoute:(WayPoints*)wayPoints{
+    [self hideLoading];
+    GMSMutablePath *path = [GMSMutablePath path];
+    
+    for(CLLocation* waypoint in wayPoints.points){
+        [path addCoordinate:waypoint.coordinate];
+    }
+    
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 6.f;
+    polyline.map = self.mapView;
     
 }
 @end
