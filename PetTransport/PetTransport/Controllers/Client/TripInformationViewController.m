@@ -48,6 +48,7 @@ double const kMaximunPetsQuantity = 3;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchButtonBottomConstraint;
+@property (nonatomic)BOOL hasShownKeyboard;
 
 @end
 
@@ -97,8 +98,9 @@ double const kMaximunPetsQuantity = 3;
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-    [self deregisterFromKeyboardNotifications];
     [super viewWillDisappear:animated];
+    [self deregisterFromKeyboardNotifications];
+
 }
 
 
@@ -120,7 +122,7 @@ double const kMaximunPetsQuantity = 3;
 - (void)deregisterFromKeyboardNotifications {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardDidHideNotification
+                                                    name:UIKeyboardDidShowNotification
                                                   object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -242,12 +244,16 @@ double const kMaximunPetsQuantity = 3;
 #pragma mark - KeyboardShownView
 
 - (void)keyboardWasShown:(NSNotification *)notification {
+    if(self.hasShownKeyboard){
+        return;
+    }
     
     NSDictionary* info = [notification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     self.searchButtonBottomConstraint.constant = self.searchButtonBottomConstraint.constant + keyboardSize.height;
     CGPoint scrollPoint = CGPointMake(0.0, self.scrollView.contentOffset.y + keyboardSize.height);
     [self.scrollView setContentOffset:scrollPoint animated:YES];
+    self.hasShownKeyboard = YES;
     
 }
 
