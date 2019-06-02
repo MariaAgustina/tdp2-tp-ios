@@ -130,6 +130,9 @@
         }
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"Fallo al actualizar el status del conductor");
+        if(self.working && ([error.userInfo.description containsString:@"Request failed: forbidden (403)"])){
+            [self.delegate didFailDriverNotAvailable];
+        }
     }];
 }
 
