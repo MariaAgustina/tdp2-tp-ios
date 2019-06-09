@@ -2215,7 +2215,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUW-K5-Mg6" userLabel="PreviousMonth">
-                                <rect key="frame" x="35" y="147" width="317" height="174"/>
+                                <rect key="frame" x="35" y="381" width="317" height="174"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diciembre - 2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKa-L3-o0J">
                                         <rect key="frame" x="15" y="15" width="287" height="35"/>
@@ -2226,7 +2226,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ganancia total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-wj-UMW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total facturado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-wj-UMW">
                                         <rect key="frame" x="15" y="122" width="190" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -2280,7 +2280,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmH-KD-ie1" userLabel="CurrentMonth">
-                                <rect key="frame" x="35" y="381" width="317" height="174"/>
+                                <rect key="frame" x="35" y="147" width="317" height="174"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enero - 2020" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwI-ZK-XxW">
                                         <rect key="frame" x="15" y="15" width="287" height="35"/>
@@ -2291,7 +2291,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ganancia total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4b-Ro-Aqo">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total facturado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4b-Ro-Aqo">
                                         <rect key="frame" x="15" y="122" width="190" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -2359,16 +2359,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.63529411764705879" green="0.53333333333333333" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mUW-K5-Mg6" firstAttribute="top" secondItem="xHG-mN-V8h" secondAttribute="bottom" constant="60" id="6nS-H7-hQE"/>
-                            <constraint firstItem="WI2-W4-FIg" firstAttribute="top" secondItem="RmH-KD-ie1" secondAttribute="bottom" constant="35" id="ABU-Cq-V71"/>
+                            <constraint firstItem="RmH-KD-ie1" firstAttribute="top" secondItem="xHG-mN-V8h" secondAttribute="bottom" constant="60" id="0Fy-9V-iRJ"/>
                             <constraint firstItem="xHG-mN-V8h" firstAttribute="centerX" secondItem="lgn-bt-cSB" secondAttribute="centerX" id="K28-L7-8qh"/>
-                            <constraint firstItem="RmH-KD-ie1" firstAttribute="top" secondItem="mUW-K5-Mg6" secondAttribute="bottom" constant="60" id="OZU-KX-KqX"/>
                             <constraint firstItem="RmH-KD-ie1" firstAttribute="leading" secondItem="mUW-K5-Mg6" secondAttribute="leading" id="PdY-83-Xq7"/>
                             <constraint firstItem="lgn-bt-cSB" firstAttribute="trailing" secondItem="mUW-K5-Mg6" secondAttribute="trailing" constant="23" id="WS5-Y3-aKa"/>
                             <constraint firstItem="mUW-K5-Mg6" firstAttribute="leading" secondItem="lgn-bt-cSB" secondAttribute="leading" constant="35" id="WsG-A7-QyO"/>
                             <constraint firstItem="RmH-KD-ie1" firstAttribute="trailing" secondItem="mUW-K5-Mg6" secondAttribute="trailing" id="bcj-zW-FyT"/>
                             <constraint firstItem="WI2-W4-FIg" firstAttribute="centerX" secondItem="lgn-bt-cSB" secondAttribute="centerX" id="dK0-sG-JIK"/>
+                            <constraint firstItem="WI2-W4-FIg" firstAttribute="top" secondItem="mUW-K5-Mg6" secondAttribute="bottom" constant="35" id="fUV-Wm-apT"/>
                             <constraint firstItem="xHG-mN-V8h" firstAttribute="top" secondItem="lgn-bt-cSB" secondAttribute="top" constant="25" id="s8f-A8-yc0"/>
+                            <constraint firstItem="mUW-K5-Mg6" firstAttribute="top" secondItem="RmH-KD-ie1" secondAttribute="bottom" constant="60" id="shA-Pb-hON"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lgn-bt-cSB"/>
                     </view>

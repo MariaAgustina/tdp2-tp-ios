@@ -145,14 +145,16 @@
     [self.navigationController pushViewController:clientMenuVC animated:YES];
 }
 
-- (void)didFailLogin: (BOOL)inexistentUser {
+- (void)didFailLogin: (BOOL)inexistentUser disabledUser:(BOOL)disabledUser {
     [self hideLoading];
     if (inexistentUser){
         self.pendingAction = @"Registration";
         [self loadProfile];
         return;
     }
-    [self showError:@"Error al loguearse"];
+    
+    NSString* message = (disabledUser) ? @"Usted no está habilitado para utilizar la aplicación" : @"Error al loguearse";
+    [self showError:message];
 }
 
 @end
