@@ -34,7 +34,8 @@
                                      [self.delegate didLoginWithProfile:client];
                                  } failure:^(NSError * _Nonnull error, NSInteger statusCode) {
                                      BOOL inexistentUser = (statusCode == INEXISTENT_USER_STATUS_CODE);
-                                     [self.delegate didFailLogin:inexistentUser];
+                                     BOOL disabledUser = (statusCode == DISABLED_USER_STATUS_CODE);
+                                     [self.delegate didFailLogin:inexistentUser disabledUser:disabledUser];
                                  }];
 }
 

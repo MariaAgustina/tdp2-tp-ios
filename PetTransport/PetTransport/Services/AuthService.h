@@ -12,6 +12,7 @@
 
 #define INEXISTENT_USER_STATUS_CODE 403
 #define DUPLICATED_USER_STATUS_CODE 403
+#define DISABLED_USER_STATUS_CODE 401
 
 @protocol AuthServiceDelegate <NSObject>
 
@@ -22,6 +23,7 @@
 
 - (void)didLoginWithProfile: (ClientProfile*)profile;
 - (void)didFailLogin: (BOOL)inexistentUser;
+- (void)didFailLogin: (BOOL)inexistentUser disabledUser:(BOOL)disabledUser;
 
 @end
 
